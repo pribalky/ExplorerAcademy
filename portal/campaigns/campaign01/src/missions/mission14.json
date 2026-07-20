@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0014",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 14,
+  "title": "The Missing Notebook",
+  "storyChapter": "CHAPTER-0004",
+  "estimatedTime": "60 minutes",
+  "difficulty": "confident",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "The learner discovers references to one final field notebook belonging to Dr. Elara Quinn.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Only scattered pages of the notebook remain, and much of its content is missing.", "trigger": "Notebook references found" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner combines journal entries, maps, timestamps and previous discoveries to begin reassembling the notebook.", "trigger": "Pages combined with other evidence" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Arranging the surviving pages chronologically begins to reveal Dr. Quinn's final recorded observations.", "trigger": "Pages arranged chronologically" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must write the missing sections using the available evidence, distinguishing confirmed facts from reasonable inference.", "trigger": "Missing sections written and inference separated from fact" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The reconstructed notebook confirms that the expedition was attempting to protect important scientific discoveries — not hide them.", "trigger": "Expedition's true purpose confirmed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how much can be understood even from a badly damaged record.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Dr. Quinn's motivations become clear, and the campaign transitions from investigation toward solving the expedition mystery.", "trigger": "Motivations understood" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0081",
+      "missionId": "MISSION-0014",
+      "title": "Reassemble Notebook Pages",
+      "type": "reading",
+      "category": "reading",
+      "duration": 8,
+      "difficulty": "confident",
+      "storyContext": "Only scattered pages remain of Dr. Elara Quinn's final field notebook.",
+      "instructions": "Read the surviving notebook pages and work out how they fit together.",
+      "output": "A reassembled order of the surviving notebook pages.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0082",
+      "missionId": "MISSION-0014",
+      "title": "Arrange Events Chronologically",
+      "type": "writing",
+      "category": "writing",
+      "duration": 7,
+      "difficulty": "confident",
+      "storyContext": "Journal entries, maps, timestamps and previous discoveries all hold clues to the correct order of events.",
+      "instructions": "Arrange the events described in the notebook into chronological order.",
+      "output": "A chronological timeline of Dr. Quinn's final observations.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0083",
+      "missionId": "MISSION-0014",
+      "title": "Write Missing Sections Using Evidence",
+      "type": "writing",
+      "category": "writing",
+      "duration": 8,
+      "difficulty": "confident",
+      "storyContext": "Large parts of the notebook are missing entirely.",
+      "instructions": "Write the missing sections of the notebook, using evidence from the surviving pages and previous discoveries.",
+      "output": "Written reconstructions of the missing notebook sections.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0084",
+      "missionId": "MISSION-0014",
+      "title": "Distinguish Facts From Inference",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 7,
+      "difficulty": "confident",
+      "storyContext": "Not everything written in the reconstructed notebook can be fully trusted.",
+      "instructions": "Sort your reconstruction into confirmed facts and reasonable inference.",
+      "output": "Two lists: confirmed facts and reasonable inference.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0085",
+      "missionId": "MISSION-0014",
+      "title": "Write Another Perspective",
+      "type": "creative",
+      "category": "creative",
+      "duration": 15,
+      "difficulty": "confident",
+      "storyContext": "Every expedition member would have experienced these events differently to Dr. Quinn.",
+      "instructions": "Write an additional journal entry from the perspective of another expedition member.",
+      "output": "A journal entry written from another expedition member's perspective.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0086",
+      "missionId": "MISSION-0014",
+      "title": "Reconstructing Incomplete Manuscripts",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "confident",
+      "storyContext": "Reconstructing this notebook is similar to real historical research.",
+      "instructions": "Find out how archaeologists and historians reconstruct incomplete manuscripts.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0014",
+      "type": "story",
+      "value": "Dr. Quinn's Motivations Revealed"
+    }
+  ],
+  "reflection": {
+    "prompts": ["What do you think Dr. Quinn was really trying to protect?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0014",
+    "learningObjectives": ["Reading comprehension", "Sequencing", "Writing", "Evidence evaluation"],
+    "discussionPoints": ["What do you think Dr. Quinn was protecting, and why?", "How did you decide what to write in the missing sections?"],
+    "preparation": "No special preparation required.",
+    "assessment": "Look for missing sections that are reasonably supported by surrounding evidence, and a clear separation between confirmed facts and inference."
+  },
+  "completionCriteria": "Notebook pages reassembled, events arranged chronologically, and missing sections written using evidence."
+}

@@ -191,7 +191,7 @@ Success Criteria
 Status
 
 ```
-IN PROGRESS — Missions 1-13 of 21 compiled (Phases 1-3 complete: Recruitment & Orientation, Learning to Investigate, Building Scientific Confidence)
+IN PROGRESS — Missions 1-18 of 21 compiled (Phases 1-4 complete: Recruitment & Orientation, Learning to Investigate, Building Scientific Confidence, Solving the Mystery)
 ```
 
 Goal
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Missions 1–13 of 21 compiled and verified (Phases 1–3 complete). Await approval to continue Phase 4 – Mission Compiler with Missions 14–18** (Phase 4 — Solving the Mystery, `difficulty: "confident"`), following the pattern in `prompts/MISSION_COMPILER.md`.
+**Missions 1–18 of 21 compiled and verified (Phases 1–4 complete). Await approval to finish Phase 4 – Mission Compiler with the final batch, Missions 19–21** (Phase 5 — Graduation, `difficulty: "explorer"`), following the pattern in `prompts/MISSION_COMPILER.md`. This will close out Phase 4 entirely.

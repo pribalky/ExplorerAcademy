@@ -1,0 +1,130 @@
+{
+  "id": "MISSION-0015",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 15,
+  "title": "The Signal Tower",
+  "storyChapter": "CHAPTER-0004",
+  "estimatedTime": "60 minutes",
+  "difficulty": "confident",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "With much of Outpost Echo operational again, Atlas identifies one remaining communications structure: the Signal Tower.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "The tower was intentionally shut down by the original expedition, for reasons not yet clear.", "trigger": "Signal Tower identified" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner inspects the tower's systems and identifies multiple engineering faults.", "trigger": "Tower systems inspected" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Diagnosing the faults reveals just how many separate problems must be solved before the tower can safely transmit.", "trigger": "Faults identified" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must develop a repair sequence, prioritising which faults to fix first.", "trigger": "Repair sequence developed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Testing and refining each solution, the learner brings the tower back online.", "trigger": "Solutions tested and refined" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner records the design decisions made throughout this first multi-stage engineering investigation.", "trigger": "Design decisions recorded" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Long-range communications become possible, and the learner discovers the expedition expected someone to return one day.", "trigger": "Long-range communications restored" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0087",
+      "missionId": "MISSION-0015",
+      "title": "Inspect Tower Systems",
+      "type": "observation",
+      "category": "observation",
+      "duration": 6,
+      "difficulty": "confident",
+      "storyContext": "The Signal Tower was intentionally shut down by the original expedition.",
+      "instructions": "Inspect the tower's systems and note anything that looks damaged or disconnected.",
+      "output": "A list of observed issues with the tower's systems.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0088",
+      "missionId": "MISSION-0015",
+      "title": "Identify Faults",
+      "type": "engineering",
+      "category": "engineering",
+      "duration": 6,
+      "difficulty": "confident",
+      "storyContext": "Before the tower can safely transmit, every fault must be diagnosed.",
+      "instructions": "Diagnose the specific engineering faults preventing the tower from working.",
+      "output": "A list of diagnosed faults.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0089",
+      "missionId": "MISSION-0015",
+      "title": "Develop a Repair Sequence",
+      "type": "engineering",
+      "category": "engineering",
+      "duration": 6,
+      "difficulty": "confident",
+      "storyContext": "This is the learner's first multi-stage engineering investigation, with no single prescribed approach.",
+      "instructions": "Decide the order in which the faults should be repaired, and explain why.",
+      "output": "A prioritised repair sequence.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0090",
+      "missionId": "MISSION-0015",
+      "title": "Test and Refine Solutions",
+      "type": "experiment",
+      "category": "experiment",
+      "duration": 6,
+      "difficulty": "confident",
+      "storyContext": "Each repair must be tested before moving on to the next.",
+      "instructions": "Test each proposed solution and refine it if it doesn't fully solve the fault.",
+      "output": "Tested and refined solutions for each fault.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0091",
+      "missionId": "MISSION-0015",
+      "title": "Record Design Decisions",
+      "type": "writing",
+      "category": "writing",
+      "duration": 6,
+      "difficulty": "confident",
+      "storyContext": "A good engineer can always explain why they made the choices they did.",
+      "instructions": "Record the design decisions made throughout the repair, and the reasoning behind them.",
+      "output": "A written record of design decisions.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0092",
+      "missionId": "MISSION-0015",
+      "title": "Compare Alternative Repair Strategies",
+      "type": "engineering",
+      "category": "engineering",
+      "duration": 15,
+      "difficulty": "confident",
+      "storyContext": "There is often more than one way to solve an engineering problem.",
+      "instructions": "Compare a couple of alternative repair strategies and justify the one you chose.",
+      "output": "A comparison of alternative repair strategies with a justified choice.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0093",
+      "missionId": "MISSION-0015",
+      "title": "Communication Towers in Remote Environments",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "confident",
+      "storyContext": "Outpost Echo's Signal Tower faces the same challenges as real communication towers in remote places.",
+      "instructions": "Find out how communication towers operate in remote environments.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0015",
+      "type": "unlock",
+      "value": "Long-Range Communications"
+    }
+  ],
+  "reflection": {
+    "prompts": ["What was the hardest fault to fix, and how did you solve it?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0015",
+    "learningObjectives": ["Engineering design", "Systems thinking", "Planning", "Testing and refinement"],
+    "discussionPoints": ["Why was it important to fix the faults in a particular order?", "What did testing reveal that planning alone couldn't?"],
+    "preparation": "Simple building or craft materials are useful if the learner wants to model any part of the tower.",
+    "assessment": "Look for a repair sequence that is justified by reasoning, and evidence of testing and refinement across multiple faults."
+  },
+  "completionCriteria": "Tower faults identified, a repair sequence developed, and solutions tested and refined."
+}

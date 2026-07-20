@@ -1,0 +1,143 @@
+{
+  "id": "MISSION-0017",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 17,
+  "title": "The Final Experiment",
+  "storyChapter": "CHAPTER-0004",
+  "estimatedTime": "60 minutes",
+  "difficulty": "confident",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Atlas reveals that one experiment remains unfinished.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Unlike every previous investigation, no detailed instructions for this experiment survive.", "trigger": "Unfinished experiment revealed" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner must define the investigation and form a prediction using everything learned throughout the campaign.", "trigger": "Investigation defined and prediction formed" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Planning a fair test reveals just how much independent reasoning this final investigation requires.", "trigger": "Fair test planned" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must collect evidence and analyse the results without step-by-step guidance.", "trigger": "Evidence collected and results analysed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner successfully completes the expedition's final, unfinished investigation.", "trigger": "Investigation completed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on the limitations of their investigation and what could be improved.", "trigger": "Limitations reflected on" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Confidence shifts from following procedures to designing them — the learner is no longer just completing investigations, but planning their own.", "trigger": "Confidence shifts to independent design" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0100",
+      "missionId": "MISSION-0017",
+      "title": "Define the Investigation",
+      "type": "writing",
+      "category": "writing",
+      "duration": 5,
+      "difficulty": "confident",
+      "storyContext": "One experiment remains unfinished, and no detailed instructions survive for it.",
+      "instructions": "Decide exactly what question your investigation will try to answer.",
+      "output": "A clearly defined investigation question.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0101",
+      "missionId": "MISSION-0017",
+      "title": "Form a Prediction",
+      "type": "science",
+      "category": "science",
+      "duration": 5,
+      "difficulty": "confident",
+      "storyContext": "A good investigation starts with a prediction to test.",
+      "instructions": "Form a prediction for what you expect your investigation to show, and explain your reasoning.",
+      "output": "A written prediction with reasoning.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0102",
+      "missionId": "MISSION-0017",
+      "title": "Plan a Fair Test",
+      "type": "experiment",
+      "category": "experiment",
+      "duration": 5,
+      "difficulty": "confident",
+      "storyContext": "Atlas provides only safety guidance and procedural reminders — the design is up to the learner.",
+      "instructions": "Plan a fair test for your investigation, changing only one thing at a time.",
+      "output": "A plan for a fair test.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0103",
+      "missionId": "MISSION-0017",
+      "title": "Collect Evidence",
+      "type": "observation",
+      "category": "observation",
+      "duration": 5,
+      "difficulty": "confident",
+      "storyContext": "Every conclusion needs evidence to support it.",
+      "instructions": "Carry out your fair test and collect evidence carefully.",
+      "output": "Collected evidence from the investigation.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0104",
+      "missionId": "MISSION-0017",
+      "title": "Analyse Results",
+      "type": "science",
+      "category": "science",
+      "duration": 5,
+      "difficulty": "confident",
+      "storyContext": "The evidence must be analysed to see whether it supports the original prediction.",
+      "instructions": "Analyse your results and decide whether they support your prediction.",
+      "output": "An analysis of the investigation's results.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0105",
+      "missionId": "MISSION-0017",
+      "title": "Reflect on Limitations",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 5,
+      "difficulty": "confident",
+      "storyContext": "No investigation is ever completely perfect.",
+      "instructions": "Reflect on the limitations of your investigation and what you would improve.",
+      "output": "A reflection on the investigation's limitations.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0106",
+      "missionId": "MISSION-0017",
+      "title": "Repeat With a Changed Variable",
+      "type": "experiment",
+      "category": "experiment",
+      "duration": 15,
+      "difficulty": "confident",
+      "storyContext": "Changing one variable can reveal whether your first result was reliable.",
+      "instructions": "Repeat your investigation with one variable changed, and compare the outcomes.",
+      "output": "A comparison between the original and repeated investigation.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0107",
+      "missionId": "MISSION-0017",
+      "title": "Is Experimental Evidence Reliable?",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "confident",
+      "storyContext": "Deciding whether evidence is trustworthy is a core scientific skill.",
+      "instructions": "Find out how scientists decide whether experimental evidence is reliable.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0017",
+      "type": "rank",
+      "value": "Independent Investigator"
+    }
+  ],
+  "reflection": {
+    "prompts": ["What would you do differently if you repeated your investigation?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0017",
+    "learningObjectives": ["Scientific method", "Experimental design", "Independent reasoning", "Evaluation"],
+    "discussionPoints": ["How did you decide what to test, with no instructions to follow?", "What would you do differently if you repeated this investigation?"],
+    "preparation": "Materials will depend on what the learner chooses to investigate — encourage them to plan first, then gather what they need.",
+    "assessment": "Look for a genuinely fair test (only one thing changed at a time) and honest reflection on the investigation's limitations."
+  },
+  "completionCriteria": "An investigation defined, a fair test planned, evidence collected, and results analysed."
+}

@@ -1,0 +1,130 @@
+{
+  "id": "MISSION-0018",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 18,
+  "title": "Connecting the Evidence",
+  "storyChapter": "CHAPTER-0004",
+  "estimatedTime": "60 minutes",
+  "difficulty": "confident",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Atlas assembles every recovered record, observation and experiment into a single investigation archive.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Several plausible interpretations of the evidence remain possible, but only one accounts for everything.", "trigger": "Investigation archive assembled" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reviews the evidence gathered throughout the entire campaign.", "trigger": "Evidence reviewed" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Organising the findings begins to reveal how individual discoveries fit together into a coherent explanation.", "trigger": "Findings organised" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must identify relationships between discoveries and support conclusions with evidence.", "trigger": "Relationships identified and conclusions supported" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Evaluating the alternative explanations, the learner narrows the evidence down to a single account that fits everything.", "trigger": "Alternative explanations evaluated" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how many separate investigations turned out to be part of one larger story.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The complete story of Outpost Echo begins to emerge, and the learner prepares to solve the expedition mystery.", "trigger": "Ready to solve the mystery" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0108",
+      "missionId": "MISSION-0018",
+      "title": "Review Evidence",
+      "type": "reading",
+      "category": "reading",
+      "duration": 6,
+      "difficulty": "confident",
+      "storyContext": "Atlas has assembled every recovered record, observation and experiment into a single investigation archive.",
+      "instructions": "Review the evidence gathered throughout the campaign so far.",
+      "output": "Notes summarising the reviewed evidence.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0109",
+      "missionId": "MISSION-0018",
+      "title": "Organise Findings",
+      "type": "writing",
+      "category": "writing",
+      "duration": 6,
+      "difficulty": "confident",
+      "storyContext": "Individual discoveries may fit together into a coherent explanation.",
+      "instructions": "Organise your findings into related groups.",
+      "output": "Evidence organised into related groups.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0110",
+      "missionId": "MISSION-0018",
+      "title": "Identify Relationships",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 6,
+      "difficulty": "confident",
+      "storyContext": "Discoveries that once seemed unrelated may actually be connected.",
+      "instructions": "Identify relationships between your organised groups of evidence.",
+      "output": "A description of the relationships between findings.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0111",
+      "missionId": "MISSION-0018",
+      "title": "Support Conclusions With Evidence",
+      "type": "writing",
+      "category": "writing",
+      "duration": 6,
+      "difficulty": "confident",
+      "storyContext": "Only one explanation accounts for all of the available evidence.",
+      "instructions": "Write a conclusion supported by the evidence you have connected.",
+      "output": "A written, evidence-supported conclusion.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0112",
+      "missionId": "MISSION-0018",
+      "title": "Evaluate Alternative Explanations",
+      "type": "discussion",
+      "category": "discussion",
+      "duration": 6,
+      "difficulty": "confident",
+      "storyContext": "Several plausible interpretations of the evidence remain possible.",
+      "instructions": "Evaluate a couple of alternative explanations and explain why your conclusion fits the evidence best.",
+      "output": "An evaluation of alternative explanations.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0113",
+      "missionId": "MISSION-0018",
+      "title": "Produce an Investigation Board",
+      "type": "creative",
+      "category": "creative",
+      "duration": 15,
+      "difficulty": "confident",
+      "storyContext": "A visual investigation board would help show how all the clues connect.",
+      "instructions": "Produce an investigation board linking the clues you've gathered visually.",
+      "output": "A visual investigation board.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0114",
+      "missionId": "MISSION-0018",
+      "title": "How Evidence-Based Explanations Are Built",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "confident",
+      "storyContext": "Connecting scattered evidence into one explanation is exactly what detectives and scientists do.",
+      "instructions": "Find out how detectives, archaeologists and scientists build evidence-based explanations.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0018",
+      "type": "story",
+      "value": "The Complete Story Emerges"
+    }
+  ],
+  "reflection": {
+    "prompts": ["Which piece of evidence changed your understanding of the mystery the most?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0018",
+    "learningObjectives": ["Critical thinking", "Evidence synthesis", "Reasoning", "Communication"],
+    "discussionPoints": ["Which piece of evidence changed your thinking the most?", "Why is it useful to consider more than one explanation before deciding?"],
+    "preparation": "No special preparation required.",
+    "assessment": "Look for a conclusion that accounts for the full range of evidence, not just the most memorable pieces."
+  },
+  "completionCriteria": "Evidence reviewed, findings organised, and conclusions supported with evidence."
+}
