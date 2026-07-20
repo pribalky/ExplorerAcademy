@@ -6,44 +6,44 @@
 
 ## Milestone
 
-Discovery Log
+Reward Engine
 
 ## Objective
 
-Build the Discovery Log Manager: a persistent, cross-campaign record of the learner's reflections/discoveries, extending the Storage Manager's save shape (currently just `currentSession`) with a `discoveryLog` array, plus a `/discovery` view that lists real entries instead of the static placeholder.
+Build the Reward Engine: evaluate a mission's `rewards[]` (already loaded and validated by `mission-engine.js`, currently unused) when a mission's reflection is completed, and give the learner some visible acknowledgement — completing Phase 2's final unchecked milestone.
 
 ## Inputs
 
-- `portal/js/storage.js` (save shape needs a second field alongside `currentSession`)
-- `portal/campaigns/campaign01/src/missions/mission01.json` (`reflection.prompts` — the natural first source of an entry)
+- `portal/campaigns/campaign01/src/missions/mission01.json` (`rewards[]` — one placeholder badge reward, currently loaded but never surfaced anywhere)
+- `portal/js/storage.js` (save shape will likely need a third field — earned rewards — alongside `currentSession` and `discoveryLog`)
+- `docs/50-content/504_JSON_SCHEMA.md` (Reward required fields, Reward Type enum)
 
 ## Relevant Documentation
 
-- `docs/60-engineering/601_HTML_ARCHITECTURE.md` (Discovery Log, Discovery Log Manager, Discovery Log Entry, Discovery Log Storage sections)
-- `docs/50-content/504_JSON_SCHEMA.md` (Discovery Log Entry required fields)
-- `docs/50-content/503_DATA_MODEL.md` (Discovery Log Entry entity)
+- `docs/60-engineering/601_HTML_ARCHITECTURE.md` (Reward Engine, Reward Popup, Explorer Profile sections)
+- `docs/00-foundation/006_DESIGN_DECISION_LOG.md` (ADR-007 — Curiosity Before Completion: rewards reinforce exploration, not completion rate)
 
 ## Files Expected to Change
 
-- `portal/js/discovery-log.js` (currently an empty placeholder)
-- `portal/js/storage.js` (extend save shape)
-- `portal/js/router.js` (`/discovery` view; likely a way to add an entry from the Mission page's reflection)
+- `portal/js/reward-engine.js` (currently an empty placeholder)
+- `portal/js/storage.js` (extend save shape with earned rewards)
+- `portal/js/router.js` (trigger reward evaluation after a reflection is saved; some visible acknowledgement on the Mission page)
 
 ## Implementation Plan
 
-To be defined at the start of this milestone. Not yet started.
+To be defined at the start of this milestone. Not yet started. Worth checking for cross-references before starting, given the pattern in every milestone so far (Mission's `reflection`, Session Configuration's weights, Discovery Log Entry) — the Reward schema itself may have similar gaps (e.g. `value`'s type/shape is unspecified in 504).
 
 ## Out of Scope
 
-- Reward Engine, Parent Mode, Workbook generation
-- Any rich input UI for reflections (sketches, attachments) — text only
-- Search/filtering of entries (601 mentions "entries should be searchable" — likely deferred until there's enough content to make that meaningful)
+- Explorer Rank / long-term progression (a distinct entity from Reward, per `503_DATA_MODEL.md`)
+- Parent Mode, Workbook generation
+- Any reward types beyond what a placeholder can exercise (likely just `badge`)
 
 ## Success Criteria
 
-- A learner-recorded reflection persists via the Storage Manager and survives a page reload.
-- `/discovery` renders real entries when present, and a sensible empty state when not.
-- Discovery Log storage failures degrade gracefully, matching the pattern already established in `storage.js`.
+- Completing a mission's reflection evaluates its rewards and persists earned ones via the Storage Manager.
+- Earned rewards survive a page reload.
+- No campaign-specific reward logic leaks into the platform — the Reward Engine interprets reward *definitions*, per `601_HTML_ARCHITECTURE.md`.
 
 ## Manual Verification
 
@@ -51,8 +51,8 @@ Not yet performed — milestone not started.
 
 ## Deliverables
 
-- Working Discovery Log Manager
-- `/discovery` route showing real (if minimal) content
+- Working Reward Engine
+- Some visible learner-facing acknowledgement of an earned reward
 
 ## Completion Notes
 
@@ -60,35 +60,38 @@ Not yet started.
 
 ---
 
-# Previous Milestone — Save State — COMPLETE
+# Previous Milestone — Discovery Log — COMPLETE
 
 ## Completion Summary
 
-Built `portal/js/storage.js`, the Storage Manager and the only module allowed to touch `localStorage` directly, and gave it a first real consumer: the Mission page now persists `{ campaignId, missionId }` as the "current session" whenever a mission loads successfully, and the Home page offers a "Continue Mission" link whenever a saved session exists.
+Built `portal/js/discovery-log.js` (the Discovery Log Manager), extended `storage.js`'s save shape with a `discoveryLog` array, and added the platform's **first learner-input control**: a reflection prompt + free-text response box on the Mission page, wired to save entries via `recordReflection()`. `/discovery` now lists real saved entries instead of a static placeholder.
 
-Key decisions:
+A real schema gap was found and resolved with the user before implementing:
 
-- **Only a thin slice of the full Save Game shape is implemented** — `{ version, timestamp, currentSession }` — not `explorerProfile`, `completedMissions`, `completedActivities`, `discoveryLog` or `settings` from `504_JSON_SCHEMA.md`'s full Save Game schema. This was explicit in scope: "enough to prove persistence works, not a complete implementation of every field." Each of those fields has its own future milestone (Explorer Profile, Discovery Log, Reward Engine, Settings Manager) that will extend this same save object rather than replace it.
-- **Every read path degrades to a safe default object rather than throwing**: missing key, corrupted JSON, and a version mismatch on the stored save all fall back to `defaultSave()` silently (with a `console.warn`), matching `601_HTML_ARCHITECTURE.md`'s Corrupted Save Data recovery ladder and the non-throwing pattern already used by `campaign-loader.js`/`mission-engine.js`. Every write path (`writeSave`) is wrapped in try/catch too, so a fully inaccessible `localStorage` (e.g. Safari private browsing, which throws on *access*, not just on read/write) never blocks navigation — the app just runs without persistence.
-- **`saveCurrentSession`'s `campaignId` is the folder slug** (`'campaign01'`), not the mission JSON's own schema-ID `campaignId` field — consistent with the same campaign-slug-vs-schema-ID distinction already made in `renderMission`/`KNOWN_CAMPAIGN_IDS`, called out in a comment so it isn't mistaken for a bug later.
-- **Home page (`/`) now has a real view** (`renderHome`) instead of using the generic placeholder — it's the natural place for "Continue Mission" per `601_HTML_ARCHITECTURE.md`'s Home Page Primary Actions list, rather than auto-redirecting away from Home on load (which would be a more surprising UX than an explicit link).
+- **None of the three docs (`504_JSON_SCHEMA.md`, `503_DATA_MODEL.md`, `601_HTML_ARCHITECTURE.md`) agree on Discovery Log Entry's fields, and none of them include a field for the learner's actual written response** — the whole point of the feature. Confirmed with the user: extended 504's minimal `id`/`prompt`/`entryType` with `learnerNotes` (the response text), `timestamp`, `campaignId` and `missionId` (cross-campaign traceability, per 601's "the Discovery Log spans all campaigns"). `504_JSON_SCHEMA.md` now carries a note documenting the extension and the three-way disagreement it resolves — same reconciliation pattern used for the Repository Structure, Session Configuration and `storyChapter` gaps in earlier milestones.
+
+Other decisions:
+
+- **`discoveryLog` is an additive field on the existing save shape**, not a version bump — `readSave()`'s `{ ...defaultSave(), ...data }` merge means a save written before this milestone (Milestone: Save State, `version: 1`) still loads correctly, with `discoveryLog` defaulting to `[]`. Matches the project's stated "additive changes preferred" versioning philosophy.
+- **`storage.js` owns persistence only** (`appendDiscoveryLogEntry`, `loadDiscoveryLog`); `discovery-log.js` owns entry creation, ID generation and validation (rejecting an empty response before it ever reaches storage) — keeping the "only `storage.js` touches `localStorage`" rule intact rather than letting `discovery-log.js` bypass it.
+- **Only `entryType: "reflection"` is produced** — the other documented entry types (drawing, prediction, observation, diagram) have no authoring UI yet, called out explicitly in both the code comment and the doc note so it isn't mistaken for an oversight.
+- **The reflection form is a real `<form>`/`<textarea>`/`<button type="submit">`**, not a plain click handler — `event.preventDefault()` on submit, `role="status"` on the feedback message so screen readers announce save/error feedback, matching the project's accessibility requirement. An empty submission is rejected with visible feedback rather than silently failing or saving a blank entry.
 
 ## Manual Testing Performed
 
-Served `portal/` locally and drove it with Playwright, including real `page.reload()` (not just hash navigation) to prove the round-trip survives an actual browser refresh:
+Served `portal/` locally and drove it with Playwright, including a real `page.reload()`:
 
-1. **Fresh Home** (no session ever saved) — shows the generic placeholder, no "Continue Mission" link.
-2. **Visit a mission** — `localStorage['explorerAcademy.save']` now contains `{version:1, timestamp, currentSession:{campaignId, missionId}}`.
-3. **Full page reload, then Home** — "Continue Mission" link appears, pointing at `#/mission/mission01`; clicking it correctly navigates to the mission.
-4. **Corrupted JSON in `localStorage`** — Home falls back to the fresh-state placeholder, no crash.
-5. **Version-mismatched save data** (`version: 999`) — same graceful fallback.
-6. **`localStorage` fully inaccessible** (simulated via `addInitScript` overriding the property to throw `SecurityError` on *access*, matching real private-browsing behavior) — mission still loads and renders normally; Home still falls back cleanly. Navigation is never blocked by a storage failure.
-7. **Full 9-route regression pass** — all routes still correct.
+1. **Fresh `/discovery`** — correct empty-state message.
+2. **Mission page** — the placeholder reflection prompt renders with its own form.
+3. **Empty submission** — rejected with visible feedback, no crash, nothing saved.
+4. **Valid submission** — feedback confirms the save, textarea clears, `localStorage` inspected directly and contains the full entry with all expected fields.
+5. **Reload, then `/discovery`** — the saved entry renders with its prompt, response text, mission ID and a formatted timestamp.
+6. **Full 9-route regression pass** — all routes still correct.
 
-Zero `pageerror`s across all seven scenarios.
+Zero `pageerror`s across every case.
 
 ## Verification
 
-- A save/load round-trip through `storage.js` survives a page reload. ✅
-- Corrupted or missing save data fails gracefully (safe default, never throws). ✅
-- Saved data includes a version field. ✅
+- A learner-recorded reflection persists via the Storage Manager and survives a page reload. ✅
+- `/discovery` renders real entries when present, and a sensible empty state when not. ✅
+- Discovery Log storage failures degrade gracefully (inherits `storage.js`'s existing non-throwing guarantees — not re-tested independently this milestone, since the failure-mode behavior itself didn't change). ✅

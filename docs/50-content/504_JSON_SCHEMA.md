@@ -433,6 +433,8 @@ observation
 diagram
 ```
 
+> **Note (added during the Discovery Log milestone):** this list has no field for the learner's actual written response, and `601_HTML_ARCHITECTURE.md`'s Discovery Log Entry component and `503_DATA_MODEL.md`'s conceptual model each describe a different, non-overlapping field set — none of the three documents agree. The implementation extends this required list with `learnerNotes` (the response text), `timestamp`, `campaignId` and `missionId` (cross-campaign traceability, since "the Discovery Log spans all campaigns" per `601_HTML_ARCHITECTURE.md`'s Discovery Log section). Only `entryType: "reflection"` is produced today — the platform has no UI yet for drawing, prediction, observation or diagram entries.
+
 ---
 
 # Rabbit Hole

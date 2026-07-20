@@ -12,6 +12,7 @@ import { loadMission } from './mission-engine.js';
 import { renderActivities } from './activity-engine.js';
 import { scheduleActivities, DEFAULT_DURATION_MINUTES } from './scheduler.js';
 import { saveCurrentSession, loadCurrentSession } from './storage.js';
+import { recordReflection, getDiscoveryLog } from './discovery-log.js';
 
 export const ROUTES = [
   { path: '/', label: 'Home', title: 'Explorer Academy' },
@@ -232,6 +233,66 @@ async function renderMission(outlet, missionId) {
   // duration, so DEFAULT_DURATION_MINUTES stands in until that exists.
   const scheduled = scheduleActivities(mission.activities, DEFAULT_DURATION_MINUTES);
   renderActivities(activitiesContainer, scheduled);
+
+  buildReflectionSection(section, mission, missionId);
+}
+
+// Renders each reflection prompt with a free-text response box that
+// saves to the Discovery Log via discovery-log.js. This is the first
+// learner-input control in the platform — everything before this
+// milestone was read-only rendering and navigation.
+function buildReflectionSection(section, mission, missionId) {
+  const prompts = Array.isArray(mission.reflection?.prompts) ? mission.reflection.prompts : [];
+  if (prompts.length === 0) return;
+
+  const heading = document.createElement('h3');
+  heading.textContent = 'Reflection';
+  section.appendChild(heading);
+
+  prompts.forEach((prompt) => {
+    const form = document.createElement('form');
+    form.className = 'reflection-prompt';
+
+    const promptText = document.createElement('p');
+    promptText.textContent = prompt;
+    form.appendChild(promptText);
+
+    const label = document.createElement('label');
+    const labelText = document.createElement('span');
+    labelText.textContent = 'Your answer';
+    const textarea = document.createElement('textarea');
+    textarea.rows = 3;
+    label.append(labelText, textarea);
+    form.appendChild(label);
+
+    const submit = document.createElement('button');
+    submit.type = 'submit';
+    submit.textContent = 'Save to Discovery Log';
+    form.appendChild(submit);
+
+    const feedback = document.createElement('p');
+    feedback.setAttribute('role', 'status');
+    form.appendChild(feedback);
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const result = recordReflection({
+        prompt,
+        learnerNotes: textarea.value,
+        campaignId: 'campaign01',
+        missionId
+      });
+
+      if (result.ok) {
+        feedback.textContent = 'Saved to your Discovery Log.';
+        textarea.value = '';
+      } else {
+        feedback.textContent = result.errors.join(' ');
+      }
+    });
+
+    section.appendChild(form);
+  });
 }
 
 // Home: offers "Continue Mission" when a saved current session exists
@@ -261,9 +322,54 @@ function renderHome(outlet, route) {
   section.appendChild(message);
 }
 
+// Discovery Log: lists saved reflections (most recent first), or a
+// sensible empty state. Text is set via textContent, never innerHTML,
+// since entries contain learner-authored free text.
+function renderDiscoveryLog(outlet, route) {
+  outlet.innerHTML = `
+    <section aria-labelledby="route-heading">
+      <h2 id="route-heading">${route.label}</h2>
+    </section>
+  `;
+
+  const section = outlet.querySelector('section');
+  const entries = getDiscoveryLog();
+
+  if (entries.length === 0) {
+    const empty = document.createElement('p');
+    empty.textContent = 'No discoveries recorded yet. Reflections you save during a mission will appear here.';
+    section.appendChild(empty);
+    return;
+  }
+
+  const list = document.createElement('ul');
+  entries
+    .slice()
+    .reverse()
+    .forEach((entry) => {
+      const item = document.createElement('li');
+
+      const prompt = document.createElement('p');
+      prompt.textContent = entry.prompt;
+      item.appendChild(prompt);
+
+      const notes = document.createElement('p');
+      notes.textContent = entry.learnerNotes;
+      item.appendChild(notes);
+
+      const meta = document.createElement('p');
+      meta.textContent = `${entry.missionId ?? 'Unknown mission'} — ${new Date(entry.timestamp).toLocaleString()}`;
+      item.appendChild(meta);
+
+      list.appendChild(item);
+    });
+  section.appendChild(list);
+}
+
 const STATIC_VIEWS = {
   '/': renderHome,
-  '/campaigns': renderCampaignSelect
+  '/campaigns': renderCampaignSelect,
+  '/discovery': renderDiscoveryLog
 };
 
 function defaultPlaceholder(outlet, route) {
