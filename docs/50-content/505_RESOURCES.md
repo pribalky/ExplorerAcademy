@@ -34,6 +34,8 @@ The Asset Compiler consumes this document to generate:
 
 No implementation details belong here.
 
+> **Verification note (mission-specific resources added from Mission 1 onward):** every resource below was confirmed to be real via live web search — not generated from language-model recall alone, per this document's own External Resource Validation criteria. Direct page-content fetching was unavailable in the compiling session (blocked by network egress policy for external sites), so verification relies on search-engine-confirmed, indexed URLs from well-established, long-running institutional providers rather than fetched page inspection. Per the Maintenance section below, links should still be spot-checked before print/publish and reviewed annually.
+
 ---
 
 # Resource Design Principles
@@ -163,6 +165,72 @@ Mission 12 only
 
 ---
 
+### Mission-Specific Reading
+
+#### Recording Observations: Journals and Field Notes (Reading Rockets)
+
+Purpose
+
+Practical guidance on keeping an observation journal and writing field notes — directly supports creating the Explorer Journal and completing the first observation challenge.
+
+Used In
+
+Mission 1 (The Invitation) — Core
+
+Offline Alternative
+
+Print the guidance once; the practice itself (a notebook and a pencil) needs no device or connection.
+
+---
+
+#### Scottish Book Trust — Home Activities Hub
+
+Purpose
+
+Reading comprehension and inference-building support from Scotland's national reading charity, reinforcing the campaign's England/Scotland curriculum-bridging goal (`501_CAMPAIGN_01.md` Curriculum Mapping) — matches distinguishing confirmed facts from reasonable inference.
+
+Used In
+
+Mission 4 (The Silent Logs) — Core
+
+Offline Alternative
+
+The reasoning skill itself (arranging evidence, separating fact from inference) is fully practisable with the printed/notebook mission materials alone.
+
+---
+
+#### Identify Tracks (The Wildlife Trusts)
+
+Purpose
+
+Official UK conservation charity's animal-track identification guide — matches measuring and comparing footprints to determine what made them.
+
+Used In
+
+Mission 5 (Strange Footprints) — Core
+
+Offline Alternative
+
+A printed or hand-drawn track comparison chart achieves the same classification skill.
+
+---
+
+#### Learning Resources (Bletchley Park)
+
+Purpose
+
+Downloadable, printable codebreaking activities from the UK's official WWII codebreaking heritage site — direct match for decoding a damaged transmission using patterns and context clues.
+
+Used In
+
+Mission 8 (Message in the Static) — Core
+
+Offline Alternative
+
+The printable activities are themselves the offline alternative — no device required once downloaded.
+
+---
+
 ## Videos
 
 Preferred sources:
@@ -192,6 +260,54 @@ Scoped to Mission 12 only:
 
 - Stellarium Web
 - NASA Eyes
+
+### Mission-Specific Interactive Websites
+
+#### Ordnance Survey Mapzone
+
+Purpose
+
+Official UK national mapping agency's map-skills resource — matches exploring the station map and producing a sketch map.
+
+Used In
+
+Mission 2 (Arrival at Outpost Echo) — Core
+
+Offline Alternative
+
+The mission's own sketch-map activity is paper-based; Mapzone only enriches understanding of map symbols/conventions beforehand.
+
+---
+
+#### Estimation180.com
+
+Purpose
+
+Free daily estimation challenges (teacher-created, running since 2012) — direct match for estimating an object's size before measuring it.
+
+Used In
+
+Mission 3 (Explorer's Toolkit) — Core
+
+Offline Alternative
+
+Estimating and then measuring household objects achieves the same skill without the website.
+
+---
+
+#### PBS KIDS Design Squad — Build a Bridge
+
+Purpose
+
+Free bridge-design-and-test activity from PBS's engineering series for children — direct match for planning, building and refining a bridge prototype.
+
+Used In
+
+Mission 7 (The Broken Bridge) — Core
+
+Offline Alternative
+
+The mission's own prototype-building activity (card, straws, tape) is already the hands-on/offline version; the site only adds an additional worked example.
 
 ---
 
