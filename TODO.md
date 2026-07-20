@@ -191,7 +191,7 @@ Success Criteria
 Status
 
 ```
-IN PROGRESS — Mission 1 of 21 compiled (mission01.json), pattern validated
+IN PROGRESS — Missions 1-4 of 21 compiled (Phase 1: Recruitment & Orientation complete), pattern validated and codified into prompts/MISSION_COMPILER.md
 ```
 
 Goal
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Mission 1 of 21 compiled and verified (`mission01.json`). Await approval to continue Phase 4 – Mission Compiler with Missions 2–21**, following the now-validated pattern (embedded 504 schema, tuned activity durations, `parentGuide` included but never rendered).
+**Missions 1–4 of 21 compiled and verified (Phase 1 — Recruitment & Orientation complete). Await approval to continue Phase 4 – Mission Compiler with Missions 5–8** (Phase 2 — Learning to Investigate), following the pattern now codified in `prompts/MISSION_COMPILER.md`.

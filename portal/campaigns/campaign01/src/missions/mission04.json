@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0004",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 4,
+  "title": "The Silent Logs",
+  "storyChapter": "CHAPTER-0001",
+  "estimatedTime": "60 minutes",
+  "difficulty": "guided",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Power is restored to a small communications terminal, and fragments of the expedition logs become available.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Many sections of the recovered logs are corrupted, hinting that something unusual happened before communications stopped.", "trigger": "Logs found corrupted" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reads the recovered logs carefully, gathering every available clue.", "trigger": "Logs read" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "The learner arranges the events chronologically and highlights the most important evidence.", "trigger": "Events arranged and evidence highlighted" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must separate confirmed facts from reasonable assumptions within the damaged logs.", "trigger": "Facts separated from assumptions" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Piecing the fragments together, the learner discovers the name Dr. Elara Quinn for the first time.", "trigger": "Dr. Quinn's name discovered" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on what the logs reveal — and what questions remain unanswered.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The expedition mystery officially begins, and the learner senses this is only the first piece of a much larger puzzle.", "trigger": "Mystery begins" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0020",
+      "missionId": "MISSION-0004",
+      "title": "Read Recovered Logs",
+      "type": "reading",
+      "category": "reading",
+      "duration": 8,
+      "difficulty": "guided",
+      "storyContext": "Power has been restored to a small communications terminal, revealing fragments of the expedition's logs.",
+      "instructions": "Read through the recovered log fragments carefully.",
+      "output": "Notes on what each log fragment reveals.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0021",
+      "missionId": "MISSION-0004",
+      "title": "Arrange Events Chronologically",
+      "type": "writing",
+      "category": "writing",
+      "duration": 7,
+      "difficulty": "guided",
+      "storyContext": "The logs are damaged and out of order, making the sequence of events unclear.",
+      "instructions": "Arrange the events described in the logs into the correct chronological order.",
+      "output": "A chronological timeline of events.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0022",
+      "missionId": "MISSION-0004",
+      "title": "Highlight Important Evidence",
+      "type": "reading",
+      "category": "reading",
+      "duration": 8,
+      "difficulty": "guided",
+      "storyContext": "Not every detail in the logs is equally important.",
+      "instructions": "Highlight the pieces of evidence that seem most important to understanding what happened.",
+      "output": "A list of highlighted key evidence.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0023",
+      "missionId": "MISSION-0004",
+      "title": "Separate Facts From Assumptions",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 7,
+      "difficulty": "guided",
+      "storyContext": "Explorer Academy values evidence over assumption.",
+      "instructions": "Sort your findings into confirmed facts and reasonable assumptions.",
+      "output": "Two lists: confirmed facts and assumptions.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0024",
+      "missionId": "MISSION-0004",
+      "title": "Rewrite a Damaged Log Entry",
+      "type": "creative",
+      "category": "creative",
+      "duration": 15,
+      "difficulty": "guided",
+      "storyContext": "Each expedition member would have experienced these events differently.",
+      "instructions": "Choose one damaged log entry and rewrite it from another expedition member's point of view.",
+      "output": "A rewritten log entry.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0025",
+      "missionId": "MISSION-0004",
+      "title": "Reconstructing Incomplete Records",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "guided",
+      "storyContext": "Reconstructing the expedition's logs is similar to how historians work with incomplete records.",
+      "instructions": "Find out how historians reconstruct incomplete historical records.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0004",
+      "type": "story",
+      "value": "Discovery: Dr. Elara Quinn"
+    }
+  ],
+  "reflection": {
+    "prompts": ["What is one fact you're certain of from the logs, and one thing you're only assuming?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0004",
+    "learningObjectives": ["Reading comprehension", "Sequencing", "Inference", "Evidence gathering"],
+    "discussionPoints": ["What clues helped you work out the correct order of events?", "How can you tell the difference between a fact and an assumption?"],
+    "preparation": "No special preparation required.",
+    "assessment": "Look for a logically ordered sequence of events and a clear, justified separation between confirmed facts and assumptions."
+  },
+  "completionCriteria": "Recovered logs read, events arranged chronologically, and key evidence separated from assumptions."
+}

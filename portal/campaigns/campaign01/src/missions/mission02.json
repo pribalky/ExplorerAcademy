@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0002",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 2,
+  "title": "Arrival at Outpost Echo",
+  "storyChapter": "CHAPTER-0001",
+  "estimatedTime": "60 minutes",
+  "difficulty": "guided",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "The learner arrives at the deserted Outpost Echo research station.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Although everything appears quiet, the station clearly shows signs of previous activity — equipment remains where it was left, doors are unlocked, and observation boards still display unfinished notes.", "trigger": "Arrival at the station" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "Atlas helps the learner perform an initial survey of the station, exploring the map and labelling important areas.", "trigger": "Atlas's guidance" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "The learner records unusual observations while exploring, noticing the first hints that something is not quite right.", "trigger": "Observations recorded" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must produce a simple sketch map of the station using their own observations.", "trigger": "Sketch map assigned" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The completed sketch map reveals the layout of Outpost Echo clearly for the first time.", "trigger": "Sketch map completed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on what the untouched equipment and unfinished notes might mean.", "trigger": "Survey concluded" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "As the survey ends, the first real hints of mystery begin to appear.", "trigger": "Mystery hints noticed" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0008",
+      "missionId": "MISSION-0002",
+      "title": "Explore Station Map",
+      "type": "observation",
+      "category": "observation",
+      "duration": 8,
+      "difficulty": "guided",
+      "storyContext": "Atlas provides a basic map of Outpost Echo to help the learner begin their initial survey.",
+      "instructions": "Walk through the station map with Atlas, noting the main areas and how they connect.",
+      "output": "A list of the station's main areas in the Explorer Journal.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0009",
+      "missionId": "MISSION-0002",
+      "title": "Label Important Areas",
+      "type": "writing",
+      "category": "writing",
+      "duration": 7,
+      "difficulty": "guided",
+      "storyContext": "Knowing the station's layout will help later investigations.",
+      "instructions": "Label the important areas of the station map, such as the laboratory, observatory and living quarters.",
+      "output": "A labelled station map.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0010",
+      "missionId": "MISSION-0002",
+      "title": "Record Unusual Observations",
+      "type": "observation",
+      "category": "observation",
+      "duration": 8,
+      "difficulty": "guided",
+      "storyContext": "Equipment remains where it was left, and observation boards still display unfinished notes.",
+      "instructions": "Record anything unusual you notice about the station in your Explorer Journal.",
+      "output": "A list of unusual observations.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0011",
+      "missionId": "MISSION-0002",
+      "title": "Produce a Simple Sketch Map",
+      "type": "drawing",
+      "category": "drawing",
+      "duration": 7,
+      "difficulty": "guided",
+      "storyContext": "A clear map will help the learner navigate Outpost Echo in future missions.",
+      "instructions": "Draw a simple sketch map of the station based on your survey.",
+      "output": "A hand-drawn sketch map of Outpost Echo.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0012",
+      "missionId": "MISSION-0002",
+      "title": "Improve the Station Map",
+      "type": "drawing",
+      "category": "drawing",
+      "duration": 15,
+      "difficulty": "guided",
+      "storyContext": "A well-made map uses symbols so anyone can read it quickly.",
+      "instructions": "Add symbols and a key to your sketch map to make it easier to read.",
+      "output": "An improved sketch map with a symbol key.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0013",
+      "missionId": "MISSION-0002",
+      "title": "How Are Research Stations Organised?",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "guided",
+      "storyContext": "Outpost Echo was built to follow the same principles as real research stations.",
+      "instructions": "Find out how a real scientific research station is organised and compare it with Outpost Echo.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0002",
+      "type": "badge",
+      "value": "Outpost Surveyor"
+    }
+  ],
+  "reflection": {
+    "prompts": ["What did you notice about Outpost Echo that made you feel like something was left unfinished?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0002",
+    "learningObjectives": ["Mapping", "Spatial awareness", "Descriptive language", "Observation"],
+    "discussionPoints": ["What did the station's layout tell you about how the expedition worked?", "What would you want to explore first if you arrived somewhere new?"],
+    "preparation": "No special preparation required. A ruler is useful for the sketch map.",
+    "assessment": "Look for a clearly labelled sketch map and specific, descriptive observations rather than vague statements."
+  },
+  "completionCriteria": "Station map explored, important areas labelled, and a sketch map produced."
+}

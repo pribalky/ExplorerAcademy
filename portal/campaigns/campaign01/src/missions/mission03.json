@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0003",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 3,
+  "title": "Explorer's Toolkit",
+  "storyChapter": "CHAPTER-0001",
+  "estimatedTime": "60 minutes",
+  "difficulty": "guided",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Before beginning any investigation, Atlas introduces the essential habits and tools of every Explorer.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Rather than relying on advanced technology, successful explorers depend on careful measurement, accurate recording and systematic thinking.", "trigger": "Atlas's introduction" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner compares different measuring tools to understand what each is best suited for.", "trigger": "Tools compared" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "The learner discovers that estimating first, then measuring, reveals how accurate their instincts really are.", "trigger": "Estimates tested against measurements" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must create an observation table and practise recording evidence clearly and consistently.", "trigger": "Table and recording practice assigned" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner assembles a complete investigation kit, ready for real fieldwork.", "trigger": "Toolkit assembled" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how the Explorer Journal has become an essential recurring tool.", "trigger": "Journal reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "With their toolkit assembled, the learner is ready to begin real investigations at Outpost Echo.", "trigger": "Ready for fieldwork" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0014",
+      "missionId": "MISSION-0003",
+      "title": "Compare Measuring Tools",
+      "type": "observation",
+      "category": "observation",
+      "duration": 7,
+      "difficulty": "guided",
+      "storyContext": "Atlas explains that successful explorers depend on careful measurement rather than advanced technology.",
+      "instructions": "Compare a few different measuring tools and note what each is best used for.",
+      "output": "Notes comparing different measuring tools.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0015",
+      "missionId": "MISSION-0003",
+      "title": "Estimate Then Measure Objects",
+      "type": "mathematics",
+      "category": "mathematics",
+      "duration": 8,
+      "difficulty": "guided",
+      "storyContext": "Good explorers learn to trust their instincts, then check them with evidence.",
+      "instructions": "Estimate the size of a few objects, then measure them to check your estimates.",
+      "output": "A table comparing estimates and actual measurements.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0016",
+      "missionId": "MISSION-0003",
+      "title": "Create Observation Tables",
+      "type": "mathematics",
+      "category": "mathematics",
+      "duration": 8,
+      "difficulty": "guided",
+      "storyContext": "Recording data clearly is one of the most important Explorer habits.",
+      "instructions": "Create a simple table to record measurements and observations.",
+      "output": "A completed observation table.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0017",
+      "missionId": "MISSION-0003",
+      "title": "Practise Recording Evidence",
+      "type": "writing",
+      "category": "writing",
+      "duration": 7,
+      "difficulty": "guided",
+      "storyContext": "Evidence is only useful if it is recorded clearly enough for others to understand.",
+      "instructions": "Practise recording a piece of evidence clearly and consistently in your Explorer Journal.",
+      "output": "A clearly recorded piece of evidence.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0018",
+      "missionId": "MISSION-0003",
+      "title": "Invent an Additional Explorer Tool",
+      "type": "engineering",
+      "category": "engineering",
+      "duration": 15,
+      "difficulty": "guided",
+      "storyContext": "Every Explorer eventually designs their own tools to solve new problems.",
+      "instructions": "Invent an additional tool an Explorer might need, and explain its purpose.",
+      "output": "A description or sketch of an invented Explorer tool.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0019",
+      "missionId": "MISSION-0003",
+      "title": "Real Field Journals",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "guided",
+      "storyContext": "The Explorer Journal follows a long tradition of scientific field notebooks.",
+      "instructions": "Find out how real scientists record observations in their field journals.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0003",
+      "type": "knowledgeCore",
+      "value": "Explorer's Method"
+    }
+  ],
+  "reflection": {
+    "prompts": ["Which investigation tool do you think will be most useful, and why?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0003",
+    "learningObjectives": ["Measuring", "Estimation", "Recording data", "Organisation"],
+    "discussionPoints": ["Why do you think Explorer Academy values careful measurement over guessing?", "How did your estimates compare to your actual measurements?"],
+    "preparation": "A ruler or tape measure and a few household objects to measure are useful.",
+    "assessment": "Look for reasonable estimates compared honestly against actual measurements, and a clearly organised observation table."
+  },
+  "completionCriteria": "Investigation kit assembled: measuring tools compared, objects estimated and measured, and evidence recorded in an observation table."
+}
