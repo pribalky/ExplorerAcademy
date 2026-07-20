@@ -231,6 +231,72 @@ The printable activities are themselves the offline alternative — no device re
 
 ---
 
+#### Tree Tools for Schools (Woodland Trust)
+
+Purpose
+
+Free identification/classification activities (leaf ID, mammal ID and more) from the UK's leading woodland conservation charity — matches observing sample properties and grouping similar specimens by evidence.
+
+Used In
+
+Mission 9 (Mystery Samples) — Core
+
+Offline Alternative
+
+Downloadable spotter sheets work fully offline once printed.
+
+> Note: this charity's resources moved from an older "Nature Detectives" URL to this current hub — confirmed via search that the old URL is defunct and this is the live replacement, illustrating exactly why the Maintenance section below calls for an annual link review.
+
+---
+
+#### Keep Scotland Flowing / Water Cycle Education (Scottish Water)
+
+Purpose
+
+Official water utility's education programme, with a strand specifically for ages 9–11 — direct match for tracing water flow and investigating a system malfunction, and a strong England/Scotland curriculum-bridging tie-in.
+
+Used In
+
+Mission 10 (Water Under Pressure) — Core
+
+Offline Alternative
+
+The mission's own tracing/diagram-interpretation activities need no device; the resource only adds background context.
+
+---
+
+#### How to Make a Simple Electrical Circuit (IET)
+
+Purpose
+
+Official UK engineering institution's primary-level circuit activity — direct match for solving circuit challenges and understanding power distribution.
+
+Used In
+
+Mission 11 (The Energy Problem) — Core
+
+Offline Alternative
+
+A simple battery-and-bulb circuit built at home achieves the same understanding without the website.
+
+---
+
+#### Census at School (Royal Statistical Society Centre for Statistical Education / ONS)
+
+Purpose
+
+Official UK statistics body's free, real-data graphing and analysis activity for primary/secondary students — direct match for comparing datasets and identifying trends across evidence.
+
+Used In
+
+Mission 13 (Hidden Patterns) — Core
+
+Offline Alternative
+
+Comparing and graphing the mission's own collected evidence by hand achieves the same skill.
+
+---
+
 ## Videos
 
 Preferred sources:
