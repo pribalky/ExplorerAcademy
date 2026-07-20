@@ -9,6 +9,7 @@
 
 import { loadCampaign } from './campaign-loader.js';
 import { loadMission } from './mission-engine.js';
+import { renderActivities } from './activity-engine.js';
 
 export const ROUTES = [
   { path: '/', label: 'Home', title: 'Explorer Academy' },
@@ -210,8 +211,15 @@ async function renderMission(outlet, missionId) {
   };
   addRow('Estimated Time', mission.estimatedTime);
   addRow('Difficulty', mission.difficulty);
-  addRow('Activities', mission.activities.length);
   section.appendChild(details);
+
+  const activitiesHeading = document.createElement('h3');
+  activitiesHeading.textContent = 'Activities';
+  section.appendChild(activitiesHeading);
+
+  const activitiesContainer = document.createElement('div');
+  section.appendChild(activitiesContainer);
+  renderActivities(activitiesContainer, mission.activities);
 }
 
 const STATIC_VIEWS = {

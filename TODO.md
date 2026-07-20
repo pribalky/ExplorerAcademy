@@ -101,7 +101,7 @@ No functionality yet.
 Status
 
 ```
-IN PROGRESS — Campaign Loader, Router and Mission Engine complete
+IN PROGRESS — Campaign Loader, Router, Mission Engine and Activity Renderer complete
 ```
 
 Goal
@@ -116,7 +116,7 @@ Milestones
 
 - [x] Mission Engine
 
-- [ ] Activity Renderer
+- [x] Activity Renderer
 
 - [ ] Scheduler
 
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Await approval to start Phase 2 – Milestone: Activity Renderer.**
+**Await approval to start Phase 2 – Milestone: Scheduler.**
