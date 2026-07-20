@@ -11,6 +11,7 @@ import { loadCampaign } from './campaign-loader.js';
 import { loadMission } from './mission-engine.js';
 import { renderActivities } from './activity-engine.js';
 import { scheduleActivities, DEFAULT_DURATION_MINUTES } from './scheduler.js';
+import { saveCurrentSession, loadCurrentSession } from './storage.js';
 
 export const ROUTES = [
   { path: '/', label: 'Home', title: 'Explorer Academy' },
@@ -202,6 +203,11 @@ async function renderMission(outlet, missionId) {
   outlet.querySelector('#route-heading').textContent = mission.title;
   status.remove();
 
+  // campaignId here is the folder slug, matching the same simplification
+  // renderMission's lookup already makes — not the mission JSON's own
+  // campaignId field, which is a schema ID (e.g. "CAMPAIGN-0001").
+  saveCurrentSession({ campaignId: 'campaign01', missionId });
+
   const details = document.createElement('dl');
   const addRow = (term, value) => {
     const dt = document.createElement('dt');
@@ -228,7 +234,35 @@ async function renderMission(outlet, missionId) {
   renderActivities(activitiesContainer, scheduled);
 }
 
+// Home: offers "Continue Mission" when a saved current session exists
+// (Storage Manager), otherwise falls back to the generic placeholder.
+function renderHome(outlet, route) {
+  outlet.innerHTML = `
+    <section aria-labelledby="route-heading">
+      <h2 id="route-heading">${route.label}</h2>
+    </section>
+  `;
+
+  const section = outlet.querySelector('section');
+  const session = loadCurrentSession();
+
+  if (session && session.missionId) {
+    const continueParagraph = document.createElement('p');
+    const link = document.createElement('a');
+    link.href = `#/mission/${session.missionId}`;
+    link.textContent = 'Continue Mission';
+    continueParagraph.appendChild(link);
+    section.appendChild(continueParagraph);
+    return;
+  }
+
+  const message = document.createElement('p');
+  message.textContent = 'This is a placeholder for the Home page. Content arrives in a later milestone.';
+  section.appendChild(message);
+}
+
 const STATIC_VIEWS = {
+  '/': renderHome,
   '/campaigns': renderCampaignSelect
 };
 
