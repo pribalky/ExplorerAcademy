@@ -1,1 +1,15 @@
-{}
+{
+  "id": "CAMPAIGN-0001",
+  "version": "0.1.0",
+  "title": "Campaign 01",
+  "subtitle": "Placeholder — not yet authored",
+  "theme": "TBD",
+  "recommendedAge": "9-10",
+  "estimatedDuration": "TBD",
+  "difficulty": "explorer",
+  "author": "Explorer Academy",
+  "status": "draft",
+  "worldBibleId": "WORLDBIBLE-0001",
+  "missions": [],
+  "completionCriteria": "All mandatory missions completed."
+}

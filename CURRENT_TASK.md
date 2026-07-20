@@ -6,29 +6,26 @@
 
 ## Milestone
 
-Campaign Loader
+Router (extension)
 
 ## Objective
 
-Build the module that forms the boundary between platform code and campaign content: locate a campaign package, validate it against the data model/schema, and expose campaign metadata to the rest of the platform — without yet rendering any mission or activity content.
+Extend the Router built in Milestone 1.2 so it becomes campaign-aware: add dynamic `/campaign/:id` and `/mission/:id` routes now that the Campaign Loader exists, and let the Campaign Select page link to a specific campaign by ID instead of hardcoding `campaign01`.
 
 ## Inputs
 
-- `docs/50-content/503_DATA_MODEL.md`
-- `docs/50-content/504_JSON_SCHEMA.md`
-- `docs/40-campaigns/401_CAMPAIGN_TEMPLATE.md`
-- `portal/campaigns/campaign01/src/campaign.json` (currently an empty `{}` placeholder — will need real placeholder metadata fields to load against)
+- `portal/js/router.js` (Milestone 1.2 static routes)
+- `portal/js/campaign-loader.js` (Milestone: Campaign Loader)
+- `portal/campaigns/campaign01/src/campaign.json`
 
 ## Relevant Documentation
 
-- `docs/60-engineering/601_HTML_ARCHITECTURE.md` (Campaign Loader, Campaign Data Architecture, Rendering Pipeline, Error Handling → Missing/Invalid Campaign sections)
-- `docs/30-architecture/301_PLATFORM_ARCHITECTURE.md`
+- `docs/60-engineering/601_HTML_ARCHITECTURE.md` (Router → Supported Routes; Campaign Overview Page; Mission Page)
+- `docs/00-foundation/006_DESIGN_DECISION_LOG.md` (ADR-006 — Parent Mode stays out of this router)
 
 ## Files Expected to Change
 
-- `portal/js/campaign-loader.js`
-- `portal/campaigns/campaign01/src/campaign.json` (placeholder metadata)
-- Possibly `portal/js/router.js` (to add a `/campaigns` route that displays loaded campaign metadata instead of static placeholder text)
+- `portal/js/router.js`
 
 ## Implementation Plan
 
@@ -36,20 +33,15 @@ To be defined at the start of this milestone. Not yet started.
 
 ## Out of Scope
 
-- Mission/activity rendering
-- Scheduler
-- LocalStorage / persistence
-- Reward engine
-- Discovery log
-- Parent Mode
-- Workbook generation
-- Dynamic `/campaign/:id` and `/mission/:id` routes (deferred until there is real campaign data to route to)
+- Mission/activity rendering (Mission Engine — a later milestone)
+- Scheduler, LocalStorage/persistence, Reward Engine, Discovery Log, Parent Mode, Workbook generation
+- Loading any campaign other than `campaign01` (no second campaign exists yet)
 
 ## Success Criteria
 
-- Campaign Loader can locate and load `campaign01`'s metadata.
-- Invalid or missing campaign data fails gracefully (no crash, descriptive console warning, learner-facing fallback).
-- Campaign metadata is validated against the required fields in `503_DATA_MODEL.md` before being exposed.
+- `/campaign/:id` resolves the ID, calls the Campaign Loader, and renders the same metadata view Milestone "Campaign Loader" already built (or its graceful failure fallback for an unknown ID).
+- The existing static `/campaigns` route can link to `/campaign/campaign01` rather than the view hardcoding the ID itself.
+- Unknown campaign IDs fail gracefully, reusing the Campaign Loader's existing error path.
 
 ## Manual Verification
 
@@ -57,47 +49,45 @@ Not yet performed — milestone not started.
 
 ## Deliverables
 
-- Working Campaign Loader module
-- Placeholder `campaign01` metadata sufficient to load and validate
-- Graceful failure path for invalid/missing campaigns
+- Dynamic route matching in `router.js` (e.g. `/campaign/:id`)
+- Campaign Select → Campaign Overview navigation via a real link
 
 ## Completion Notes
 
-Not yet started. Note: TODO.md's Phase 2 list also has "Router" ahead of "Campaign Loader," but the router work already delivered in Milestone 1.2 (static top-level navigation) covers everything the router can do until campaign data exists to route to — extending it with dynamic `/campaign/:id` / `/mission/:id` routes only makes sense once the Campaign Loader exists. Proposing Campaign Loader as the next milestone for that reason; flag if a different order is preferred before work begins.
+Not yet started.
 
 ---
 
-# Previous Milestone — 1.2 Application Shell — COMPLETE
+# Previous Milestone — Campaign Loader — COMPLETE
 
 ## Completion Summary
 
-Built the static application shell: an Application Controller (`app.js`), a Router (`router.js`), and a data-driven primary navigation component (`components/navigation/nav.js`), wired into `portal/index.html`.
+Built `portal/js/campaign-loader.js`, the sole boundary between platform code and campaign content, and wired it into the existing `/campaigns` route in `router.js` so it has a real consumer to exercise it end-to-end.
 
 Key decisions:
 
-- **Hash-based routing**, not the History API. This project targets local-filesystem/USB/offline deployment (`601_HTML_ARCHITECTURE.md` Static Site Architecture) where `pushState` deep links would 404 on a plain static server with no rewrite rules. Hash routes (`#/campaigns`) work identically from `file://`, any static host, and `python3 -m http.server`, with zero server configuration.
-- **Route table lives in `router.js` and is imported by `nav.js`** — the nav component builds its links from `ROUTES` rather than duplicating a hardcoded list in HTML, so adding a route only requires one edit.
-- **Parent Mode was deliberately not added as a router route.** `portal/parent/index.html` remains a separate static entry point, per ADR-006 (Hidden Parent Mode) — it must stay invisible to/unreachable from the learner shell, so it isn't part of the learner-facing route table.
-- Unknown routes render a "Page Not Found" fallback with a link home, satisfying the Router's "route validation / unknown route recovery" responsibility from `601_HTML_ARCHITECTURE.md`.
-- The route outlet (`#app`) is `aria-live="polite"` and focused after each render, so screen-reader and keyboard users get feedback on navigation, per the project's accessibility requirement.
-- Visual/CSS layout was intentionally left untouched (still empty placeholders) — this milestone's validation target was "navigation between pages functions correctly," not visual design, so styling work was deferred rather than bundled in.
-
-Routes implemented: `/`, `/campaigns`, `/discovery`, `/profile`, `/settings`. Each currently renders placeholder text only — no campaign, mission or activity content, per this milestone's scope.
+- **Validation follows `504_JSON_SCHEMA.md`'s Campaign field list** (`id`, `version`, `title`, `subtitle`, `theme`, `recommendedAge`, `estimatedDuration`, `difficulty`, `author`, `status`, `worldBibleId`, `missions`, `completionCriteria`), since that document is the canonical, "Stable" JSON contract — `503_DATA_MODEL.md`'s conceptual model (which talks about Chapters rather than a flat `missions` array) is implementation-independent and secondary for this purpose.
+- **`loadCampaign(campaignId)` returns `{ ok: true, campaign }` or `{ ok: false, errors }`** rather than throwing, so a missing file, a network failure, invalid JSON, and missing required fields all funnel through one caller-friendly, non-throwing shape — satisfying `601_HTML_ARCHITECTURE.md`'s "Invalid campaigns should fail gracefully" and "never crash the application" requirements.
+- **`campaign01/src/campaign.json` was filled in with placeholder-but-schema-valid metadata** (status `"draft"`, empty `missions` array) so the Loader has something real to load and validate against, since actual campaign content doesn't exist until the Phase 3 Campaign Compiler runs. No fields were invented beyond what `504_JSON_SCHEMA.md` defines.
+- **The `/campaigns` route renders the loaded metadata using `textContent`/DOM construction, never `innerHTML` string interpolation of campaign data** — campaign JSON is authored content (potentially third-party or AI-generated per the project's long-term vision), not trusted markup, so this avoids an XSS vector even though today's content is self-authored.
+- **Mission loading, asset loading and world-bible resolution are explicitly deferred.** The Loader validates that `worldBibleId` is present but does not yet resolve it to a file (no `world/` content exists yet), and it does not fetch individual mission JSON (Mission Engine's job, a later milestone).
 
 ## Manual Testing Performed
 
-Served `portal/` locally and drove it with Playwright (headless Chromium):
+Served `portal/` locally and drove `#/campaigns` with Playwright (headless Chromium) through three cases:
 
-- Nav renders all 5 route links from the route table.
-- Clicking a nav link updates the outlet content, the `<title>`, and sets `aria-current="page"` on the active link without a full page reload.
-- Browser back button correctly restores the previous route/content.
-- Deep-linking directly to `index.html#/settings` renders the Settings placeholder immediately (no reload required, no 404).
-- Navigating to an unknown hash (`#/does-not-exist`) renders the "Page Not Found" fallback.
-- No `pageerror` or console errors were raised (the only network 404 logged was the browser's automatic `favicon.ico` request, unrelated to the app).
+1. **Happy path** — valid `campaign01/src/campaign.json` loads; the page renders title, subtitle, theme, recommended age, estimated duration and mission count. No console/page errors (the only network 404 was the browser's automatic `favicon.ico` request).
+2. **Missing file** — temporarily renamed `campaign.json`; the page rendered "No campaign could be loaded right now." plus a specific "Campaign \"campaign01\" was not found." message, with zero page errors.
+3. **Invalid data** — temporarily replaced the file with JSON missing 11 of 13 required fields; the page listed every missing field individually, with zero page errors.
+
+All three restored the original file afterward; `git diff` confirmed no unintended changes remained.
 
 ## Verification
 
-- Navigation between logical pages works via the Router. ✅
-- No page reload occurs during in-app navigation. ✅
-- No JavaScript errors in the console. ✅
-- Application shell renders consistently across pages. ✅
+- Campaign Loader locates and loads `campaign01`'s metadata. ✅
+- Invalid or missing campaign data fails gracefully (no crash, console warning, learner-facing fallback). ✅
+- Campaign metadata is validated against the required fields in `504_JSON_SCHEMA.md` before being exposed. ✅
+
+## Known Limitation
+
+`fetch()` of a local JSON file may be blocked by some browsers' CORS rules when the page is opened directly via `file://` rather than served over `http://`. This is a browser platform limitation, not a bug in this code — noting it here since `601_HTML_ARCHITECTURE.md` lists "local filesystem" as a target deployment. Worth revisiting if direct `file://` use turns out to matter in practice.

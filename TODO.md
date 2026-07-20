@@ -101,7 +101,7 @@ No functionality yet.
 Status
 
 ```
-NOT STARTED
+IN PROGRESS — Campaign Loader complete
 ```
 
 Goal
@@ -110,9 +110,9 @@ Build the Explorer Academy engine.
 
 Milestones
 
-- [ ] Router
+- [ ] Router (static navigation shipped in Phase 1 Milestone 1.2; dynamic campaign/mission routes still open)
 
-- [ ] Campaign Loader
+- [x] Campaign Loader
 
 - [ ] Mission Engine
 
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Await approval to start Phase 2 – Milestone: Campaign Loader.**
+**Await approval to start Phase 2 – Milestone: Router (extension).**
