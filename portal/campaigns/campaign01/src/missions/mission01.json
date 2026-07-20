@@ -20,15 +20,41 @@
     {
       "id": "ACTIVITY-0001",
       "missionId": "MISSION-0001",
-      "title": "Placeholder Activity",
+      "title": "Placeholder Core Activity",
       "type": "reading",
       "category": "reading",
-      "duration": "TBD",
+      "duration": 15,
       "difficulty": "explorer",
       "storyContext": "Placeholder — not yet authored.",
       "instructions": "Placeholder — not yet authored.",
       "output": "Placeholder — not yet authored.",
       "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0002",
+      "missionId": "MISSION-0001",
+      "title": "Placeholder Extension Activity",
+      "type": "science",
+      "category": "science",
+      "duration": 20,
+      "difficulty": "explorer",
+      "storyContext": "Placeholder — not yet authored.",
+      "instructions": "Placeholder — not yet authored.",
+      "output": "Placeholder — not yet authored.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0003",
+      "missionId": "MISSION-0001",
+      "title": "Placeholder Rabbit Hole Activity",
+      "type": "research",
+      "category": "research",
+      "duration": 15,
+      "difficulty": "explorer",
+      "storyContext": "Placeholder — not yet authored.",
+      "instructions": "Placeholder — not yet authored.",
+      "output": "Placeholder — not yet authored.",
+      "schedulerCategory": "rabbitHole"
     }
   ],
   "rewards": [

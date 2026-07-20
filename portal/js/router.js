@@ -10,6 +10,7 @@
 import { loadCampaign } from './campaign-loader.js';
 import { loadMission } from './mission-engine.js';
 import { renderActivities } from './activity-engine.js';
+import { scheduleActivities, DEFAULT_DURATION_MINUTES } from './scheduler.js';
 
 export const ROUTES = [
   { path: '/', label: 'Home', title: 'Explorer Academy' },
@@ -211,6 +212,7 @@ async function renderMission(outlet, missionId) {
   };
   addRow('Estimated Time', mission.estimatedTime);
   addRow('Difficulty', mission.difficulty);
+  addRow('Session Duration', `${DEFAULT_DURATION_MINUTES} minutes`);
   section.appendChild(details);
 
   const activitiesHeading = document.createElement('h3');
@@ -219,7 +221,11 @@ async function renderMission(outlet, missionId) {
 
   const activitiesContainer = document.createElement('div');
   section.appendChild(activitiesContainer);
-  renderActivities(activitiesContainer, mission.activities);
+
+  // No Settings Manager exists yet to let a parent choose the session
+  // duration, so DEFAULT_DURATION_MINUTES stands in until that exists.
+  const scheduled = scheduleActivities(mission.activities, DEFAULT_DURATION_MINUTES);
+  renderActivities(activitiesContainer, scheduled);
 }
 
 const STATIC_VIEWS = {

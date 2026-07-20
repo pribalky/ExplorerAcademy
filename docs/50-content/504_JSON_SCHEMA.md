@@ -568,6 +568,8 @@ Supported Durations
 90
 ```
 
+> **Note (added during the Scheduler milestone):** `coreWeight`, `extensionWeight` and `rabbitHoleWeight` are reserved fields — no document defines the formula they participate in. The Adaptive Scheduler currently implements the simpler duration-band model described in `601_HTML_ARCHITECTURE.md`'s Adaptive Scheduler section (Core always included; Extension activities added while time allows; Rabbit Hole activities included only at the 90-minute band) and does not read these three fields. Treat them as not-yet-implemented until a future milestone defines and implements a weighted model.
+
 ---
 
 # Explorer Profile
