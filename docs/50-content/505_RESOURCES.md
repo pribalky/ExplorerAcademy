@@ -297,6 +297,90 @@ Comparing and graphing the mission's own collected evidence by hand achieves the
 
 ---
 
+#### Education Service (The National Archives)
+
+Purpose
+
+The UK's official government archive's primary-school sessions on piecing together historical stories from original documents and photographs — direct match for reassembling notebook pages and separating confirmed facts from inference.
+
+Used In
+
+Mission 14 (The Missing Notebook) — Core
+
+Offline Alternative
+
+The mission's own reconstruction activity, using its own recovered "pages," needs no external resource to complete.
+
+---
+
+#### Explorify (fair testing / "tricky bits of science" guides)
+
+Purpose
+
+Free, UK-curriculum-matched primary science resource (used in over 70% of UK primary schools) with specific support for designing fair tests — direct match for planning and running an independent investigation with no prescribed instructions.
+
+Used In
+
+Mission 17 (The Final Experiment) — Core
+
+Offline Alternative
+
+The mission's own fair-test design activity is fully self-contained without the website.
+
+---
+
+#### Free P4C Resources (The Philosophy Man)
+
+Purpose
+
+Philosophy for Children (P4C) discussion resources, used by 17,000+ teachers — direct match for evaluating alternative explanations and reasoning about which conclusion the evidence best supports.
+
+Used In
+
+Mission 18 (Connecting the Evidence) — Core
+
+Offline Alternative
+
+The mission's own evidence-evaluation activity needs no external resource; P4C only enriches discussion technique.
+
+---
+
+#### Reading Rockets — Summarizing Strategies
+
+Purpose
+
+Practical guidance on teaching children to summarize complex information — direct match for reading the expedition's final report and summarising findings for the archive.
+
+Used In
+
+Mission 19 (Recover the Archive) — Core
+
+Offline Alternative
+
+Summarising the mission's own recovered evidence needs no external resource.
+
+---
+
+#### CREST Awards — Discovery Award (British Science Association)
+
+Purpose
+
+The UK's national STEM award scheme's Discovery level, which "gives students the freedom to run their own investigations" from start to finish — direct match for a completely open, self-directed investigation with no prescribed approach. Note: browsing the investigation framework is free, but formal award certification carries a nominal fee (from £1/student) — the mission itself does not require certification, only the free investigation structure.
+
+Used In
+
+Mission 20 (Explorer Assessment) — Core
+
+Offline Alternative
+
+The mission's own open investigation is fully self-contained without applying for formal certification.
+
+---
+
+Mission 21 (Graduation Day) deliberately has **no external resource** in this catalogue: its Core Activities (reviewing the learner's own Explorer Journal, reflecting on the whole campaign) are self-contained by design, and no sufficiently strong, primary-appropriate, single-provider resource was found during this pass that would add real value rather than being included just to fill the category. Revisit if a genuinely good fit is identified later.
+
+---
+
 ## Videos
 
 Preferred sources:
@@ -374,6 +458,22 @@ Mission 7 (The Broken Bridge) — Core
 Offline Alternative
 
 The mission's own prototype-building activity (card, straws, tape) is already the hands-on/offline version; the site only adds an additional worked example.
+
+---
+
+#### IET Faraday® DIY Challenge (primary, ages 8–11)
+
+Purpose
+
+Free, downloadable multi-stage engineering challenge day from the UK's official engineering institution, specifically for ages 8–11 — direct match for diagnosing multiple faults, developing a repair sequence, and testing and refining a solution with no single prescribed approach.
+
+Used In
+
+Mission 15 (The Signal Tower) — Core
+
+Offline Alternative
+
+All resources are provided as printable classroom materials — no device required to run the challenge.
 
 ---
 
