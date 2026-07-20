@@ -13,6 +13,13 @@
 // Mission lifecycle behaviour (advancing activities, unlocking rewards,
 // triggering reflection, completion) is a later milestone; this module
 // only loads and validates.
+//
+// "parentGuide" was added during the Mission Compiler milestone: 504's own
+// Mission field list never included it, even though 504 separately defines
+// a full Parent Guide schema and 503 explicitly says Parent Guide is
+// "Referenced by Missions" — an oversight in 504, not a 503-vs-504
+// disagreement. Parent Guide content must never reach the learner-facing
+// view (ADR-006, Hidden Parent Mode) — router.js never renders it.
 
 const REQUIRED_MISSION_FIELDS = [
   'id',
@@ -26,8 +33,11 @@ const REQUIRED_MISSION_FIELDS = [
   'activities',
   'rewards',
   'reflection',
+  'parentGuide',
   'completionCriteria'
 ];
+
+const REQUIRED_PARENT_GUIDE_FIELDS = ['id', 'learningObjectives', 'discussionPoints', 'preparation', 'assessment'];
 
 const REQUIRED_BEAT_TYPES = [
   'HOOK',
@@ -100,6 +110,17 @@ function validateRewards(rewards, errors) {
   });
 }
 
+function validateParentGuide(parentGuide, errors) {
+  if (typeof parentGuide !== 'object' || parentGuide === null) {
+    errors.push('"parentGuide" must be an object');
+    return;
+  }
+
+  missingFields(parentGuide, REQUIRED_PARENT_GUIDE_FIELDS).forEach((field) => {
+    errors.push(`parentGuide missing required field: "${field}"`);
+  });
+}
+
 function validateMission(data) {
   const errors = missingFields(data, REQUIRED_MISSION_FIELDS).map(
     (field) => `Missing required field: "${field}"`
@@ -108,6 +129,7 @@ function validateMission(data) {
   if (data.beats !== undefined) validateBeats(data.beats, errors);
   if (data.activities !== undefined) validateActivities(data.activities, errors);
   if (data.rewards !== undefined) validateRewards(data.rewards, errors);
+  if (data.parentGuide !== undefined) validateParentGuide(data.parentGuide, errors);
 
   return { valid: errors.length === 0, errors };
 }

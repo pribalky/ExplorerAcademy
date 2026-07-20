@@ -2,58 +2,110 @@
   "id": "MISSION-0001",
   "campaignId": "CAMPAIGN-0001",
   "missionNumber": 1,
-  "title": "Mission 1 — Placeholder",
+  "title": "The Invitation",
   "storyChapter": "CHAPTER-0001",
-  "estimatedTime": "TBD",
-  "difficulty": "explorer",
+  "estimatedTime": "60 minutes",
+  "difficulty": "guided",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "Placeholder — not yet authored.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Placeholder — not yet authored.", "trigger": "Hook resolved" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "Placeholder — not yet authored.", "trigger": "Mystery introduced" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Placeholder — not yet authored.", "trigger": "Investigation complete" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "Placeholder — not yet authored.", "trigger": "Discovery made" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Placeholder — not yet authored.", "trigger": "Challenge overcome" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "Placeholder — not yet authored.", "trigger": "Breakthrough achieved" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Placeholder — not yet authored.", "trigger": "Reflection complete" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "An unexpected package arrives containing a letter from Explorer Academy.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Explorer Academy has been observing individuals who show curiosity, persistence and careful observation — and the learner has been selected as a potential Explorer.", "trigger": "Package opened" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reads the invitation carefully to understand what becoming an Explorer will require.", "trigger": "Letter read" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Director Orion explains that before joining permanently, the learner must complete a probationary expedition at Outpost Echo, a long-abandoned research station whose final expedition disappeared from communication many years ago.", "trigger": "Director Orion's briefing" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must decide how to respond to the invitation and begin an Explorer Journal to record their own observations.", "trigger": "Decision to respond" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner completes their first observation challenge, demonstrating the habits Explorer Academy is looking for.", "trigger": "Observation challenge completed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on what it means to accept the invitation and begin training as an Explorer.", "trigger": "Journal entry recorded" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The learner accepts the invitation and sets out for Outpost Echo, unaware of what waits at the abandoned station.", "trigger": "Departure for Outpost Echo" }
   ],
   "activities": [
     {
       "id": "ACTIVITY-0001",
       "missionId": "MISSION-0001",
-      "title": "Placeholder Core Activity",
+      "title": "Read Invitation",
       "type": "reading",
       "category": "reading",
-      "duration": 15,
-      "difficulty": "explorer",
-      "storyContext": "Placeholder — not yet authored.",
-      "instructions": "Placeholder — not yet authored.",
-      "output": "Placeholder — not yet authored.",
+      "duration": 8,
+      "difficulty": "guided",
+      "storyContext": "A letter from Explorer Academy has arrived, inviting the learner to begin probationary training.",
+      "instructions": "Read the invitation letter carefully. Notice what Explorer Academy says it is looking for in a future Explorer.",
+      "output": "A short note of the letter's key points in the Explorer Journal.",
       "schedulerCategory": "core"
     },
     {
       "id": "ACTIVITY-0002",
       "missionId": "MISSION-0001",
-      "title": "Placeholder Extension Activity",
-      "type": "science",
-      "category": "science",
-      "duration": 20,
-      "difficulty": "explorer",
-      "storyContext": "Placeholder — not yet authored.",
-      "instructions": "Placeholder — not yet authored.",
-      "output": "Placeholder — not yet authored.",
-      "schedulerCategory": "extension"
+      "title": "Create Explorer Journal",
+      "type": "creative",
+      "category": "creative",
+      "duration": 8,
+      "difficulty": "guided",
+      "storyContext": "Every Explorer keeps a journal to record observations throughout their expedition.",
+      "instructions": "Set up a notebook or sketchbook as your Explorer Journal. Add a title page and your Explorer name.",
+      "output": "A personal Explorer Journal, ready for the expedition.",
+      "schedulerCategory": "core"
     },
     {
       "id": "ACTIVITY-0003",
       "missionId": "MISSION-0001",
-      "title": "Placeholder Rabbit Hole Activity",
+      "title": "Record Expectations",
+      "type": "writing",
+      "category": "writing",
+      "duration": 7,
+      "difficulty": "guided",
+      "storyContext": "Before departing for Outpost Echo, Director Orion asks every new recruit to record their expectations.",
+      "instructions": "Write a few sentences in your Explorer Journal describing what you expect to find at Outpost Echo.",
+      "output": "A journal entry recording first expectations.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0004",
+      "missionId": "MISSION-0001",
+      "title": "Complete First Observation Challenge",
+      "type": "observation",
+      "category": "observation",
+      "duration": 7,
+      "difficulty": "guided",
+      "storyContext": "Atlas sets a simple first task to see how carefully the learner can observe their surroundings.",
+      "instructions": "Choose an everyday object nearby and record five careful observations about it in your Explorer Journal.",
+      "output": "Five recorded observations of a chosen object.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0005",
+      "missionId": "MISSION-0001",
+      "title": "Design a Personal Explorer Emblem",
+      "type": "drawing",
+      "category": "drawing",
+      "duration": 15,
+      "difficulty": "guided",
+      "storyContext": "Every Explorer eventually designs a personal emblem to mark their journal and equipment.",
+      "instructions": "Sketch a personal emblem that represents you as an Explorer.",
+      "output": "A drawn emblem in the Explorer Journal.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0006",
+      "missionId": "MISSION-0001",
+      "title": "Research Famous Explorers",
       "type": "research",
       "category": "research",
       "duration": 15,
-      "difficulty": "explorer",
-      "storyContext": "Placeholder — not yet authored.",
-      "instructions": "Placeholder — not yet authored.",
-      "output": "Placeholder — not yet authored.",
+      "difficulty": "guided",
+      "storyContext": "Director Orion mentions that Explorer Academy was founded on the work of real explorers throughout history.",
+      "instructions": "Find out about one real explorer and note three interesting facts about their expeditions.",
+      "output": "Three facts about a real explorer, recorded in the Explorer Journal.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0007",
+      "missionId": "MISSION-0001",
+      "title": "What Makes an Explorer?",
+      "type": "discussion",
+      "category": "discussion",
+      "duration": 10,
+      "difficulty": "guided",
+      "storyContext": "Not everyone who travels is an Explorer in the Academy's sense of the word.",
+      "instructions": "Talk with someone else about this question: what makes someone an explorer rather than simply a traveller?",
+      "output": "None required — this is an open discussion.",
       "schedulerCategory": "rabbitHole"
     }
   ],
@@ -61,11 +113,18 @@
     {
       "id": "REWARD-0001",
       "type": "badge",
-      "value": "Placeholder — not yet authored."
+      "value": "Explorer Recruit"
     }
   ],
   "reflection": {
-    "prompts": ["Placeholder — not yet authored."]
+    "prompts": ["What expectations do you have as you begin your journey to Outpost Echo?"]
   },
-  "completionCriteria": "All core activities completed."
+  "parentGuide": {
+    "id": "PARENTGUIDE-0001",
+    "learningObjectives": ["Careful reading", "Following instructions", "Making observations", "Recording first thoughts"],
+    "discussionPoints": ["What do you think Explorer Academy is looking for in an Explorer?", "What are you most looking forward to investigating?"],
+    "preparation": "No special preparation required. Have a notebook or sketchbook ready to become the Explorer Journal.",
+    "assessment": "Look for careful reading of the invitation and thoughtful, specific expectations recorded in the Explorer Journal."
+  },
+  "completionCriteria": "Explorer Journal created, expectations recorded, and the first observation challenge completed."
 }

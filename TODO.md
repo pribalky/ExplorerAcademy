@@ -191,7 +191,7 @@ Success Criteria
 Status
 
 ```
-NOT STARTED
+IN PROGRESS — Mission 1 of 21 compiled (mission01.json), pattern validated
 ```
 
 Goal
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Phase 3 — Campaign Compiler is COMPLETE. Await approval to start Phase 4 – Mission Compiler** (read `prompts/MISSION_COMPILER.md` first, same as Campaign Compiler's prompt was read before that milestone — likely its own scoping conversation given the volume of 21 missions and the real chance of another doc-vs-implementation gap like the one found compiling campaign.json).
+**Mission 1 of 21 compiled and verified (`mission01.json`). Await approval to continue Phase 4 – Mission Compiler with Missions 2–21**, following the now-validated pattern (embedded 504 schema, tuned activity durations, `parentGuide` included but never rendered).

@@ -208,6 +208,7 @@ beats
 activities
 rewards
 reflection
+parentGuide
 completionCriteria
 ```
 
@@ -217,6 +218,8 @@ Optional
 introImage
 backgroundMusic
 ```
+
+> **Note (added during the Mission Compiler milestone):** `parentGuide` was missing from this required list even though this document separately defines a full Parent Guide schema (below) and `503_DATA_MODEL.md` explicitly says Parent Guide is "Referenced by Missions." Added here as required, embedded directly on the Mission object (not referenced by ID) — same reasoning as `activities`/`rewards`/`beats`: Parent Guide is 1:1 owned by its mission, never shared/reused, so embedding is lossless and requires no new reference-resolution machinery. `mission-engine.js` now validates it. It must never be rendered to the learner (ADR-006, Hidden Parent Mode).
 
 ---
 
