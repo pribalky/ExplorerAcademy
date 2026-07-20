@@ -45,7 +45,7 @@ It is the authoritative implementation checklist for both humans and AI contribu
 Status
 
 ```
-IN PROGRESS — Milestone 1.1 complete
+COMPLETE
 ```
 
 Goal
@@ -74,7 +74,7 @@ Milestones
 
 - [x] Repository structure
 
-- [ ] HTML shell
+- [x] HTML shell
 
 - [x] CSS structure
 
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Await approval to start Phase 1 – Milestone 1.2 – Application Shell.**
+**Await approval to start Phase 2 – Milestone: Campaign Loader.**
