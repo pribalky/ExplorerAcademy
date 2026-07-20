@@ -317,53 +317,61 @@ portal/
 │
 ├── index.html
 ├── campaigns/
-│   ├── campaign-01/
-│   ├── campaign-02/
+│   ├── campaign01/
+│   │   ├── src/
+│   │   │   ├── campaign.json
+│   │   │   ├── missions/
+│   │   │   ├── world/
+│   │   │   ├── resources/
+│   │   │   ├── workbook/
+│   │   │   └── parent/
+│   │   └── generated/
+│   │       ├── workbook/
+│   │       ├── parent/
+│   │       ├── resources/
+│   │       └── image-specifications/
 │   └── ...
 │
 ├── assets/
 │   ├── images/
 │   ├── icons/
-│   ├── audio/
-│   └── fonts/
+│   └── audio/
 │
 ├── components/
-│   ├── layout/
-│   ├── navigation/
-│   ├── mission/
+│   ├── story/
 │   ├── activities/
+│   ├── navigation/
 │   ├── rewards/
-│   └── shared/
+│   └── ui/
 │
-├── styles/
-│   ├── base/
-│   ├── layout/
-│   ├── components/
-│   ├── themes/
-│   └── print/
+├── css/
+│   ├── base.css
+│   ├── layout.css
+│   ├── components.css
+│   └── themes.css
 │
-├── scripts/
-│   ├── core/
-│   ├── modules/
-│   ├── renderers/
-│   ├── utilities/
-│   └── data/
+├── js/
+│   ├── app.js
+│   ├── router.js
+│   ├── scheduler.js
+│   ├── storage.js
+│   ├── campaign-loader.js
+│   ├── mission-engine.js
+│   ├── activity-engine.js
+│   ├── reward-engine.js
+│   ├── discovery-log.js
+│   ├── parent-mode.js
+│   ├── settings.js
+│   └── utils.js
 │
 ├── data/
-│   ├── settings/
-│   ├── schemas/
-│   └── defaults/
+│   └── schemas/
 │
-├── parent/
-│   ├── curriculum/
-│   ├── guides/
-│   └── resources/
-│
-└── workbook/
-    ├── campaign-01/
-    ├── campaign-02/
-    └── templates/
+└── parent/
+    └── index.html
 ```
+
+Printable workbook resources live in the repository-root `workbook/` directory, not inside `portal/`.
 
 This structure ensures:
 

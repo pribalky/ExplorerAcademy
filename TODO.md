@@ -45,7 +45,7 @@ It is the authoritative implementation checklist for both humans and AI contribu
 Status
 
 ```
-NOT STARTED
+IN PROGRESS — Milestone 1.1 complete
 ```
 
 Goal
@@ -72,17 +72,17 @@ No application logic
 
 Milestones
 
-- [ ] Repository structure
+- [x] Repository structure
 
 - [ ] HTML shell
 
-- [ ] CSS structure
+- [x] CSS structure
 
-- [ ] JavaScript modules
+- [x] JavaScript modules
 
-- [ ] Empty campaign folders
+- [x] Empty campaign folders
 
-- [ ] JSON placeholders
+- [x] JSON placeholders
 
 Deliverable
 
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Start Phase 1 – Platform Bootstrap.**
+**Await approval to start Phase 1 – Milestone 1.2 – Application Shell.**

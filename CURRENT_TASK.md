@@ -1,122 +1,107 @@
-# CURRENT_TASK.md
+# CURRENT_TASK
 
-# Explorer Academy — Current Task
+## Phase
 
-**Project Status**
+1 – Platform Bootstrap
 
-Phase: **1 – Platform Bootstrap**
+## Milestone
 
-Milestone: **1.1 – Repository Bootstrap**
+1.2 – Application Shell
 
-Status: **READY TO START**
+## Objective
 
----
+Build the static application shell: the Application Controller, Router and global navigation/layout, so the portal can navigate between logical pages (Home, Campaign Select, etc.) while still rendering no real campaign content.
 
-# Objective
+## Inputs
 
-Create the initial implementation structure for the Explorer Academy platform.
+- `docs/30-architecture/301_PLATFORM_ARCHITECTURE.md`
+- `docs/60-engineering/601_HTML_ARCHITECTURE.md` (Page Architecture, Router, Application Controller, Component Hierarchy sections)
+- `portal/ARCHITECTURE.md`
+- Existing placeholder structure from Milestone 1.1
 
-This milestone establishes the repository layout only.
+## Relevant Documentation
 
-No application logic should be implemented.
+- `docs/60-engineering/601_HTML_ARCHITECTURE.md`
+- `docs/30-architecture/301_PLATFORM_ARCHITECTURE.md`
+- `docs/00-foundation/006_DESIGN_DECISION_LOG.md`
 
----
+## Files Expected to Change
 
-# Scope
+- `portal/js/app.js` (Application Controller bootstrap)
+- `portal/js/router.js` (route table, navigation)
+- `portal/index.html` (shell markup: header, nav, main content region)
+- `portal/css/layout.css`, `portal/css/base.css`
+- `portal/components/navigation/`
 
-Create:
+## Implementation Plan
 
-```
-portal/
-├── index.html
-├── assets/
-├── campaigns/
-│   └── campaign01/
-│       ├── src/
-│       │   ├── campaign.json
-│       │   ├── missions/
-│       │   ├── world/
-│       │   ├── resources/
-│       │   ├── workbook/
-│       │   └── parent/
-│       └── generated/
-│           ├── workbook/
-│           ├── parent/
-│           ├── resources/
-│           └── image-specifications/
-├── components/
-├── css/
-├── data/
-├── js/
-└── parent/
+To be defined at the start of Milestone 1.2. Not yet started.
 
-docs/
-workbook/
-scripts/
-prompts/
-```
+## Out of Scope
 
----
-
-# Create
-
-Placeholder:
-
-- HTML pages
-- CSS files
-- JavaScript modules
-- README files where useful
-- Empty JSON placeholders
-- Folder structure
-
----
-
-# Do NOT Implement
-
-- Routing
 - Campaign loading
-- Mission rendering
-- Activity rendering
-- LocalStorage
+- Mission/activity rendering
+- LocalStorage / persistence
 - Scheduler
 - Rewards
 - Parent Mode
 - Workbook generation
 
----
+## Success Criteria
 
-# Success Criteria
+- Navigation between logical pages (Home, Campaign Select, Discovery Log, Profile, Settings placeholders) works via the Router.
+- No page reload occurs during in-app navigation.
+- No JavaScript errors in the console.
+- Application shell renders consistently across pages.
 
-- Repository structure matches `601_HTML_ARCHITECTURE.md`
-- All placeholder files exist
-- Folder hierarchy is complete
-- No dead links
-- Application opens successfully
-- No JavaScript errors
-- Ready for Milestone 1.2
+## Manual Verification
 
----
+Not yet performed — milestone not started.
 
-# Deliverables
+## Deliverables
 
-Expected files:
+- Working Router
+- Application Controller bootstrap
+- Global navigation shell
+- Placeholder page views wired to routes
 
-- `portal/index.html`
-- Placeholder CSS
-- Placeholder JS modules
-- Empty campaign structure
-- Empty JSON files
-- Repository READMEs
+## Completion Notes
+
+Not yet started. Awaiting user approval to begin.
 
 ---
 
-# After Completion
+# Previous Milestone — 1.1 Repository Bootstrap — COMPLETE
 
-1. Verify folder structure.
-2. Verify application launches.
-3. Update `TODO.md`.
-4. Replace this file with the next milestone:
+## Completion Summary
 
-**Phase 1 – Milestone 1.2 – Application Shell**
+Created the full repository/placeholder structure defined in the Milestone 1.1 scope, using `portal/ARCHITECTURE.md` + this file as the authoritative structure (in preference to the now-corrected `docs/60-engineering/601_HTML_ARCHITECTURE.md`, whose Repository Structure section previously conflicted: `styles/`/`scripts/` vs `css/`/`js/`, hyphenated `campaign-01` vs `campaign01`, and a `portal/workbook/` folder that duplicated the repo-root `workbook/`). That document's Repository Structure section was updated to match.
 
-Then stop.
+Files/folders created:
+
+- `portal/index.html` — semantic HTML5 shell (header/main/footer), no logic, links to the four placeholder stylesheets and `js/app.js` as a module.
+- `portal/parent/index.html` — placeholder parent-mode shell, isolated from the learner shell.
+- `portal/css/{base,layout,components,themes}.css` — empty placeholders (single descriptive comment each, no rules).
+- `portal/js/{app,router,scheduler,storage,campaign-loader,mission-engine,activity-engine,reward-engine,discovery-log,parent-mode,settings,utils}.js` — empty placeholder modules (single descriptive comment each, no logic).
+- `portal/components/{story,activities,navigation,rewards,ui}/` — empty component group folders (`.gitkeep`).
+- `portal/data/schemas/` — empty (`.gitkeep`).
+- `portal/assets/{images,icons,audio}/` — empty (`.gitkeep`).
+- `portal/campaigns/campaign01/src/{campaign.json, missions/, world/, resources/, workbook/, parent/}` — campaign source skeleton; `campaign.json` is an empty `{}` placeholder.
+- `portal/campaigns/campaign01/generated/{workbook,parent,resources,image-specifications}/` — empty generated-artefact folders.
+- READMEs added where useful: `portal/campaigns/README.md`, `portal/campaigns/campaign01/README.md`, `portal/components/README.md`.
+- Removed now-redundant `.gitkeep` files from folders that gained real content (`portal/campaigns/`, `portal/css/`, `portal/js/`, `portal/components/`, `portal/data/`, `portal/parent/`, `portal/assets/`).
+- Updated `docs/60-engineering/601_HTML_ARCHITECTURE.md` Repository Structure section to match this structure and noted that printable workbook resources live in the repo-root `workbook/`, not under `portal/`.
+
+## Manual Testing Performed
+
+Served `portal/` with `python3 -m http.server` and requested `index.html`, all four stylesheets, `js/app.js`, and `parent/index.html` — all returned HTTP 200 (no dead links, no missing assets). No JavaScript executes yet (placeholder modules only), so there is nothing to throw a console error.
+
+## Verification
+
+- Repository structure matches the corrected `601_HTML_ARCHITECTURE.md` / `portal/ARCHITECTURE.md`. ✅
+- All placeholder files exist. ✅
+- Folder hierarchy is complete. ✅
+- No dead links. ✅
+- Application opens successfully (served and returns 200 with no missing references). ✅
+- No JavaScript errors (no logic present to error). ✅
+- Ready for Milestone 1.2. ✅
