@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0013",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 13,
+  "title": "Hidden Patterns",
+  "storyChapter": "CHAPTER-0003",
+  "estimatedTime": "60 minutes",
+  "difficulty": "independent",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "With enough expedition data recovered, Atlas asks the learner to examine measurements collected over many months.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Individually, the records seem ordinary, but something about them feels connected.", "trigger": "Long-term data provided" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner compares datasets from across the expedition's records.", "trigger": "Datasets compared" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Creating graphs of the combined data begins to reveal a pattern that had gone unnoticed.", "trigger": "Graphs created" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must identify the trend and explain their conclusions using evidence.", "trigger": "Trend identified and explained" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The hidden pattern connects evidence from several earlier missions at once.", "trigger": "Pattern connects earlier missions" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how investigations that once seemed unrelated are actually connected.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The learner's confidence in interpreting complex information grows, sensing that a much bigger picture is starting to form.", "trigger": "Confidence grows" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0075",
+      "missionId": "MISSION-0013",
+      "title": "Compare Datasets",
+      "type": "observation",
+      "category": "observation",
+      "duration": 8,
+      "difficulty": "independent",
+      "storyContext": "Atlas asks the learner to examine measurements collected over many months.",
+      "instructions": "Compare a few datasets collected at different points during the expedition.",
+      "output": "Notes comparing the datasets.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0076",
+      "missionId": "MISSION-0013",
+      "title": "Create Graphs",
+      "type": "mathematics",
+      "category": "mathematics",
+      "duration": 7,
+      "difficulty": "independent",
+      "storyContext": "Individually, the records seem ordinary, but combined they might reveal something more.",
+      "instructions": "Create graphs combining the datasets to make any patterns easier to see.",
+      "output": "Graphs of the combined datasets.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0077",
+      "missionId": "MISSION-0013",
+      "title": "Identify Trends",
+      "type": "science",
+      "category": "science",
+      "duration": 8,
+      "difficulty": "independent",
+      "storyContext": "A repeating pattern has gone unnoticed until now.",
+      "instructions": "Identify any trend that appears across the combined graphs.",
+      "output": "A description of the identified trend.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0078",
+      "missionId": "MISSION-0013",
+      "title": "Explain Conclusions Using Evidence",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 7,
+      "difficulty": "independent",
+      "storyContext": "A good conclusion is always supported by evidence.",
+      "instructions": "Explain what the trend means, using evidence from the datasets to support your conclusion.",
+      "output": "A written conclusion supported by evidence.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0079",
+      "missionId": "MISSION-0013",
+      "title": "Predict Future Observations",
+      "type": "science",
+      "category": "science",
+      "duration": 15,
+      "difficulty": "independent",
+      "storyContext": "If the trend continues, future observations should follow the same pattern.",
+      "instructions": "Use the identified trend to predict what future observations might show.",
+      "output": "A prediction supported by the identified trend.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0080",
+      "missionId": "MISSION-0013",
+      "title": "Discovering Hidden Patterns in Data",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "independent",
+      "storyContext": "Finding hidden patterns in large amounts of data is a real scientific skill.",
+      "instructions": "Find out how scientists discover hidden patterns within large datasets.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0013",
+      "type": "knowledgeCore",
+      "value": "Pattern Recognition"
+    }
+  ],
+  "reflection": {
+    "prompts": ["Which earlier missions do you think are connected by this pattern, and why?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0013",
+    "learningObjectives": ["Data analysis", "Graph interpretation", "Statistics", "Evidence synthesis"],
+    "discussionPoints": ["What pattern did you notice once the datasets were combined?", "Which earlier missions do you think are connected, and why?"],
+    "preparation": "No special preparation required.",
+    "assessment": "Look for a clearly explained trend supported by evidence drawn from multiple datasets."
+  },
+  "completionCriteria": "Datasets compared, graphs created, and trends explained using evidence."
+}

@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0011",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 11,
+  "title": "The Energy Problem",
+  "storyChapter": "CHAPTER-0003",
+  "estimatedTime": "60 minutes",
+  "difficulty": "independent",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Power shortages continue affecting the outpost.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Restoring power isn't as simple as turning everything on at once.", "trigger": "Power shortages continue" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner analyses how electricity is distributed through the station and what each system requires.", "trigger": "Energy requirements analysed" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Solving a series of circuit challenges reveals how the station's power network is connected.", "trigger": "Circuit challenges solved" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must prioritise essential systems and balance them against the energy actually available.", "trigger": "Systems prioritised" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner works out the correct sequence to safely restore power.", "trigger": "Restoration sequence worked out" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner records their reasoning for why each system was prioritised in that order.", "trigger": "Reasoning recorded" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Major systems return online, and evidence suggests the expedition deliberately conserved power for a reason not yet understood.", "trigger": "Systems restored" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0063",
+      "missionId": "MISSION-0011",
+      "title": "Analyse Energy Requirements",
+      "type": "mathematics",
+      "category": "mathematics",
+      "duration": 8,
+      "difficulty": "independent",
+      "storyContext": "Power shortages continue affecting the outpost, and every system has different energy needs.",
+      "instructions": "Work out how much energy each station system requires to operate.",
+      "output": "A list of energy requirements for each system.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0064",
+      "missionId": "MISSION-0011",
+      "title": "Solve Circuit Challenges",
+      "type": "science",
+      "category": "science",
+      "duration": 7,
+      "difficulty": "independent",
+      "storyContext": "The station's power network connects every system together.",
+      "instructions": "Solve a series of circuit challenges to understand how the power network is connected.",
+      "output": "Solved circuit challenges showing the power network layout.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0065",
+      "missionId": "MISSION-0011",
+      "title": "Prioritise Essential Systems",
+      "type": "mathematics",
+      "category": "mathematics",
+      "duration": 8,
+      "difficulty": "independent",
+      "storyContext": "Rather than simply turning everything on, the learner must balance available energy against operational priorities.",
+      "instructions": "Decide which systems should be restored first, given the limited energy available.",
+      "output": "A prioritised list of systems to restore.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0066",
+      "missionId": "MISSION-0011",
+      "title": "Record Reasoning",
+      "type": "writing",
+      "category": "writing",
+      "duration": 7,
+      "difficulty": "independent",
+      "storyContext": "A good plan can always be explained.",
+      "instructions": "Write down the reasoning behind your restoration sequence.",
+      "output": "A written explanation of the restoration sequence.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0067",
+      "missionId": "MISSION-0011",
+      "title": "Design an Emergency Power Plan",
+      "type": "engineering",
+      "category": "engineering",
+      "duration": 15,
+      "difficulty": "independent",
+      "storyContext": "A good Explorer plans ahead for the next emergency, not just the current one.",
+      "instructions": "Design an emergency power plan for the station in case of a future shortage.",
+      "output": "An emergency power plan.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0068",
+      "missionId": "MISSION-0011",
+      "title": "Electricity in Extreme Environments",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "independent",
+      "storyContext": "Outpost Echo isn't the only remote station that has to solve power problems.",
+      "instructions": "Find out how remote research stations generate electricity in extreme environments.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0011",
+      "type": "unlock",
+      "value": "Expedition Archive Access"
+    }
+  ],
+  "reflection": {
+    "prompts": ["How did you decide which systems to restore first, and why?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0011",
+    "learningObjectives": ["Electricity", "Problem solving", "Logical sequencing", "Mathematical reasoning"],
+    "discussionPoints": ["Why is it important to prioritise which systems to restore first?", "What would happen if every system was restored at once?"],
+    "preparation": "No special preparation required.",
+    "assessment": "Look for a restoration sequence that is justified by reasoning about priorities, not a random order."
+  },
+  "completionCriteria": "Energy requirements analysed, circuit challenges solved, and essential systems prioritised with recorded reasoning."
+}

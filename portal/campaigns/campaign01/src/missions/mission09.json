@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0009",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 9,
+  "title": "Mystery Samples",
+  "storyChapter": "CHAPTER-0003",
+  "estimatedTime": "60 minutes",
+  "difficulty": "independent",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Inside the station laboratory, several unidentified samples remain carefully catalogued but incompletely labelled.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Atlas reminds the learner that scientists classify by evidence, not appearance alone.", "trigger": "Samples found incompletely labelled" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner observes the properties of each sample carefully.", "trigger": "Properties observed" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Grouping similar specimens reveals patterns among the samples.", "trigger": "Specimens grouped" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must record evidence and justify how each sample was classified.", "trigger": "Evidence recorded and classifications justified" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner successfully classifies the samples using observable properties rather than assumptions.", "trigger": "Samples classified" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how classifying by evidence differs from judging by appearance alone.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The classified samples uncover another area of the expedition's research, and the laboratory records begin making sense.", "trigger": "Laboratory records make sense" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0051",
+      "missionId": "MISSION-0009",
+      "title": "Observe Sample Properties",
+      "type": "observation",
+      "category": "observation",
+      "duration": 8,
+      "difficulty": "independent",
+      "storyContext": "Several unidentified samples remain carefully catalogued but incompletely labelled in the station laboratory.",
+      "instructions": "Observe each sample carefully and record its properties — colour, texture, size and any other details.",
+      "output": "A list of observed properties for each sample.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0052",
+      "missionId": "MISSION-0009",
+      "title": "Group Similar Specimens",
+      "type": "science",
+      "category": "science",
+      "duration": 7,
+      "difficulty": "independent",
+      "storyContext": "Atlas reminds the learner that scientists classify by evidence, not appearance alone.",
+      "instructions": "Group the samples into categories based on their observed properties.",
+      "output": "Samples grouped into evidence-based categories.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0053",
+      "missionId": "MISSION-0009",
+      "title": "Record Evidence",
+      "type": "writing",
+      "category": "writing",
+      "duration": 8,
+      "difficulty": "independent",
+      "storyContext": "Clear records will help future Explorers understand how each sample was classified.",
+      "instructions": "Write up the evidence supporting each group you created.",
+      "output": "Written evidence records for each group.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0054",
+      "missionId": "MISSION-0009",
+      "title": "Justify Classifications",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 7,
+      "difficulty": "independent",
+      "storyContext": "A good classification can always be explained using evidence.",
+      "instructions": "Explain why each sample belongs in its group, using your recorded evidence.",
+      "output": "A justified classification for each sample.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0055",
+      "missionId": "MISSION-0009",
+      "title": "Design a Classification Key",
+      "type": "writing",
+      "category": "writing",
+      "duration": 15,
+      "difficulty": "independent",
+      "storyContext": "A classification key would help future Explorers sort new samples quickly.",
+      "instructions": "Design a simple classification key that could sort new samples into your groups.",
+      "output": "A simple classification key.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0056",
+      "missionId": "MISSION-0009",
+      "title": "How Biologists Classify New Species",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "independent",
+      "storyContext": "Classifying unidentified samples is exactly the work real biologists do.",
+      "instructions": "Find out how biologists classify newly discovered species.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0009",
+      "type": "unlock",
+      "value": "Laboratory Records Access"
+    }
+  ],
+  "reflection": {
+    "prompts": ["What evidence did you use to classify the samples, rather than just their appearance?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0009",
+    "learningObjectives": ["Classification", "Scientific observation", "Recording evidence", "Comparing characteristics"],
+    "discussionPoints": ["Why is it important to classify by evidence rather than appearance alone?", "What surprised you about grouping the samples?"],
+    "preparation": "No special preparation required.",
+    "assessment": "Look for classifications justified by recorded evidence, not just first impressions."
+  },
+  "completionCriteria": "Sample properties observed, specimens grouped, and classifications justified with recorded evidence."
+}

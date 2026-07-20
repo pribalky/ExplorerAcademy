@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0010",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 10,
+  "title": "Water Under Pressure",
+  "storyChapter": "CHAPTER-0003",
+  "estimatedTime": "60 minutes",
+  "difficulty": "independent",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "The station's water recycling system has partially failed.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Something is preventing water from moving properly through the outpost.", "trigger": "Water system found failing" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner traces how water flows through the station's systems.", "trigger": "Water flow traced" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Diagrams and simple experiments begin to reveal where the malfunction is occurring.", "trigger": "Diagrams and experiments examined" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must interpret the diagrams and recommend a repair.", "trigger": "Repair recommended" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner identifies the source of the malfunction and proposes a fix.", "trigger": "Malfunction identified" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how water shortages may have influenced the expedition's earlier decisions.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Repairing the system restores another section of the station, and additional laboratories become accessible.", "trigger": "Additional laboratories unlocked" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0057",
+      "missionId": "MISSION-0010",
+      "title": "Trace Water Flow",
+      "type": "observation",
+      "category": "observation",
+      "duration": 8,
+      "difficulty": "independent",
+      "storyContext": "The station's water recycling system has partially failed, and water isn't moving properly through the outpost.",
+      "instructions": "Trace how water is meant to flow through the station's systems, following the pipework diagram.",
+      "output": "A traced path of the station's water flow.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0058",
+      "missionId": "MISSION-0010",
+      "title": "Conduct Simple Experiments",
+      "type": "experiment",
+      "category": "experiment",
+      "duration": 7,
+      "difficulty": "independent",
+      "storyContext": "Testing is the best way to find out where the flow is being blocked.",
+      "instructions": "Conduct a simple experiment to test where water flow might be interrupted.",
+      "output": "Results from a simple water-flow experiment.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0059",
+      "missionId": "MISSION-0010",
+      "title": "Interpret Diagrams",
+      "type": "science",
+      "category": "science",
+      "duration": 8,
+      "difficulty": "independent",
+      "storyContext": "The station's engineering diagrams hold clues about where the system might be failing.",
+      "instructions": "Interpret the water system diagrams to identify where the malfunction is most likely occurring.",
+      "output": "A diagram interpretation identifying the likely fault.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0060",
+      "missionId": "MISSION-0010",
+      "title": "Recommend Repairs",
+      "type": "writing",
+      "category": "writing",
+      "duration": 7,
+      "difficulty": "independent",
+      "storyContext": "A clear recommendation will help Atlas carry out the repair.",
+      "instructions": "Write a recommendation explaining what repair should be made and why.",
+      "output": "A written repair recommendation.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0061",
+      "missionId": "MISSION-0010",
+      "title": "Design a More Efficient Water System",
+      "type": "engineering",
+      "category": "engineering",
+      "duration": 15,
+      "difficulty": "independent",
+      "storyContext": "The current system could be improved, not just repaired.",
+      "instructions": "Design a more efficient water recycling system for the station.",
+      "output": "A design for an improved water recycling system.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0062",
+      "missionId": "MISSION-0010",
+      "title": "Water Recycling in Space",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "independent",
+      "storyContext": "Water recycling is a critical challenge for remote research stations and spacecraft alike.",
+      "instructions": "Find out how water is recycled aboard spacecraft or remote research stations.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0010",
+      "type": "unlock",
+      "value": "Additional Laboratories Access"
+    }
+  ],
+  "reflection": {
+    "prompts": ["How did tracing the water flow help you find the malfunction?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0010",
+    "learningObjectives": ["Scientific investigation", "Water systems", "Measurement", "Cause and effect"],
+    "discussionPoints": ["What clues helped you find the cause of the malfunction?", "Why might water shortages have affected the expedition's decisions?"],
+    "preparation": "No special preparation required; a simple container of water can help demonstrate flow if useful.",
+    "assessment": "Look for a repair recommendation clearly linked to evidence from the diagrams and experiments."
+  },
+  "completionCriteria": "Water flow traced, diagrams interpreted, and repairs recommended."
+}

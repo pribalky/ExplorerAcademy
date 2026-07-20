@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0012",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 12,
+  "title": "Star Maps",
+  "storyChapter": "CHAPTER-0003",
+  "estimatedTime": "60 minutes",
+  "difficulty": "independent",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "A damaged observatory contains unfinished astronomical observations.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Star charts and positional clues hint at what the expedition had been tracking.", "trigger": "Damaged observations found" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner matches constellations and reads the station's star maps.", "trigger": "Constellations matched and star maps read" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Measuring angles between recorded positions begins to reveal a pattern in the sky.", "trigger": "Angles measured" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must interpret the observations to reconstruct what the expedition was studying.", "trigger": "Observations interpreted" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The reconstructed observations reveal the expedition's wider scientific objectives.", "trigger": "Objectives revealed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how much can be learned from carefully recorded, unfinished data.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The observatory becomes operational again, hinting that the expedition's research extended far beyond the station itself.", "trigger": "Observatory reactivated" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0069",
+      "missionId": "MISSION-0012",
+      "title": "Match Constellations",
+      "type": "observation",
+      "category": "observation",
+      "duration": 8,
+      "difficulty": "independent",
+      "storyContext": "A damaged observatory contains unfinished astronomical observations.",
+      "instructions": "Match the recorded star patterns to known constellations.",
+      "output": "A list of matched constellations.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0070",
+      "missionId": "MISSION-0012",
+      "title": "Read Star Maps",
+      "type": "reading",
+      "category": "reading",
+      "duration": 7,
+      "difficulty": "independent",
+      "storyContext": "Star charts and positional clues hint at what the expedition had been tracking.",
+      "instructions": "Read the station's star maps and note the positions the expedition recorded.",
+      "output": "Notes on the recorded star positions.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0071",
+      "missionId": "MISSION-0012",
+      "title": "Measure Angles",
+      "type": "mathematics",
+      "category": "mathematics",
+      "duration": 8,
+      "difficulty": "independent",
+      "storyContext": "The positions recorded by the expedition may form a pattern in the sky.",
+      "instructions": "Measure the angles between the recorded star positions.",
+      "output": "A set of measured angles between recorded positions.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0072",
+      "missionId": "MISSION-0012",
+      "title": "Interpret Observations",
+      "type": "science",
+      "category": "science",
+      "duration": 7,
+      "difficulty": "independent",
+      "storyContext": "Reconstructing the observations may reveal what the expedition was studying.",
+      "instructions": "Interpret the matched constellations and measured angles to reconstruct the expedition's observations.",
+      "output": "A reconstructed set of astronomical observations.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0073",
+      "missionId": "MISSION-0012",
+      "title": "Create a Seasonal Star Guide",
+      "type": "drawing",
+      "category": "drawing",
+      "duration": 15,
+      "difficulty": "independent",
+      "storyContext": "A seasonal star guide would help future Explorers use the observatory.",
+      "instructions": "Create a simple seasonal star guide showing constellations visible at different times of year.",
+      "output": "An illustrated seasonal star guide.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0074",
+      "missionId": "MISSION-0012",
+      "title": "Navigating by the Night Sky",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "independent",
+      "storyContext": "Long before modern instruments, explorers relied on the stars to find their way.",
+      "instructions": "Find out how explorers navigated using the night sky before modern technology.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0012",
+      "type": "knowledgeCore",
+      "value": "Expedition's Wider Objectives"
+    }
+  ],
+  "reflection": {
+    "prompts": ["What do you think the expedition was studying with the observatory?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0012",
+    "learningObjectives": ["Astronomy", "Geometry", "Spatial reasoning", "Pattern recognition"],
+    "discussionPoints": ["What do you think the expedition was tracking in the night sky?", "How did measuring angles help you interpret the observations?"],
+    "preparation": "No special preparation required; a real star map or night sky app can enrich the experience if available.",
+    "assessment": "Look for careful matching of constellations and observations interpreted with reasoning, not guesswork."
+  },
+  "completionCriteria": "Constellations matched, star maps read, angles measured, and observations interpreted."
+}
