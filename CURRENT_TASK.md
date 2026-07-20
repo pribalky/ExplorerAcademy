@@ -2,48 +2,46 @@
 
 ## Phase
 
-2 – Core Platform
+3 – Campaign Compiler
 
 ## Milestone
 
-Reward Engine
+Campaign Compiler
 
 ## Objective
 
-Build the Reward Engine: evaluate a mission's `rewards[]` (already loaded and validated by `mission-engine.js`, currently unused) when a mission's reflection is completed, and give the learner some visible acknowledgement — completing Phase 2's final unchecked milestone.
+Convert `docs/50-content/501_CAMPAIGN_01.md` (the authored Campaign 1 narrative/design document) into the structured `campaign.json` that `campaign-loader.js` already knows how to load and validate — replacing the current schema-valid-but-placeholder `campaign.json` with real, authored campaign metadata.
 
 ## Inputs
 
-- `portal/campaigns/campaign01/src/missions/mission01.json` (`rewards[]` — one placeholder badge reward, currently loaded but never surfaced anywhere)
-- `portal/js/storage.js` (save shape will likely need a third field — earned rewards — alongside `currentSession` and `discoveryLog`)
-- `docs/50-content/504_JSON_SCHEMA.md` (Reward required fields, Reward Type enum)
+- `docs/50-content/501_CAMPAIGN_01.md` (source content — not yet read this session)
+- `docs/50-content/503_DATA_MODEL.md`, `docs/50-content/504_JSON_SCHEMA.md` (target schema, including this session's extension notes)
+- `portal/campaigns/campaign01/src/campaign.json` (current placeholder to replace)
+- `portal/js/campaign-loader.js` (existing validation the compiler's output must satisfy)
 
 ## Relevant Documentation
 
-- `docs/60-engineering/601_HTML_ARCHITECTURE.md` (Reward Engine, Reward Popup, Explorer Profile sections)
-- `docs/00-foundation/006_DESIGN_DECISION_LOG.md` (ADR-007 — Curiosity Before Completion: rewards reinforce exploration, not completion rate)
+- `docs/00-foundation/007_AI_CONTRIBUTING_GUIDE.md`
+- `prompts/CAMPAIGN_COMPILER.md` (a compiler prompt already exists in the repo — read this first, it may define the intended process before any code/prompt-running approach is chosen)
 
 ## Files Expected to Change
 
-- `portal/js/reward-engine.js` (currently an empty placeholder)
-- `portal/js/storage.js` (extend save shape with earned rewards)
-- `portal/js/router.js` (trigger reward evaluation after a reflection is saved; some visible acknowledgement on the Mission page)
+- `portal/campaigns/campaign01/src/campaign.json` (replaced with compiled, authored content)
+- Possibly a compiler script/tool, depending on what `prompts/CAMPAIGN_COMPILER.md` turns out to specify
 
 ## Implementation Plan
 
-To be defined at the start of this milestone. Not yet started. Worth checking for cross-references before starting, given the pattern in every milestone so far (Mission's `reflection`, Session Configuration's weights, Discovery Log Entry) — the Reward schema itself may have similar gaps (e.g. `value`'s type/shape is unspecified in 504).
+Not started — needs `501_CAMPAIGN_01.md` and `prompts/CAMPAIGN_COMPILER.md` read first; this is a different kind of milestone from Phase 2 (content compilation, not platform engineering) and may need its own scoping conversation before implementation starts.
 
 ## Out of Scope
 
-- Explorer Rank / long-term progression (a distinct entity from Reward, per `503_DATA_MODEL.md`)
-- Parent Mode, Workbook generation
-- Any reward types beyond what a placeholder can exercise (likely just `badge`)
+TBD — depends on what Phase 3 turns out to require after reading the compiler prompt and source content.
 
 ## Success Criteria
 
-- Completing a mission's reflection evaluates its rewards and persists earned ones via the Storage Manager.
-- Earned rewards survive a page reload.
-- No campaign-specific reward logic leaks into the platform — the Reward Engine interprets reward *definitions*, per `601_HTML_ARCHITECTURE.md`.
+- Valid JSON (per `campaign-loader.js`'s existing validation)
+- Schema compliant
+- No duplicated information (per TODO.md's stated Phase 3 success criteria)
 
 ## Manual Verification
 
@@ -51,8 +49,7 @@ Not yet performed — milestone not started.
 
 ## Deliverables
 
-- Working Reward Engine
-- Some visible learner-facing acknowledgement of an earned reward
+TBD.
 
 ## Completion Notes
 
@@ -60,38 +57,35 @@ Not yet started.
 
 ---
 
-# Previous Milestone — Discovery Log — COMPLETE
+# Previous Milestone — Reward Engine — COMPLETE (Phase 2 now fully complete)
 
 ## Completion Summary
 
-Built `portal/js/discovery-log.js` (the Discovery Log Manager), extended `storage.js`'s save shape with a `discoveryLog` array, and added the platform's **first learner-input control**: a reflection prompt + free-text response box on the Mission page, wired to save entries via `recordReflection()`. `/discovery` now lists real saved entries instead of a static placeholder.
+Built `portal/js/reward-engine.js` and extended `storage.js`'s save shape with an `earnedRewards` array (additive, no version bump — same pattern as `discoveryLog`). Wired reward evaluation into the reflection-save flow already built in the Discovery Log milestone, and gave `/profile` real content (an Achievements list) instead of its placeholder.
 
-A real schema gap was found and resolved with the user before implementing:
+Key decisions:
 
-- **None of the three docs (`504_JSON_SCHEMA.md`, `503_DATA_MODEL.md`, `601_HTML_ARCHITECTURE.md`) agree on Discovery Log Entry's fields, and none of them include a field for the learner's actual written response** — the whole point of the feature. Confirmed with the user: extended 504's minimal `id`/`prompt`/`entryType` with `learnerNotes` (the response text), `timestamp`, `campaignId` and `missionId` (cross-campaign traceability, per 601's "the Discovery Log spans all campaigns"). `504_JSON_SCHEMA.md` now carries a note documenting the extension and the three-way disagreement it resolves — same reconciliation pattern used for the Repository Structure, Session Configuration and `storyChapter` gaps in earlier milestones.
+- **Rewards are evaluated once per mission, not once per reflection submission.** `evaluateMissionRewards()` checks `earnedRewards` for an existing entry with the same `missionId` before persisting anything — confirmed by test: submitting a second reflection for the same mission did not duplicate the reward. This matters because a mission can have multiple reflection prompts (only one exists today), and rewards shouldn't multiply per-prompt.
+- **No `unlockCondition` field exists anywhere in the Reward schema** (`504_JSON_SCHEMA.md` only requires `id`/`type`/`value`) to drive a finer-grained trigger, so "a reflection was just completed for this mission" is used as the simplest data-consistent signal that the mission session is done. This is a real simplification, called out explicitly in the code comment rather than left implicit — a future milestone might need a real per-reward unlock condition once campaign content gets more sophisticated than one reflection prompt.
+- **This is acknowledgement, not scoring** — per ADR-007 (Curiosity Before Completion), there's no points/ranking logic, just a "Reward earned: ..." message and a persisted record.
+- **`/profile` only shows earned rewards (Achievements)** — everything else `601_HTML_ARCHITECTURE.md`'s Explorer Profile page describes (name, avatar, completed campaigns, exploration statistics) has no backing module yet (no Explorer Profile entity/module exists), so it isn't rendered rather than being faked.
 
-Other decisions:
-
-- **`discoveryLog` is an additive field on the existing save shape**, not a version bump — `readSave()`'s `{ ...defaultSave(), ...data }` merge means a save written before this milestone (Milestone: Save State, `version: 1`) still loads correctly, with `discoveryLog` defaulting to `[]`. Matches the project's stated "additive changes preferred" versioning philosophy.
-- **`storage.js` owns persistence only** (`appendDiscoveryLogEntry`, `loadDiscoveryLog`); `discovery-log.js` owns entry creation, ID generation and validation (rejecting an empty response before it ever reaches storage) — keeping the "only `storage.js` touches `localStorage`" rule intact rather than letting `discovery-log.js` bypass it.
-- **Only `entryType: "reflection"` is produced** — the other documented entry types (drawing, prediction, observation, diagram) have no authoring UI yet, called out explicitly in both the code comment and the doc note so it isn't mistaken for an oversight.
-- **The reflection form is a real `<form>`/`<textarea>`/`<button type="submit">`**, not a plain click handler — `event.preventDefault()` on submit, `role="status"` on the feedback message so screen readers announce save/error feedback, matching the project's accessibility requirement. An empty submission is rejected with visible feedback rather than silently failing or saving a blank entry.
+This closes out **every milestone in Phase 2 — Core Platform**. TODO.md's own Phase 2 deliverable — "Platform can load and render placeholder missions" — is met: the platform now loads a campaign, schedules and renders a mission's activities, captures learner reflections, and evaluates/persists rewards, all backed by real (if placeholder) data and surviving a page reload.
 
 ## Manual Testing Performed
 
 Served `portal/` locally and drove it with Playwright, including a real `page.reload()`:
 
-1. **Fresh `/discovery`** — correct empty-state message.
-2. **Mission page** — the placeholder reflection prompt renders with its own form.
-3. **Empty submission** — rejected with visible feedback, no crash, nothing saved.
-4. **Valid submission** — feedback confirms the save, textarea clears, `localStorage` inspected directly and contains the full entry with all expected fields.
-5. **Reload, then `/discovery`** — the saved entry renders with its prompt, response text, mission ID and a formatted timestamp.
-6. **Full 9-route regression pass** — all routes still correct.
+1. **Fresh `/profile`** — correct empty-state message.
+2. **Complete a reflection** — feedback shows both "Saved to your Discovery Log." and "Reward earned: ..."; `localStorage` inspected directly shows the full `earnedRewards` entry with `campaignId`/`missionId`/`earnedAt`.
+3. **Submit a second reflection for the same mission** — `earnedRewards.length` stays at 1 (no duplicate).
+4. **Reload, then `/profile`** — the earned reward renders under "Achievements" with its value, type and a formatted earned-at timestamp.
+5. **Full 9-route regression pass** — all routes still correct.
 
 Zero `pageerror`s across every case.
 
 ## Verification
 
-- A learner-recorded reflection persists via the Storage Manager and survives a page reload. ✅
-- `/discovery` renders real entries when present, and a sensible empty state when not. ✅
-- Discovery Log storage failures degrade gracefully (inherits `storage.js`'s existing non-throwing guarantees — not re-tested independently this milestone, since the failure-mode behavior itself didn't change). ✅
+- Completing a mission's reflection evaluates its rewards and persists earned ones via the Storage Manager. ✅
+- Earned rewards survive a page reload. ✅
+- No campaign-specific reward logic leaks into the platform — the Reward Engine interprets reward definitions generically. ✅

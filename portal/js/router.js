@@ -13,6 +13,7 @@ import { renderActivities } from './activity-engine.js';
 import { scheduleActivities, DEFAULT_DURATION_MINUTES } from './scheduler.js';
 import { saveCurrentSession, loadCurrentSession } from './storage.js';
 import { recordReflection, getDiscoveryLog } from './discovery-log.js';
+import { evaluateMissionRewards, getEarnedRewards } from './reward-engine.js';
 
 export const ROUTES = [
   { path: '/', label: 'Home', title: 'Explorer Academy' },
@@ -283,11 +284,27 @@ function buildReflectionSection(section, mission, missionId) {
         missionId
       });
 
-      if (result.ok) {
-        feedback.textContent = 'Saved to your Discovery Log.';
-        textarea.value = '';
-      } else {
+      if (!result.ok) {
         feedback.textContent = result.errors.join(' ');
+        return;
+      }
+
+      feedback.textContent = 'Saved to your Discovery Log.';
+      textarea.value = '';
+
+      const rewardResult = evaluateMissionRewards({
+        campaignId: 'campaign01',
+        missionId,
+        rewards: mission.rewards
+      });
+
+      if (rewardResult.newlyEarned.length > 0) {
+        const rewardNote = document.createElement('p');
+        rewardNote.setAttribute('role', 'status');
+        rewardNote.textContent = `Reward earned: ${rewardResult.newlyEarned
+          .map((reward) => reward.value)
+          .join(', ')}`;
+        form.appendChild(rewardNote);
       }
     });
 
@@ -366,10 +383,45 @@ function renderDiscoveryLog(outlet, route) {
   section.appendChild(list);
 }
 
+// Explorer Profile: lists earned rewards (achievements), or a sensible
+// empty state. Explorer name/avatar/campaign progress/statistics from
+// 601_HTML_ARCHITECTURE.md's Explorer Profile page aren't implemented
+// yet — there is no Explorer Profile module, only earned-rewards data.
+function renderProfile(outlet, route) {
+  outlet.innerHTML = `
+    <section aria-labelledby="route-heading">
+      <h2 id="route-heading">${route.label}</h2>
+    </section>
+  `;
+
+  const section = outlet.querySelector('section');
+  const rewards = getEarnedRewards();
+
+  if (rewards.length === 0) {
+    const empty = document.createElement('p');
+    empty.textContent = 'No achievements yet. Rewards you earn during a mission will appear here.';
+    section.appendChild(empty);
+    return;
+  }
+
+  const heading = document.createElement('h3');
+  heading.textContent = 'Achievements';
+  section.appendChild(heading);
+
+  const list = document.createElement('ul');
+  rewards.forEach((reward) => {
+    const item = document.createElement('li');
+    item.textContent = `${reward.value} (${reward.type}) — earned ${new Date(reward.earnedAt).toLocaleString()}`;
+    list.appendChild(item);
+  });
+  section.appendChild(list);
+}
+
 const STATIC_VIEWS = {
   '/': renderHome,
   '/campaigns': renderCampaignSelect,
-  '/discovery': renderDiscoveryLog
+  '/discovery': renderDiscoveryLog,
+  '/profile': renderProfile
 };
 
 function defaultPlaceholder(outlet, route) {

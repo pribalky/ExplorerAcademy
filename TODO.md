@@ -101,7 +101,7 @@ No functionality yet.
 Status
 
 ```
-IN PROGRESS — only Reward Engine left
+COMPLETE
 ```
 
 Goal
@@ -124,7 +124,7 @@ Milestones
 
 - [x] Discovery Log
 
-- [ ] Reward Engine
+- [x] Reward Engine
 
 Deliverable
 
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Await approval to start Phase 2 – Milestone: Reward Engine (final Phase 2 milestone).**
+**Phase 2 — Core Platform is COMPLETE. Await approval to start Phase 3 – Campaign Compiler** (read `docs/50-content/501_CAMPAIGN_01.md` and `prompts/CAMPAIGN_COMPILER.md` first — this is a content-compilation milestone, a different kind of work from Phase 2's platform engineering, and may need its own scoping conversation before implementation starts).

@@ -9,16 +9,17 @@
 // crashing").
 //
 // Only a thin slice of the full Save Game shape (504_JSON_SCHEMA.md) is
-// implemented so far: currentSession (Milestone: Save State) and
-// discoveryLog (Milestone: Discovery Log), enough to make "Continue
-// Mission" and recorded reflections durable across a reload.
+// implemented so far: currentSession (Milestone: Save State),
+// discoveryLog (Milestone: Discovery Log) and earnedRewards (Milestone:
+// Reward Engine) — enough to make "Continue Mission", recorded
+// reflections and earned rewards all durable across a reload.
 // explorerProfile, completedMissions, completedActivities and settings
 // are not implemented yet.
 //
-// discoveryLog is an additive field on top of Milestone: Save State's
-// shape — readSave()'s `{ ...defaultSave(), ...data }` merge means an
-// older save written before this milestone still loads correctly, with
-// discoveryLog defaulting to []. No STORAGE_VERSION bump was needed.
+// Each of these fields was added additively on top of the previous
+// milestone's shape — readSave()'s `{ ...defaultSave(), ...data }` merge
+// means an older save still loads correctly, with any field it predates
+// simply defaulting to []. No STORAGE_VERSION bump has been needed yet.
 
 const STORAGE_KEY = 'explorerAcademy.save';
 const STORAGE_VERSION = 1;
@@ -28,7 +29,8 @@ function defaultSave() {
     version: STORAGE_VERSION,
     timestamp: null,
     currentSession: null,
-    discoveryLog: []
+    discoveryLog: [],
+    earnedRewards: []
   };
 }
 
@@ -91,4 +93,17 @@ export function appendDiscoveryLogEntry(entry) {
 export function loadDiscoveryLog() {
   const save = readSave();
   return Array.isArray(save.discoveryLog) ? save.discoveryLog : [];
+}
+
+export function appendEarnedRewards(rewards) {
+  const save = readSave();
+  save.earnedRewards = Array.isArray(save.earnedRewards) ? save.earnedRewards : [];
+  save.earnedRewards.push(...rewards);
+  save.timestamp = new Date().toISOString();
+  writeSave(save);
+}
+
+export function loadEarnedRewards() {
+  const save = readSave();
+  return Array.isArray(save.earnedRewards) ? save.earnedRewards : [];
 }
