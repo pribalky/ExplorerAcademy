@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0008",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 8,
+  "title": "Message in the Static",
+  "storyChapter": "CHAPTER-0002",
+  "estimatedTime": "60 minutes",
+  "difficulty": "supported",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Atlas successfully restores part of the outpost's communications array.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Among the recovered audio files is a heavily corrupted transmission from Dr. Elara Quinn, with large portions missing.", "trigger": "Communications array restored" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner listens for repeated patterns, missing words and contextual clues within the damaged message.", "trigger": "Message examined for patterns" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Piecing the clues together, the learner begins decoding what the message actually says.", "trigger": "Message partly decoded" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must complete the missing sections and compare possible interpretations of the message.", "trigger": "Missing sections completed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner identifies which facts in the reconstructed message are confirmed.", "trigger": "Facts confirmed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on what the recovered message reveals about the expedition's actions.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The message suggests the expedition deliberately shut down parts of the station — but gives no explanation why.", "trigger": "Motive remains unexplained" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0045",
+      "missionId": "MISSION-0008",
+      "title": "Decode Damaged Messages",
+      "type": "reading",
+      "category": "reading",
+      "duration": 8,
+      "difficulty": "supported",
+      "storyContext": "A heavily corrupted transmission from Dr. Elara Quinn has been recovered from the restored communications array.",
+      "instructions": "Read through the damaged transmission and note any words or phrases you can make out.",
+      "output": "Notes on what can be understood from the damaged transmission.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0046",
+      "missionId": "MISSION-0008",
+      "title": "Complete Missing Sections",
+      "type": "writing",
+      "category": "writing",
+      "duration": 7,
+      "difficulty": "supported",
+      "storyContext": "Large portions of the message are missing and must be reconstructed from context.",
+      "instructions": "Use repeated patterns and context clues to suggest what the missing sections might say.",
+      "output": "A reconstructed version of the message.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0047",
+      "missionId": "MISSION-0008",
+      "title": "Compare Possible Interpretations",
+      "type": "discussion",
+      "category": "discussion",
+      "duration": 8,
+      "difficulty": "supported",
+      "storyContext": "More than one interpretation of the reconstructed message may seem plausible.",
+      "instructions": "Compare a few possible interpretations of the message and decide which is best supported by the evidence.",
+      "output": "Notes comparing possible interpretations of the message.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0048",
+      "missionId": "MISSION-0008",
+      "title": "Identify Confirmed Facts",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 7,
+      "difficulty": "supported",
+      "storyContext": "Not everything in the reconstructed message can be fully trusted.",
+      "instructions": "List the facts from the message that are confirmed by clear evidence.",
+      "output": "A list of confirmed facts from the message.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0049",
+      "missionId": "MISSION-0008",
+      "title": "Create a Coded Message",
+      "type": "creative",
+      "category": "creative",
+      "duration": 15,
+      "difficulty": "supported",
+      "storyContext": "Now that the learner understands how coded messages work, they can create one of their own.",
+      "instructions": "Create a coded message of your own for another Explorer to solve.",
+      "output": "A coded message.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0050",
+      "missionId": "MISSION-0008",
+      "title": "Recovering Damaged Historical Records",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "supported",
+      "storyContext": "Recovering this message is similar to real scientific and historical work.",
+      "instructions": "Find out how scientists recover damaged historical documents or radio transmissions.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0008",
+      "type": "story",
+      "value": "First Transmission from Dr. Quinn"
+    }
+  ],
+  "reflection": {
+    "prompts": ["What do you think the expedition was hiding when they shut down parts of the station?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0008",
+    "learningObjectives": ["Pattern recognition", "Reading for meaning", "Logical deduction", "Information reconstruction"],
+    "discussionPoints": ["What clues helped you fill in the missing parts of the message?", "Why might the expedition have deliberately gone quiet?"],
+    "preparation": "No special preparation required.",
+    "assessment": "Look for reasonable, evidence-based guesses for the missing sections, and a clear list of confirmed facts."
+  },
+  "completionCriteria": "Damaged message decoded, missing sections completed, and confirmed facts identified."
+}

@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0006",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 6,
+  "title": "Weather Watch",
+  "storyChapter": "CHAPTER-0002",
+  "estimatedTime": "60 minutes",
+  "difficulty": "supported",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "The expedition's weather station still functions intermittently, and Atlas asks the learner to restart its observations.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Today's weather must be compared with archived expedition records to see what changes over time.", "trigger": "Weather station restarted" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner records today's observations and measures (or estimates) the temperature.", "trigger": "Observations recorded" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "The learner creates simple charts to compare historical and current weather data.", "trigger": "Charts created" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must identify patterns emerging from the comparison between old and new data.", "trigger": "Patterns identified" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The patterns begin to explain some of the earlier expedition's decisions.", "trigger": "Patterns linked to past decisions" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how today's observations connect to events from long ago.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The learner's new evidence becomes part of the expedition archive, and weather becomes an ongoing factor to track.", "trigger": "Evidence archived" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0032",
+      "missionId": "MISSION-0006",
+      "title": "Record Observations",
+      "type": "observation",
+      "category": "observation",
+      "duration": 7,
+      "difficulty": "supported",
+      "storyContext": "The weather station still functions intermittently, and Atlas asks the learner to restart its observations.",
+      "instructions": "Record today's weather conditions — sky, wind and any other details you notice.",
+      "output": "A weather observation entry in the Explorer Journal.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0033",
+      "missionId": "MISSION-0006",
+      "title": "Measure Temperature",
+      "type": "science",
+      "category": "science",
+      "duration": 8,
+      "difficulty": "supported",
+      "storyContext": "Accurate readings will let today's weather be compared with the expedition's archived records.",
+      "instructions": "Measure today's temperature if a thermometer is available, or estimate it carefully if not.",
+      "output": "A recorded or estimated temperature reading.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0034",
+      "missionId": "MISSION-0006",
+      "title": "Create Simple Charts",
+      "type": "mathematics",
+      "category": "mathematics",
+      "duration": 7,
+      "difficulty": "supported",
+      "storyContext": "A chart will make it easier to compare weather data over time.",
+      "instructions": "Create a simple chart to record your weather observations.",
+      "output": "A completed weather chart.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0035",
+      "missionId": "MISSION-0006",
+      "title": "Compare Historical and Current Data",
+      "type": "observation",
+      "category": "observation",
+      "duration": 8,
+      "difficulty": "supported",
+      "storyContext": "Patterns begin emerging that may explain some earlier expedition decisions.",
+      "instructions": "Compare today's chart with the expedition's archived weather records.",
+      "output": "Notes on how today's weather compares with the archived records.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0036",
+      "missionId": "MISSION-0006",
+      "title": "Predict Tomorrow's Weather",
+      "type": "science",
+      "category": "science",
+      "duration": 15,
+      "difficulty": "supported",
+      "storyContext": "Explorers use evidence to make predictions, not guesses.",
+      "instructions": "Use your collected evidence to predict what tomorrow's weather will be like, and explain your reasoning.",
+      "output": "A weather prediction with supporting reasoning.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0037",
+      "missionId": "MISSION-0006",
+      "title": "How Meteorologists Make Forecasts",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "supported",
+      "storyContext": "Predicting weather is a real scientific discipline.",
+      "instructions": "Find out how meteorologists make weather forecasts.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0006",
+      "type": "unlock",
+      "value": "Weather Station Access"
+    }
+  ],
+  "reflection": {
+    "prompts": ["What pattern did you notice when comparing today's weather with the archived records?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0006",
+    "learningObjectives": ["Data collection", "Tables", "Graphs", "Pattern recognition"],
+    "discussionPoints": ["What pattern did you notice in the weather data?", "Why might weather have affected the expedition's decisions?"],
+    "preparation": "A thermometer is useful if available, but estimating is acceptable.",
+    "assessment": "Look for accurately recorded observations and a chart that makes a pattern easy to see."
+  },
+  "completionCriteria": "Weather observations recorded, charts created, and historical data compared with current data."
+}

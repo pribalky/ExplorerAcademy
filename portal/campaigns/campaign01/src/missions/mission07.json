@@ -1,0 +1,130 @@
+{
+  "id": "MISSION-0007",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 7,
+  "title": "The Broken Bridge",
+  "storyChapter": "CHAPTER-0002",
+  "estimatedTime": "60 minutes",
+  "difficulty": "supported",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "One of the station's access bridges has partially collapsed, blocking the way to a storage facility.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "The storage facility is believed to contain additional expedition records, but repairing the bridge directly isn't an option.", "trigger": "Bridge found collapsed" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner analyses the engineering problem and plans a lightweight bridge design.", "trigger": "Problem analysed and design planned" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Atlas explains that Explorer Academy values iterative design more than a perfect first attempt.", "trigger": "Iterative design explained" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must build a prototype bridge capable of supporting a specified load using limited materials.", "trigger": "Prototype built" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "By testing and refining the design, the learner successfully strengthens the bridge.", "trigger": "Prototype tested and refined" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner records the improvements made during testing and reflects on what changed between attempts.", "trigger": "Improvements recorded" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "With the bridge repaired, the learner gains access to the storage facility and recovers new expedition evidence.", "trigger": "Storage facility accessed" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0038",
+      "missionId": "MISSION-0007",
+      "title": "Analyse the Engineering Problem",
+      "type": "engineering",
+      "category": "engineering",
+      "duration": 6,
+      "difficulty": "supported",
+      "storyContext": "A partially collapsed bridge blocks access to a storage facility believed to hold expedition records.",
+      "instructions": "Work out what the bridge needs to support and what materials are available to build it.",
+      "output": "Notes describing the engineering problem to solve.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0039",
+      "missionId": "MISSION-0007",
+      "title": "Plan a Bridge Design",
+      "type": "engineering",
+      "category": "engineering",
+      "duration": 6,
+      "difficulty": "supported",
+      "storyContext": "A good design starts with a clear plan before any building begins.",
+      "instructions": "Sketch and plan a lightweight bridge design capable of supporting a specified load.",
+      "output": "A bridge design plan.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0040",
+      "missionId": "MISSION-0007",
+      "title": "Build a Prototype",
+      "type": "engineering",
+      "category": "engineering",
+      "duration": 6,
+      "difficulty": "supported",
+      "storyContext": "Atlas explains that Explorer Academy values iterative design more than a perfect first attempt.",
+      "instructions": "Build a simple prototype of your bridge design using the available materials.",
+      "output": "A built bridge prototype.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0041",
+      "missionId": "MISSION-0007",
+      "title": "Test and Refine",
+      "type": "experiment",
+      "category": "experiment",
+      "duration": 6,
+      "difficulty": "supported",
+      "storyContext": "The first prototype rarely works perfectly the first time.",
+      "instructions": "Test your prototype against the specified load, then refine the design to improve it.",
+      "output": "A refined bridge prototype and notes on what changed.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0042",
+      "missionId": "MISSION-0007",
+      "title": "Record Improvements",
+      "type": "writing",
+      "category": "writing",
+      "duration": 6,
+      "difficulty": "supported",
+      "storyContext": "Explorer Academy values understanding why a design improved, not just that it did.",
+      "instructions": "Record what you changed between your first and final design, and why each change helped.",
+      "output": "A written record of design improvements.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0043",
+      "missionId": "MISSION-0007",
+      "title": "Compare Bridge Structures",
+      "type": "engineering",
+      "category": "engineering",
+      "duration": 15,
+      "difficulty": "supported",
+      "storyContext": "Different bridge structures are stronger in different ways.",
+      "instructions": "Compare a few different bridge structures and explain why some are stronger than others.",
+      "output": "A short explanation comparing bridge structures.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0044",
+      "missionId": "MISSION-0007",
+      "title": "How Engineers Choose Bridge Designs",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "supported",
+      "storyContext": "Real engineers choose different bridge designs for different environments.",
+      "instructions": "Find out how engineers choose bridge designs for different environments.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0007",
+      "type": "unlock",
+      "value": "Storage Facility Access"
+    }
+  ],
+  "reflection": {
+    "prompts": ["What did you change between your first and final bridge design, and why?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0007",
+    "learningObjectives": ["Engineering design", "Forces", "Testing", "Evaluation", "Iterative improvement"],
+    "discussionPoints": ["What was the biggest weakness in your first design?", "How did testing help you improve the bridge?"],
+    "preparation": "Simple building materials such as card, straws, tape or craft sticks are useful for the prototype.",
+    "assessment": "Look for evidence of testing and refinement rather than a single first attempt, and a clear explanation of what was improved."
+  },
+  "completionCriteria": "A bridge prototype built, tested, refined, and improvements recorded."
+}

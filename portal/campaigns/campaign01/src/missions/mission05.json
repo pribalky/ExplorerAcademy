@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0005",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 5,
+  "title": "Strange Footprints",
+  "storyChapter": "CHAPTER-0002",
+  "estimatedTime": "60 minutes",
+  "difficulty": "supported",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Outside the station, the learner discovers a series of unusual footprints recorded in the expedition's field notes.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Several explanations for the footprints seem possible, but only one fits all the available evidence.", "trigger": "Footprints found" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner measures the tracks and compares them against the recorded evidence.", "trigger": "Tracks measured and compared" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Careful comparison reveals similarities and differences between the possible explanations.", "trigger": "Comparison completed" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must eliminate the unlikely explanations rather than simply guessing which one is correct.", "trigger": "Explanations narrowed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "By working through the evidence systematically, the learner justifies a single well-supported conclusion.", "trigger": "Conclusion justified" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how ruling out explanations was more useful than guessing.", "trigger": "Investigation reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "This is the learner's first complete scientific investigation, and their confidence as an Explorer begins to grow.", "trigger": "Confidence grows" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0026",
+      "missionId": "MISSION-0005",
+      "title": "Measure Tracks",
+      "type": "mathematics",
+      "category": "mathematics",
+      "duration": 8,
+      "difficulty": "supported",
+      "storyContext": "A series of unusual footprints has been found outside the station, recorded in the expedition's field notes.",
+      "instructions": "Measure the length, width and spacing of the tracks and record your measurements.",
+      "output": "A set of track measurements in the Explorer Journal.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0027",
+      "missionId": "MISSION-0005",
+      "title": "Compare Evidence",
+      "type": "observation",
+      "category": "observation",
+      "duration": 7,
+      "difficulty": "supported",
+      "storyContext": "Several explanations for the tracks seem possible.",
+      "instructions": "Compare your measurements with the possible explanations Atlas provides.",
+      "output": "Notes comparing the evidence against each possible explanation.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0028",
+      "missionId": "MISSION-0005",
+      "title": "Identify Similarities and Differences",
+      "type": "science",
+      "category": "science",
+      "duration": 8,
+      "difficulty": "supported",
+      "storyContext": "Only one explanation fits all of the available evidence.",
+      "instructions": "Identify the similarities and differences between each possible explanation and the evidence you have gathered.",
+      "output": "A list of similarities and differences for each explanation.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0029",
+      "missionId": "MISSION-0005",
+      "title": "Justify Conclusions",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 7,
+      "difficulty": "supported",
+      "storyContext": "Explorer Academy values conclusions that eliminate unlikely explanations rather than guesses.",
+      "instructions": "Explain which explanation the evidence best supports, and why the others can be ruled out.",
+      "output": "A justified conclusion supported by evidence.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0030",
+      "missionId": "MISSION-0005",
+      "title": "Create a Field Guide of Track Patterns",
+      "type": "drawing",
+      "category": "drawing",
+      "duration": 15,
+      "difficulty": "supported",
+      "storyContext": "A field guide would help future Explorers identify tracks more quickly.",
+      "instructions": "Sketch a simple field guide describing a few different track patterns.",
+      "output": "An illustrated field guide of track patterns.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0031",
+      "missionId": "MISSION-0005",
+      "title": "How Do Wildlife Researchers Identify Animals?",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "supported",
+      "storyContext": "Identifying an animal from tracks alone is a real scientific skill.",
+      "instructions": "Find out how wildlife researchers identify animals without ever seeing them.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0005",
+      "type": "badge",
+      "value": "Field Investigator"
+    }
+  ],
+  "reflection": {
+    "prompts": ["Which explanation did you rule out, and what evidence helped you eliminate it?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0005",
+    "learningObjectives": ["Classification", "Measurement", "Comparison", "Logical reasoning"],
+    "discussionPoints": ["Which explanations did you rule out, and why?", "How did measuring help you decide between explanations?"],
+    "preparation": "A ruler or tape measure is useful for measuring tracks.",
+    "assessment": "Look for a conclusion that is justified by eliminating alternatives, not just a guess."
+  },
+  "completionCriteria": "Tracks measured, evidence compared, and a single well-supported conclusion justified."
+}

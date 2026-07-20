@@ -6,31 +6,29 @@
 
 ## Milestone
 
-Mission Compiler (Missions 5–8, Phase 2 — Learning to Investigate)
+Mission Compiler (Missions 9–13, Phase 3 — Building Scientific Confidence)
 
 ## Objective
 
-Compile the next batch of missions from `docs/50-content/501_CAMPAIGN_01.md` — Missions 5–8 (Strange Footprints, Weather Watch, The Broken Bridge, Message in the Static), which 501's own Narrative Progression groups as "Phase 2 — Learning to Investigate" — following the now-twice-validated pattern from Missions 1–4, and the conventions now codified in `prompts/MISSION_COMPILER.md`.
+Compile the next batch — Missions 9–13 (Mystery Samples, Water Under Pressure, The Energy Problem, Star Maps, Hidden Patterns), which 501's own Narrative Progression groups as "Phase 3 — Building Scientific Confidence" — following the pattern codified in `prompts/MISSION_COMPILER.md`.
 
 ## Inputs
 
-- `docs/50-content/501_CAMPAIGN_01.md` (Missions 5–8 source content — already read in full this session)
-- `portal/campaigns/campaign01/src/missions/mission01.json`–`mission04.json` (validated pattern + next available ID numbers: activities continue from `ACTIVITY-0026`, rewards from `REWARD-0005`, parent guides from `PARENTGUIDE-0005`)
-- `prompts/MISSION_COMPILER.md` (now codifies the schema decision, ID numbering, duration tuning and Activity Type enum conventions — should need no further re-discovery)
+- `docs/50-content/501_CAMPAIGN_01.md` (Missions 9–13 source content — already read in full this session)
+- `portal/campaigns/campaign01/src/missions/mission01.json`–`mission08.json` (pattern + next available IDs: activities continue from `ACTIVITY-0051`, rewards from `REWARD-0009`, parent guides from `PARENTGUIDE-0009`)
+- `prompts/MISSION_COMPILER.md`
 
 ## Relevant Documentation
 
-Same as prior mission-compiling milestones. `storyChapter` for Missions 5–8 should be a new value (e.g. `CHAPTER-0002`, corresponding to 501's "Phase 2 — Learning to Investigate") distinct from Missions 1–4's `CHAPTER-0001` ("Phase 1 — Recruitment & Orientation") — still present-but-unresolved, no Chapter file exists.
+Same as prior mission-compiling milestones. `storyChapter` for Missions 9–13 should be `CHAPTER-0003` ("Phase 3 — Building Scientific Confidence"), and `difficulty` should be `"independent"` — continuing the 1:1 mapping between 501's 5 narrative phases and its 5-stage Learning Progression table (Guided→Phase 1, Supported→Phase 2, Independent→Phase 3, Confident→Phase 4, Explorer→Phase 5) established for Missions 5–8.
 
 ## Files Expected to Change
 
-- `portal/campaigns/campaign01/src/missions/mission05.json`–`mission08.json`
+- `portal/campaigns/campaign01/src/missions/mission09.json`–`mission13.json`
 
 ## Implementation Plan
 
-Follow the exact process used for Missions 2–4: derive 8 beats per mission from Story Summary/Core Activities/Story Outcome, map Core/Extension/Rabbit Hole activities from 501's own lists, tune durations (Core ≈30 min, Extension ≈15 min each, Rabbit Hole ≈10 min), assign one grounded reward and reflection prompt per mission, build a parentGuide from each mission's Learning Focus.
-
-Mission 7 — The Broken Bridge is the campaign's first engineering-design mission (plan/build/test/refine an actual bridge prototype) — its activities will look different in kind from Missions 1–6's reading/observation-heavy activities, worth a slightly closer look when compiling it, though it doesn't appear to need any new schema field.
+Same process as every batch so far. Mission 11 (The Energy Problem) is explicitly a mathematics/electricity-circuits mission — like Mission 7's engineering focus, worth a slightly closer look for activity-type fit, but not expected to need any schema change.
 
 ## Out of Scope
 
@@ -38,7 +36,7 @@ Same as previous mission-compiling milestones.
 
 ## Success Criteria
 
-Same as previous mission-compiling milestones, applied to Missions 5–8.
+Same as previous mission-compiling milestones, applied to Missions 9–13.
 
 ## Manual Verification
 
@@ -46,7 +44,7 @@ Not yet performed — milestone not started.
 
 ## Deliverables
 
-`mission05.json`–`mission08.json`.
+`mission09.json`–`mission13.json`.
 
 ## Completion Notes
 
@@ -54,34 +52,29 @@ Not yet started.
 
 ---
 
-# Previous Milestone — Mission Compiler (Missions 2–4) — COMPLETE
+# Previous Milestone — Mission Compiler (Missions 5–8) — COMPLETE
 
 ## Completion Summary
 
-Compiled `mission02.json` ("Arrival at Outpost Echo"), `mission03.json` ("Explorer's Toolkit") and `mission04.json` ("The Silent Logs") from `501_CAMPAIGN_01.md`, following Mission 1's validated pattern exactly — Phase 1 ("Recruitment & Orientation," `storyChapter: "CHAPTER-0001"`) is now fully compiled.
+Compiled `mission05.json` (Strange Footprints), `mission06.json` (Weather Watch), `mission07.json` (The Broken Bridge) and `mission08.json` (Message in the Static) from `501_CAMPAIGN_01.md`, completing Phase 2 — "Learning to Investigate" (`storyChapter: "CHAPTER-0002"`).
 
-Also **codified the accepted format into both compiler prompts**, per the user's request, so future runs don't need to re-derive these decisions:
+New decision made this batch, following the pattern already established (make a considered choice, don't just guess): **`difficulty` for Missions 5–8 is `"supported"`**, not `"guided"` — derived by mapping 501's 5 narrative phases (Recruitment & Orientation / Learning to Investigate / Building Scientific Confidence / Solving the Mystery / Graduation) onto its 5-stage Learning Progression table (Guided / Supported / Independent / Confident / Explorer) 1:1. Both are 501's own structures; this is the first batch where they had to be reconciled, since Missions 1–4 all fell within Phase 1 = the first stage and never required distinguishing them. This mapping will carry forward to remaining batches (Phase 3 → "independent", Phase 4 → "confident", Phase 5 → "explorer").
 
-- `prompts/CAMPAIGN_COMPILER.md` already carried the 503→504 reconciliation note from the Campaign Compiler milestone.
-- `prompts/MISSION_COMPILER.md` was substantially rewritten: points to 504 (not 503) as authoritative, explains embedding vs. ID-referencing (and narrows "reference shared campaign entities by ID" to mean only genuinely campaign-level entities — `storyChapter`/`campaignId` — not Activities/Beats/Rewards/Parent Guide), documents the `parentGuide` gap and fix, and adds three new sections that didn't exist before: **ID Numbering** (global sequence across missions, not restarted per file), **Duration Tuning** (the ~30/15/10-minute convention that makes the Scheduler's four bands behave meaningfully), and **Activity Type** (must come from 504's fixed enum, not invented).
+Mission 7 (The Broken Bridge) has **5 Core activities**, not 4 like every mission so far (501 itself lists 5: analyse, plan, build, test-and-refine, record). Duration tuning adapted accordingly — 5 × 6 minutes = 30, preserving the same "Core sums to 30" convention with a different activity count. Verified this produces the same correct Core+Extension/no-Rabbit-Hole behavior at the default 60-minute session as every 4-activity mission has.
 
-Compilation notes:
-
-- Each mission's reward is grounded in its own Story Outcome where 501 states one directly — e.g. Mission 4's reward (`type: "story"`, `value: "Discovery: Dr. Elara Quinn"`) mirrors 501's own text: "Learner discovers Dr. Elara Quinn." Mission 3's reward uses `type: "knowledgeCore"` rather than `"badge"` since its story is explicitly about learning a reusable method, not earning a badge object — the first mission where a non-badge Reward Type was actually the better fit.
-- All 3 missions have only **one** Extension activity each (501 lists just one for each), not two like Mission 1 — activity counts were not padded to match Mission 1's shape; they follow whatever 501 actually lists per mission.
-- Global ID uniqueness was verified programmatically across all 4 compiled missions (37 total IDs — mission/activity/reward/parentGuide — zero duplicates), not just assumed from careful counting.
+Reward types continued diversifying based on what actually fits each mission's Story Outcome, not defaulting to `"badge"`: Mission 6 and Mission 7 both use `"unlock"` (weather station access; storage facility access) since their Story Outcomes are literally about gaining access to something, not earning a badge object. Mission 8 continues the `"story"` pattern from Mission 4 (both mark direct narrative contact with Dr. Quinn).
 
 ## Manual Testing Performed
 
-Served `portal/` locally and drove all three new missions with Playwright:
-
-- `/mission/mission02`, `/mission/mission03`, `/mission/mission04` each render their real title and content.
-- **Scheduler correctness verified for all three**: at the default 60-minute session, exactly 5 of 6 activities render (4 Core + the single Extension) for each mission — Rabbit Hole correctly excluded, confirming the duration-tuning convention (now documented in the prompt) works consistently across different missions, not just Mission 1's specific numbers.
-- **Parent Guide leakage check repeated for all three** (not assumed to still hold from Mission 1) — searched each rendered page's full text for `learningObjectives`, `discussionPoints`, `PARENTGUIDE`: none present in any of them.
-- Full regression pass across 12 routes (the original 9 plus the 3 new missions) — all correct, zero `pageerror`s.
+- Confirmed all 4 new mission files parse as valid JSON.
+- **Global ID uniqueness verified programmatically across all 8 compiled missions to date** (74 total IDs — mission/activity/reward/parentGuide — zero duplicates), not just carried forward by assumption.
+- Confirmed Mission 7's 5-activity Core set sums to exactly 30 minutes programmatically.
+- Served `portal/` locally and drove all four new missions with Playwright: each renders its real title/content; at the default 60-minute session, Missions 5/6/8 each show exactly 5 activity cards (4 Core + 1 Extension) and Mission 7 shows exactly 6 (5 Core + 1 Extension) — Rabbit Hole correctly excluded in every case.
+- Parent Guide leakage check repeated for all four — none found.
+- Full regression pass across all 16 routes (12 from before plus the 4 new missions) — all correct, zero `pageerror`s.
 
 ## Verification
 
-- Every mission validates. ✅ (all 4 compiled missions load through `mission-engine.js`'s unmodified-since-`parentGuide` validation)
-- References resolve. ✅ (`MISSION-0001`–`0004` all match `campaign.json`'s `missions[]` entries)
-- Scheduler metadata exists and behaves correctly. ✅ (re-verified per-mission, not assumed from Mission 1)
+- Every mission validates. ✅
+- References resolve. ✅ (`MISSION-0001`–`0008` all match `campaign.json`'s `missions[]` entries)
+- Scheduler metadata exists and behaves correctly, including the first 5-Core-activity mission. ✅
