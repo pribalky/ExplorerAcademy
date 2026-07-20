@@ -17,13 +17,40 @@ export const ROUTES = [
   { path: '/settings', label: 'Settings', title: 'Settings' }
 ];
 
+// Campaign discovery (listing which campaign packages exist) isn't
+// implemented yet — there is no manifest or Asset Manager to enumerate
+// them. This is a placeholder list until that exists.
+const KNOWN_CAMPAIGN_IDS = ['campaign01'];
+
+const DYNAMIC_ROUTES = [
+  { name: 'campaign', pattern: /^\/campaign\/([^/]+)$/, title: 'Campaign Overview' },
+  { name: 'mission', pattern: /^\/mission\/([^/]+)$/, title: 'Mission' }
+];
+
 function currentPath() {
   const hash = window.location.hash.replace(/^#/, '');
   return hash === '' ? '/' : hash;
 }
 
-function findRoute(path) {
-  return ROUTES.find((route) => route.path === path) ?? null;
+function matchRoute(path) {
+  const staticRoute = ROUTES.find((route) => route.path === path);
+  if (staticRoute) {
+    return { kind: 'static', route: staticRoute };
+  }
+
+  for (const dynamic of DYNAMIC_ROUTES) {
+    const match = path.match(dynamic.pattern);
+    if (match) {
+      return {
+        kind: 'dynamic',
+        name: dynamic.name,
+        title: dynamic.title,
+        param: decodeURIComponent(match[1])
+      };
+    }
+  }
+
+  return null;
 }
 
 function renderNotFound(outlet, path) {
@@ -37,33 +64,33 @@ function renderNotFound(outlet, path) {
   document.title = 'Page Not Found — Explorer Academy';
 }
 
-function renderPlaceholder(outlet, route) {
+function renderPlaceholder(outlet, heading, message) {
   outlet.innerHTML = `
     <section aria-labelledby="route-heading">
-      <h2 id="route-heading">${route.label}</h2>
-      <p>This is a placeholder for the ${route.label} page. Content arrives in a later milestone.</p>
+      <h2 id="route-heading">${heading}</h2>
+      <p>${message}</p>
     </section>
   `;
 }
 
-// Loads campaign01 through the Campaign Loader and renders its metadata, or
-// a graceful fallback if the campaign is missing/invalid. Text content is
-// set via textContent (never innerHTML) since campaign data is authored
-// content, not trusted markup.
-async function renderCampaigns(outlet, route) {
+// Renders a single campaign's metadata (or a graceful failure state).
+// Shared by the Campaign Overview page. Text is set via textContent/DOM
+// construction, never innerHTML, since campaign data is authored content,
+// not trusted markup.
+async function renderCampaignMetadata(outlet, campaignId) {
   outlet.innerHTML = `
     <section aria-labelledby="route-heading">
-      <h2 id="route-heading">${route.label}</h2>
+      <h2 id="route-heading">Campaign Overview</h2>
       <p data-status>Loading campaign…</p>
     </section>
   `;
 
-  const result = await loadCampaign('campaign01');
+  const result = await loadCampaign(campaignId);
   const section = outlet.querySelector('section');
   const status = outlet.querySelector('[data-status]');
 
   if (!result.ok) {
-    status.textContent = 'No campaign could be loaded right now.';
+    status.textContent = `No campaign could be loaded for "${campaignId}".`;
     const list = document.createElement('ul');
     result.errors.forEach((message) => {
       const item = document.createElement('li');
@@ -75,6 +102,7 @@ async function renderCampaigns(outlet, route) {
   }
 
   const { campaign } = result;
+  outlet.querySelector('#route-heading').textContent = campaign.title;
   status.remove();
 
   const subtitle = document.createElement('p');
@@ -96,19 +124,88 @@ async function renderCampaigns(outlet, route) {
   section.appendChild(details);
 }
 
-const VIEWS = {
-  '/campaigns': renderCampaigns
+// Campaign Select: lists known campaigns as cards linking to their
+// Campaign Overview page. Cards are generated from campaign metadata
+// rather than hardcoded, per 601_HTML_ARCHITECTURE.md.
+async function renderCampaignSelect(outlet, route) {
+  outlet.innerHTML = `
+    <section aria-labelledby="route-heading">
+      <h2 id="route-heading">${route.label}</h2>
+      <p data-status>Loading campaigns…</p>
+      <ul data-campaign-list></ul>
+    </section>
+  `;
+
+  const status = outlet.querySelector('[data-status]');
+  const list = outlet.querySelector('[data-campaign-list]');
+
+  const results = await Promise.all(
+    KNOWN_CAMPAIGN_IDS.map((id) => loadCampaign(id).then((result) => ({ id, result })))
+  );
+
+  status.remove();
+
+  results.forEach(({ id, result }) => {
+    const item = document.createElement('li');
+
+    if (!result.ok) {
+      item.textContent = `Campaign "${id}" is unavailable.`;
+      list.appendChild(item);
+      return;
+    }
+
+    const link = document.createElement('a');
+    link.href = `#/campaign/${id}`;
+    link.textContent = result.campaign.title;
+    item.appendChild(link);
+
+    const subtitle = document.createElement('p');
+    subtitle.textContent = result.campaign.subtitle;
+    item.appendChild(subtitle);
+
+    list.appendChild(item);
+  });
+}
+
+const STATIC_VIEWS = {
+  '/campaigns': renderCampaignSelect
 };
 
-async function renderRoute(outlet, route, path) {
-  if (!route) {
+function defaultPlaceholder(outlet, route) {
+  renderPlaceholder(
+    outlet,
+    route.label,
+    `This is a placeholder for the ${route.label} page. Content arrives in a later milestone.`
+  );
+}
+
+async function renderMatch(outlet, match, path) {
+  if (!match) {
     renderNotFound(outlet, path);
     return;
   }
 
-  const view = VIEWS[route.path] ?? renderPlaceholder;
-  await view(outlet, route);
-  document.title = route.path === '/' ? route.title : `${route.title} — Explorer Academy`;
+  if (match.kind === 'static') {
+    const view = STATIC_VIEWS[match.route.path] ?? defaultPlaceholder;
+    await view(outlet, match.route);
+    document.title = match.route.path === '/' ? match.route.title : `${match.route.title} — Explorer Academy`;
+    return;
+  }
+
+  if (match.name === 'campaign') {
+    await renderCampaignMetadata(outlet, match.param);
+    document.title = `${match.title} — Explorer Academy`;
+    return;
+  }
+
+  if (match.name === 'mission') {
+    renderPlaceholder(
+      outlet,
+      'Mission',
+      `Mission "${match.param}" has no content yet — the Mission Engine arrives in a later milestone.`
+    );
+    document.title = `${match.title} — Explorer Academy`;
+  }
 }
 
 function updateActiveNavLink(nav, path) {
@@ -125,8 +222,8 @@ function updateActiveNavLink(nav, path) {
 export function init({ outlet, nav }) {
   async function render() {
     const path = currentPath();
-    const route = findRoute(path);
-    await renderRoute(outlet, route, path);
+    const match = matchRoute(path);
+    await renderMatch(outlet, match, path);
     updateActiveNavLink(nav, path);
     outlet.focus({ preventScroll: true });
   }
