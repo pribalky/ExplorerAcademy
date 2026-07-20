@@ -1319,3 +1319,797 @@ This marks the transition into the campaign's final phase, where learners increa
 
 ---
 
+# Part 5 — Missions 15–21
+
+> **Design Note**
+>
+> This final section completes the campaign-level mission specifications. By this stage, learners should increasingly plan investigations, evaluate evidence independently and communicate well-supported conclusions. The campaign concludes by recognising the learner's development into an Explorer, rather than simply celebrating task completion.
+
+---
+
+# Mission 15 — The Signal Tower
+
+## Story Summary
+
+With much of Outpost Echo operational again, Atlas identifies one remaining communications structure: the Signal Tower.
+
+The tower was intentionally shut down by the original expedition. Before it can safely transmit, the learner must diagnose multiple engineering faults, prioritise repairs and test each solution.
+
+This is the learner's first multi-stage engineering investigation with no single prescribed approach.
+
+---
+
+## Learning Focus
+
+* Engineering design
+* Systems thinking
+* Planning
+* Testing and refinement
+
+---
+
+## Story Outcome
+
+* Long-range communications become possible.
+* The learner discovers the expedition expected someone to return one day.
+
+---
+
+## Core Activities
+
+* Inspect tower systems
+* Identify faults
+* Develop a repair sequence
+* Test and refine solutions
+* Record design decisions
+
+---
+
+## Extension
+
+* Compare alternative repair strategies and justify the chosen approach.
+
+---
+
+## Rabbit Hole
+
+Research how communication towers operate in remote environments.
+
+---
+
+# Mission 16 — Secrets Underground
+
+## Story Summary
+
+Restoring power reveals an underground geological survey area previously inaccessible.
+
+The learner investigates rock samples, maps and survey notes left behind by the expedition, discovering that the surrounding landscape contains unusual geological features that influenced many earlier observations.
+
+Rather than presenting geology as an isolated topic, the mission demonstrates how Earth's systems connect with engineering, environmental science and exploration.
+
+---
+
+## Learning Focus
+
+* Earth science
+* Classification
+* Mapping
+* Evidence interpretation
+
+---
+
+## Story Outcome
+
+* The learner uncovers the environmental context behind the expedition's research.
+* Several previously unexplained observations now make sense.
+
+---
+
+## Core Activities
+
+* Examine rock samples
+* Compare geological layers
+* Interpret survey maps
+* Explain findings using evidence
+
+---
+
+## Extension
+
+* Produce a geological field sketch of the surrounding area.
+
+---
+
+## Rabbit Hole
+
+Investigate how geologists study landscapes without disturbing them.
+
+---
+
+# Mission 17 — The Final Experiment
+
+## Story Summary
+
+Atlas reveals that one experiment remains unfinished.
+
+Unlike previous investigations, no detailed instructions survive.
+
+The learner must design a fair investigation using everything learned throughout the campaign: selecting equipment, identifying variables, recording observations and evaluating results.
+
+Atlas provides only safety guidance and procedural reminders.
+
+---
+
+## Learning Focus
+
+* Scientific method
+* Experimental design
+* Independent reasoning
+* Evaluation
+
+---
+
+## Story Outcome
+
+* The learner successfully completes the expedition's final investigation.
+* Confidence shifts from following procedures to designing them.
+
+---
+
+## Core Activities
+
+* Define the investigation
+* Form a prediction
+* Plan a fair test
+* Collect evidence
+* Analyse results
+* Reflect on limitations
+
+---
+
+## Extension
+
+* Repeat the investigation with one changed variable and compare outcomes.
+
+---
+
+## Rabbit Hole
+
+Explore how scientists decide whether experimental evidence is reliable.
+
+---
+
+# Mission 18 — Connecting the Evidence
+
+## Story Summary
+
+Atlas assembles every recovered record, observation and experiment into a single investigation archive.
+
+The learner reviews evidence gathered throughout the campaign, identifying how individual discoveries fit together into a coherent explanation.
+
+Several plausible interpretations remain possible, but only one accounts for all available evidence.
+
+---
+
+## Learning Focus
+
+* Critical thinking
+* Evidence synthesis
+* Reasoning
+* Communication
+
+---
+
+## Story Outcome
+
+* The complete story of Outpost Echo begins to emerge.
+* Learner prepares to solve the expedition mystery.
+
+---
+
+## Core Activities
+
+* Review evidence
+* Organise findings
+* Identify relationships
+* Support conclusions with evidence
+* Evaluate alternative explanations
+
+---
+
+## Extension
+
+* Produce an investigation board linking clues visually.
+
+---
+
+## Rabbit Hole
+
+Explore how detectives, archaeologists and scientists build evidence-based explanations.
+
+---
+
+# Mission 19 — Recover the Archive
+
+## Story Summary
+
+Using the restored communications network, the learner unlocks the expedition's protected archive.
+
+Dr. Elara Quinn's final report explains that the expedition suspended operations after recognising that their discoveries required careful verification before publication.
+
+Rather than risking incorrect conclusions, they preserved their evidence for future Explorers to continue the investigation.
+
+The learner completes the archive using their own discoveries.
+
+---
+
+## Learning Focus
+
+* Reading complex information
+* Summarising
+* Evidence evaluation
+* Reflection
+
+---
+
+## Story Outcome
+
+* Expedition mystery resolved.
+* Dr. Quinn's intentions fully understood.
+* Archive restored.
+
+---
+
+## Core Activities
+
+* Read final report
+* Compare original and current evidence
+* Complete missing archive sections
+* Summarise findings
+
+---
+
+## Extension
+
+* Write a letter to future Explorers explaining the importance of careful investigation.
+
+---
+
+## Rabbit Hole
+
+Research historical scientific discoveries that required years of verification before acceptance.
+
+---
+
+# Mission 20 — Explorer Assessment
+
+## Story Summary
+
+Rather than a traditional test, the Academy presents the learner with a completely new investigation.
+
+No step-by-step guidance is provided.
+
+The learner chooses how to approach the problem, selects appropriate methods and explains their reasoning throughout.
+
+The emphasis is not on reaching a perfect answer, but on demonstrating the habits of an Explorer.
+
+---
+
+## Learning Focus
+
+* Independent investigation
+* Problem solving
+* Communication
+* Reflection
+
+---
+
+## Story Outcome
+
+* Explorer Academy evaluates the learner's thinking process rather than factual recall.
+* The learner demonstrates readiness for full membership.
+
+---
+
+## Core Activities
+
+* Investigate unfamiliar problem
+* Plan approach
+* Collect evidence
+* Justify decisions
+* Present conclusions
+
+---
+
+## Extension
+
+* Identify improvements that could strengthen the investigation.
+
+---
+
+## Rabbit Hole
+
+Consider how different experts might investigate the same problem in different ways.
+
+---
+
+# Mission 21 — Graduation Day
+
+## Story Summary
+
+Director Orion welcomes the learner back to Explorer Academy Headquarters.
+
+The Academy celebrates not what the learner discovered, but how they investigated: observing carefully, asking thoughtful questions, testing ideas and revising conclusions when evidence changed.
+
+The learner officially graduates from probationary status and receives their Explorer Certificate.
+
+Atlas reveals that numerous other expeditions remain active across the world, each investigating different scientific mysteries.
+
+A final transmission arrives from another research station, quietly introducing the next campaign.
+
+---
+
+## Learning Focus
+
+* Reflection
+* Communication
+* Self-evaluation
+* Goal setting
+
+---
+
+## Story Outcome
+
+* Learner becomes a fully recognised Explorer.
+* Campaign concludes with a natural bridge to Campaign 02.
+* The wider Explorer Academy world is established.
+
+---
+
+## Core Activities
+
+* Reflect on learning journey
+* Review Explorer Journal
+* Identify favourite investigations
+* Complete final expedition report
+* Receive Explorer status
+
+---
+
+## Extension
+
+* Design your own future expedition.
+
+---
+
+## Rabbit Hole
+
+Research a real-world scientific question that still has no complete answer.
+
+---
+
+# Final Campaign Checkpoint
+
+By the completion of Campaign 01, the learner should be able to:
+
+### Think Like an Explorer
+
+* Observe carefully before acting.
+* Ask productive questions.
+* Distinguish evidence from assumptions.
+* Revise conclusions when new evidence appears.
+* Communicate reasoning clearly.
+
+---
+
+### Work Independently
+
+* Plan investigations with minimal guidance.
+* Record observations systematically.
+* Select appropriate tools and methods.
+* Reflect on strengths and improvements.
+
+---
+
+### Apply Knowledge Authentically
+
+* Use mathematics to solve practical problems.
+* Read increasingly complex informational texts.
+* Write for genuine investigative purposes.
+* Apply scientific and engineering principles in meaningful contexts.
+
+---
+
+### Be Ready for Future Campaigns
+
+The learner should finish Campaign 01 feeling confident that they are now part of a larger world of exploration. Future campaigns can introduce new environments, disciplines and mysteries while building on the investigative habits established here.
+
+The conclusion reinforces Explorer Academy's core philosophy: success is measured not by collecting correct answers, but by developing the curiosity, discipline and resilience to pursue better questions. This directly supports the project's North Star of creating lifelong explorers rather than learners who simply complete lessons. 
+
+---
+
+# Part 6 — Parent Guide, Curriculum Mapping & Resources
+
+---
+
+# Parent Guide
+
+## Welcome to Explorer Academy
+
+Explorer Academy has been designed differently from traditional educational programmes.
+
+Your child will experience stories, mysteries, investigations and engineering challenges. Behind every activity is carefully planned curriculum coverage, but this is intentionally hidden from the learner.
+
+Your role is not to teach.
+
+Your role is to support exploration.
+
+---
+
+## Your Role: Mission Control
+
+Parents act as **Mission Control**, providing encouragement and practical support rather than direct instruction.
+
+Typical responsibilities include:
+
+* Choosing an appropriate session length.
+* Providing simple materials.
+* Helping prepare optional experiments.
+* Encouraging discussion after missions.
+* Celebrating persistence and curiosity.
+
+Avoid solving problems for your child. When they ask for help, respond with questions that encourage further thinking.
+
+Examples include:
+
+* "What evidence do you have?"
+* "How could you test that idea?"
+* "What else might explain it?"
+* "What changed your mind?"
+
+---
+
+## Session Length
+
+Explorer Academy adapts to the time available.
+
+Recommended options:
+
+| Available Time | Experience                      |
+| -------------- | ------------------------------- |
+| 30 minutes     | Core activities only            |
+| 45 minutes     | Core + selected Extension       |
+| 60 minutes     | Standard mission                |
+| 90 minutes     | Core + Extension + Rabbit Holes |
+
+The story progresses regardless of session length.
+
+---
+
+## Materials
+
+Every mission is designed to work with minimal preparation.
+
+### Essential
+
+* Notebook or sketchbook
+* Pencil
+* Ruler
+* Eraser
+
+### Useful
+
+* Coloured pencils
+* Tape
+* Scissors
+* Glue
+* Simple measuring tape
+* Torch
+* Household timer
+
+### Occasionally Used
+
+* Cardboard
+* String
+* Paper cups
+* Elastic bands
+* Coins
+* Kitchen scales
+* Measuring jug
+
+No specialist equipment should be required.
+
+---
+
+## Supporting Your Child
+
+Helpful behaviours:
+
+✓ Encourage observation.
+
+✓ Ask open questions.
+
+✓ Celebrate good reasoning.
+
+✓ Allow mistakes.
+
+✓ Discuss discoveries.
+
+Avoid:
+
+✗ Giving answers immediately.
+
+✗ Correcting every mistake.
+
+✗ Treating activities as tests.
+
+✗ Comparing progress with others.
+
+The goal is to develop habits of curiosity and evidence-based thinking rather than perfect performance.
+
+---
+
+# Curriculum Mapping
+
+> **Parent Mode Only**
+>
+> The following information is implementation documentation. It is never shown to the learner, in accordance with the project's Hidden Curriculum principle. 
+
+---
+
+## Coverage Philosophy
+
+Campaign 01 is designed to:
+
+* Bridge curriculum differences between England and Scotland.
+* Meet or exceed expected outcomes for most Primary 5 learners.
+* Present curriculum through authentic investigations.
+* Reinforce knowledge through repeated application rather than isolated exercises.
+
+---
+
+## Reading
+
+Coverage includes:
+
+* Retrieval
+* Inference
+* Sequencing
+* Vocabulary in context
+* Summarising
+* Comparing information from multiple sources
+* Reading increasingly complex informational texts
+
+Primary mission emphasis:
+
+* Missions 1, 4, 8, 12, 14, 19
+
+---
+
+## Writing
+
+Coverage includes:
+
+* Field notes
+* Observations
+* Instructions
+* Reports
+* Explanations
+* Predictions
+* Reflections
+* Evidence summaries
+
+Primary mission emphasis:
+
+* Throughout all missions, with increasing independence.
+
+---
+
+## Mathematics
+
+Coverage includes:
+
+* Number
+* Measurement
+* Time
+* Geometry
+* Coordinates
+* Data handling
+* Tables
+* Graphs
+* Estimation
+* Multi-step problem solving
+
+Primary mission emphasis:
+
+* Missions 3, 6, 7, 10, 11, 12, 13
+
+---
+
+## Science
+
+Coverage includes:
+
+* Working scientifically
+* Fair testing
+* Observation
+* Classification
+* Materials
+* Forces
+* Electricity
+* Earth science
+* Weather
+* Space
+* Environmental systems
+
+Scientific enquiry is embedded across the entire campaign rather than confined to individual lessons.
+
+---
+
+## Engineering & Design
+
+Learners progressively develop the ability to:
+
+* Plan
+* Build
+* Test
+* Improve
+* Evaluate
+* Communicate design decisions
+
+Major engineering missions:
+
+* 7
+* 11
+* 15
+* 17
+
+---
+
+## Cross-Curricular Skills
+
+Campaign 01 intentionally develops transferable competencies including:
+
+* Critical thinking
+* Communication
+* Creativity
+* Collaboration (through discussion)
+* Problem solving
+* Information literacy
+* Reflection
+* Resilience
+
+These competencies are reinforced repeatedly through authentic investigative contexts rather than standalone activities.
+
+---
+
+# Mission-to-Domain Overview
+
+| Mission Range | Primary Focus                             |
+| ------------- | ----------------------------------------- |
+| 1–4           | Reading, observation, communication       |
+| 5–8           | Scientific enquiry, evidence gathering    |
+| 9–13          | Mathematics, science, data interpretation |
+| 14–18         | Investigation, engineering, reasoning     |
+| 19–21         | Synthesis, communication, reflection      |
+
+Rather than assigning a single subject to each mission, every mission intentionally integrates multiple disciplines to reflect real-world exploration.
+
+---
+
+# Assessment Philosophy
+
+Explorer Academy does not rely on traditional tests.
+
+Instead, progress is demonstrated through the learner's ability to:
+
+* Ask increasingly sophisticated questions.
+* Make evidence-based decisions.
+* Explain reasoning clearly.
+* Revise conclusions when appropriate.
+* Plan investigations independently.
+* Apply previously learned ideas to unfamiliar situations.
+
+Success is measured by growth in investigative thinking, aligning with the project's North Star of developing lifelong explorers.
+
+---
+
+# Optional Printable Resources
+
+Although every mission is playable using only a notebook, optional printable resources may enhance the experience.
+
+Suggested printables include:
+
+* Explorer Journal pages
+* Observation sheets
+* Investigation planners
+* Graph paper
+* Grid paper
+* Maps
+* Data tables
+* Classification keys
+* Reflection prompts
+* Explorer Certificate
+
+All printables remain optional and must never gate mission completion.
+
+---
+
+# Digital Resources
+
+The Explorer Academy portal may optionally provide:
+
+* Mission briefings
+* Progress tracking
+* Story archive
+* Recovered documents
+* Interactive maps
+* Parent dashboard
+* Downloadable printables
+* Local save data for offline use
+
+These features support, but do not replace, the offline-first experience defined in the project foundations.
+
+---
+
+# Future Campaign Hooks
+
+Campaign 01 establishes several reusable narrative elements for future campaigns:
+
+* Explorer Academy Headquarters
+* Director Orion
+* Atlas
+* The Explorer Journal
+* Modular research outposts
+* Expedition archive system
+* Global network of scientific investigations
+
+Future campaigns can introduce new scientific disciplines, historical settings or geographical regions while preserving the same underlying platform architecture.
+
+---
+
+# Campaign Completion Criteria
+
+A learner has successfully completed Campaign 01 when they have:
+
+* Completed all Core mission activities.
+* Demonstrated evidence-based investigative thinking.
+* Recorded observations throughout the campaign.
+* Completed the final expedition report.
+* Reflected on their development as an Explorer.
+
+Completion is based on engagement with the investigative process rather than perfect accuracy.
+
+---
+
+# Campaign Deliverables
+
+Campaign 01 produces:
+
+* 21 interconnected missions.
+* A complete introductory narrative.
+* Progressive development of investigative habits.
+* Integrated curriculum coverage across literacy, mathematics, science and engineering.
+* Minimal parent workload.
+* Full compatibility with adaptive session lengths.
+* A reusable framework for future Explorer Academy campaigns.
+
+---
+
+# End of Document
+
+**Document:** `501_CAMPAIGN_01.md`
+
+**Version:** 0.1.0 (Draft)
+
+**Status:** Ready for Human Review
+
+**Dependencies:**
+
+* 000_PROJECT_MANIFEST.md
+* 002_PROJECT_CONTEXT.md
+* 006_DESIGN_DECISION_LOG.md
+* 401_CAMPAIGN_TEMPLATE.md
+* 402_MISSION_TEMPLATE.md
+
+
