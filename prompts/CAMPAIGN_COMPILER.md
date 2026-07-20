@@ -1,6 +1,6 @@
 Read:
 
-503_DATA_MODEL.md
+504_JSON_SCHEMA.md
 501_CAMPAIGN_01.md
 
 Generate only:
@@ -9,9 +9,13 @@ campaign.json
 
 Requirements:
 
-- Follow 503_DATA_MODEL.md exactly.
+- Follow 504_JSON_SCHEMA.md exactly.
 - Do not invent fields.
 - Validate all IDs.
 - Replace duplicated values with references.
 - Do not generate missions.
 - Output valid, formatted JSON only.
+
+> **Note (added during the Campaign Compiler milestone):** this originally said "Follow 503_DATA_MODEL.md exactly." 503's Campaign entity is chapter-based (a Campaign requires Chapter IDs; Chapters require Mission IDs) and does not match the flat structure (`missions[]` directly on Campaign, no mandatory chapter layer) that `campaign-loader.js` and every platform milestone since have been built and tested against. Following 503 literally would have produced a campaign.json the platform can't load.
+>
+> Decided with the user: 504's flat model is also the more generic choice for the platform's own goal of "new campaigns require no platform code changes" — it makes no mandatory assumption about narrative grouping (chapters/phases are optional, campaign-authored metadata, never a structure the platform is required to traverse), whereas 503's mandatory chapter requirement bakes in a structural assumption that could eventually force a schema/validation change for some future campaign shape. See `504_JSON_SCHEMA.md`'s own Session Configuration and Discovery Log Entry notes for the same reconciliation pattern applied elsewhere.

@@ -139,7 +139,7 @@ Platform can load and render placeholder missions.
 Status
 
 ```
-NOT STARTED
+COMPLETE
 ```
 
 Goal
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Phase 2 — Core Platform is COMPLETE. Await approval to start Phase 3 – Campaign Compiler** (read `docs/50-content/501_CAMPAIGN_01.md` and `prompts/CAMPAIGN_COMPILER.md` first — this is a content-compilation milestone, a different kind of work from Phase 2's platform engineering, and may need its own scoping conversation before implementation starts).
+**Phase 3 — Campaign Compiler is COMPLETE. Await approval to start Phase 4 – Mission Compiler** (read `prompts/MISSION_COMPILER.md` first, same as Campaign Compiler's prompt was read before that milestone — likely its own scoping conversation given the volume of 21 missions and the real chance of another doc-vs-implementation gap like the one found compiling campaign.json).
