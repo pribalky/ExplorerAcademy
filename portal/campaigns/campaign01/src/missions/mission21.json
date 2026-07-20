@@ -1,0 +1,130 @@
+{
+  "id": "MISSION-0021",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 21,
+  "title": "Graduation Day",
+  "storyChapter": "CHAPTER-0005",
+  "estimatedTime": "60 minutes",
+  "difficulty": "explorer",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Director Orion welcomes the learner back to Explorer Academy Headquarters.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "The Academy is about to celebrate something — but not what the learner might expect.", "trigger": "Return to Headquarters" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reviews their Explorer Journal and reflects on their entire learning journey.", "trigger": "Journal reviewed and journey reflected on" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "The Academy celebrates not what the learner discovered, but how they investigated — observing carefully, asking thoughtful questions, testing ideas and revising conclusions when evidence changed.", "trigger": "Investigative habits celebrated" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must identify their favourite investigations and complete a final expedition report.", "trigger": "Favourite investigations identified and report completed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner officially graduates from probationary status and receives their Explorer Certificate.", "trigger": "Explorer status received" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "Atlas reveals that numerous other expeditions remain active across the world, each investigating different scientific mysteries.", "trigger": "Wider Explorer Academy world revealed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "A final transmission arrives from another research station, quietly hinting at what might come next.", "trigger": "New transmission received" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0128",
+      "missionId": "MISSION-0021",
+      "title": "Reflect on Your Learning Journey",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 6,
+      "difficulty": "explorer",
+      "storyContext": "Director Orion welcomes the learner back to Explorer Academy Headquarters.",
+      "instructions": "Reflect on your entire journey through the campaign, from the first invitation to now.",
+      "output": "A written reflection on the whole learning journey.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0129",
+      "missionId": "MISSION-0021",
+      "title": "Review Your Explorer Journal",
+      "type": "reading",
+      "category": "reading",
+      "duration": 6,
+      "difficulty": "explorer",
+      "storyContext": "The Explorer Journal has recorded every observation since Mission 1.",
+      "instructions": "Look back through your Explorer Journal from the very first entry.",
+      "output": "Notes on what stands out from reviewing the journal.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0130",
+      "missionId": "MISSION-0021",
+      "title": "Identify Favourite Investigations",
+      "type": "discussion",
+      "category": "discussion",
+      "duration": 6,
+      "difficulty": "explorer",
+      "storyContext": "The Academy celebrates how the learner investigated, not just what they discovered.",
+      "instructions": "Identify your favourite investigations from the campaign and explain why.",
+      "output": "A list of favourite investigations with reasons.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0131",
+      "missionId": "MISSION-0021",
+      "title": "Complete Final Expedition Report",
+      "type": "writing",
+      "category": "writing",
+      "duration": 6,
+      "difficulty": "explorer",
+      "storyContext": "A final expedition report will close out the Outpost Echo investigation.",
+      "instructions": "Complete a final expedition report summarising the whole campaign.",
+      "output": "A completed final expedition report.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0132",
+      "missionId": "MISSION-0021",
+      "title": "Receive Explorer Status",
+      "type": "creative",
+      "category": "creative",
+      "duration": 6,
+      "difficulty": "explorer",
+      "storyContext": "The learner officially graduates from probationary status.",
+      "instructions": "Personalise your Explorer Certificate to mark officially becoming an Explorer.",
+      "output": "A personalised Explorer Certificate.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0133",
+      "missionId": "MISSION-0021",
+      "title": "Design Your Own Future Expedition",
+      "type": "creative",
+      "category": "creative",
+      "duration": 15,
+      "difficulty": "explorer",
+      "storyContext": "Atlas reveals that numerous other expeditions remain active across the world.",
+      "instructions": "Design your own future expedition — where would you go, and what would you investigate?",
+      "output": "A design for a future expedition.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0134",
+      "missionId": "MISSION-0021",
+      "title": "A Question With No Complete Answer",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "explorer",
+      "storyContext": "Real exploration never really ends — there are always new questions to investigate.",
+      "instructions": "Research a real-world scientific question that still has no complete answer.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0021",
+      "type": "rank",
+      "value": "Certified Explorer"
+    }
+  ],
+  "reflection": {
+    "prompts": ["What kind of Explorer have you become?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0021",
+    "learningObjectives": ["Reflection", "Communication", "Self-evaluation", "Goal setting"],
+    "discussionPoints": ["What kind of Explorer have you become?", "What would you like to investigate next?"],
+    "preparation": "No special preparation required. Consider celebrating this milestone together.",
+    "assessment": "Look for genuine reflection on growth across the whole campaign, not just a summary of what happened."
+  },
+  "completionCriteria": "Learning journey reflected on, favourite investigations identified, and final expedition report completed."
+}

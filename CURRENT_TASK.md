@@ -2,41 +2,41 @@
 
 ## Phase
 
-4 – Mission Compiler
+5 – Asset Compiler
 
 ## Milestone
 
-Mission Compiler (Missions 19–21, Phase 5 — Graduation) — final batch
+Asset Compiler
 
 ## Objective
 
-Compile the final batch — Missions 19–21 (Recover the Archive, Explorer Assessment, Graduation Day), which 501's own Narrative Progression groups as "Phase 5 — Graduation" — completing all 21 missions and Phase 4 of the overall roadmap.
+Generate supporting assets for Campaign 01 — workbook pages, parent guides, experiments, reflection prompts, reading lists, image specifications, vocabulary, discussion prompts — from the now-fully-compiled campaign and mission data.
 
 ## Inputs
 
-- `docs/50-content/501_CAMPAIGN_01.md` (Missions 19–21 source content — already read in full this session)
-- `portal/campaigns/campaign01/src/missions/mission01.json`–`mission18.json` (pattern + next available IDs: activities continue from `ACTIVITY-0115`, rewards from `REWARD-0019`, parent guides from `PARENTGUIDE-0019`)
-- `prompts/MISSION_COMPILER.md`
+- `portal/campaigns/campaign01/src/campaign.json`, `src/missions/mission01.json`–`mission21.json` (all real, compiled content)
+- `docs/50-content/501_CAMPAIGN_01.md` Part 6 (Parent Guide, Curriculum Mapping, Optional Printable Resources, Digital Resources sections — not yet closely read for this purpose)
+- `portal/campaigns/campaign01/generated/` (currently empty placeholder folders: `workbook/`, `parent/`, `resources/`, `image-specifications/` — created in Milestone 1.1, never populated)
 
 ## Relevant Documentation
 
-Same as prior mission-compiling milestones. `storyChapter` for Missions 19–21 should be `CHAPTER-0005` ("Phase 5 — Graduation"), `difficulty` should be `"explorer"`, completing the 1:1 phase-to-stage mapping (all 5 phases now covered).
+Not yet identified — no Asset Compiler prompt exists yet in `prompts/` (unlike Campaign/Mission Compiler, which both had one to read first). Worth checking `docs/00-foundation/005_GENERATION_ROADMAP.md` and confirming whether one needs to be authored before this milestone can start, following the established pattern of reading the compiler prompt first.
 
 ## Files Expected to Change
 
-- `portal/campaigns/campaign01/src/missions/mission19.json`–`mission21.json`
+- New files under `portal/campaigns/campaign01/generated/{workbook,parent,resources,image-specifications}/`
 
 ## Implementation Plan
 
-Same process as every batch so far. Mission 21 (Graduation Day) is the campaign's finale — its Story Summary explicitly references "Atlas reveals that numerous other expeditions remain active... A final transmission arrives from another research station, quietly introducing the next campaign," which is scene-setting for Campaign 2, not Campaign 1 content — worth being careful not to over-invent anything for a campaign that doesn't exist yet. Its reward is also a natural candidate for `"rank"` (full Explorer status, matching Mission 17's precedent) rather than a mission-specific badge.
+Not started. This is a different kind of milestone from Mission Compiler (generating *derived* presentation artefacts from already-compiled source data, per `CLAUDE.md`'s "Never overwrite source content — only generate derived artefacts inside generated/" rule) rather than compiling narrative content — likely needs its own scoping conversation before implementation, same as Campaign Compiler and Mission Compiler both did.
 
 ## Out of Scope
 
-Same as previous mission-compiling milestones. Nothing about Campaign 2 should be invented, even though Mission 21 gestures toward it.
+TBD.
 
 ## Success Criteria
 
-Same as previous mission-compiling milestones, applied to Missions 19–21. Once complete: all 21 `campaign.json` `missions[]` references resolve to real, compiled files — closing out Phase 4 entirely.
+Not yet defined — Phase 5 in `TODO.md` lists the deliverable categories (workbook pages, parent guides, experiments, reflection prompts, reading lists, image specifications, vocabulary, discussion prompts) but no per-category success criteria yet.
 
 ## Manual Verification
 
@@ -44,7 +44,7 @@ Not yet performed — milestone not started.
 
 ## Deliverables
 
-`mission19.json`–`mission21.json`.
+TBD.
 
 ## Completion Notes
 
@@ -52,30 +52,30 @@ Not yet started.
 
 ---
 
-# Previous Milestone — Mission Compiler (Missions 14–18) — COMPLETE
+# Previous Milestone — Mission Compiler (Missions 19–21, final batch) — COMPLETE (Phase 4 now complete)
 
 ## Completion Summary
 
-Compiled `mission14.json` (The Missing Notebook), `mission15.json` (The Signal Tower), `mission16.json` (Secrets Underground), `mission17.json` (The Final Experiment) and `mission18.json` (Connecting the Evidence) from `501_CAMPAIGN_01.md`, completing Phase 4 — "Solving the Mystery" (`storyChapter: "CHAPTER-0004"`, `difficulty: "confident"`).
+Compiled `mission19.json` (Recover the Archive), `mission20.json` (Explorer Assessment) and `mission21.json` (Graduation Day) from `501_CAMPAIGN_01.md`, completing Phase 5 — "Graduation" (`storyChapter: "CHAPTER-0005"`, `difficulty: "explorer"`) and **all 21 missions of Campaign 01**.
 
-This batch had the two largest Core-activity sets compiled so far, both flagged in advance and handled with the established tuning convention rather than improvised:
+Mission 21 (Graduation Day) required care flagged in advance: its Story Summary explicitly gestures toward Campaign 2 ("Atlas reveals that numerous other expeditions remain active... A final transmission arrives from another research station, quietly introducing the next campaign"). Every beat/activity referencing this stayed strictly within what 501 actually states — no invented station name, campaign title, or mystery details for a campaign that doesn't exist yet.
 
-- **Mission 15 (The Signal Tower)**: 5 Core activities (6 minutes each = 30), the campaign's second engineering mission after Mission 7.
-- **Mission 17 (The Final Experiment)**: 6 Core activities (5 minutes each = 30) — the largest Core set yet, and structurally distinct from every other mission: 501 describes it as having no detailed instructions, so its 6 Core activities directly *are* the steps of the scientific method (define → predict → plan → collect → analyse → reflect) rather than mission-specific tasks. This didn't require any schema change, just recognising the activities themselves as more procedurally-generic than usual.
-
-**First use of the `"rank"` Reward Type** (Mission 17, `"Independent Investigator"`) — 501's own Rewards section lists "Explorer Rank Progress" as a category, and this is the first mission whose Story Outcome is explicitly about the learner's own capability shifting ("confidence shifts from following procedures to designing them") rather than unlocking a place, object or fact — the most rank-appropriate moment so far, not a default choice.
+Reward progression completed its arc across the three "rank"-type rewards: Mission 17 (`"Independent Investigator"`, mid-campaign capability shift) → Mission 20 (`"Explorer Academy Candidate"`, readiness demonstrated) → Mission 21 (`"Certified Explorer"`, the campaign's capstone reward, directly matching 501's own Story Outcome: "Learner becomes a fully recognised Explorer"). Mission 21's reflection prompt is a **direct quote** from 501's own Phase 5 narrative question ("What kind of Explorer have you become?") — the most maximally-grounded prompt in the whole campaign, since 501 states it verbatim rather than requiring synthesis.
 
 ## Manual Testing Performed
 
-- Confirmed all 5 new mission files parse as valid JSON.
-- **Global ID uniqueness verified programmatically across all 18 compiled missions to date** (168 total IDs — zero duplicates).
-- **Verified Mission 15's and Mission 17's Core activity counts and duration sums programmatically** (5×6=30 and 6×5=30 respectively), not just by eye.
-- Served `portal/` locally and drove all five new missions with Playwright: each renders its real title/content; at the default 60-minute session, Missions 14/16/18 each show 5 cards (4 Core + 1 Extension), Mission 15 shows 6 (5 Core + 1 Extension), and Mission 17 shows 7 (6 Core + 1 Extension) — Rabbit Hole correctly excluded in every case, confirming the tuning convention scales to larger Core sets without adjustment.
-- Parent Guide leakage check repeated for all five — none found.
-- Full regression pass across all 26 routes (21 from before plus the 5 new missions) — all correct, zero `pageerror`s.
+- Confirmed all 3 final mission files parse as valid JSON.
+- **Global ID uniqueness verified programmatically across all 21 missions** (197 total IDs — zero duplicates).
+- **Confirmed every one of `campaign.json`'s 21 `missions[]` entries now resolves to a real, compiled mission file** — the concrete, final proof that the whole 21-mission structure declared back in the Campaign Compiler milestone is now backed by real data.
+- Served `portal/` locally and drove all three final missions with Playwright: each renders correctly; card counts match each mission's Core+Extension activity count at the default 60-minute session.
+- **Ran the full reflection → reward flow on Mission 21 itself** (not just structural checks): submitted the finale's reflection, confirmed it saved to the Discovery Log and correctly earned "Certified Explorer" — the whole learner-facing pipeline (Campaign Loader → Mission Engine → Scheduler → Activity Renderer → Discovery Log → Reward Engine) working end-to-end on the campaign's actual final beat.
+- Parent Guide leakage check repeated for all three — none found.
+- **Full regression pass across all 29 routes** (6 static/campaign routes + all 21 missions + 2 error cases) — every route correct, zero `pageerror`s.
 
 ## Verification
 
-- Every mission validates. ✅
-- References resolve. ✅ (`MISSION-0001`–`0018` all match `campaign.json`'s `missions[]` entries)
-- Scheduler metadata exists and behaves correctly, including the two largest Core sets compiled so far. ✅
+- Every mission validates. ✅ (all 21)
+- References resolve. ✅ (`campaign.json`'s `missions[]` — all 21 entries — verified programmatically against the compiled files, not just assumed)
+- Scheduler metadata exists and behaves correctly across every mission compiled this phase. ✅
+
+This completes **Phase 4 — Mission Compiler** in full: all 21 missions from `501_CAMPAIGN_01.md` are now real, schema-valid, scheduler-tuned, and rendering correctly through the platform with zero code changes beyond the `parentGuide` validation addition made during Mission 1.

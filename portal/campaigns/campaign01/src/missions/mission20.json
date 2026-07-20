@@ -1,0 +1,130 @@
+{
+  "id": "MISSION-0020",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 20,
+  "title": "Explorer Assessment",
+  "storyChapter": "CHAPTER-0005",
+  "estimatedTime": "60 minutes",
+  "difficulty": "explorer",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Rather than a traditional test, the Academy presents the learner with a completely new investigation.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "No step-by-step guidance is provided this time.", "trigger": "New investigation presented" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner investigates the unfamiliar problem and plans their own approach.", "trigger": "Problem investigated and approach planned" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Collecting evidence reveals just how much the learner has learned throughout the campaign.", "trigger": "Evidence collected" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must justify their decisions and explain their reasoning throughout.", "trigger": "Decisions justified" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner presents their conclusions, demonstrating the habits of an Explorer rather than simply reaching a perfect answer.", "trigger": "Conclusions presented" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how their thinking process has changed since Mission 1.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Explorer Academy evaluates the learner's thinking rather than factual recall, and the learner demonstrates readiness for full membership.", "trigger": "Readiness for membership demonstrated" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0121",
+      "missionId": "MISSION-0020",
+      "title": "Investigate an Unfamiliar Problem",
+      "type": "science",
+      "category": "science",
+      "duration": 6,
+      "difficulty": "explorer",
+      "storyContext": "The Academy presents the learner with a completely new investigation, with no step-by-step guidance.",
+      "instructions": "Begin investigating the unfamiliar problem the Academy has presented.",
+      "output": "Initial notes on the unfamiliar problem.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0122",
+      "missionId": "MISSION-0020",
+      "title": "Plan Your Approach",
+      "type": "writing",
+      "category": "writing",
+      "duration": 6,
+      "difficulty": "explorer",
+      "storyContext": "The learner chooses how to approach the problem and selects appropriate methods.",
+      "instructions": "Plan how you will approach the investigation and which methods you will use.",
+      "output": "A written investigation plan.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0123",
+      "missionId": "MISSION-0020",
+      "title": "Collect Evidence",
+      "type": "observation",
+      "category": "observation",
+      "duration": 6,
+      "difficulty": "explorer",
+      "storyContext": "A strong conclusion needs strong evidence.",
+      "instructions": "Follow your plan and collect evidence for your investigation.",
+      "output": "Collected evidence for the investigation.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0124",
+      "missionId": "MISSION-0020",
+      "title": "Justify Decisions",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 6,
+      "difficulty": "explorer",
+      "storyContext": "Explorer Academy values reasoning throughout an investigation, not just at the end.",
+      "instructions": "Explain the reasoning behind the decisions you made during your investigation.",
+      "output": "A written justification of your investigative decisions.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0125",
+      "missionId": "MISSION-0020",
+      "title": "Present Conclusions",
+      "type": "discussion",
+      "category": "discussion",
+      "duration": 6,
+      "difficulty": "explorer",
+      "storyContext": "The emphasis is not on a perfect answer, but on demonstrating the habits of an Explorer.",
+      "instructions": "Present your conclusions and explain how you reached them.",
+      "output": "Presented conclusions with supporting reasoning.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0126",
+      "missionId": "MISSION-0020",
+      "title": "Identify Improvements",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 15,
+      "difficulty": "explorer",
+      "storyContext": "Even a strong investigation can always be improved.",
+      "instructions": "Identify improvements that could strengthen your investigation.",
+      "output": "A list of possible improvements.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0127",
+      "missionId": "MISSION-0020",
+      "title": "How Different Experts Investigate",
+      "type": "discussion",
+      "category": "discussion",
+      "duration": 10,
+      "difficulty": "explorer",
+      "storyContext": "Different kinds of experts might approach the same problem in very different ways.",
+      "instructions": "Consider how different experts might investigate the same problem in different ways.",
+      "output": "None required — this is an open discussion.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0020",
+      "type": "rank",
+      "value": "Explorer Academy Candidate"
+    }
+  ],
+  "reflection": {
+    "prompts": ["How did you decide which methods to use for a problem with no instructions?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0020",
+    "learningObjectives": ["Independent investigation", "Problem solving", "Communication", "Reflection"],
+    "discussionPoints": ["How did you decide where to start with no instructions?", "What are you most proud of in how you approached this investigation?"],
+    "preparation": "No special preparation required — this investigation is designed to be open-ended.",
+    "assessment": "Look for a clearly explained approach and reasoning, not just a final answer — the process matters more than a single correct result."
+  },
+  "completionCriteria": "An unfamiliar problem investigated, evidence collected, decisions justified, and conclusions presented."
+}

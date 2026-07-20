@@ -1,0 +1,117 @@
+{
+  "id": "MISSION-0019",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 19,
+  "title": "Recover the Archive",
+  "storyChapter": "CHAPTER-0005",
+  "estimatedTime": "60 minutes",
+  "difficulty": "explorer",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Using the restored communications network, the learner unlocks the expedition's protected archive.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Dr. Elara Quinn's final report is inside, waiting to explain why the expedition truly stopped.", "trigger": "Archive unlocked" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reads the final report carefully to understand what it reveals.", "trigger": "Final report read" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Comparing the original evidence with the learner's own current findings begins to confirm the whole story.", "trigger": "Evidence compared" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must complete the missing sections of the archive using their own discoveries.", "trigger": "Missing sections completed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The completed archive reveals that the expedition suspended operations because their discoveries required careful verification before publication.", "trigger": "Expedition's reasons confirmed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on why the expedition chose to preserve their evidence rather than risk incorrect conclusions.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The expedition mystery is resolved, Dr. Quinn's intentions are fully understood, and the archive is restored.", "trigger": "Archive restored" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0115",
+      "missionId": "MISSION-0019",
+      "title": "Read Final Report",
+      "type": "reading",
+      "category": "reading",
+      "duration": 8,
+      "difficulty": "explorer",
+      "storyContext": "The expedition's protected archive has been unlocked, revealing Dr. Elara Quinn's final report.",
+      "instructions": "Read Dr. Quinn's final report carefully.",
+      "output": "Notes on what the final report reveals.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0116",
+      "missionId": "MISSION-0019",
+      "title": "Compare Original and Current Evidence",
+      "type": "observation",
+      "category": "observation",
+      "duration": 7,
+      "difficulty": "explorer",
+      "storyContext": "The learner's own discoveries can now be compared against the expedition's original evidence.",
+      "instructions": "Compare the original expedition evidence with what you have discovered throughout the campaign.",
+      "output": "Notes comparing original and current evidence.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0117",
+      "missionId": "MISSION-0019",
+      "title": "Complete Missing Archive Sections",
+      "type": "writing",
+      "category": "writing",
+      "duration": 8,
+      "difficulty": "explorer",
+      "storyContext": "The archive is almost complete, but a few sections still rely on the learner's own discoveries.",
+      "instructions": "Complete the missing sections of the archive using your own discoveries.",
+      "output": "Completed archive sections.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0118",
+      "missionId": "MISSION-0019",
+      "title": "Summarise Findings",
+      "type": "reflection",
+      "category": "reflection",
+      "duration": 7,
+      "difficulty": "explorer",
+      "storyContext": "The archive brings together everything the learner has uncovered about Outpost Echo.",
+      "instructions": "Summarise the expedition mystery and what it reveals about Dr. Quinn's intentions.",
+      "output": "A summary of the expedition mystery.",
+      "schedulerCategory": "core"
+    },
+    {
+      "id": "ACTIVITY-0119",
+      "missionId": "MISSION-0019",
+      "title": "Write a Letter to Future Explorers",
+      "type": "writing",
+      "category": "writing",
+      "duration": 15,
+      "difficulty": "explorer",
+      "storyContext": "Dr. Quinn preserved evidence for future Explorers to continue the investigation.",
+      "instructions": "Write a letter to future Explorers explaining the importance of careful investigation.",
+      "output": "A letter to future Explorers.",
+      "schedulerCategory": "extension"
+    },
+    {
+      "id": "ACTIVITY-0120",
+      "missionId": "MISSION-0019",
+      "title": "Discoveries That Took Years to Verify",
+      "type": "research",
+      "category": "research",
+      "duration": 10,
+      "difficulty": "explorer",
+      "storyContext": "The expedition wasn't the only group of scientists to wait before publishing a discovery.",
+      "instructions": "Research a historical scientific discovery that required years of verification before acceptance.",
+      "output": "None required — this is an open investigation.",
+      "schedulerCategory": "rabbitHole"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0019",
+      "type": "story",
+      "value": "Expedition Mystery Resolved"
+    }
+  ],
+  "reflection": {
+    "prompts": ["Why do you think the expedition chose to preserve their evidence rather than risk being wrong?"]
+  },
+  "parentGuide": {
+    "id": "PARENTGUIDE-0019",
+    "learningObjectives": ["Reading complex information", "Summarising", "Evidence evaluation", "Reflection"],
+    "discussionPoints": ["Why do you think the expedition waited to publish their discoveries?", "What was the most surprising thing you learned from the final report?"],
+    "preparation": "No special preparation required.",
+    "assessment": "Look for a summary that captures the key findings and a completed archive that reflects the learner's own discoveries."
+  },
+  "completionCriteria": "Final report read, evidence compared, missing archive sections completed, and findings summarised."
+}
