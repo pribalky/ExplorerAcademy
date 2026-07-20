@@ -296,7 +296,7 @@ A task is complete when:
 
 Before starting any work:
 
-1. Read `CURRENT_TASK.md`.
+1. Read `CURRENT_TASK.md` and `CLAUDE.MD`.
 2. Read only the documentation relevant to the current task.
 3. Produce a short implementation plan.
 4. Identify the files that will change.
