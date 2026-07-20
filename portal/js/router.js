@@ -8,6 +8,7 @@
 // learner shell per ADR-006.
 
 import { loadCampaign } from './campaign-loader.js';
+import { loadMission } from './mission-engine.js';
 
 export const ROUTES = [
   { path: '/', label: 'Home', title: 'Explorer Academy' },
@@ -167,6 +168,52 @@ async function renderCampaignSelect(outlet, route) {
   });
 }
 
+// Renders a single mission's metadata (or a graceful failure state).
+// Mission routes aren't campaign-scoped yet — no multi-campaign linking
+// exists, so this is hardcoded to campaign01 until that's needed, the
+// same simplification KNOWN_CAMPAIGN_IDS makes above.
+async function renderMission(outlet, missionId) {
+  outlet.innerHTML = `
+    <section aria-labelledby="route-heading">
+      <h2 id="route-heading">Mission</h2>
+      <p data-status>Loading mission…</p>
+    </section>
+  `;
+
+  const result = await loadMission('campaign01', missionId);
+  const section = outlet.querySelector('section');
+  const status = outlet.querySelector('[data-status]');
+
+  if (!result.ok) {
+    status.textContent = `No mission could be loaded for "${missionId}".`;
+    const list = document.createElement('ul');
+    result.errors.forEach((message) => {
+      const item = document.createElement('li');
+      item.textContent = message;
+      list.appendChild(item);
+    });
+    section.appendChild(list);
+    return;
+  }
+
+  const { mission } = result;
+  outlet.querySelector('#route-heading').textContent = mission.title;
+  status.remove();
+
+  const details = document.createElement('dl');
+  const addRow = (term, value) => {
+    const dt = document.createElement('dt');
+    dt.textContent = term;
+    const dd = document.createElement('dd');
+    dd.textContent = String(value);
+    details.append(dt, dd);
+  };
+  addRow('Estimated Time', mission.estimatedTime);
+  addRow('Difficulty', mission.difficulty);
+  addRow('Activities', mission.activities.length);
+  section.appendChild(details);
+}
+
 const STATIC_VIEWS = {
   '/campaigns': renderCampaignSelect
 };
@@ -199,11 +246,7 @@ async function renderMatch(outlet, match, path) {
   }
 
   if (match.name === 'mission') {
-    renderPlaceholder(
-      outlet,
-      'Mission',
-      `Mission "${match.param}" has no content yet — the Mission Engine arrives in a later milestone.`
-    );
+    await renderMission(outlet, match.param);
     document.title = `${match.title} — Explorer Academy`;
   }
 }

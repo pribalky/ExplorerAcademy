@@ -1,0 +1,45 @@
+{
+  "id": "MISSION-0001",
+  "campaignId": "CAMPAIGN-0001",
+  "missionNumber": 1,
+  "title": "Mission 1 — Placeholder",
+  "storyChapter": "CHAPTER-0001",
+  "estimatedTime": "TBD",
+  "difficulty": "explorer",
+  "beats": [
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Placeholder — not yet authored.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Placeholder — not yet authored.", "trigger": "Hook resolved" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "Placeholder — not yet authored.", "trigger": "Mystery introduced" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Placeholder — not yet authored.", "trigger": "Investigation complete" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "Placeholder — not yet authored.", "trigger": "Discovery made" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Placeholder — not yet authored.", "trigger": "Challenge overcome" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "Placeholder — not yet authored.", "trigger": "Breakthrough achieved" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Placeholder — not yet authored.", "trigger": "Reflection complete" }
+  ],
+  "activities": [
+    {
+      "id": "ACTIVITY-0001",
+      "missionId": "MISSION-0001",
+      "title": "Placeholder Activity",
+      "type": "reading",
+      "category": "reading",
+      "duration": "TBD",
+      "difficulty": "explorer",
+      "storyContext": "Placeholder — not yet authored.",
+      "instructions": "Placeholder — not yet authored.",
+      "output": "Placeholder — not yet authored.",
+      "schedulerCategory": "core"
+    }
+  ],
+  "rewards": [
+    {
+      "id": "REWARD-0001",
+      "type": "badge",
+      "value": "Placeholder — not yet authored."
+    }
+  ],
+  "reflection": {
+    "prompts": ["Placeholder — not yet authored."]
+  },
+  "completionCriteria": "All core activities completed."
+}

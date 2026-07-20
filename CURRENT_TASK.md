@@ -6,29 +6,28 @@
 
 ## Milestone
 
-Mission Engine
+Activity Renderer
 
 ## Objective
 
-Build the module that renders a single mission's story/objective from mission JSON, reusing the Campaign Loader's non-throwing load pattern. This gives the `/mission/:id` route (currently a static placeholder from the Router extension) something real to display, and requires creating the first placeholder mission JSON file since `campaign01` has none yet.
+Render the activities embedded in a loaded mission's `activities[]` array on the Mission page — the first content the learner actually sees rendered from structured data, rather than just metadata rows in a `<dl>`.
 
 ## Inputs
 
-- `docs/50-content/504_JSON_SCHEMA.md` (Mission required fields)
-- `docs/40-campaigns/402_MISSION_TEMPLATE.md`
-- `portal/campaigns/campaign01/src/missions/` (currently empty)
-- `portal/js/campaign-loader.js` (pattern to follow for a `mission-loader`-style module, or extend campaign-loader.js — to be decided at milestone start)
+- `portal/js/mission-engine.js` (already loads and validates `activities[]`)
+- `portal/campaigns/campaign01/src/missions/mission01.json` (has one placeholder activity)
+- `docs/50-content/504_JSON_SCHEMA.md` (Activity, Activity Type, Scheduler Category)
 
 ## Relevant Documentation
 
-- `docs/60-engineering/601_HTML_ARCHITECTURE.md` (Mission Engine, Mission Schema, Mission Page sections)
-- `docs/50-content/503_DATA_MODEL.md` (Mission entity)
+- `docs/60-engineering/601_HTML_ARCHITECTURE.md` (Activity View, Activity Card, Activity Renderer, Activity Lifecycle sections)
+- `docs/40-campaigns/402_MISSION_TEMPLATE.md` (Activity Template, Supported Activity Types)
 
 ## Files Expected to Change
 
-- A new mission-loading module (likely `portal/js/mission-engine.js`, already scaffolded as an empty placeholder)
-- `portal/campaigns/campaign01/src/missions/` — first placeholder mission JSON
-- `portal/js/router.js` (`/mission/:id` view swapped from static placeholder to real content)
+- `portal/js/activity-engine.js` (currently an empty placeholder)
+- `portal/js/router.js` (Mission view extended to render the activity list, not just counts)
+- Possibly `portal/components/activities/`
 
 ## Implementation Plan
 
@@ -36,14 +35,16 @@ To be defined at the start of this milestone. Not yet started.
 
 ## Out of Scope
 
-- Activity rendering (Activity Renderer — a later milestone; a mission's `activities` field may just be validated as present, not rendered)
-- Scheduler, LocalStorage/persistence, Reward Engine, Discovery Log, Parent Mode, Workbook generation
-- Adding missions to `campaign.json`'s `missions` array / linking Campaign → Mission navigation (may follow naturally, but isn't the stated goal)
+- Learner interaction / activity completion state (no Storage Manager yet)
+- Scheduler (Core/Extension/Rabbit Hole selection — every activity renders for now)
+- Reward Engine, Discovery Log, Parent Mode, Workbook generation
+- Per-activity-type specialised rendering (Reading vs. Experiment vs. Mathematics) — a single generic Activity Card covering the common fields is likely enough for this milestone; specialised renderers can follow later if needed
 
 ## Success Criteria
 
-- A placeholder mission loads and validates against `504_JSON_SCHEMA.md`'s required Mission fields.
-- `/mission/:id` renders the mission's title/objective for a valid ID, and fails gracefully for an unknown one — mirroring the Campaign Loader's error handling.
+- The Mission page lists each activity in `activities[]` with at least title, type and instructions.
+- A mission with zero activities (a valid, if unusual, case) renders without error.
+- No campaign-specific or activity-specific logic leaks into the platform — rendering stays generic per `601_HTML_ARCHITECTURE.md`'s Activity Card principles.
 
 ## Manual Verification
 
@@ -51,9 +52,8 @@ Not yet performed — milestone not started.
 
 ## Deliverables
 
-- Working mission loader
-- One placeholder mission JSON for `campaign01`
-- `/mission/:id` rendering real (if placeholder) content
+- Working generic Activity renderer
+- Mission page shows real activity content instead of just an activity count
 
 ## Completion Notes
 
@@ -61,34 +61,34 @@ Not yet started.
 
 ---
 
-# Previous Milestone — Router (extension) — COMPLETE
+# Previous Milestone — Mission Engine — COMPLETE
 
 ## Completion Summary
 
-Extended `router.js` with dynamic route matching so it can resolve `/campaign/:id` and `/mission/:id` in addition to the five static routes from Milestone 1.2.
+Built `portal/js/mission-engine.js` (loader + validator, matching `campaign-loader.js`'s pattern) and the first placeholder mission, `campaign01/src/missions/mission01.json`. Wired it into the router's `/mission/:id` route so it renders real mission metadata instead of a static placeholder.
 
-Key decisions:
+Two scope decisions were made with the user before starting, given real gaps found in the docs:
 
-- **`matchRoute(path)` tries static routes first, then a small `DYNAMIC_ROUTES` pattern list** (`/campaign/:id`, `/mission/:id`), returning a tagged `{ kind: 'static' | 'dynamic', ... }` result — keeping the existing static route table/nav generation in `nav.js` completely unchanged.
-- **`/campaigns` (Campaign Select) was refactored into a list of cards linking to `/campaign/:id`**, rather than rendering one hardcoded campaign's full metadata itself. It now loops over a `KNOWN_CAMPAIGN_IDS` placeholder array (currently just `['campaign01']`) and calls the Campaign Loader once per ID — this is a deliberate stand-in for real campaign discovery, which doesn't exist yet (no manifest/Asset Manager), called out in a comment rather than silently assumed.
-- **`/campaign/:id` (Campaign Overview) reuses `loadCampaign(id)` with the `:id` param directly** — this is the same rendering logic the old hardcoded `/campaigns` view had, just parameterized, so an unknown campaign ID fails through the Campaign Loader's existing graceful-error path with no new error handling needed.
-- **`/mission/:id` renders a placeholder message** ("Mission Engine arrives in a later milestone") rather than 404ing, since the route should exist and be linkable even though no Mission Engine or mission JSON exists yet.
-- Dynamic routes are intentionally excluded from nav highlighting (`updateActiveNavLink` only matches static nav links) — there's no "Campaigns" tab that should stay visually active while viewing a specific campaign's overview, since that's a drill-down page rather than a sibling top-level page.
+- **`storyChapter` is validated as present but not resolved** to an actual chapter file, since no World Bible/Chapter content or Chapter Loader exists yet — same treatment `campaign-loader.js` already gives `worldBibleId`.
+- **The placeholder mission is a full schema-conformant stub**, not a thin one: all 8 canonical Mission Beat types (`504_JSON_SCHEMA.md`: "each mission should contain all beats"), one fully-fielded placeholder Activity (11 required fields), one placeholder Reward, and a minimal `reflection` object (504 lists `reflection` as required but never defines its own field table — a real documentation gap — so its shape was inferred from `503_DATA_MODEL.md`'s conceptual Reflection Schema description as `{ prompts: [...] }`).
+
+Other decisions:
+
+- **Mission loading/validation lives in `mission-engine.js`**, not a new `mission-loader.js` file, since the module list fixed back in Milestone 1.1 (`portal/ARCHITECTURE.md`) only names `mission-engine.js` — this also gives the eventual lifecycle behaviour (advancing activities, completion) a natural home in the same file later.
+- **Mission routes stay campaign-unscoped for now** (`/mission/:id`, not `/campaign/:id/mission/:id`) — `renderMission` hardcodes the `campaign01` folder slug when calling the loader, the same simplification `KNOWN_CAMPAIGN_IDS` already makes for Campaign Select. Worth revisiting once a second campaign exists.
+- **Validation checks field presence only, not enum values** — e.g. `difficulty: "explorer"` or `schedulerCategory: "core"` aren't checked against their documented enums. This matches the precedent set by `campaign-loader.js` (which doesn't enum-check `status` or `difficulty` either) and keeps validation scope from ballooning into a full schema validator.
 
 ## Manual Testing Performed
 
 Served `portal/` locally and drove it with Playwright:
 
-- `#/campaigns` renders a card for `campaign01` with a link to `#/campaign/campaign01`; clicking it navigates to the Campaign Overview and renders full metadata (title used as the page heading and `<title>`).
-- Deep-linking directly to `#/campaign/campaign01` renders the same content without needing to click through.
-- `#/campaign/does-not-exist` shows the graceful "No campaign could be loaded" fallback with the specific not-found message, no crash.
-- `#/mission/M01` renders the Mission Engine placeholder message with the correct page title.
-- Browser back button after a click-through correctly restores Campaign Select.
-- Regression pass on all four pre-existing static routes (Home, Discovery Log, Explorer Profile, Settings) plus the unknown-route 404 fallback — nav links, `aria-current`, and content all still correct.
-- Zero `pageerror`/console errors across every case.
+- `#/mission/mission01` renders the mission's title as the heading/`<title>`, plus estimated time, difficulty and activity count.
+- `#/mission/does-not-exist` shows the graceful "No mission could be loaded" fallback with a specific not-found message.
+- Temporarily replaced `mission01.json` with data missing 10 of 12 required fields — the page listed every missing field individually, no crash; file was restored afterward and `diff` confirmed no residual changes.
+- Regression pass on `/campaigns` and `/campaign/campaign01` (from the Router extension milestone) — both still correct.
+- Zero `pageerror`s across every case.
 
 ## Verification
 
-- `/campaign/:id` resolves the ID, calls the Campaign Loader, and renders metadata or the graceful failure fallback. ✅
-- The static `/campaigns` route links to `/campaign/campaign01` rather than hardcoding metadata rendering itself. ✅
-- Unknown campaign IDs fail gracefully, reusing the Campaign Loader's existing error path. ✅
+- A placeholder mission loads and validates against `504_JSON_SCHEMA.md`'s required Mission fields. ✅
+- `/mission/:id` renders the mission's title/objective for a valid ID, and fails gracefully for an unknown one, mirroring the Campaign Loader's error handling. ✅
