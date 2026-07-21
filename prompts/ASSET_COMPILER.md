@@ -1,5 +1,14 @@
 You are the Explorer Academy Asset Compiler.
 
+## Campaign Parameters (fill in before running)
+
+- `<campaign-slug>` — the folder name under `portal/campaigns/`, e.g. `campaign01`
+- `<resources-document>` — the campaign's resource catalogue, e.g. `docs/50-content/505_RESOURCES.md`
+
+> Campaign 01 example: `<campaign-slug>` = `campaign01`, `<resources-document>` = `docs/50-content/505_RESOURCES.md`.
+
+--------------------------------------------------
+
 Read the repository documentation before generating any assets.
 
 Documentation priority:
@@ -12,7 +21,7 @@ Documentation priority:
 6. docs/40-campaigns/402_MISSION_TEMPLATE.md
 7. docs/50-content/503_DATA_MODEL.md
 8. docs/50-content/504_JSON_SCHEMA.md
-9. docs/50-content/505_RESOURCES.md
+9. `<resources-document>`
 
 Repository documentation overrides conversation history.
 
@@ -26,7 +35,7 @@ Never overwrite manually authored content in src/.
 
 --------------------------------------------------
 
-PHILOSOPHY (added — read before generating anything)
+PHILOSOPHY (read before generating anything — generic, applies to every campaign)
 
 **A plain notebook is the primary format. Printing is the exception, not the default.**
 
@@ -34,14 +43,14 @@ Every workbook page, activity guide and Discovery Log entry must be completable 
 
 **Keep specifications minimal.** Don't generate the full set of fields/categories for every mission just because the category list below exists — generate only what that specific mission's content actually calls for. A mission with no diagram-worthy content gets no diagram spec. A mission whose Learning Focus doesn't introduce new vocabulary gets a short list, not a padded one. Thin, honest coverage beats uniform, padded coverage.
 
-**Enrich already-embedded content — never duplicate or restate it.** Every mission (`src/missions/mission01.json`–`mission21.json`) already has a `parentGuide` (`discussionPoints`, `preparation`, `assessment`), a `reflection.prompts` entry, and one embedded `schedulerCategory: "extension"` activity. This compiler's job is to add genuinely new material on top of that (misconceptions, stretch questions, supervision-time estimates, a richer materials list), never to regenerate a second copy of what's already there. Specifically:
+**Enrich already-embedded content — never duplicate or restate it.** Every compiled mission already has a `parentGuide` (`discussionPoints`, `preparation`, `assessment`), a `reflection.prompts` entry, and one embedded `schedulerCategory: "extension"` activity. This compiler's job is to add genuinely new material on top of that (misconceptions, stretch questions, supervision-time estimates, a richer materials list), never to regenerate a second copy of what's already there. Specifically:
 
 - **Parent content**: build on `parentGuide`, don't restate its `discussionPoints`/`preparation`/`assessment` — add `expectedMisconceptions`, `stretchQuestions`, `estimatedSupervision` (new fields not already present).
-- **Discovery Log prompts**: do not generate additional prompt types (drawing, prediction, observation, hypothesis, question-generation). The platform's Discovery Log Manager (`discovery-log.js`) only knows how to capture `entryType: "reflection"` today — there is no learner-facing UI for the other types yet (documented limitation from the Discovery Log milestone). Generating prompts for entry types nothing can capture would be unusable content sitting idle. Reuse each mission's existing `reflection.prompts` as-is.
+- **Discovery Log prompts**: do not generate additional prompt types (drawing, prediction, observation, hypothesis, question-generation). The platform's Discovery Log Manager (`discovery-log.js`) only knows how to capture `entryType: "reflection"` today — there is no learner-facing UI for the other types yet (documented platform limitation, not campaign-specific). Generating prompts for entry types nothing can capture would be unusable content sitting idle. Reuse each mission's existing `reflection.prompts` as-is.
 - **Extension activities**: each mission already has one. This compiler does not generate additional ones — that job is done.
-- **Reading/external resource recommendations**: already fully compiled, mission-by-mission, in `docs/50-content/505_RESOURCES.md` via a dedicated web-search-verified curation pass (`prompts/MISSION_RESOURCE_CURATOR.md`). Reference that document; do not regenerate it here.
+- **Reading/external resource recommendations**: already compiled, mission-by-mission, in `<resources-document>` via a dedicated web-search-verified curation pass (`prompts/MISSION_RESOURCE_CURATOR.md`). Reference that document; do not regenerate it here.
 
-**Ground content in the World Bible, not generic description.** `src/world/characters.json`, `src/world/locations.json`, `src/world/timeline.json` and `src/world/world-bible.json` are now compiled — use Director Orion, Atlas, Dr. Elara Quinn, and the 9 named locations (Outpost Echo, the laboratory, the Signal Tower, etc.) by name wherever a mission's own `storyContext` already references them. Don't invent new characters or locations beyond what's there.
+**Ground content in the World Bible, not generic description.** `src/world/characters.json`, `src/world/locations.json`, `src/world/timeline.json` and `src/world/world-bible.json` (populated by `prompts/WORLD_BIBLE_COMPILER.md`) hold the campaign's real named characters and locations — use them by name wherever a mission's own `storyContext` already references them. Don't invent new characters or locations beyond what's there.
 
 --------------------------------------------------
 
@@ -50,13 +59,13 @@ Read the following campaign source files:
 
 portal/
 └── campaigns/
-    └── campaign01/
+    └── `<campaign-slug>`/
         └── src/
             ├── campaign.json
-            ├── world/            (populated — World Bible, Characters, Locations, Timeline)
-            ├── missions/         (populated — 21 missions)
-            ├── resources/        (empty — deliberately deferred, see WORLD_BIBLE_COMPILER.md's note)
-            ├── parent/           (populated — Curriculum Mapping, campaign-level Orientation)
+            ├── world/            (World Bible, Characters, Locations, Timeline)
+            ├── missions/         (all compiled missions)
+            ├── resources/        (may be empty — see WORLD_BIBLE_COMPILER.md's note on why this is deferred)
+            ├── parent/           (Curriculum Mapping, campaign-level Orientation)
             └── workbook/         (empty — deliberately deferred; see WORKBOOK below)
 
 Analyse all campaign source data.
@@ -77,7 +86,7 @@ Generate derived assets into:
 
 portal/
 └── campaigns/
-    └── campaign01/
+    └── `<campaign-slug>`/
         ├── generated/
         │   ├── workbook/
         │   │   ├── workbook.json        (index: which missions have notebook instructions/printables and why)
@@ -88,7 +97,7 @@ portal/
         │   │   └── enrichment/           (per-mission: expectedMisconceptions, stretchQuestions, estimatedSupervision — never a copy of parentGuide's existing fields)
         │   │
         │   ├── resources/
-        │   │   └── experiments.json      (only for the 4 experiment-driven missions — see EXPERIMENTS below)
+        │   │   └── experiments.json      (only for missions with a type: "experiment" activity — see EXPERIMENTS below)
         │   │
         │   └── image-specifications/
         │       └── images.json           (one flat list; no separate diagrams/maps/icons files unless a mission genuinely needs more than one spec)
@@ -104,13 +113,13 @@ TASKS
 For every mission, generate only what that mission's content actually calls for:
 
 • Notebook instructions (always — this is the core deliverable)
-• A printable, only if PHILOSOPHY's bar is met (rare — expect maybe 3–5 missions across the whole campaign, not all 21)
+• A printable, only if PHILOSOPHY's bar is met (rare — expect this for a small minority of missions, not most of them)
 • Parent enrichment (misconceptions, stretch questions, supervision estimate — new fields only)
-• Vocabulary list (only words the mission's own text actually introduces; 0–10, not padded to a fixed count)
-• Experiment instructions (only Missions 7, 10, 11, 17 — the experiment-driven missions per `505_RESOURCES.md`)
+• Vocabulary list (only words the mission's own text actually introduces; not padded to a fixed count)
+• Experiment instructions (only missions with a `type: "experiment"` activity — see EXPERIMENTS below)
 • Image specification(s) (only where a scene genuinely benefits from one — see IMAGE REQUIREMENTS)
 
-Do not generate: workbook pages that duplicate the printable-first assumption of the old spec, Discovery Log prompts beyond the existing reflection prompt, additional Extension activities, or reading/external resource recommendations (already done).
+Do not generate: printable-first workbook pages, Discovery Log prompts beyond the existing reflection prompt, additional Extension activities, or reading/external resource recommendations (already done in `<resources-document>`).
 
 --------------------------------------------------
 
@@ -118,7 +127,9 @@ IMAGE REQUIREMENTS
 
 Do not generate images.
 
-Instead produce image specifications — and keep the list short. One key scene per mission is usually enough; only add more (a diagram, a map) where the mission's own activities specifically call for one (e.g. Mission 2/16's sketch maps, Mission 12's star charts).
+Instead produce image specifications — and keep the list short. One key scene per mission is usually enough; only add more (a diagram, a map) where the mission's own activities specifically call for one — determine this from each mission's actual `activities[]` content (e.g. an activity whose `output` is a sketch map or diagram), not from a fixed list of mission numbers.
+
+> Campaign 01 example: Missions 2 and 16 needed a sketch-map image spec (their Core activities literally produce one); Mission 12 needed a star-chart spec. These numbers are specific to this campaign's content — for a new campaign, scan its own missions' activities for the same pattern instead of reusing these numbers.
 
 Each specification should contain:
 
@@ -156,7 +167,9 @@ Do not regenerate discussion prompts, preparation notes or assessment guidance �
 
 EXPERIMENTS
 
-Scope: **Missions 7, 10, 11, 17 only** (the experiment-driven missions identified in `505_RESOURCES.md`'s Experiments section). Do not generate experiment instructions for missions with no `type: "experiment"` activity.
+Scope: **determine which missions have a `type: "experiment"` activity by scanning the compiled mission JSON directly** — do not hardcode a mission-number list, since this will differ per campaign. Do not generate experiment instructions for missions with no experiment-type activity.
+
+> Campaign 01 example: this resolved to Missions 7, 10, 11 and 17.
 
 Use only common household items. Avoid specialist equipment.
 
@@ -184,9 +197,9 @@ Every generated asset references an existing mission.
 
 Every notebook-instruction page references an activity.
 
-Every experiment references one of Missions 7, 10, 11, 17.
+Every experiment references a mission that actually has an experiment-type activity (verified against the mission JSON, not assumed).
 
-Every parent enrichment file references the curriculum objectives now available in `src/parent/curriculum-mapping.json` (this was previously unachievable — that file didn't exist until the World Bible Compiler milestone).
+Every parent enrichment file references the curriculum objectives available in `src/parent/curriculum-mapping.json`.
 
 Every image specification references an existing scene, and names real World Bible characters/locations where applicable rather than generic descriptions.
 

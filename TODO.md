@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**`prompts/ASSET_COMPILER.md` revised and committed** — notebook-first philosophy, minimal specs, enrich-not-duplicate rules, experiments scoped to Missions 7/10/11/17, World Bible grounding, all encoded. Await approval to start Phase 5 execution in batches (proposed: Missions 1–5 first), generating `generated/workbook/`, `generated/parent/enrichment/`, `generated/image-specifications/`.
+**All 5 compiler prompts (`CAMPAIGN_COMPILER.md`, `MISSION_COMPILER.md`, `WORLD_BIBLE_COMPILER.md`, `MISSION_RESOURCE_CURATOR.md`, `ASSET_COMPILER.md`) are now campaign-agnostic** — parameterized (`<source-document>`, `<campaign-slug>`, `<mission-count>`, `<resources-document>`), with Campaign 01's specific answers (character names, curriculum subjects, experiment mission numbers) moved into labelled examples instead of being written as universal rules. Await approval to start Phase 5 execution in batches (proposed: Missions 1–5 first), generating `generated/workbook/`, `generated/parent/enrichment/`, `generated/image-specifications/`.
