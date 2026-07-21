@@ -6,11 +6,11 @@
 
 ## Milestone
 
-Not yet defined — awaiting direction on which mission(s) to polish next
+Not yet defined — Phase 6 (Mission Polish) is complete for all 21 missions; awaiting direction on Phase 7 or another priority
 
 ## Objective
 
-Missions 1–20 have reached production quality (see completed milestones below) — only Mission 21 remains. TODO.md's Phase 6 checklist calls for repeating this for the remaining missions, but per CLAUDE.md's workflow, do not begin polishing another mission until the user chooses one.
+All 21 missions have reached production quality (see completed milestones below). This closes out Phase 6 entirely. Per CLAUDE.md's workflow, do not begin the next phase until the user chooses a direction — candidates per TODO.md's own roadmap are Phase 7 (Workbook — though `generated/workbook/` already has substantial content from Phase 5), Phase 8 (Parent Mode), or Phase 9 (Visual Assets, for which `generated/image-specifications/` already has 24 specs ready to act on).
 
 ## Inputs
 
@@ -18,7 +18,7 @@ N/A — awaiting user direction.
 
 ## Relevant Documentation
 
-`docs/40-campaigns/402_MISSION_TEMPLATE.md` (Mission Quality Checklist), `docs/00-foundation/007_AI_CONTRIBUTING_GUIDE.md`, `TODO.md`'s Phase 6 section.
+`TODO.md`'s Phase 7/8/9 sections, once a specific direction is chosen.
 
 ## Files Expected to Change
 
@@ -47,6 +47,33 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Mission Polish: Mission 21 reaches production quality — PHASE 6 COMPLETE
+
+## Completion Summary
+
+Polished Mission 21 ("Graduation Day"), the campaign finale, editing `portal/campaigns/campaign01/src/missions/mission21.json` directly. This completes Phase 6 for all 21 missions.
+
+- Re-read the "Final Campaign Checkpoint" section of `501_CAMPAIGN_01.md` before editing — it defines what the whole campaign was building toward (Think Like an Explorer / Work Independently / Apply Knowledge Authentically / Be Ready for Future Campaigns) and closes with the project's own stated philosophy: "success is measured not by collecting correct answers, but by developing the curiosity, discipline and resilience to pursue better questions." This directly shaped the beat rewrites.
+- The HOOK and BREAKTHROUGH beats now explicitly bookend Mission 1 — the same briefing room, the same Director Orion, the probationary status opened by "a single letter in Mission 1" now formally closing — matching the deliberate visual callback already established in `generated/image-specifications/images.json`'s IMAGE-0024 (composed to echo IMAGE-0001).
+- The DISCOVERY beat (the Academy celebrating *how* the learner investigated, not *what* they found) is the campaign's thesis statement and got the most careful rewrite in this milestone.
+- The reflection prompt now explicitly invites comparing who the learner has become against "who you were when you opened that first invitation in Mission 1" — the same full-circle technique used for Mission 20, giving the campaign's two closing missions a matching sense of arc.
+- `ACTIVITY-0132` ("Receive Explorer Status") was worded to keep the optional printable certificate genuinely optional ("in your journal, or using the optional printable certificate, whichever feels right"), consistent with `generated/workbook/pages/mission21.md`'s own framing and the notebook-first philosophy established back in Phase 5.
+- Extension (`ACTIVITY-0133`) and Rabbit Hole (`ACTIVITY-0134`) left unchanged — already open-ended and fitting.
+- Left unchanged: all IDs, `rewards`, `completionCriteria`, `parentGuide` core fields.
+
+## Manual Verification
+
+- Validated the file against `mission-engine.js`'s actual required-field/beat-type/activity-field/reward-field/parentGuide checks via script — passes.
+- Grepped `generated/` for the superseded reflection-prompt text — no stale references found.
+- Served the app locally and drove it with headless Chromium: loaded the mission, confirmed the correct title renders, confirmed updated activity/reflection text appears, and confirmed no `parentGuide` content leaks into the DOM (ADR-006 holds). No console errors.
+- **Full-campaign consistency check**, since this is the final mission: re-validated all 21 missions (`mission01.json`–`mission21.json`) against the mission engine's required-field/beat-type/activity-field/reward-field/parentGuide rules in a single pass — all 21 pass cleanly.
+
+## Verification
+
+Phase 6 (Mission Polish) is now complete: all 21 missions satisfy the Mission Quality Checklist bar established with Mission 1, with the campaign's opening and closing missions deliberately mirroring each other in both story JSON and generated image specs. ✅
 
 ---
 

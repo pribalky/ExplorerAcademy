@@ -309,7 +309,7 @@ Produces
 Status
 
 ```
-IN PROGRESS — Missions 1-20 reach production quality; only Mission 21 (the finale) remains
+COMPLETE — all 21 missions reach production quality
 ```
 
 Goal
@@ -318,32 +318,25 @@ Improve each mission.
 
 Checklist (per mission)
 
-- [x] Story flow — Missions 1–20
-- [ ] Story flow — Mission 21
+- [x] Story flow — Missions 1–21
 
-- [x] Curiosity — Missions 1–20
-- [ ] Curiosity — Mission 21
+- [x] Curiosity — Missions 1–21
 
-- [x] Difficulty — Missions 1–20
-- [ ] Difficulty — Mission 21
+- [x] Difficulty — Missions 1–21
 
-- [x] Discovery Log — Missions 1–20
-- [ ] Discovery Log — Mission 21
+- [x] Discovery Log — Missions 1–21
 
-- [x] Rabbit Holes — Missions 1–20
-- [ ] Rabbit Holes — Mission 21
+- [x] Rabbit Holes — Missions 1–21
 
-- [x] Reflection — Missions 1–20
-- [ ] Reflection — Mission 21
+- [x] Reflection — Missions 1–21
 
-- [x] Rewards — Missions 1–20
-- [ ] Rewards — Mission 21
+- [x] Rewards — Missions 1–21
 
 Deliverable
 
-One mission reaches production quality. ✅ (Missions 1–20)
+One mission reaches production quality. ✅
 
-Repeat for remaining missions.
+Repeat for remaining missions. ✅ (all 21 complete)
 
 ---
 
@@ -565,4 +558,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Phase 5 (Asset Compiler) is complete for all 21 missions.** Phase 6 (Mission Polish) is now underway: **Missions 1–20 have reached production quality** — only Mission 21 (the finale) remains. Beats, Core activity storyContext/instructions, and reflection prompts were rewritten for stronger story flow and curiosity, grounded in each mission's canonical Story Summary, with no new plot facts invented. Key narrative beats got particular care: Mission 4/8 (Dr. Quinn's name, then her voice), Mission 14 (the "protect, not hide" reveal), Mission 18 (the full-campaign synthesis), Mission 19 (the mystery's actual resolution), and Mission 20 (an explicit callback to Mission 1 ahead of graduation). Missions 10, 12, 15 and 17 each required protecting already-published generated assets or internally-consistent experiment framing from contradiction — their tied activities were left untouched or only lightly adjusted after confirming no verbatim text dependency existed. Extension/Rabbit Hole activities were reviewed but left unchanged where already appropriately open-ended. All twenty missions verified against `mission-engine.js`'s actual validation rules and rendered end-to-end in a headless browser with no console errors and no Parent Guide leakage (ADR-006). The platform still doesn't render `beats` to the learner yet (confirmed by reading `activity-engine.js`/`router.js`) — polished anyway since load-bearing in the mission template design, but no unrendered optional Activity fields (`hints`, `resources`, `parentNotes`) were added. Awaiting user direction — likely Mission 21 to complete Phase 6 entirely.
+**Phase 5 (Asset Compiler) and Phase 6 (Mission Polish) are both complete for all 21 missions.** Every mission's beats, Core activity storyContext/instructions, and reflection prompts were rewritten for stronger story flow and curiosity, grounded in each mission's canonical Story Summary, with no new plot facts invented. Key narrative beats got particular care throughout: Mission 4/8 (Dr. Quinn's name, then her voice), Mission 14 (the "protect, not hide" reveal), Mission 18 (the full-campaign synthesis), Mission 19 (the mystery's actual resolution), and Mission 21 (the finale, deliberately bookending Mission 1 in both story JSON and the already-published image specs). Missions 10, 12, 15 and 17 each required protecting already-published generated assets or internally-consistent experiment framing from contradiction. Extension/Rabbit Hole activities were reviewed but left unchanged where already appropriately open-ended. All 21 missions verified against `mission-engine.js`'s actual validation rules in a single full-campaign pass and rendered end-to-end in a headless browser with no console errors and no Parent Guide leakage (ADR-006). The platform still doesn't render `beats` to the learner yet (confirmed by reading `activity-engine.js`/`router.js`) — polished anyway since load-bearing in the mission template design, but no unrendered optional Activity fields (`hints`, `resources`, `parentNotes`) were added. Awaiting user direction on the next phase — candidates are Phase 7 (Workbook), Phase 8 (Parent Mode), or Phase 9 (Visual Assets, for which 24 image specs already exist and are ready to act on).

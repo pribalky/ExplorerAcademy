@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "explorer",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "Director Orion welcomes the learner back to Explorer Academy Headquarters.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "The Academy is about to celebrate something — but not what the learner might expect.", "trigger": "Return to Headquarters" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reviews their Explorer Journal and reflects on their entire learning journey.", "trigger": "Journal reviewed and journey reflected on" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "The Academy celebrates not what the learner discovered, but how they investigated — observing carefully, asking thoughtful questions, testing ideas and revising conclusions when evidence changed.", "trigger": "Investigative habits celebrated" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must identify their favourite investigations and complete a final expedition report.", "trigger": "Favourite investigations identified and report completed" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner officially graduates from probationary status and receives their Explorer Certificate.", "trigger": "Explorer status received" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "Atlas reveals that numerous other expeditions remain active across the world, each investigating different scientific mysteries.", "trigger": "Wider Explorer Academy world revealed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "A final transmission arrives from another research station, quietly hinting at what might come next.", "trigger": "New transmission received" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Director Orion welcomes the learner back to Explorer Academy Headquarters — the same briefing room where this all began, though it feels different walking in this time.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Something is clearly being celebrated today. But watching Director Orion, it's obvious this isn't about the mystery of Outpost Echo at all — it's about something else entirely.", "trigger": "Return to Headquarters" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner opens their Explorer Journal back to its very first page and reads forward — all the way from a nervous first entry to whoever they are now.", "trigger": "Journal reviewed and journey reflected on" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "It becomes clear what the Academy is actually celebrating: not what the learner found at Outpost Echo, but how they went about finding it — observing carefully, asking thoughtful questions, testing ideas, and being willing to change their mind when the evidence did.", "trigger": "Investigative habits celebrated" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must pick out their favourite investigations from the whole campaign and put together a final expedition report — the last entry of the Outpost Echo mystery.", "trigger": "Favourite investigations identified and report completed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The probationary status that began with a single letter in Mission 1 officially ends. The learner is no longer being tested as a possible Explorer — they receive their Explorer Certificate as one.", "trigger": "Explorer status received" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "Atlas shares something the learner didn't know until now: Outpost Echo was never the only expedition. Other stations, other teams, are out there right now investigating mysteries of their own.", "trigger": "Wider Explorer Academy world revealed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Just as the celebration settles, a new transmission arrives — from a research station nobody has mentioned before. Whatever it is, it's clearly not finished being a mystery yet.", "trigger": "New transmission received" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "reflection",
       "duration": 6,
       "difficulty": "explorer",
-      "storyContext": "Director Orion welcomes the learner back to Explorer Academy Headquarters.",
-      "instructions": "Reflect on your entire journey through the campaign, from the first invitation to now.",
+      "storyContext": "Director Orion has welcomed the learner back to Explorer Academy Headquarters — the same room, the same Director, but a very different Explorer walking in this time.",
+      "instructions": "Reflect honestly on your entire journey through the campaign, from the first invitation to right now. What actually changed, not just what happened.",
       "output": "A written reflection on the whole learning journey.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "reading",
       "duration": 6,
       "difficulty": "explorer",
-      "storyContext": "The Explorer Journal has recorded every observation since Mission 1.",
-      "instructions": "Look back through your Explorer Journal from the very first entry.",
+      "storyContext": "The Explorer Journal has recorded every observation since Mission 1 — it's the one thing that's been with you for the entire expedition.",
+      "instructions": "Look back through your Explorer Journal from the very first entry, and notice anything that reads differently now than it did when you wrote it.",
       "output": "Notes on what stands out from reviewing the journal.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "discussion",
       "duration": 6,
       "difficulty": "explorer",
-      "storyContext": "The Academy celebrates how the learner investigated, not just what they discovered.",
-      "instructions": "Identify your favourite investigations from the campaign and explain why.",
+      "storyContext": "The Academy celebrates how the learner investigated, not just what they discovered — so this is about the investigations that mattered to you, not the ones that sound most impressive.",
+      "instructions": "Identify your favourite investigations from the campaign and explain specifically what made each one stand out.",
       "output": "A list of favourite investigations with reasons.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "writing",
       "duration": 6,
       "difficulty": "explorer",
-      "storyContext": "A final expedition report will close out the Outpost Echo investigation.",
-      "instructions": "Complete a final expedition report summarising the whole campaign.",
+      "storyContext": "A final expedition report will close out the Outpost Echo investigation for good — the official record of how the mystery was actually solved.",
+      "instructions": "Complete a final expedition report summarising the whole campaign, as if it will be read by the next Explorer to visit Outpost Echo.",
       "output": "A completed final expedition report.",
       "schedulerCategory": "core"
     },
@@ -77,8 +77,8 @@
       "category": "creative",
       "duration": 6,
       "difficulty": "explorer",
-      "storyContext": "The learner officially graduates from probationary status.",
-      "instructions": "Personalise your Explorer Certificate to mark officially becoming an Explorer.",
+      "storyContext": "The probationary status that began with a single letter in Mission 1 is officially over.",
+      "instructions": "Personalise your Explorer Certificate to mark officially becoming an Explorer — in your journal, or using the optional printable certificate, whichever feels right.",
       "output": "A personalised Explorer Certificate.",
       "schedulerCategory": "core"
     },
@@ -117,7 +117,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["What kind of Explorer have you become?"]
+    "prompts": ["What kind of Explorer have you become — and how is that different from who you were when you opened that first invitation in Mission 1?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0021",
