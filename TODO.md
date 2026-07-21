@@ -249,7 +249,7 @@ Success Criteria
 Status
 
 ```
-IN PROGRESS — World Bible Compiler complete (src/world/ + src/parent/ populated); Workbook Compiler prompt drafting next
+IN PROGRESS — World Bible Compiler complete (src/world/ + src/parent/ populated); Asset Compiler Batch 1 complete (Missions 1–5: workbook, parent enrichment, image specs); Batch 2 (Missions 6–10) next
 ```
 
 Goal
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**All 5 compiler prompts (`CAMPAIGN_COMPILER.md`, `MISSION_COMPILER.md`, `WORLD_BIBLE_COMPILER.md`, `MISSION_RESOURCE_CURATOR.md`, `ASSET_COMPILER.md`) are now campaign-agnostic** — parameterized (`<source-document>`, `<campaign-slug>`, `<mission-count>`, `<resources-document>`), with Campaign 01's specific answers (character names, curriculum subjects, experiment mission numbers) moved into labelled examples instead of being written as universal rules. Await approval to start Phase 5 execution in batches (proposed: Missions 1–5 first), generating `generated/workbook/`, `generated/parent/enrichment/`, `generated/image-specifications/`.
+**Asset Compiler Batch 1 (Missions 1–5) is complete** — notebook instructions, one justified printable (Mission 2's map-symbols card), parent enrichment with curriculum references, embedded vocabulary, and image specifications are all generated under `portal/campaigns/campaign01/generated/`. Await approval to start Batch 2 (Missions 6–10), which will also produce the first `generated/resources/experiments.json` entries (Missions 7 and 10 are experiment-driven).

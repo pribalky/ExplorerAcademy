@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0002",
+  "curriculumRefs": ["CURRICULUM-0002", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children often try to make a sketch map 'to scale' by eye and get frustrated when proportions don't match — reassure them a sketch map only needs to be clear and ordered correctly, not accurately scaled.",
+    "Some children label areas by what they're called rather than what they noticed about them, which loses the observational detail the mission is really after."
+  ],
+  "stretchQuestions": [
+    "If you had to explain your sketch map to someone who couldn't see the real station, what's the one thing you'd want to make sure they understood first?",
+    "What's one detail your map doesn't capture that you think matters anyway?"
+  ],
+  "estimatedSupervision": "Light — a ruler and a flat surface help with the sketch map, but the survey and labelling are independent. A parent may want to look over the finished map together to talk through what it shows."
+}

@@ -1,0 +1,35 @@
+{
+  "campaignId": "CAMPAIGN-0001",
+  "missions": [
+    {
+      "missionId": "MISSION-0001",
+      "notebookPage": "pages/mission01.md",
+      "printable": null,
+      "printableReason": "All tasks (journal setup, writing, five observations) are naturally notebook-first; nothing here is faster or clearer printed."
+    },
+    {
+      "missionId": "MISSION-0002",
+      "notebookPage": "pages/mission02.md",
+      "printable": "printables/mission02-map-symbols-card.md",
+      "printableReason": "Optional map-symbols reference card — a small set of cartography symbols is faster to recognise from a printed card than to hand-copy, and it's explicitly offered as an optional extra for the Extension activity, not the core sketch map."
+    },
+    {
+      "missionId": "MISSION-0003",
+      "notebookPage": "pages/mission03.md",
+      "printable": null,
+      "printableReason": "Tables and comparisons are drawn directly in the journal; no diagram or reference card is needed."
+    },
+    {
+      "missionId": "MISSION-0004",
+      "notebookPage": "pages/mission04.md",
+      "printable": null,
+      "printableReason": "Timeline, fact/assumption sorting and the rewritten log entry are all notebook-native writing tasks."
+    },
+    {
+      "missionId": "MISSION-0005",
+      "notebookPage": "pages/mission05.md",
+      "printable": null,
+      "printableReason": "Measurement tables and the field guide sketch are both naturally hand-drawn; no printed reference is needed."
+    }
+  ]
+}

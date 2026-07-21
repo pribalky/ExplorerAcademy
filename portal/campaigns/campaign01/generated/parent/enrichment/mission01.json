@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0001",
+  "curriculumRefs": ["CURRICULUM-0001", "CURRICULUM-0002", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children often treat 'observation' as just naming an object rather than noticing specific, non-obvious detail — the five-observations task is designed to push past the first, obvious fact.",
+    "Some children write what they think Explorer Academy 'wants to hear' in their expectations entry rather than their honest first thoughts, which makes the entry less useful as a baseline to look back on later."
+  ],
+  "stretchQuestions": [
+    "If Explorer Academy is watching for curiosity, persistence and careful observation, which of the three do you think you're strongest at already — and which would you most like to get better at?",
+    "Could two people make five completely different observations about the same object and both be right? Why?"
+  ],
+  "estimatedSupervision": "Minimal — a parent or carer can read the invitation alongside the child once, then leave them to write independently. Worth checking in briefly during the observation challenge if the child stalls after one or two entries."
+}

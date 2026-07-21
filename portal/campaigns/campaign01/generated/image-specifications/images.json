@@ -1,0 +1,71 @@
+{
+  "campaignId": "CAMPAIGN-0001",
+  "images": [
+    {
+      "imageId": "IMAGE-0001",
+      "missionId": "MISSION-0001",
+      "title": "Director Orion's Briefing",
+      "purpose": "Key scene image for the mission's Discovery beat, where Director Orion explains the probationary expedition to Outpost Echo.",
+      "description": "Director Orion, standing in a calm, softly lit briefing room at Explorer Academy Headquarters, addressing the learner. A holographic or paper map of Outpost Echo is visible between them. The mood is welcoming but serious — the beginning of a genuine trial, not a casual invitation.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "high"
+    },
+    {
+      "imageId": "IMAGE-0002",
+      "missionId": "MISSION-0002",
+      "title": "Arrival at Outpost Echo",
+      "purpose": "Key establishing scene for the mission's Hook beat — the learner's first sight of the deserted station.",
+      "description": "The exterior of Outpost Echo: a research station showing clear signs of hasty departure rather than ruin — equipment left out, a door ajar, no visible damage. Quiet and still rather than frightening; the mood is mystery, not danger.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "high"
+    },
+    {
+      "imageId": "IMAGE-0003",
+      "missionId": "MISSION-0002",
+      "title": "Example Sketch Map of Outpost Echo",
+      "purpose": "Reference exemplar for the Core 'Produce a Simple Sketch Map' and Extension 'Improve the Station Map' activities, showing what a clearly labelled sketch map with a symbol key looks like.",
+      "description": "A simple hand-drawn-style map diagram of Outpost Echo's main areas as known at this point in the story (entrance, main corridor, laboratory, living quarters), with a small key in one corner showing 2-3 basic symbols. Deliberately plain and legible rather than decorative, so it reads as something a learner could realistically produce themselves.",
+      "style": "Simple line-art map diagram, not a painted scene.",
+      "orientation": "portrait",
+      "aspectRatio": "3:4",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0004",
+      "missionId": "MISSION-0003",
+      "title": "The Assembled Explorer Toolkit",
+      "purpose": "Key scene image for the mission's Breakthrough beat, where the learner assembles a complete investigation kit.",
+      "description": "A flat-lay arrangement of an Explorer's toolkit on a wooden table or station desk: an Explorer Journal, a ruler, a tape measure, a pencil, and a few small sample containers. No characters needed — the kit itself is the subject.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "4:3",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0005",
+      "missionId": "MISSION-0004",
+      "title": "A Name in the Static",
+      "purpose": "Key scene image for the mission's Breakthrough beat, where the learner first discovers Dr. Elara Quinn's name among the recovered logs.",
+      "description": "The damaged communications terminal at Outpost Echo, its screen flickering with corrupted static and fragments of text, with the partially legible name 'E. QUINN' visible among the noise. Dr. Quinn herself is not shown — she is known only through records at this point in the story, so no character or portrait should appear.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "high"
+    },
+    {
+      "imageId": "IMAGE-0006",
+      "missionId": "MISSION-0005",
+      "title": "Strange Footprints",
+      "purpose": "Key scene image for the mission's Hook beat, where the learner discovers a series of unusual footprints outside the station.",
+      "description": "A trail of unusual footprints in soft ground just outside Outpost Echo, leading away toward the treeline or rocks. The tracks should read as genuinely ambiguous — not obviously human, not obviously any specific named animal — so the image doesn't give away the mission's conclusion.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "medium"
+    }
+  ]
+}

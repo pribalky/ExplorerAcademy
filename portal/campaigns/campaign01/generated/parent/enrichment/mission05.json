@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0005",
+  "curriculumRefs": ["CURRICULUM-0003", "CURRICULUM-0004", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children often pick the explanation that seems most exciting rather than the one the measurements actually support — the mission's point is ruling out with evidence, not guessing the most interesting answer.",
+    "Measuring 'spacing' between tracks is sometimes skipped in favour of just length and width, but spacing is often the detail that best distinguishes between explanations."
+  ],
+  "stretchQuestions": [
+    "Which piece of evidence did the most work in ruling out an explanation? Could you have reached your conclusion without it?",
+    "Is it possible to rule out every explanation and be left with none that fit? What would you do next if that happened?"
+  ],
+  "estimatedSupervision": "Light — a ruler or tape measure is needed for the measuring task; the comparison and justification steps work well as independent thinking, with a parent available to talk through the final conclusion."
+}

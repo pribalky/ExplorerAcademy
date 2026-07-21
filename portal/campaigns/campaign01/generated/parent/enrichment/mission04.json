@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0004",
+  "curriculumRefs": ["CURRICULUM-0001", "CURRICULUM-0002", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children often sort something into 'Facts' simply because it feels certain, not because the logs actually state it directly — worth asking 'where exactly does it say that?' if a fact looks shaky.",
+    "The chronological timeline can get treated as a guessing game rather than an evidence-based ordering; encourage pointing to a specific clue in the logs for each placement."
+  ],
+  "stretchQuestions": [
+    "Which assumption in your list do you feel most confident about, even though it isn't a confirmed fact? What makes it feel likely?",
+    "If one more log fragment turned up tomorrow, what would you most want it to answer?"
+  ],
+  "estimatedSupervision": "Minimal — this mission is largely independent reading and sorting; a parent may enjoy discussing the facts-vs-assumptions split afterwards rather than supervising during it."
+}

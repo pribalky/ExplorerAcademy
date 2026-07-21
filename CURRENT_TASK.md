@@ -6,55 +6,79 @@
 
 ## Milestone
 
-Asset Compiler execution — Batch 1 (Missions 1–5)
+Asset Compiler execution — Batch 2 (Missions 6–10)
 
 ## Objective
 
-Run the revised `prompts/ASSET_COMPILER.md` for the first batch of missions: notebook instructions, parent enrichment (misconceptions/stretch questions/supervision), vocabulary, and image specifications — generating only what each mission's content actually calls for, per the notebook-first, minimal-spec philosophy now encoded in the prompt.
+Continue the Asset Compiler run for the next batch of missions, following the same pattern established in Batch 1: notebook instructions, parent enrichment (misconceptions/stretch questions/supervision, with `curriculumRefs` grounded in each mission's actual activity `type` fields), vocabulary embedded in the notebook page where a mission's own text introduces new terms, and image specifications for key scenes — generating only what each mission's content actually calls for.
 
 ## Inputs
 
-- `prompts/ASSET_COMPILER.md` (revised, committed, ready to execute)
-- `portal/campaigns/campaign01/src/missions/mission01.json`–`mission05.json`
+- `prompts/ASSET_COMPILER.md`
+- `portal/campaigns/campaign01/src/missions/mission06.json`–`mission10.json`
 - `portal/campaigns/campaign01/src/world/*.json`, `src/parent/curriculum-mapping.json` (for grounding/references)
+- `portal/campaigns/campaign01/generated/workbook/pages/mission01.md`–`mission05.md` and `generated/parent/enrichment/mission01.json`–`mission05.json` as the established pattern to follow
 
 ## Relevant Documentation
 
-`prompts/ASSET_COMPILER.md` itself — all decisions are now encoded there.
+`prompts/ASSET_COMPILER.md` itself — all decisions are encoded there.
 
 ## Files Expected to Change
 
-- `portal/campaigns/campaign01/generated/workbook/workbook.json`, `pages/mission01.md`–`mission05.md` (+ printables only where justified)
-- `portal/campaigns/campaign01/generated/parent/enrichment/mission01.json`–`mission05.json`
-- `portal/campaigns/campaign01/generated/image-specifications/images.json` (entries for missions 1–5)
-- Experiments: none expected in this batch (Missions 7/10/11/17 are experiment-driven, not 1–5)
+- `portal/campaigns/campaign01/generated/workbook/workbook.json` (extend index), `pages/mission06.md`–`mission10.md` (+ printables only where justified)
+- `portal/campaigns/campaign01/generated/parent/enrichment/mission06.json`–`mission10.json`
+- `portal/campaigns/campaign01/generated/image-specifications/images.json` (extend with entries for missions 6–10)
+- `portal/campaigns/campaign01/generated/resources/experiments.json` (new — Mission 7 and Mission 10 are experiment-driven per `505_RESOURCES.md`'s scoping, so this batch is the first to produce it)
 
 ## Implementation Plan
 
-Follow `ASSET_COMPILER.md` exactly. For each mission: write notebook instructions in Markdown; decide per-mission whether a printable is genuinely justified (expect most missions in this batch — 1–5 are reading/observation/measuring/tracking-focused — need none); add parent enrichment only (new fields, no restating `parentGuide`); add vocabulary only where the mission's own text introduces new terms; add one image spec for a key scene, naming real World Bible characters/locations.
+Same as Batch 1. Additionally: for Missions 7 and 10, scan their compiled JSON for the `type: "experiment"` activity and produce full experiment instructions (Objective/Materials/Steps/Safety notes/Expected observations/Scientific explanation) in `generated/resources/experiments.json`, using only common household items.
 
 ## Out of Scope
 
-Missions 6–21 (later batches). Experiments (not relevant to this batch). Anything already covered (Discovery Log prompts beyond the existing reflection prompt, additional Extension activities, reading/resource recommendations).
+Missions 1–5 (done), 11–21 (later batches). Anything already covered (Discovery Log prompts beyond the existing reflection prompt, additional Extension activities, reading/resource recommendations already in `505_RESOURCES.md`).
 
 ## Success Criteria
 
-- Every generated file references a real mission ID.
-- No content restates what's already in a mission's `parentGuide`/`reflection.prompts`/embedded Extension activity.
-- Notebook instructions are genuinely completable with a blank notebook alone.
-- Any printable produced is clearly justified and framed as optional.
+Same as Batch 1, plus: every experiment references a mission that actually has an experiment-type activity (verified against the mission JSON, not assumed).
 
 ## Manual Verification
 
-JSON/Markdown validity; spot-check that generated content doesn't duplicate existing mission fields; confirm no `src/` files were touched.
+JSON/Markdown validity; spot-check no duplication of existing mission fields; confirm no `src/` files touched.
 
 ## Deliverables
 
-Batch 1 generated assets for Missions 1–5.
+Batch 2 generated assets for Missions 6–10.
 
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Asset Compiler execution — Batch 1 (Missions 1–5) — COMPLETE
+
+## Completion Summary
+
+Ran `prompts/ASSET_COMPILER.md` against Missions 1–5, producing:
+
+- **Notebook instructions** (`generated/workbook/pages/mission01.md`–`mission05.md`): direct second-person guidance rewriting each mission's Core/Extension/Rabbit Hole activities into concrete notebook steps (e.g. "draw a table with three columns headed Object, Estimate, Actual" rather than restating the mission JSON's `instructions` field verbatim).
+- **One printable** (`generated/workbook/printables/mission02-map-symbols-card.md`): a map-symbols reference card for Mission 2's Extension activity — the only mission in this batch judged to meet the PHILOSOPHY bar ("a map that's faster to follow printed than hand-copied"). All other missions in this batch (1, 3, 4, 5) were assessed and found to need no printable — reasons recorded per-mission in `workbook.json`.
+- **`generated/workbook/workbook.json`**: index of all 5 missions with `printable: null` + a one-line `printableReason` for the 4 that got none, and the justification for Mission 2's.
+- **Vocabulary**: embedded as a "Words worth knowing" section directly in the relevant notebook pages (no dedicated file path exists for vocabulary in `ASSET_COMPILER.md`'s OUTPUT LOCATION tree, so it was kept alongside the content it supports rather than inventing an undefined location) — Mission 1 ("probationary"), Mission 3 ("estimate"), Mission 4 ("chronological", "assumption"), Mission 5 ("eliminate"). Mission 2 got none — its own text introduces no new vocabulary beyond common words.
+- **Parent enrichment** (`generated/parent/enrichment/mission01.json`–`mission05.json`): `expectedMisconceptions`, `stretchQuestions`, `estimatedSupervision` per mission — none restating `parentGuide`'s existing `discussionPoints`/`preparation`/`assessment`. Added a `curriculumRefs` field (array of `CURRICULUM-####` IDs) grounded directly in each mission's actual activity `type` fields (e.g. an activity typed `"mathematics"` → `CURRICULUM-0003`), rather than the curriculum document's non-exhaustive "primary emphasis" list, so every reference is independently verifiable against the mission JSON itself.
+- **Image specifications** (`generated/image-specifications/images.json`): one key-scene spec per mission (5 total) plus one additional exemplar spec for Mission 2's sketch map, per the pattern `ASSET_COMPILER.md` documents for missions whose Core activity output is a diagram/map. Each names real World Bible characters/locations (Director Orion, Explorer Academy Headquarters, Outpost Echo) where the scene calls for them, and Mission 4's spec explicitly avoids depicting Dr. Elara Quinn (per her World Bible entry: "known only through journals, recordings... during most of the campaign").
+- No experiments produced — correctly out of scope, since none of Missions 1–5 have a `type: "experiment"` activity (confirmed by scanning each mission's `activities[]`).
+
+## Manual Verification
+
+- Validated all generated JSON with `python3 -c "json.load(...)"` — all files parse.
+- `git status --short` confirmed only new files under `generated/` were created; nothing under `src/` was touched.
+- Spot-checked each notebook page and enrichment file against its mission's `parentGuide`/`reflection.prompts`/embedded Extension activity — no restated content found.
+
+## Verification
+
+Batch 1 produces genuinely completable-with-a-blank-notebook content for Missions 1–5, with the one printable clearly framed as optional and justified, and every generated asset traceable to a real mission ID. ✅
 
 ---
 

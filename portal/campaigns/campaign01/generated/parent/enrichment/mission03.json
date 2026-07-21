@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0003",
+  "curriculumRefs": ["CURRICULUM-0002", "CURRICULUM-0003", "CURRICULUM-0005", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children sometimes measure first and then quietly adjust their 'estimate' to look more accurate — encourage writing the estimate down before any tool touches the object, even if it turns out to be wrong.",
+    "A close estimate isn't the same as a correct process — the point of the table is comparing honestly, not getting the 'right' number."
+  ],
+  "stretchQuestions": [
+    "Were your estimates closer for some kinds of objects than others? Why might that be?",
+    "If you had to teach someone else to estimate well, what would you tell them to look at first?"
+  ],
+  "estimatedSupervision": "Light to moderate — gathering a few household measuring tools beforehand helps the session flow; the estimating and table-drawing itself needs little supervision once set up."
+}
