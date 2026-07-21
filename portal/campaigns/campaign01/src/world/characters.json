@@ -1,0 +1,36 @@
+[
+  {
+    "id": "CHARACTER-0001",
+    "name": "Director Orion",
+    "role": "Leader of Explorer Academy",
+    "description": "Provides mission briefings, long-term guidance and occasional feedback. Rarely gives direct answers, preferring questions that encourage investigation.",
+    "image": "CHARACTER-0001-portrait",
+    "personality": "A mentor who values careful questioning over quick answers.",
+    "knowledge": "Keeper of Academy records; oversees the Expedition Network.",
+    "relationships": "Welcomes the learner at the start of the campaign (Mission 1) and again at Graduation (Mission 21)."
+  },
+  {
+    "id": "CHARACTER-0002",
+    "name": "Atlas",
+    "role": "Explorer Academy's expedition AI",
+    "description": "Manages mission logistics, records discoveries, delivers recovered archives, and offers procedural hints when required. Explains how to investigate but not what to conclude, preserving learner independence.",
+    "image": "CHARACTER-0002-portrait",
+    "personality": "Helpful and procedural; deliberately withholds conclusions so the learner reasons for themselves.",
+    "knowledge": "Station systems, mission logistics, safety and procedural guidance."
+  },
+  {
+    "id": "CHARACTER-0003",
+    "name": "Dr. Elara Quinn",
+    "role": "Lead scientist of the missing expedition",
+    "description": "Known only through journals, recordings and research notes during most of the campaign. Her work provides the narrative thread connecting otherwise independent investigations.",
+    "image": "CHARACTER-0003-portrait",
+    "knowledge": "Led the original Outpost Echo expedition; her final report (Mission 19) explains why the expedition suspended operations rather than risk publishing unverified conclusions."
+  },
+  {
+    "id": "CHARACTER-0004",
+    "name": "The Original Expedition Team",
+    "role": "The missing expedition's research team",
+    "description": "A diverse group of researchers specialising in Biology, Engineering, Astronomy, Mathematics and Environmental Science. Encountered only through recovered artefacts and records, allowing each mission to reveal another piece of the larger story.",
+    "image": "CHARACTER-0004-portrait"
+  }
+]

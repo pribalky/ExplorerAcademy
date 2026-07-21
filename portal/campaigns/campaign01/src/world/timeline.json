@@ -1,0 +1,26 @@
+[
+  {
+    "id": "EVENT-0001",
+    "title": "Act I — Arrival",
+    "description": "The learner joins Explorer Academy and reaches the abandoned research outpost. Initial missions focus on orientation, observation and learning how explorers work. The first anomalies are discovered.",
+    "sequence": 1
+  },
+  {
+    "id": "EVENT-0002",
+    "title": "Act II — Investigation",
+    "description": "Recovered evidence reveals that the previous expedition was pursuing several interconnected investigations. Each mission uncovers another fragment through experiments, field work and problem-solving.",
+    "sequence": 2
+  },
+  {
+    "id": "EVENT-0003",
+    "title": "Act III — Reconstruction",
+    "description": "The learner assembles the complete sequence of events. Missing records are recovered. Scientific conclusions are verified through evidence gathered across earlier missions.",
+    "sequence": 3
+  },
+  {
+    "id": "EVENT-0004",
+    "title": "Act IV — Graduation",
+    "description": "The recovered archive is successfully restored. Explorer Academy recognises the learner as a fully qualified Explorer.",
+    "sequence": 4
+  }
+]

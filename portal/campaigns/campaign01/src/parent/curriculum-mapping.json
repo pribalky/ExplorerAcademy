@@ -1,0 +1,112 @@
+[
+  {
+    "id": "CURRICULUM-0001",
+    "country": "United Kingdom",
+    "curriculum": "england",
+    "subject": "Reading",
+    "strand": "Comprehension, Inference and Evidence Evaluation",
+    "outcomes": [
+      "Retrieval",
+      "Inference",
+      "Sequencing",
+      "Vocabulary in context",
+      "Summarising",
+      "Comparing information from multiple sources",
+      "Reading increasingly complex informational texts",
+      "Emphasised in Missions 1, 4, 8, 12, 14, 19"
+    ]
+  },
+  {
+    "id": "CURRICULUM-0002",
+    "country": "United Kingdom",
+    "curriculum": "england",
+    "subject": "Writing",
+    "strand": "Investigative and Reflective Writing",
+    "outcomes": [
+      "Field notes",
+      "Observations",
+      "Instructions",
+      "Reports",
+      "Explanations",
+      "Predictions",
+      "Reflections",
+      "Evidence summaries",
+      "Emphasised throughout all missions, with increasing independence"
+    ]
+  },
+  {
+    "id": "CURRICULUM-0003",
+    "country": "United Kingdom",
+    "curriculum": "england",
+    "subject": "Mathematics",
+    "strand": "Measurement, Data and Problem Solving",
+    "outcomes": [
+      "Number",
+      "Measurement",
+      "Time",
+      "Geometry",
+      "Coordinates",
+      "Data handling",
+      "Tables",
+      "Graphs",
+      "Estimation",
+      "Multi-step problem solving",
+      "Emphasised in Missions 3, 6, 7, 10, 11, 12, 13"
+    ]
+  },
+  {
+    "id": "CURRICULUM-0004",
+    "country": "United Kingdom",
+    "curriculum": "england",
+    "subject": "Science",
+    "strand": "Working Scientifically",
+    "outcomes": [
+      "Working scientifically",
+      "Fair testing",
+      "Observation",
+      "Classification",
+      "Materials",
+      "Forces",
+      "Electricity",
+      "Earth science",
+      "Weather",
+      "Space",
+      "Environmental systems",
+      "Scientific enquiry is embedded across the entire campaign rather than confined to individual lessons"
+    ]
+  },
+  {
+    "id": "CURRICULUM-0005",
+    "country": "United Kingdom",
+    "curriculum": "england",
+    "subject": "Engineering & Design",
+    "strand": "Design, Test and Evaluate",
+    "outcomes": [
+      "Plan",
+      "Build",
+      "Test",
+      "Improve",
+      "Evaluate",
+      "Communicate design decisions",
+      "Major engineering missions: 7, 11, 15, 17"
+    ]
+  },
+  {
+    "id": "CURRICULUM-0006",
+    "country": "United Kingdom",
+    "curriculum": "england",
+    "subject": "Cross-Curricular Skills",
+    "strand": "Critical Thinking and Communication",
+    "outcomes": [
+      "Critical thinking",
+      "Communication",
+      "Creativity",
+      "Collaboration (through discussion)",
+      "Problem solving",
+      "Information literacy",
+      "Reflection",
+      "Resilience",
+      "Reinforced repeatedly through authentic investigative contexts rather than standalone activities"
+    ]
+  }
+]

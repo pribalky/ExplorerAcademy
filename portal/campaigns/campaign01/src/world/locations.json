@@ -1,0 +1,54 @@
+[
+  {
+    "id": "LOCATION-0001",
+    "name": "Outpost Echo",
+    "description": "A long-abandoned research station whose final expedition disappeared from communication many years ago. The learner's probationary training ground for the whole campaign."
+  },
+  {
+    "id": "LOCATION-0002",
+    "name": "The Laboratory",
+    "description": "A station laboratory containing carefully catalogued but incompletely labelled samples (Mission 9).",
+    "connections": ["LOCATION-0001"]
+  },
+  {
+    "id": "LOCATION-0003",
+    "name": "Communications Terminal / Array",
+    "description": "A small communications terminal, later a wider communications array, through which recovered expedition logs and a corrupted transmission from Dr. Quinn are restored (Missions 4, 8).",
+    "connections": ["LOCATION-0001"]
+  },
+  {
+    "id": "LOCATION-0004",
+    "name": "The Signal Tower",
+    "description": "A remaining communications structure, intentionally shut down by the original expedition, requiring a multi-stage engineering repair before it can safely transmit long-range (Mission 15).",
+    "connections": ["LOCATION-0001", "LOCATION-0003"]
+  },
+  {
+    "id": "LOCATION-0005",
+    "name": "The Storage Facility",
+    "description": "A facility blocked by a partially collapsed bridge, believed to hold additional expedition records (Mission 7).",
+    "connections": ["LOCATION-0001"]
+  },
+  {
+    "id": "LOCATION-0006",
+    "name": "Underground Geological Survey Area",
+    "description": "A previously inaccessible underground survey area revealed once power was restored, containing rock samples, survey maps and unusual geological features (Mission 16).",
+    "connections": ["LOCATION-0001"]
+  },
+  {
+    "id": "LOCATION-0007",
+    "name": "The Observatory",
+    "description": "A damaged observatory containing unfinished astronomical observations the expedition had been tracking (Mission 12).",
+    "connections": ["LOCATION-0001"]
+  },
+  {
+    "id": "LOCATION-0008",
+    "name": "The Weather Station",
+    "description": "An intermittently functioning weather station used to compare current observations against archived expedition records (Mission 6).",
+    "connections": ["LOCATION-0001"]
+  },
+  {
+    "id": "LOCATION-0009",
+    "name": "Explorer Academy Headquarters",
+    "description": "Where the learner receives their invitation at the very start of the campaign (Mission 1) and returns to officially graduate as a fully recognised Explorer (Mission 21)."
+  }
+]

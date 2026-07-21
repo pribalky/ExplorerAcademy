@@ -1,0 +1,49 @@
+{
+  "id": "ORIENTATION-0001",
+  "campaignId": "CAMPAIGN-0001",
+  "welcome": "Explorer Academy has been designed differently from traditional educational programmes. Your child will experience stories, mysteries, investigations and engineering challenges. Behind every activity is carefully planned curriculum coverage, but this is intentionally hidden from the learner. Your role is not to teach. Your role is to support exploration.",
+  "missionControlRole": {
+    "summary": "Parents act as Mission Control, providing encouragement and practical support rather than direct instruction.",
+    "responsibilities": [
+      "Choosing an appropriate session length",
+      "Providing simple materials",
+      "Helping prepare optional experiments",
+      "Encouraging discussion after missions",
+      "Celebrating persistence and curiosity"
+    ],
+    "guidance": "Avoid solving problems for your child. When they ask for help, respond with questions that encourage further thinking.",
+    "exampleQuestions": [
+      "What evidence do you have?",
+      "How could you test that idea?",
+      "What else might explain it?",
+      "What changed your mind?"
+    ]
+  },
+  "sessionLength": [
+    { "availableTime": "30 minutes", "experience": "Core activities only" },
+    { "availableTime": "45 minutes", "experience": "Core + selected Extension" },
+    { "availableTime": "60 minutes", "experience": "Standard mission" },
+    { "availableTime": "90 minutes", "experience": "Core + Extension + Rabbit Holes" }
+  ],
+  "materials": {
+    "essential": ["Notebook or sketchbook", "Pencil", "Ruler", "Eraser"],
+    "useful": ["Coloured pencils", "Tape", "Scissors", "Glue", "Simple measuring tape", "Torch", "Household timer"],
+    "occasionallyUsed": ["Cardboard", "String", "Paper cups", "Elastic bands", "Coins", "Kitchen scales", "Measuring jug"]
+  },
+  "supportingYourChild": {
+    "helpful": [
+      "Encourage observation",
+      "Ask open questions",
+      "Celebrate good reasoning",
+      "Allow mistakes",
+      "Discuss discoveries"
+    ],
+    "avoid": [
+      "Giving answers immediately",
+      "Correcting every mistake",
+      "Treating activities as tests",
+      "Comparing progress with others"
+    ]
+  },
+  "assessmentPhilosophy": "Explorer Academy does not rely on traditional tests. Progress is demonstrated through the learner's ability to ask increasingly sophisticated questions, make evidence-based decisions, explain reasoning clearly, revise conclusions when appropriate, plan investigations independently, and apply previously learned ideas to unfamiliar situations. Success is measured by growth in investigative thinking."
+}

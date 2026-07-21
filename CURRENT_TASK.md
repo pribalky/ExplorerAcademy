@@ -6,45 +6,47 @@
 
 ## Milestone
 
-Asset Compiler
+Draft the Workbook Compiler prompt (notebook-first philosophy)
 
 ## Objective
 
-Generate supporting assets for Campaign 01 — workbook pages, parent guides, experiments, reflection prompts, reading lists, image specifications, vocabulary, discussion prompts — from the now-fully-compiled campaign and mission data.
+Before generating any workbook/asset content, update `prompts/ASSET_COMPILER.md` (or draft a leaner `WORKBOOK_COMPILER.md`) to encode the user's stated philosophy: everything should be doable in a plain notebook; printables are optional extras, never required; keep specifications minimal. The current `ASSET_COMPILER.md` treats workbook pages and printables as fairly central, which doesn't match this — same reconciliation pattern used for every other prompt this session before it was executed.
 
 ## Inputs
 
-- `portal/campaigns/campaign01/src/campaign.json`, `src/missions/mission01.json`–`mission21.json` (all real, compiled content)
-- `docs/50-content/501_CAMPAIGN_01.md` Part 6 (Parent Guide, Curriculum Mapping, Optional Printable Resources, Digital Resources sections — not yet closely read for this purpose)
-- `portal/campaigns/campaign01/generated/` (currently empty placeholder folders: `workbook/`, `parent/`, `resources/`, `image-specifications/` — created in Milestone 1.1, never populated)
+- `prompts/ASSET_COMPILER.md` (current prompt to revise)
+- User's stated philosophy (this conversation): notebook-first, prints optional/extension-only, minimal specs
+- Confirmed decisions from this conversation:
+  - Overlaps should be **enriched, never duplicated**: `parentGuide.discussionPoints` gets genuinely new fields (misconceptions, stretch questions, supervision time), not restated; Discovery Log prompts stay as-is (platform only captures `entryType: "reflection"` — no UI for other types yet, so don't generate content nothing can use); the one embedded Extension activity per mission is not multiplied; reading recommendations are already done (`505_RESOURCES.md`) and should be referenced, not redone.
+- Now-populated `portal/campaigns/campaign01/src/world/` and `src/parent/` (World Bible, Characters, Locations, Timeline, Curriculum Mapping, Orientation) — real named entities the workbook/image content can now reference instead of generic descriptions.
 
 ## Relevant Documentation
 
-Not yet identified — no Asset Compiler prompt exists yet in `prompts/` (unlike Campaign/Mission Compiler, which both had one to read first). Worth checking `docs/00-foundation/005_GENERATION_ROADMAP.md` and confirming whether one needs to be authored before this milestone can start, following the established pattern of reading the compiler prompt first.
+`prompts/CAMPAIGN_COMPILER.md`, `prompts/MISSION_COMPILER.md`, `prompts/WORLD_BIBLE_COMPILER.md`, `prompts/MISSION_RESOURCE_CURATOR.md` — all four already establish the pattern of documenting a reconciliation note directly in the prompt file rather than just deciding silently.
 
 ## Files Expected to Change
 
-- New files under `portal/campaigns/campaign01/generated/{workbook,parent,resources,image-specifications}/`
+- `prompts/ASSET_COMPILER.md` (revised) or a new `prompts/WORKBOOK_COMPILER.md`
 
 ## Implementation Plan
 
-Not started. This is a different kind of milestone from Mission Compiler (generating *derived* presentation artefacts from already-compiled source data, per `CLAUDE.md`'s "Never overwrite source content — only generate derived artefacts inside generated/" rule) rather than compiling narrative content — likely needs its own scoping conversation before implementation, same as Campaign Compiler and Mission Compiler both did.
+Draft the revised/new prompt, present it for review, then execute in batches (by mission, similar to Mission Compiler/Resource Curator pacing) only after approval — not before, per the user's explicit "ask clarifying questions... before you begin."
 
 ## Out of Scope
 
-TBD.
+Generating any actual workbook/parent/image-specification content — that's the next milestone after this prompt is approved.
 
 ## Success Criteria
 
-Not yet defined — Phase 5 in `TODO.md` lists the deliverable categories (workbook pages, parent guides, experiments, reflection prompts, reading lists, image specifications, vocabulary, discussion prompts) but no per-category success criteria yet.
+A prompt that a future compiler run (this session or a later one) can follow without re-deriving the notebook-first philosophy or the overlap-handling decisions from scratch.
 
 ## Manual Verification
 
-Not yet performed — milestone not started.
+N/A — this milestone produces a prompt document, not runtime-verifiable content.
 
 ## Deliverables
 
-TBD.
+Revised/new compiler prompt.
 
 ## Completion Notes
 
@@ -52,30 +54,29 @@ Not yet started.
 
 ---
 
-# Previous Milestone — Mission Compiler (Missions 19–21, final batch) — COMPLETE (Phase 4 now complete)
+# Previous Milestone — World Bible Compiler (Phase A + B) — COMPLETE
 
 ## Completion Summary
 
-Compiled `mission19.json` (Recover the Archive), `mission20.json` (Explorer Assessment) and `mission21.json` (Graduation Day) from `501_CAMPAIGN_01.md`, completing Phase 5 — "Graduation" (`storyChapter: "CHAPTER-0005"`, `difficulty: "explorer"`) and **all 21 missions of Campaign 01**.
+Ran `prompts/WORLD_BIBLE_COMPILER.md` in full — both phases, since the content involved (World Bible, 4 Characters, 9 Locations, 4 Timeline events, 6 Curriculum Mapping entities, campaign-level parent orientation) was small enough not to need the multi-session batching Mission Compiler required.
 
-Mission 21 (Graduation Day) required care flagged in advance: its Story Summary explicitly gestures toward Campaign 2 ("Atlas reveals that numerous other expeditions remain active... A final transmission arrives from another research station, quietly introducing the next campaign"). Every beat/activity referencing this stayed strictly within what 501 actually states — no invented station name, campaign title, or mystery details for a campaign that doesn't exist yet.
-
-Reward progression completed its arc across the three "rank"-type rewards: Mission 17 (`"Independent Investigator"`, mid-campaign capability shift) → Mission 20 (`"Explorer Academy Candidate"`, readiness demonstrated) → Mission 21 (`"Certified Explorer"`, the campaign's capstone reward, directly matching 501's own Story Outcome: "Learner becomes a fully recognised Explorer"). Mission 21's reflection prompt is a **direct quote** from 501's own Phase 5 narrative question ("What kind of Explorer have you become?") — the most maximally-grounded prompt in the whole campaign, since 501 states it verbatim rather than requiring synthesis.
+- **`src/world/world-bible.json`** — resolves `campaign.json`'s `worldBibleId` reference (was present-but-unresolved since the Campaign Loader milestone); references the other three world files by ID.
+- **`src/world/characters.json`** — Director Orion, Atlas, Dr. Elara Quinn, the Original Expedition Team (collectively). The Learner deliberately excluded, per 501's own "no predefined appearance, gender or personality is imposed." Each `image` field holds a placeholder reference string (e.g. `"CHARACTER-0001-portrait"`) for a future Asset Compiler pass to fill in — kept the two compilers' responsibilities separate, as planned.
+- **`src/world/locations.json`** — 9 locations, none invented: extracted by grepping every one of the 21 missions' `storyContext` fields for places actually mentioned (Outpost Echo, the laboratory, the communications terminal/array, the Signal Tower, the storage facility, the underground geological survey area, the observatory, the weather station, Explorer Academy Headquarters).
+- **`src/world/timeline.json`** — 4 events, directly from 501's own 4-Act Story Arc, no new plot beats invented.
+- **`src/parent/curriculum-mapping.json`** — 6 entities (one per subject: Reading, Writing, Mathematics, Science, Engineering & Design, Cross-Curricular Skills), compiled directly from 501 Part 6's already-structured coverage text. Per the compiler prompt's own guidance, defaulted to one entity per subject (`curriculum: "england"`) rather than duplicating identical content across `england`/`scotland` rows, since 501 never actually differentiates them — this simplification is recorded here since JSON has no native comment syntax to note it inline.
+- **`src/parent/orientation.json`** — campaign-level parent content (Welcome, Mission Control role, session-length table, materials lists, Supporting Your Child guidance, Assessment Philosophy), distinct from the per-mission `parentGuide`s already embedded in each mission file.
 
 ## Manual Testing Performed
 
-- Confirmed all 3 final mission files parse as valid JSON.
-- **Global ID uniqueness verified programmatically across all 21 missions** (197 total IDs — zero duplicates).
-- **Confirmed every one of `campaign.json`'s 21 `missions[]` entries now resolves to a real, compiled mission file** — the concrete, final proof that the whole 21-mission structure declared back in the Campaign Compiler milestone is now backed by real data.
-- Served `portal/` locally and drove all three final missions with Playwright: each renders correctly; card counts match each mission's Core+Extension activity count at the default 60-minute session.
-- **Ran the full reflection → reward flow on Mission 21 itself** (not just structural checks): submitted the finale's reflection, confirmed it saved to the Discovery Log and correctly earned "Certified Explorer" — the whole learner-facing pipeline (Campaign Loader → Mission Engine → Scheduler → Activity Renderer → Discovery Log → Reward Engine) working end-to-end on the campaign's actual final beat.
-- Parent Guide leakage check repeated for all three — none found.
-- **Full regression pass across all 29 routes** (6 static/campaign routes + all 21 missions + 2 error cases) — every route correct, zero `pageerror`s.
+- All 6 new files confirmed valid JSON.
+- **Global ID uniqueness verified programmatically against every ID already used across `campaign.json` and all 21 missions** (25 new IDs, zero duplicates, zero unexpected collisions).
+- **Confirmed `campaign.json`'s `worldBibleId` now resolves to a real object** with a matching ID — the specific proof point this compiler existed to deliver.
+- No browser/regression testing performed this milestone: these files aren't read by any existing platform code path (`campaign-loader.js` doesn't fetch `src/world/` or `src/parent/`), so there was nothing to regress — confirmed by inspection rather than by running an unnecessary test.
 
 ## Verification
 
-- Every mission validates. ✅ (all 21)
-- References resolve. ✅ (`campaign.json`'s `missions[]` — all 21 entries — verified programmatically against the compiled files, not just assumed)
-- Scheduler metadata exists and behaves correctly across every mission compiled this phase. ✅
-
-This completes **Phase 4 — Mission Compiler** in full: all 21 missions from `501_CAMPAIGN_01.md` are now real, schema-valid, scheduler-tuned, and rendering correctly through the platform with zero code changes beyond the `parentGuide` validation addition made during Mission 1.
+- Every new file is valid JSON. ✅
+- No ID collides with any ID already used in `campaign.json` or `mission01.json`–`mission21.json`. ✅
+- `campaign.json`'s `worldBibleId` now resolves to a real object with a matching ID. ✅
+- Zero platform code changes required (source compilation only). ✅

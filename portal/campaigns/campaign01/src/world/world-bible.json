@@ -1,0 +1,38 @@
+{
+  "id": "WORLDBIBLE-0001",
+  "campaignId": "CAMPAIGN-0001",
+  "characters": ["CHARACTER-0001", "CHARACTER-0002", "CHARACTER-0003", "CHARACTER-0004"],
+  "locations": [
+    "LOCATION-0001",
+    "LOCATION-0002",
+    "LOCATION-0003",
+    "LOCATION-0004",
+    "LOCATION-0005",
+    "LOCATION-0006",
+    "LOCATION-0007",
+    "LOCATION-0008",
+    "LOCATION-0009"
+  ],
+  "timeline": ["EVENT-0001", "EVENT-0002", "EVENT-0003", "EVENT-0004"],
+  "glossary": [
+    { "term": "Explorer Journal", "definition": "The personal notebook every Explorer keeps to record observations, evidence and reflections throughout an expedition." },
+    { "term": "Discovery Log", "definition": "A permanent, cross-campaign record of an Explorer's reflections and discoveries." },
+    { "term": "Rabbit Hole", "definition": "An optional, curiosity-driven investigation that never blocks mission completion." },
+    { "term": "Mission Control", "definition": "The role a parent plays during a campaign — supporting logistics and encouragement, not teaching content directly." },
+    { "term": "Outpost Echo", "definition": "The abandoned research station at the centre of Campaign 01." },
+    { "term": "Explorer Academy", "definition": "The international organisation the learner joins, devoted to exploration, investigation and scientific discovery." }
+  ],
+  "technology": [
+    "Explorer Journal",
+    "Field Scanner",
+    "Sample Kits",
+    "Measuring Equipment",
+    "Maps",
+    "Communication Logs",
+    "Observation Tools"
+  ],
+  "organisations": [
+    { "name": "Explorer Academy", "description": "An international organisation devoted to exploration, investigation and scientific discovery. Values curiosity, evidence, collaboration, observation, integrity and persistence." },
+    { "name": "The Expedition Network", "description": "Explorer Academy's network of research stations across diverse environments, each investigating a particular scientific or engineering domain. Outpost Echo is one dormant station in this network." }
+  ]
+}

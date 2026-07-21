@@ -249,7 +249,7 @@ Success Criteria
 Status
 
 ```
-NOT STARTED
+IN PROGRESS — World Bible Compiler complete (src/world/ + src/parent/ populated); Workbook Compiler prompt drafting next
 ```
 
 Goal
@@ -552,4 +552,6 @@ The project is complete when:
 
 # Current Next Action
 
-**Phase 4 — Mission Compiler is COMPLETE: all 21 missions compiled, validated, and verified end-to-end (including a full reflection-to-reward run on the campaign finale, Mission 21).** Await approval to start Phase 5 – Asset Compiler (workbook pages, parent guides, image specifications, etc.) — no Asset Compiler prompt exists yet in `prompts/`, unlike the previous two phases, so this will need its own scoping conversation, likely starting with reading `docs/00-foundation/005_GENERATION_ROADMAP.md`.
+**World Bible Compiler complete** (`src/world/world-bible.json`, `characters.json`, `locations.json`, `timeline.json`; `src/parent/curriculum-mapping.json`, `orientation.json` — all real, ID-verified, `campaign.json`'s `worldBibleId` now resolves). Also complete: a full mission-by-mission resource curation pass (`docs/50-content/505_RESOURCES.md`, all 21 missions, every resource confirmed real via live web search).
+
+**Next**: draft a notebook-first Workbook Compiler prompt (revised `ASSET_COMPILER.md` or new `WORKBOOK_COMPILER.md`) encoding the user's stated philosophy — plain notebook first, printables optional/extension-only, minimal specs, enrich-not-duplicate for content that overlaps with what's already embedded per mission — for review before any workbook/parent/image-specification content is generated.
