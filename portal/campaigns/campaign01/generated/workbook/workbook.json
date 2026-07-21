@@ -30,6 +30,36 @@
       "notebookPage": "pages/mission05.md",
       "printable": null,
       "printableReason": "Measurement tables and the field guide sketch are both naturally hand-drawn; no printed reference is needed."
+    },
+    {
+      "missionId": "MISSION-0006",
+      "notebookPage": "pages/mission06.md",
+      "printable": null,
+      "printableReason": "Observation, chart and comparison tasks are all naturally drawn directly in the journal; no reference card is needed."
+    },
+    {
+      "missionId": "MISSION-0007",
+      "notebookPage": "pages/mission07.md",
+      "printable": null,
+      "printableReason": "The build-and-test task is a full experiment (see generated/resources/experiments.json), not a printable; the surrounding planning and reflection tasks are notebook-native writing and sketching."
+    },
+    {
+      "missionId": "MISSION-0008",
+      "notebookPage": "pages/mission08.md",
+      "printable": null,
+      "printableReason": "Decoding, reconstruction and the invented coded message are all notebook-native writing tasks; nothing here is clearer printed."
+    },
+    {
+      "missionId": "MISSION-0009",
+      "notebookPage": "pages/mission09.md",
+      "printable": null,
+      "printableReason": "Observation, grouping and the classification key are all naturally hand-drawn in the journal; the key itself is the learner's own creative structure, not a template to fill in."
+    },
+    {
+      "missionId": "MISSION-0010",
+      "notebookPage": "pages/mission10.md",
+      "printable": "printables/mission10-water-system-diagram.md",
+      "printableReason": "Optional printed copy of the station's water system diagram (IMAGE-0012) — the Core 'Trace Water Flow' and 'Interpret Diagrams' activities explicitly require tracing an existing pipework diagram, meeting the PHILOSOPHY bar for a diagram that's genuinely useful printed. Hand-copying it works just as well; the printable is offered only for convenience."
     }
   ]
 }

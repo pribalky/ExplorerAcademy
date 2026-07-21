@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0007",
+  "curriculumRefs": ["CURRICULUM-0002", "CURRICULUM-0004", "CURRICULUM-0005", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children often assume more or thicker material automatically means a stronger bridge, missing that shape (folding, arching) usually matters more than quantity of material.",
+    "A first design that survives the test can get treated as 'finished' — worth encouraging at least one genuine refinement attempt even if the first try works, so the reflection on what changed has something real to say."
+  ],
+  "stretchQuestions": [
+    "Could you make a bridge that holds even more weight using the exact same materials, just arranged differently?",
+    "What's the trade-off between building a stronger bridge and building a lighter one?"
+  ],
+  "estimatedSupervision": "Moderate — adult supervision recommended during the load-testing experiment (see `generated/resources/experiments.json`, Mission 7 entry); gathering craft materials (card, straws, tape) beforehand helps the session flow."
+}

@@ -66,6 +66,72 @@
       "orientation": "landscape",
       "aspectRatio": "16:9",
       "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0007",
+      "missionId": "MISSION-0006",
+      "title": "Restarting the Weather Station",
+      "purpose": "Key scene image for the mission's Hook beat, where the learner restarts the station's weather observations.",
+      "description": "The Weather Station at Outpost Echo: a small, intermittently functioning instrument shelter with dials and a wind vane, the learner adjusting or reading one of its instruments under an open sky. The mood is quiet, methodical curiosity rather than drama.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0008",
+      "missionId": "MISSION-0007",
+      "title": "The Broken Bridge",
+      "purpose": "Key scene image for the mission's Hook beat, where the learner discovers the collapsed access bridge blocking the Storage Facility.",
+      "description": "A small access bridge at Outpost Echo, partially collapsed in the middle, spanning a narrow gap or ravine toward the Storage Facility entrance. Weathered and long-neglected rather than freshly wrecked, consistent with an outpost abandoned years ago.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "high"
+    },
+    {
+      "imageId": "IMAGE-0009",
+      "missionId": "MISSION-0008",
+      "title": "The Communications Array Restored",
+      "purpose": "Key scene image for the mission's Hook beat, where Atlas restores part of the outpost's communications array.",
+      "description": "The Communications Array/Terminal room at Outpost Echo, a console lighting up with a waveform display showing a corrupted, static-broken audio signal. No character or portrait of Dr. Elara Quinn should appear — the transmission is heard, not seen, and she remains known only through records at this point in the story.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0010",
+      "missionId": "MISSION-0009",
+      "title": "The Laboratory's Uncatalogued Samples",
+      "purpose": "Key scene image for the mission's Hook beat, where the learner finds carefully catalogued but incompletely labelled samples.",
+      "description": "A shelf or workbench inside Outpost Echo's Laboratory, holding a row of small labelled and unlabelled sample containers of varying colours and textures, catalogue cards scattered nearby. Orderly rather than chaotic — this was careful work left unfinished, not a mess.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "4:3",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0011",
+      "missionId": "MISSION-0010",
+      "title": "The Failing Water System",
+      "purpose": "Key scene image for the mission's Hook beat, where the station's water recycling system is discovered to have partially failed.",
+      "description": "A utility area of Outpost Echo showing exposed pipework, a storage tank and a control panel with one indicator light blinking amber, a faint drip of water visible at a joint. Understated malfunction, not a dramatic leak or flood.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0012",
+      "missionId": "MISSION-0010",
+      "title": "Station Water System Diagram",
+      "purpose": "Reference diagram for the Core 'Trace Water Flow' and 'Interpret Diagrams' activities, which explicitly require following the station's pipework diagram — the mission cannot be completed without one existing.",
+      "description": "A simple schematic diagram of the station's water recycling loop: Intake, Filter, Storage Tank, Pump, Distribution Pipes, Recycling Unit, looping back to Filter. Plain labelled boxes and arrows, no decoration — legible enough for a learner to mark a suspected fault location directly on it.",
+      "style": "Simple line-art schematic diagram, not a painted scene.",
+      "orientation": "landscape",
+      "aspectRatio": "4:3",
+      "priority": "high"
     }
   ]
 }

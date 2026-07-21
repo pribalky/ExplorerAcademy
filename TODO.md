@@ -249,7 +249,7 @@ Success Criteria
 Status
 
 ```
-IN PROGRESS — World Bible Compiler complete (src/world/ + src/parent/ populated); Asset Compiler Batch 1 complete (Missions 1–5: workbook, parent enrichment, image specs); Batch 2 (Missions 6–10) next
+IN PROGRESS — World Bible Compiler complete (src/world/ + src/parent/ populated); Asset Compiler Batches 1–2 complete (Missions 1–10: workbook, parent enrichment, image specs, experiments.json); Batch 3 (Missions 11–15) next
 ```
 
 Goal
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Asset Compiler Batch 1 (Missions 1–5) is complete** — notebook instructions, one justified printable (Mission 2's map-symbols card), parent enrichment with curriculum references, embedded vocabulary, and image specifications are all generated under `portal/campaigns/campaign01/generated/`. Await approval to start Batch 2 (Missions 6–10), which will also produce the first `generated/resources/experiments.json` entries (Missions 7 and 10 are experiment-driven).
+**Asset Compiler Batch 2 (Missions 6–10) is complete** — notebook instructions, one justified printable (Mission 10's water-system diagram), parent enrichment with curriculum references, embedded vocabulary, image specifications, and the first `generated/resources/experiments.json` entries (Mission 7's bridge load test, Mission 10's water-blockage test) are all generated. Await approval to start Batch 3 (Missions 11–15).

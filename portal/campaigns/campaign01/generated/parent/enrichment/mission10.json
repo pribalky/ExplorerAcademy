@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0010",
+  "curriculumRefs": ["CURRICULUM-0002", "CURRICULUM-0004", "CURRICULUM-0005", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children often assume a blockage always fully stops flow, missing that a partial blockage can just slow or redirect it — an important distinction for correctly diagnosing the station's malfunction.",
+    "The repair recommendation can end up describing what to fix without saying why the evidence points there — encourage linking the recommendation directly back to what the experiment showed."
+  ],
+  "stretchQuestions": [
+    "If moving the blockage changed your results, what does that tell you about where problems are easiest to detect in a real system?",
+    "How would you test for a blockage you couldn't see or reach directly?"
+  ],
+  "estimatedSupervision": "Moderate — adult supervision recommended for the water-flow experiment (see `generated/resources/experiments.json`, Mission 10 entry), mainly to manage spills near any electronics."
+}

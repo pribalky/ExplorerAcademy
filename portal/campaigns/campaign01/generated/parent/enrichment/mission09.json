@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0009",
+  "curriculumRefs": ["CURRICULUM-0002", "CURRICULUM-0004", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Sorting samples by colour alone is the most common shortcut children take — exactly the trap Atlas warns against in the mission's own story beat, so it's worth checking each group uses more than one observed property.",
+    "A classification can feel 'wrong' to a child if it doesn't match what they expect a sample to be — remind them a classification only needs to be justified by evidence, not by a guess at the sample's true identity."
+  ],
+  "stretchQuestions": [
+    "Could a single sample reasonably belong to more than one of your groups? What would you do about that?",
+    "What additional property, if you could observe it, would make your classification even more reliable?"
+  ],
+  "estimatedSupervision": "Minimal — works well as an independent investigation; a parent may enjoy hearing the justification for each group afterwards."
+}

@@ -1,0 +1,61 @@
+{
+  "campaignId": "CAMPAIGN-0001",
+  "experiments": [
+    {
+      "missionId": "MISSION-0007",
+      "activityId": "ACTIVITY-0041",
+      "title": "Bridge Load Test",
+      "objective": "Test how much weight your bridge prototype can hold before it buckles, then refine the design to hold more.",
+      "materials": [
+        "Card or stiff paper",
+        "Drinking straws or craft sticks",
+        "Sticky tape",
+        "A small stack of coins, or a bag of rice or pasta, as load weights",
+        "Two stacks of books (or two boxes of equal height) to act as supports",
+        "A small cup or bowl to hold the load weights"
+      ],
+      "steps": [
+        "Set the two stacks of books a fixed gap apart on a table.",
+        "Build your planned bridge design to span the gap between them.",
+        "Rest the small cup in the middle of the bridge.",
+        "Add weights to the cup one at a time, counting as you go, until the bridge visibly bends or fails.",
+        "Record how many weights it held in your journal.",
+        "Change one thing about your design (for example, fold the card into a ridge or tube shape, or add a straw underneath for support) and repeat the test.",
+        "Compare your first and refined results."
+      ],
+      "safetyNotes": [
+        "Ask an adult before using scissors to cut card or straws.",
+        "Test the bridge over a table or floor, not over anything fragile or breakable.",
+        "Stop adding weight as soon as the bridge starts to fail — don't force it past that point."
+      ],
+      "expectedObservations": "A flat, unfolded sheet of card bends and fails quickly under only a little weight. A card folded into a ridge, tube, or arch shape holds noticeably more weight before buckling, even though it's made of the exact same material.",
+      "scientificExplanation": "Folding a flat material into a beam, ridge or arch shape increases its structural rigidity by resisting bending forces and spreading the load along the fold, instead of concentrating it at one weak point. This is the same principle real bridges use when they're built as trusses or arches rather than flat spans."
+    },
+    {
+      "missionId": "MISSION-0010",
+      "activityId": "ACTIVITY-0058",
+      "title": "Finding the Blockage",
+      "objective": "Investigate how a blockage affects flow through a simple tube system, to understand what might be causing the station's water recycling malfunction.",
+      "materials": [
+        "A length of flexible tubing, or a plastic bottle with the bottom cut off to act as a funnel/pipe",
+        "A jug of water",
+        "A bowl or basin to catch the water",
+        "A small object to act as a blockage — a cotton ball, a small pebble, or a scrunched bit of tissue",
+        "A funnel (optional, if not using a cut bottle)"
+      ],
+      "steps": [
+        "Hold the empty tube or pipe over the basin and pour a measured amount of water through it. Observe how easily and quickly it flows.",
+        "Place the small object partway into the tube to create a partial blockage.",
+        "Pour the same amount of water through again, and observe what happens — does it slow down, back up, or stop completely?",
+        "Try moving the blockage to a different point along the tube and repeat the test.",
+        "Record your observations for each test in your journal: where the blockage was, and what happened to the water."
+      ],
+      "safetyNotes": [
+        "Do this experiment over a sink, basin, or tray to avoid spills.",
+        "Keep water well away from any electronics or power sockets, and have an adult nearby while pouring."
+      ],
+      "expectedObservations": "Water flows freely and quickly through the clear tube. With a blockage in place, the water slows down noticeably, pools or backs up just above the blockage point, or stops entirely, depending on how much of the tube's width is blocked.",
+      "scientificExplanation": "A blockage narrows the space available for water to pass through, increasing resistance to flow. Pressure builds up behind the blockage until the water finds another way through or the blockage is cleared — the same basic principle engineers use to diagnose faults in real plumbing and water recycling systems."
+    }
+  ]
+}

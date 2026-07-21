@@ -6,18 +6,18 @@
 
 ## Milestone
 
-Asset Compiler execution — Batch 2 (Missions 6–10)
+Asset Compiler execution — Batch 3 (Missions 11–15)
 
 ## Objective
 
-Continue the Asset Compiler run for the next batch of missions, following the same pattern established in Batch 1: notebook instructions, parent enrichment (misconceptions/stretch questions/supervision, with `curriculumRefs` grounded in each mission's actual activity `type` fields), vocabulary embedded in the notebook page where a mission's own text introduces new terms, and image specifications for key scenes — generating only what each mission's content actually calls for.
+Continue the Asset Compiler run for the next batch of missions, following the same pattern established in Batches 1–2: notebook instructions, parent enrichment (misconceptions/stretch questions/supervision, with `curriculumRefs` grounded in each mission's actual activity `type` fields), vocabulary embedded in the notebook page where a mission's own text introduces new terms, image specifications for key scenes, and experiment instructions for any mission with a `type: "experiment"` activity.
 
 ## Inputs
 
 - `prompts/ASSET_COMPILER.md`
-- `portal/campaigns/campaign01/src/missions/mission06.json`–`mission10.json`
+- `portal/campaigns/campaign01/src/missions/mission11.json`–`mission15.json`
 - `portal/campaigns/campaign01/src/world/*.json`, `src/parent/curriculum-mapping.json` (for grounding/references)
-- `portal/campaigns/campaign01/generated/workbook/pages/mission01.md`–`mission05.md` and `generated/parent/enrichment/mission01.json`–`mission05.json` as the established pattern to follow
+- `portal/campaigns/campaign01/generated/workbook/pages/mission01.md`–`mission10.md`, `generated/parent/enrichment/mission01.json`–`mission10.json`, and `generated/resources/experiments.json` as the established pattern to follow
 
 ## Relevant Documentation
 
@@ -25,22 +25,22 @@ Continue the Asset Compiler run for the next batch of missions, following the sa
 
 ## Files Expected to Change
 
-- `portal/campaigns/campaign01/generated/workbook/workbook.json` (extend index), `pages/mission06.md`–`mission10.md` (+ printables only where justified)
-- `portal/campaigns/campaign01/generated/parent/enrichment/mission06.json`–`mission10.json`
-- `portal/campaigns/campaign01/generated/image-specifications/images.json` (extend with entries for missions 6–10)
-- `portal/campaigns/campaign01/generated/resources/experiments.json` (new — Mission 7 and Mission 10 are experiment-driven per `505_RESOURCES.md`'s scoping, so this batch is the first to produce it)
+- `portal/campaigns/campaign01/generated/workbook/workbook.json` (extend index), `pages/mission11.md`–`mission15.md` (+ printables only where justified)
+- `portal/campaigns/campaign01/generated/parent/enrichment/mission11.json`–`mission15.json`
+- `portal/campaigns/campaign01/generated/image-specifications/images.json` (extend with entries for missions 11–15)
+- `portal/campaigns/campaign01/generated/resources/experiments.json` (extend — Mission 11 is engineering/circuits-focused per `505_RESOURCES.md`'s PhET reference; confirm by scanning mission11.json's `activities[]` for a `type: "experiment"` entry before adding anything, same rule as Batch 2)
 
 ## Implementation Plan
 
-Same as Batch 1. Additionally: for Missions 7 and 10, scan their compiled JSON for the `type: "experiment"` activity and produce full experiment instructions (Objective/Materials/Steps/Safety notes/Expected observations/Scientific explanation) in `generated/resources/experiments.json`, using only common household items.
+Same as Batches 1–2: read each mission JSON directly, scan `activities[]` for `type: "experiment"` rather than assuming from memory, ground `curriculumRefs` in actual activity types, write notebook instructions, add a printable only where the PHILOSOPHY bar is met, add an image spec per key scene (plus a diagram/map spec only where an activity's output or input specifically requires one).
 
 ## Out of Scope
 
-Missions 1–5 (done), 11–21 (later batches). Anything already covered (Discovery Log prompts beyond the existing reflection prompt, additional Extension activities, reading/resource recommendations already in `505_RESOURCES.md`).
+Missions 1–10 (done), 16–21 (later batches). Anything already covered (Discovery Log prompts beyond the existing reflection prompt, additional Extension activities, reading/resource recommendations already in `505_RESOURCES.md`).
 
 ## Success Criteria
 
-Same as Batch 1, plus: every experiment references a mission that actually has an experiment-type activity (verified against the mission JSON, not assumed).
+Same as Batch 2.
 
 ## Manual Verification
 
@@ -48,11 +48,36 @@ JSON/Markdown validity; spot-check no duplication of existing mission fields; co
 
 ## Deliverables
 
-Batch 2 generated assets for Missions 6–10.
+Batch 3 generated assets for Missions 11–15.
 
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Asset Compiler execution — Batch 2 (Missions 6–10) — COMPLETE
+
+## Completion Summary
+
+Ran `prompts/ASSET_COMPILER.md` against Missions 6–10, extending the Batch 1 pattern:
+
+- **Notebook instructions** (`generated/workbook/pages/mission06.md`–`mission10.md`), written the same way as Batch 1 — concrete notebook steps rather than restated mission JSON `instructions`.
+- **First experiments produced** (`generated/resources/experiments.json`, new file): scanned each mission's `activities[]` directly rather than assuming from `505_RESOURCES.md`'s scoping — confirmed Mission 7 (`ACTIVITY-0041`, "Test and Refine") and Mission 10 (`ACTIVITY-0058`, "Conduct Simple Experiments") are the only two of this batch with a `type: "experiment"` activity; Missions 6, 8, 9 correctly got none. Both experiments (a bridge load test, a tube-blockage water-flow test) use only common household items, consistent with the bridge materials (card/straws/tape) and Scottish Water/PhET references already present in `505_RESOURCES.md` for these two missions.
+- **One further printable**: Mission 10's water-system diagram (`printables/mission10-water-system-diagram.md`) — justified because the mission's own Core activities ("Trace Water Flow", "Interpret Diagrams") explicitly require following an existing pipework diagram, meeting PHILOSOPHY's "a diagram to trace" bar. Missions 6, 7, 8, 9 were assessed and needed none — reasons recorded per-mission in `workbook.json`.
+- **Parent enrichment** (`generated/parent/enrichment/mission06.json`–`mission10.json`): same shape as Batch 1, `curriculumRefs` grounded in each mission's actual activity `type` fields (e.g. Mission 7's `experiment`-typed activity mapped to `CURRICULUM-0004` "Working Scientifically", alongside `CURRICULUM-0005` Engineering & Design).
+- **Vocabulary**: embedded in notebook pages for Missions 6 ("meteorologist"), 8 ("transmission"), 9 ("classify"), 10 ("malfunction"). Mission 7 got none — its own text introduces no vocabulary beyond common engineering words already familiar at this level.
+- **Image specifications**: one key-scene spec per mission (IMAGE-0007–0011), plus one additional diagram spec for Mission 10 (IMAGE-0012, the station water system schematic) — justified because, unlike the Mission 2 sketch-map pattern (activity *output* is a diagram), Mission 10's Core activities require an *existing* diagram as input to interpret, so the mission cannot function without one. Mission 8's spec deliberately shows the communications console's waveform display rather than Dr. Quinn, for the same reason established in Mission 4's spec — she remains unseen, known only through records, at this point in the story.
+
+## Manual Verification
+
+- Validated all new/modified generated JSON with `python3 -c "json.load(...)"` — all files parse.
+- `git status --short` confirmed only files under `generated/` were touched; nothing under `src/`.
+- Confirmed both experiments reference a mission that actually has a `type: "experiment"` activity, checked directly against each mission's compiled JSON (not assumed from the resources document or prior batches).
+
+## Verification
+
+Batch 2 extends the same notebook-first, minimal-spec, evidence-grounded pattern from Batch 1 to Missions 6–10, and establishes the first working `experiments.json`, validating that the experiment-scoping rule in `ASSET_COMPILER.md` ("scan the compiled mission JSON directly") produces correct, non-hardcoded results. ✅
 
 ---
 

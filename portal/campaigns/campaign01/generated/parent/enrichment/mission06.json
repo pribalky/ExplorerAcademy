@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0006",
+  "curriculumRefs": ["CURRICULUM-0003", "CURRICULUM-0004", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "A single day's weather comparison can feel like a confirmed 'pattern' to a child — worth gently asking how many days of evidence would make a pattern more convincing.",
+    "An estimated temperature can get treated as equally reliable as a measured one; encourage labelling estimates clearly rather than blending them with actual readings."
+  ],
+  "stretchQuestions": [
+    "If tomorrow's weather turns out different from your prediction, does that mean your reasoning was wrong, or just that weather is hard to predict? What's the difference?",
+    "Which single piece of evidence would most change your prediction if it came out differently?"
+  ],
+  "estimatedSupervision": "Light — a thermometer helps but isn't required; the observation, charting and comparison steps work well independently."
+}

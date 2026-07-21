@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0008",
+  "curriculumRefs": ["CURRICULUM-0001", "CURRICULUM-0002", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children can invent a missing section that's exciting but unmoored from the actual context clues — worth checking each guess traces back to something specific in the legible parts of the message.",
+    "A child's own reconstructed guess can start to feel as certain as the parts of the message that are genuinely legible; the 'Confirmed Facts' step is there specifically to keep the two separate."
+  ],
+  "stretchQuestions": [
+    "If someone disagreed with your reconstruction of the missing sections, what evidence would you point to in order to defend it?",
+    "What's one interpretation you considered but rejected — and what made you rule it out?"
+  ],
+  "estimatedSupervision": "Minimal — this mission is largely independent reading, reconstruction and reflection."
+}
