@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "explorer",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "Using the restored communications network, the learner unlocks the expedition's protected archive.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Dr. Elara Quinn's final report is inside, waiting to explain why the expedition truly stopped.", "trigger": "Archive unlocked" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reads the final report carefully to understand what it reveals.", "trigger": "Final report read" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Comparing the original evidence with the learner's own current findings begins to confirm the whole story.", "trigger": "Evidence compared" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must complete the missing sections of the archive using their own discoveries.", "trigger": "Missing sections completed" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The completed archive reveals that the expedition suspended operations because their discoveries required careful verification before publication.", "trigger": "Expedition's reasons confirmed" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on why the expedition chose to preserve their evidence rather than risk incorrect conclusions.", "trigger": "Findings reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The expedition mystery is resolved, Dr. Quinn's intentions are fully understood, and the archive is restored.", "trigger": "Archive restored" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "With the Signal Tower's long-range communications finally restored, the learner unlocks something the whole campaign has been building toward: the expedition's protected archive.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Inside is Dr. Elara Quinn's final report — the one document that can finally explain why the expedition really stopped, after eighteen missions of clues, corrupted logs and careful guesswork.", "trigger": "Archive unlocked" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reads the final report slowly and carefully, aware that this is the last piece of the puzzle.", "trigger": "Final report read" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Comparing the original evidence against everything the learner has discovered themselves starts to confirm the whole story, piece by piece.", "trigger": "Evidence compared" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must complete the missing sections of the archive using their own discoveries — the expedition's record, finished in their words, not just Dr. Quinn's.", "trigger": "Missing sections completed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The completed archive finally answers it: the expedition didn't vanish, and they didn't fail. They suspended their own work because their discoveries needed careful verification before anyone risked publishing them.", "trigger": "Expedition's reasons confirmed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on why the expedition chose to preserve their evidence and wait, rather than risk publishing conclusions that might have been wrong.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The expedition mystery is resolved. Dr. Quinn's intentions are fully understood, the archive is restored — and the whole story of Outpost Echo finally has an ending.", "trigger": "Archive restored" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "reading",
       "duration": 8,
       "difficulty": "explorer",
-      "storyContext": "The expedition's protected archive has been unlocked, revealing Dr. Elara Quinn's final report.",
-      "instructions": "Read Dr. Quinn's final report carefully.",
+      "storyContext": "The expedition's protected archive has been unlocked, and inside it is Dr. Elara Quinn's final report — her own account, at last.",
+      "instructions": "Read Dr. Quinn's final report carefully, from beginning to end, before drawing any conclusions.",
       "output": "Notes on what the final report reveals.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "observation",
       "duration": 7,
       "difficulty": "explorer",
-      "storyContext": "The learner's own discoveries can now be compared against the expedition's original evidence.",
-      "instructions": "Compare the original expedition evidence with what you have discovered throughout the campaign.",
+      "storyContext": "The learner's own discoveries can finally be compared directly against the expedition's original evidence, mission by mission.",
+      "instructions": "Compare the original expedition evidence with what you have discovered throughout the campaign, and note where they confirm each other.",
       "output": "Notes comparing original and current evidence.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "writing",
       "duration": 8,
       "difficulty": "explorer",
-      "storyContext": "The archive is almost complete, but a few sections still rely on the learner's own discoveries.",
-      "instructions": "Complete the missing sections of the archive using your own discoveries.",
+      "storyContext": "The archive is almost complete, but a few sections only exist now because of what the learner discovered, not what Dr. Quinn recorded.",
+      "instructions": "Complete the missing sections of the archive using your own discoveries from across the whole campaign.",
       "output": "Completed archive sections.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "reflection",
       "duration": 7,
       "difficulty": "explorer",
-      "storyContext": "The archive brings together everything the learner has uncovered about Outpost Echo.",
-      "instructions": "Summarise the expedition mystery and what it reveals about Dr. Quinn's intentions.",
+      "storyContext": "The archive now brings together everything the learner has uncovered about Outpost Echo, from Mission 1 onward.",
+      "instructions": "Summarise the expedition mystery and what it reveals about Dr. Quinn's intentions, as if explaining it to someone who's never heard the story.",
       "output": "A summary of the expedition mystery.",
       "schedulerCategory": "core"
     },
@@ -104,7 +104,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["Why do you think the expedition chose to preserve their evidence rather than risk being wrong?"]
+    "prompts": ["Why do you think the expedition chose to preserve their evidence rather than risk being wrong, and would you have made the same choice?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0019",

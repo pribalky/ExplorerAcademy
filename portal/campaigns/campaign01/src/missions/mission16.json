@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "confident",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "Restoring power reveals an underground geological survey area previously inaccessible.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "The surrounding landscape contains unusual geological features that may explain many earlier observations.", "trigger": "Underground survey area revealed" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner examines rock samples and compares geological layers left behind by the expedition.", "trigger": "Rock samples examined and layers compared" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Interpreting the expedition's survey maps begins to reveal the shape of the surrounding landscape.", "trigger": "Survey maps interpreted" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must explain their findings using evidence from the samples, layers and maps together.", "trigger": "Findings explained using evidence" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The unusual geological features are shown to have influenced many of the expedition's earlier decisions.", "trigger": "Geological influence confirmed" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how the environment itself shaped the expedition's research.", "trigger": "Findings reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The learner uncovers the environmental context behind the expedition's research, and several previously unexplained observations now make sense.", "trigger": "Earlier observations now explained" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Restoring power opens a section of Outpost Echo nobody has set foot in for years: an underground geological survey area.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "The landscape surrounding the station isn't as ordinary as it looked from above — and whatever's unusual about it might explain observations from missions that seemed to have nothing to do with geology at all.", "trigger": "Underground survey area revealed" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner examines the rock samples the expedition collected and compares the geological layers preserved down here.", "trigger": "Rock samples examined and layers compared" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Interpreting the expedition's own survey maps starts to give the surrounding landscape a real shape — not just rock, but a structure with a story.", "trigger": "Survey maps interpreted" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must explain their findings using the samples, the layers and the maps all together — no single one of them tells the full story alone.", "trigger": "Findings explained using evidence" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The unusual geology isn't just interesting on its own — it turns out to have quietly shaped decisions the expedition made in missions the learner has already completed.", "trigger": "Geological influence confirmed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how much the environment itself — not just the expedition's choices — shaped the research happening at Outpost Echo.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "With the environmental context finally uncovered, several observations that never quite made sense before suddenly do.", "trigger": "Earlier observations now explained" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "observation",
       "duration": 8,
       "difficulty": "confident",
-      "storyContext": "An underground geological survey area has become accessible for the first time.",
-      "instructions": "Examine the rock samples the expedition collected and note their properties.",
+      "storyContext": "An underground geological survey area has become accessible for the first time, and the expedition's own rock samples are still exactly where they left them.",
+      "instructions": "Examine the rock samples the expedition collected and note their properties — the same careful approach as Mission 9's samples, applied here.",
       "output": "Notes on the properties of each rock sample.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "science",
       "duration": 7,
       "difficulty": "confident",
-      "storyContext": "The surrounding landscape contains unusual geological features.",
-      "instructions": "Compare the layers visible in the survey area and note anything unusual.",
+      "storyContext": "The surrounding landscape contains unusual geological features — visible if you compare the layers carefully rather than glancing at them.",
+      "instructions": "Compare the layers visible in the survey area and note anything unusual about how they're arranged.",
       "output": "Notes comparing the geological layers.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "science",
       "duration": 8,
       "difficulty": "confident",
-      "storyContext": "The expedition's survey maps hold clues about the shape of the surrounding landscape.",
-      "instructions": "Interpret the survey maps to understand the layout of the geological features.",
+      "storyContext": "The expedition's own survey maps hold real clues about the shape of the surrounding landscape, if you know how to read them.",
+      "instructions": "Interpret the survey maps to understand the layout of the geological features they record.",
       "output": "An interpretation of the survey maps.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "reflection",
       "duration": 7,
       "difficulty": "confident",
-      "storyContext": "The geological features may explain several previously unexplained observations.",
-      "instructions": "Explain what your findings reveal, using evidence from the samples, layers and maps together.",
+      "storyContext": "The geological features may explain several previously unexplained observations — but only if you draw on more than one source of evidence at once.",
+      "instructions": "Explain what your findings reveal, using evidence from the samples, layers and maps together, not just whichever one feels most convincing.",
       "output": "A written explanation supported by combined evidence.",
       "schedulerCategory": "core"
     },
@@ -104,7 +104,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["How did the landscape around the station affect the expedition's earlier decisions?"]
+    "prompts": ["How did the landscape around the station affect the expedition's earlier decisions, and which earlier mission does that connect to most clearly?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0016",

@@ -10,7 +10,7 @@ Not yet defined — awaiting direction on which mission(s) to polish next
 
 ## Objective
 
-Missions 1–12 have reached production quality (see completed milestones below). TODO.md's Phase 6 checklist calls for repeating this for the remaining missions, but per CLAUDE.md's workflow, do not begin polishing another mission until the user chooses one.
+Missions 1–20 have reached production quality (see completed milestones below) — only Mission 21 remains. TODO.md's Phase 6 checklist calls for repeating this for the remaining missions, but per CLAUDE.md's workflow, do not begin polishing another mission until the user chooses one.
 
 ## Inputs
 
@@ -47,6 +47,36 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Mission Polish: Missions 13–20 reach production quality — COMPLETE
+
+## Completion Summary
+
+Applied the same approach as Missions 1–12 to Missions 13 ("Hidden Patterns") through 20 ("Explorer Assessment"), editing `portal/campaigns/campaign01/src/missions/mission13–20.json` directly, grounded in each mission's canonical Story Summary in `501_CAMPAIGN_01.md`. This completes every mission except the finale (21).
+
+- **Re-read two more narrative checkpoints** before starting: `501_CAMPAIGN_01.md`'s "Narrative Checkpoint (After Mission 14)" (transition into the campaign's final phase, learners increasingly self-directing) and the "Part 5 — Missions 15–21" design note (the campaign concludes by recognising the learner's development into an Explorer, not just task completion). Both shaped tone throughout this batch.
+- **Mission 14**: the BREAKTHROUGH beat carries the campaign's central reveal — the expedition was protecting discoveries, not hiding them — and was rewritten with the most care in this batch, alongside the CHALLENGE beat's fact/inference distinction, echoing the misconception already documented in `generated/parent/enrichment/mission14.json` about inference being a harder line to draw than Mission 4's fact/assumption split.
+- **Mission 15**: left `ACTIVITY-0090`'s ("Test and Refine Solutions") storyContext/instructions untouched, matching the same conservative practice as Mission 7's and Mission 10's experiment activities — confirmed first that neither text is quoted verbatim anywhere in `experiments.json`, but chose consistency over the marginal gain of editing it.
+- **Mission 16**: added an explicit callback to Mission 9's sample-observation method in `ACTIVITY-0094`'s instructions, reinforcing the recurring "evidence, not appearance" thread.
+- **Mission 17**: left `ACTIVITY-0102` ("Plan a Fair Test") and `ACTIVITY-0106` ("Repeat With a Changed Variable") untouched for the same reason as Mission 15 — confirmed via grep that neither is quoted verbatim in `experiments.json`'s "Design Your Own Fair Test" entry, but left them alone regardless.
+- **Mission 18**: the biggest synthesis mission in the campaign — all 5 Core activities were polished, with the HOOK and REFLECTION beats explicitly naming the earlier missions (weather, water, power, geology, star charts) now converging into one story.
+- **Mission 19**: the expedition mystery's actual resolution — the BREAKTHROUGH beat ("they suspended their own work... not because they vanished or failed") got the richest treatment in this batch, completing the "protect, not hide" arc Mission 14 opened.
+- **Mission 20**: the REFLECTION beat and reflection prompt were rewritten to explicitly callback to Mission 1, mirroring Mission 21's own "since Mission 1" framing and giving the assessment mission a genuine full-circle moment ahead of graduation.
+- **Extension/Rabbit Hole activities**: reviewed across all eight missions, left unchanged — already appropriately open-ended.
+- **Left unchanged**: all IDs, `rewards`, `completionCriteria`, `parentGuide` core fields, for the same reasons as every prior mission.
+
+## Manual Verification
+
+- Validated all eight files against `mission-engine.js`'s actual required-field/beat-type/activity-field/reward-field/parentGuide checks via script — all pass.
+- Grepped `generated/` for each mission's superseded reflection-prompt text — no stale references found across all eight.
+- Confirmed via grep that Mission 15's `ACTIVITY-0090` and Mission 17's `ACTIVITY-0102`/`ACTIVITY-0106` retain their exact original instructions text, unchanged.
+- Served the app locally and drove it with headless Chromium: loaded all eight missions in turn, confirmed each renders its correct title, confirmed updated activity/reflection text appears in the rendered page, and confirmed no `parentGuide` content leaks into the DOM for any of the eight (ADR-006 holds). No console errors.
+
+## Verification
+
+Missions 13–20 now satisfy the same Mission Quality Checklist bar as every prior mission, leaving only Mission 21 ("Graduation Day") to complete full-campaign coverage of Phase 6. ✅
 
 ---
 

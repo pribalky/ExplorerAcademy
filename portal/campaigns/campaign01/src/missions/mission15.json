@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "confident",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "With much of Outpost Echo operational again, Atlas identifies one remaining communications structure: the Signal Tower.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "The tower was intentionally shut down by the original expedition, for reasons not yet clear.", "trigger": "Signal Tower identified" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner inspects the tower's systems and identifies multiple engineering faults.", "trigger": "Tower systems inspected" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Diagnosing the faults reveals just how many separate problems must be solved before the tower can safely transmit.", "trigger": "Faults identified" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must develop a repair sequence, prioritising which faults to fix first.", "trigger": "Repair sequence developed" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Testing and refining each solution, the learner brings the tower back online.", "trigger": "Solutions tested and refined" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner records the design decisions made throughout this first multi-stage engineering investigation.", "trigger": "Design decisions recorded" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Long-range communications become possible, and the learner discovers the expedition expected someone to return one day.", "trigger": "Long-range communications restored" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "With most of Outpost Echo humming again, Atlas points to the one structure still standing dark: the Signal Tower.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "This wasn't a system that failed on its own — the original expedition shut it down deliberately. Nothing recovered so far says why.", "trigger": "Signal Tower identified" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner inspects the tower's systems in detail, cataloguing multiple engineering faults rather than assuming there's just one.", "trigger": "Tower systems inspected" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Diagnosing each fault properly reveals just how many separate problems have to be solved, in the right order, before the tower can safely transmit at all.", "trigger": "Faults identified" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must develop a full repair sequence — deciding which faults matter most to fix first, with no single correct answer handed to them.", "trigger": "Repair sequence developed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Testing and refining one fault at a time, the learner brings the tower back online — the first time in the whole campaign they've carried a multi-stage engineering problem from start to finish alone.", "trigger": "Solutions tested and refined" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner records the design decisions made throughout the repair, aware this is the most independent engineering work the campaign has asked of them yet.", "trigger": "Design decisions recorded" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Long-range communications finally come back online. And buried in what the tower can now reach is something nobody expected: the expedition built this, believing someone would come looking for them one day.", "trigger": "Long-range communications restored" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "observation",
       "duration": 6,
       "difficulty": "confident",
-      "storyContext": "The Signal Tower was intentionally shut down by the original expedition.",
-      "instructions": "Inspect the tower's systems and note anything that looks damaged or disconnected.",
+      "storyContext": "The Signal Tower was intentionally shut down by the original expedition — this wasn't neglect, it was a decision.",
+      "instructions": "Inspect the tower's systems carefully and note anything that looks damaged or disconnected, without assuming you've found the only problem yet.",
       "output": "A list of observed issues with the tower's systems.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "engineering",
       "duration": 6,
       "difficulty": "confident",
-      "storyContext": "Before the tower can safely transmit, every fault must be diagnosed.",
-      "instructions": "Diagnose the specific engineering faults preventing the tower from working.",
+      "storyContext": "Before the tower can safely transmit, every fault has to be properly diagnosed — not guessed at.",
+      "instructions": "Diagnose the specific engineering faults preventing the tower from working, one at a time.",
       "output": "A list of diagnosed faults.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "engineering",
       "duration": 6,
       "difficulty": "confident",
-      "storyContext": "This is the learner's first multi-stage engineering investigation, with no single prescribed approach.",
-      "instructions": "Decide the order in which the faults should be repaired, and explain why.",
+      "storyContext": "This is the learner's first multi-stage engineering investigation — nobody is going to hand over a single prescribed order to follow.",
+      "instructions": "Decide the order in which the faults should be repaired, and be ready to explain why that order and not another.",
       "output": "A prioritised repair sequence.",
       "schedulerCategory": "core"
     },
@@ -77,8 +77,8 @@
       "category": "writing",
       "duration": 6,
       "difficulty": "confident",
-      "storyContext": "A good engineer can always explain why they made the choices they did.",
-      "instructions": "Record the design decisions made throughout the repair, and the reasoning behind them.",
+      "storyContext": "A good engineer can always explain why they made the choices they did — not just that the tower works now.",
+      "instructions": "Record the design decisions made throughout the repair, and the reasoning behind each one.",
       "output": "A written record of design decisions.",
       "schedulerCategory": "core"
     },
@@ -117,7 +117,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["What was the hardest fault to fix, and how did you solve it?"]
+    "prompts": ["What was the hardest fault to fix, and what made it harder than the others?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0015",

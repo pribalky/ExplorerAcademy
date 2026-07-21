@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "confident",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "Atlas assembles every recovered record, observation and experiment into a single investigation archive.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Several plausible interpretations of the evidence remain possible, but only one accounts for everything.", "trigger": "Investigation archive assembled" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reviews the evidence gathered throughout the entire campaign.", "trigger": "Evidence reviewed" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Organising the findings begins to reveal how individual discoveries fit together into a coherent explanation.", "trigger": "Findings organised" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must identify relationships between discoveries and support conclusions with evidence.", "trigger": "Relationships identified and conclusions supported" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Evaluating the alternative explanations, the learner narrows the evidence down to a single account that fits everything.", "trigger": "Alternative explanations evaluated" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how many separate investigations turned out to be part of one larger story.", "trigger": "Findings reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The complete story of Outpost Echo begins to emerge, and the learner prepares to solve the expedition mystery.", "trigger": "Ready to solve the mystery" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Atlas lays out every recovered record, observation and experiment from the entire campaign, side by side, in a single investigation archive.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Looked at separately, several explanations for what happened at Outpost Echo still seem plausible. Only one of them, though, can actually account for every piece of evidence at once.", "trigger": "Investigation archive assembled" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reviews the evidence gathered across the entire campaign — seventeen missions' worth, all at once.", "trigger": "Evidence reviewed" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Organising the findings into groups starts to do something no single mission could: show how individually small discoveries fit into one coherent explanation.", "trigger": "Findings organised" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must identify how the discoveries actually relate to each other, and support their conclusions with evidence rather than intuition about how the story probably goes.", "trigger": "Relationships identified and conclusions supported" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Weighing the alternative explanations against each other, the learner narrows everything down to a single account — the one that actually fits every piece of evidence gathered since Mission 1.", "trigger": "Alternative explanations evaluated" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on just how many investigations that once felt separate — weather, water, power, geology, star charts — turn out to be part of exactly one larger story.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The complete story of Outpost Echo is finally taking shape. All that's left is confirming it — and solving the expedition mystery for good.", "trigger": "Ready to solve the mystery" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "reading",
       "duration": 6,
       "difficulty": "confident",
-      "storyContext": "Atlas has assembled every recovered record, observation and experiment into a single investigation archive.",
-      "instructions": "Review the evidence gathered throughout the campaign so far.",
+      "storyContext": "Atlas has assembled every recovered record, observation and experiment from the whole campaign into a single investigation archive.",
+      "instructions": "Review the evidence gathered throughout the campaign so far, mission by mission if that helps you keep track.",
       "output": "Notes summarising the reviewed evidence.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "writing",
       "duration": 6,
       "difficulty": "confident",
-      "storyContext": "Individual discoveries may fit together into a coherent explanation.",
-      "instructions": "Organise your findings into related groups.",
+      "storyContext": "Individual discoveries that felt unrelated at the time may fit together into a single coherent explanation.",
+      "instructions": "Organise your findings into related groups, however you think they connect.",
       "output": "Evidence organised into related groups.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "reflection",
       "duration": 6,
       "difficulty": "confident",
-      "storyContext": "Discoveries that once seemed unrelated may actually be connected.",
-      "instructions": "Identify relationships between your organised groups of evidence.",
+      "storyContext": "Discoveries that once seemed unrelated may actually be connected — the real work is naming exactly how.",
+      "instructions": "Identify the relationships between your organised groups of evidence, and be specific about what links them.",
       "output": "A description of the relationships between findings.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "writing",
       "duration": 6,
       "difficulty": "confident",
-      "storyContext": "Only one explanation accounts for all of the available evidence.",
-      "instructions": "Write a conclusion supported by the evidence you have connected.",
+      "storyContext": "Only one explanation accounts for all of the available evidence — not just the pieces that are easiest to explain.",
+      "instructions": "Write a conclusion supported by the evidence you have connected, addressing the full picture rather than a partial one.",
       "output": "A written, evidence-supported conclusion.",
       "schedulerCategory": "core"
     },
@@ -77,8 +77,8 @@
       "category": "discussion",
       "duration": 6,
       "difficulty": "confident",
-      "storyContext": "Several plausible interpretations of the evidence remain possible.",
-      "instructions": "Evaluate a couple of alternative explanations and explain why your conclusion fits the evidence best.",
+      "storyContext": "Several plausible interpretations of the evidence remain possible — dismissing them without a reason isn't the same as ruling them out.",
+      "instructions": "Evaluate a couple of alternative explanations properly, and explain specifically why your conclusion fits the evidence better than they do.",
       "output": "An evaluation of alternative explanations.",
       "schedulerCategory": "core"
     },
@@ -117,7 +117,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["Which piece of evidence changed your understanding of the mystery the most?"]
+    "prompts": ["Which single piece of evidence changed your understanding of the mystery the most, and what did you believe before you found it?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0018",

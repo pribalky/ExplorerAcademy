@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "explorer",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "Rather than a traditional test, the Academy presents the learner with a completely new investigation.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "No step-by-step guidance is provided this time.", "trigger": "New investigation presented" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner investigates the unfamiliar problem and plans their own approach.", "trigger": "Problem investigated and approach planned" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Collecting evidence reveals just how much the learner has learned throughout the campaign.", "trigger": "Evidence collected" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must justify their decisions and explain their reasoning throughout.", "trigger": "Decisions justified" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner presents their conclusions, demonstrating the habits of an Explorer rather than simply reaching a perfect answer.", "trigger": "Conclusions presented" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how their thinking process has changed since Mission 1.", "trigger": "Findings reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Explorer Academy evaluates the learner's thinking rather than factual recall, and the learner demonstrates readiness for full membership.", "trigger": "Readiness for membership demonstrated" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "There's no written test waiting for the learner this time — instead, Explorer Academy hands them a completely new investigation, with nothing about it explained in advance.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "No step-by-step guidance is coming this time, and none is meant to. That absence is the point of the assessment, not an oversight.", "trigger": "New investigation presented" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner investigates the unfamiliar problem and plans their own approach, the same way they now do without thinking twice about it.", "trigger": "Problem investigated and approach planned" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Collecting the evidence reveals something the learner might not have expected: just how naturally they now do the things that once needed Atlas's guidance.", "trigger": "Evidence collected" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must justify every decision and explain their reasoning as they go — not just produce an answer, but be able to defend how they got there.", "trigger": "Decisions justified" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner presents their conclusions. What Explorer Academy is watching for isn't a perfect answer — it's the habits of an Explorer, on full display.", "trigger": "Conclusions presented" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how differently they think now compared to Mission 1 — back when an Explorer Journal was a brand new idea, not a habit.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Explorer Academy was never evaluating facts memorised along the way — it was watching how the learner thinks. And on that measure, they've just shown they're ready for full membership.", "trigger": "Readiness for membership demonstrated" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "science",
       "duration": 6,
       "difficulty": "explorer",
-      "storyContext": "The Academy presents the learner with a completely new investigation, with no step-by-step guidance.",
-      "instructions": "Begin investigating the unfamiliar problem the Academy has presented.",
+      "storyContext": "The Academy presents the learner with a completely new investigation, with no step-by-step guidance — the same way real investigations actually start.",
+      "instructions": "Begin investigating the unfamiliar problem the Academy has presented, in whatever way makes sense to you first.",
       "output": "Initial notes on the unfamiliar problem.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "writing",
       "duration": 6,
       "difficulty": "explorer",
-      "storyContext": "The learner chooses how to approach the problem and selects appropriate methods.",
-      "instructions": "Plan how you will approach the investigation and which methods you will use.",
+      "storyContext": "The learner chooses how to approach the problem and selects whatever methods actually fit it, rather than a prescribed set.",
+      "instructions": "Plan how you will approach the investigation and which methods you will use, before diving into collecting evidence.",
       "output": "A written investigation plan.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "observation",
       "duration": 6,
       "difficulty": "explorer",
-      "storyContext": "A strong conclusion needs strong evidence.",
-      "instructions": "Follow your plan and collect evidence for your investigation.",
+      "storyContext": "A strong conclusion needs strong evidence — the same standard every investigation this campaign has held you to.",
+      "instructions": "Follow your plan and collect evidence for your investigation, adjusting the plan if it isn't working rather than forcing it.",
       "output": "Collected evidence for the investigation.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "reflection",
       "duration": 6,
       "difficulty": "explorer",
-      "storyContext": "Explorer Academy values reasoning throughout an investigation, not just at the end.",
-      "instructions": "Explain the reasoning behind the decisions you made during your investigation.",
+      "storyContext": "Explorer Academy values reasoning throughout an investigation, not just a tidy explanation bolted on at the end.",
+      "instructions": "Explain the reasoning behind the decisions you made during your investigation, as you made them, not just how it turned out.",
       "output": "A written justification of your investigative decisions.",
       "schedulerCategory": "core"
     },
@@ -77,8 +77,8 @@
       "category": "discussion",
       "duration": 6,
       "difficulty": "explorer",
-      "storyContext": "The emphasis is not on a perfect answer, but on demonstrating the habits of an Explorer.",
-      "instructions": "Present your conclusions and explain how you reached them.",
+      "storyContext": "The emphasis is not on a perfect answer, but on demonstrating the habits of an Explorer — the same habits Explorer Academy noticed all the way back in Mission 1.",
+      "instructions": "Present your conclusions and explain how you reached them, clearly enough that someone else could follow your thinking.",
       "output": "Presented conclusions with supporting reasoning.",
       "schedulerCategory": "core"
     },
@@ -117,7 +117,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["How did you decide which methods to use for a problem with no instructions?"]
+    "prompts": ["How did you decide which methods to use for a problem with no instructions, and how is that different from how you'd have approached it back in Mission 1?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0020",

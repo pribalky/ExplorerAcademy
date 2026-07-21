@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "confident",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "Atlas reveals that one experiment remains unfinished.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Unlike every previous investigation, no detailed instructions for this experiment survive.", "trigger": "Unfinished experiment revealed" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner must define the investigation and form a prediction using everything learned throughout the campaign.", "trigger": "Investigation defined and prediction formed" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Planning a fair test reveals just how much independent reasoning this final investigation requires.", "trigger": "Fair test planned" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must collect evidence and analyse the results without step-by-step guidance.", "trigger": "Evidence collected and results analysed" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner successfully completes the expedition's final, unfinished investigation.", "trigger": "Investigation completed" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on the limitations of their investigation and what could be improved.", "trigger": "Limitations reflected on" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Confidence shifts from following procedures to designing them — the learner is no longer just completing investigations, but planning their own.", "trigger": "Confidence shifts to independent design" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Atlas delivers news unlike anything in the previous sixteen missions: one of the expedition's experiments was never finished.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Every other investigation so far came with a method already worked out. This one doesn't — no detailed instructions for it survive anywhere in the archive.", "trigger": "Unfinished experiment revealed" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner has to define the investigation themselves and form a prediction, drawing on everything learned across the entire campaign to do it.", "trigger": "Investigation defined and prediction formed" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Planning the fair test makes something clear fast: this investigation runs entirely on the learner's own reasoning, with nobody supplying the next step.", "trigger": "Fair test planned" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must collect evidence and analyse the results with no step-by-step guidance — Atlas is there for safety, not for answers.", "trigger": "Evidence collected and results analysed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The expedition's final, unfinished investigation is complete — finished not by the original team, but by the learner who followed their evidence all the way there.", "trigger": "Investigation completed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects honestly on the investigation's limitations — what a second attempt would do differently, and why that's worth admitting rather than glossing over.", "trigger": "Limitations reflected on" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Something has changed that's bigger than this one investigation: the learner isn't just completing investigations designed by someone else anymore. They're designing their own.", "trigger": "Confidence shifts to independent design" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "writing",
       "duration": 5,
       "difficulty": "confident",
-      "storyContext": "One experiment remains unfinished, and no detailed instructions survive for it.",
-      "instructions": "Decide exactly what question your investigation will try to answer.",
+      "storyContext": "One experiment remains unfinished, and no detailed instructions survive for it — the question itself is now the learner's to define.",
+      "instructions": "Decide exactly what question your investigation will try to answer, and write it down clearly before doing anything else.",
       "output": "A clearly defined investigation question.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "science",
       "duration": 5,
       "difficulty": "confident",
-      "storyContext": "A good investigation starts with a prediction to test.",
-      "instructions": "Form a prediction for what you expect your investigation to show, and explain your reasoning.",
+      "storyContext": "A good investigation starts with a prediction to test — not a guess at the answer, but a reasoned expectation you're prepared to be wrong about.",
+      "instructions": "Form a prediction for what you expect your investigation to show, and explain the reasoning behind it.",
       "output": "A written prediction with reasoning.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "observation",
       "duration": 5,
       "difficulty": "confident",
-      "storyContext": "Every conclusion needs evidence to support it.",
-      "instructions": "Carry out your fair test and collect evidence carefully.",
+      "storyContext": "Every conclusion needs evidence to support it — especially one nobody else is going to double-check for you this time.",
+      "instructions": "Carry out your fair test and collect evidence carefully, recording it as you go rather than trying to remember it afterwards.",
       "output": "Collected evidence from the investigation.",
       "schedulerCategory": "core"
     },
@@ -77,8 +77,8 @@
       "category": "science",
       "duration": 5,
       "difficulty": "confident",
-      "storyContext": "The evidence must be analysed to see whether it supports the original prediction.",
-      "instructions": "Analyse your results and decide whether they support your prediction.",
+      "storyContext": "The evidence has to be analysed honestly, whether or not it ends up supporting the prediction you started with.",
+      "instructions": "Analyse your results and decide whether they genuinely support your prediction — or whether they don't.",
       "output": "An analysis of the investigation's results.",
       "schedulerCategory": "core"
     },
@@ -90,8 +90,8 @@
       "category": "reflection",
       "duration": 5,
       "difficulty": "confident",
-      "storyContext": "No investigation is ever completely perfect.",
-      "instructions": "Reflect on the limitations of your investigation and what you would improve.",
+      "storyContext": "No investigation is ever completely perfect — admitting that honestly is part of doing good science, not a failure of it.",
+      "instructions": "Reflect on the limitations of your investigation and what you would genuinely improve if you ran it again.",
       "output": "A reflection on the investigation's limitations.",
       "schedulerCategory": "core"
     },
@@ -130,7 +130,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["What would you do differently if you repeated your investigation?"]
+    "prompts": ["What would you do differently if you repeated your investigation, and what made you notice that limitation in the first place?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0017",

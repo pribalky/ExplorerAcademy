@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "independent",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "With enough expedition data recovered, Atlas asks the learner to examine measurements collected over many months.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Individually, the records seem ordinary, but something about them feels connected.", "trigger": "Long-term data provided" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner compares datasets from across the expedition's records.", "trigger": "Datasets compared" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Creating graphs of the combined data begins to reveal a pattern that had gone unnoticed.", "trigger": "Graphs created" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must identify the trend and explain their conclusions using evidence.", "trigger": "Trend identified and explained" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The hidden pattern connects evidence from several earlier missions at once.", "trigger": "Pattern connects earlier missions" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how investigations that once seemed unrelated are actually connected.", "trigger": "Findings reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The learner's confidence in interpreting complex information grows, sensing that a much bigger picture is starting to form.", "trigger": "Confidence grows" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "With enough expedition data finally recovered, Atlas hands the learner something new: not a single mystery to solve, but months of measurements to make sense of.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "On their own, the records look almost ordinary — weather, water, power, geology, each filed separately. But something about seeing them side by side feels like it shouldn't be a coincidence.", "trigger": "Long-term data provided" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner compares datasets pulled from across the expedition's records, mission by mission.", "trigger": "Datasets compared" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Turning the combined data into graphs does something no single dataset could: it reveals a pattern that had been hiding in plain sight the whole time.", "trigger": "Graphs created" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must name the trend precisely and explain their conclusion using the evidence itself, not just a hunch that something connects.", "trigger": "Trend identified and explained" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The hidden pattern doesn't belong to just one mission — it threads through several of them at once, tying investigations that once felt separate into a single story.", "trigger": "Pattern connects earlier missions" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how investigations that once seemed completely unrelated turn out to be pieces of the same picture.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The learner's confidence in interpreting complex information grows — and so does the sense that Outpost Echo's mystery is far bigger than any single mission has shown so far.", "trigger": "Confidence grows" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "observation",
       "duration": 8,
       "difficulty": "independent",
-      "storyContext": "Atlas asks the learner to examine measurements collected over many months.",
-      "instructions": "Compare a few datasets collected at different points during the expedition.",
+      "storyContext": "Atlas hands over measurements collected over many months — more data than any single mission has asked the learner to work with before.",
+      "instructions": "Compare a few datasets collected at different points during the expedition, noting anything that looks similar between them.",
       "output": "Notes comparing the datasets.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "mathematics",
       "duration": 7,
       "difficulty": "independent",
-      "storyContext": "Individually, the records seem ordinary, but combined they might reveal something more.",
-      "instructions": "Create graphs combining the datasets to make any patterns easier to see.",
+      "storyContext": "Individually, the records seem ordinary — combined, they might reveal something none of them showed on their own.",
+      "instructions": "Create graphs combining the datasets so that any pattern becomes something you can actually see, not just sense.",
       "output": "Graphs of the combined datasets.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "science",
       "duration": 8,
       "difficulty": "independent",
-      "storyContext": "A repeating pattern has gone unnoticed until now.",
-      "instructions": "Identify any trend that appears across the combined graphs.",
+      "storyContext": "A repeating pattern has been sitting in the data all along — nobody combined the records carefully enough to notice it until now.",
+      "instructions": "Identify any trend that appears across the combined graphs, and be precise about exactly what it is.",
       "output": "A description of the identified trend.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "reflection",
       "duration": 7,
       "difficulty": "independent",
-      "storyContext": "A good conclusion is always supported by evidence.",
-      "instructions": "Explain what the trend means, using evidence from the datasets to support your conclusion.",
+      "storyContext": "A good conclusion is always supported by evidence — a pattern that looks convincing on a graph still needs the data behind it spelled out.",
+      "instructions": "Explain what the trend means, using specific evidence from the datasets to support your conclusion.",
       "output": "A written conclusion supported by evidence.",
       "schedulerCategory": "core"
     },
@@ -104,7 +104,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["Which earlier missions do you think are connected by this pattern, and why?"]
+    "prompts": ["Which earlier missions do you think are connected by this pattern, and what makes you confident they're actually related rather than just coincidence?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0013",

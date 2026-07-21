@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "confident",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "The learner discovers references to one final field notebook belonging to Dr. Elara Quinn.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Only scattered pages of the notebook remain, and much of its content is missing.", "trigger": "Notebook references found" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner combines journal entries, maps, timestamps and previous discoveries to begin reassembling the notebook.", "trigger": "Pages combined with other evidence" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Arranging the surviving pages chronologically begins to reveal Dr. Quinn's final recorded observations.", "trigger": "Pages arranged chronologically" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must write the missing sections using the available evidence, distinguishing confirmed facts from reasonable inference.", "trigger": "Missing sections written and inference separated from fact" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The reconstructed notebook confirms that the expedition was attempting to protect important scientific discoveries — not hide them.", "trigger": "Expedition's true purpose confirmed" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how much can be understood even from a badly damaged record.", "trigger": "Findings reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Dr. Quinn's motivations become clear, and the campaign transitions from investigation toward solving the expedition mystery.", "trigger": "Motivations understood" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Buried in the archive is a reference nobody has followed up on until now: one final field notebook, belonging to Dr. Elara Quinn herself.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Only scattered pages of the notebook survive, and whole stretches of it are simply gone — not corrupted like the old logs, just missing.", "trigger": "Notebook references found" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner draws on journal entries, maps, timestamps and everything discovered across the whole campaign to begin reassembling the notebook.", "trigger": "Pages combined with other evidence" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Arranging the surviving pages into order finally starts to surface Dr. Quinn's own final recorded observations, in something close to her own words.", "trigger": "Pages arranged chronologically" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must write the missing sections using the available evidence, and hold the line between a confirmed fact and a reasonable inference — a harder line to draw here than it's ever been before.", "trigger": "Missing sections written and inference separated from fact" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The reconstructed notebook changes everything: the expedition wasn't hiding their discoveries at all. They were protecting them.", "trigger": "Expedition's true purpose confirmed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how much can still be understood from a record this damaged — and how differently the whole expedition reads now that its purpose has changed.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Dr. Quinn's motivations are finally clear. The campaign shifts here — from piecing together what happened, to actually solving why it happened.", "trigger": "Motivations understood" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "reading",
       "duration": 8,
       "difficulty": "confident",
-      "storyContext": "Only scattered pages remain of Dr. Elara Quinn's final field notebook.",
-      "instructions": "Read the surviving notebook pages and work out how they fit together.",
+      "storyContext": "Only scattered pages remain of Dr. Elara Quinn's final field notebook — the closest thing to her own voice the expedition has left behind.",
+      "instructions": "Read the surviving notebook pages carefully and work out how they fit together, even where the connection isn't obvious at first.",
       "output": "A reassembled order of the surviving notebook pages.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "writing",
       "duration": 7,
       "difficulty": "confident",
-      "storyContext": "Journal entries, maps, timestamps and previous discoveries all hold clues to the correct order of events.",
-      "instructions": "Arrange the events described in the notebook into chronological order.",
+      "storyContext": "Journal entries, maps, timestamps and everything discovered in earlier missions all hold clues to the correct order of events.",
+      "instructions": "Arrange the events described in the notebook into chronological order, cross-checking against what you've already learned from earlier missions.",
       "output": "A chronological timeline of Dr. Quinn's final observations.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "writing",
       "duration": 8,
       "difficulty": "confident",
-      "storyContext": "Large parts of the notebook are missing entirely.",
-      "instructions": "Write the missing sections of the notebook, using evidence from the surviving pages and previous discoveries.",
+      "storyContext": "Large parts of the notebook are missing entirely — this is where everything the campaign has taught you gets used at once.",
+      "instructions": "Write the missing sections of the notebook, using evidence from the surviving pages and everything you've discovered across the whole expedition so far.",
       "output": "Written reconstructions of the missing notebook sections.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "reflection",
       "duration": 7,
       "difficulty": "confident",
-      "storyContext": "Not everything written in the reconstructed notebook can be fully trusted.",
-      "instructions": "Sort your reconstruction into confirmed facts and reasonable inference.",
+      "storyContext": "Not everything written in the reconstructed notebook can be fully trusted — an inference can feel almost certain and still not be a fact.",
+      "instructions": "Sort your reconstruction into confirmed facts and reasonable inference, and be honest with yourself about which is which.",
       "output": "Two lists: confirmed facts and reasonable inference.",
       "schedulerCategory": "core"
     },
@@ -104,7 +104,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["What do you think Dr. Quinn was really trying to protect?"]
+    "prompts": ["What do you think Dr. Quinn was really trying to protect, and how is that different from what you originally assumed?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0014",

@@ -309,7 +309,7 @@ Produces
 Status
 
 ```
-IN PROGRESS — Missions 1-12 reach production quality (all of Chapters 1-3); 9 missions remain
+IN PROGRESS — Missions 1-20 reach production quality; only Mission 21 (the finale) remains
 ```
 
 Goal
@@ -318,30 +318,30 @@ Improve each mission.
 
 Checklist (per mission)
 
-- [x] Story flow — Missions 1–12
-- [ ] Story flow — Missions 13–21
+- [x] Story flow — Missions 1–20
+- [ ] Story flow — Mission 21
 
-- [x] Curiosity — Missions 1–12
-- [ ] Curiosity — Missions 13–21
+- [x] Curiosity — Missions 1–20
+- [ ] Curiosity — Mission 21
 
-- [x] Difficulty — Missions 1–12
-- [ ] Difficulty — Missions 13–21
+- [x] Difficulty — Missions 1–20
+- [ ] Difficulty — Mission 21
 
-- [x] Discovery Log — Missions 1–12
-- [ ] Discovery Log — Missions 13–21
+- [x] Discovery Log — Missions 1–20
+- [ ] Discovery Log — Mission 21
 
-- [x] Rabbit Holes — Missions 1–12
-- [ ] Rabbit Holes — Missions 13–21
+- [x] Rabbit Holes — Missions 1–20
+- [ ] Rabbit Holes — Mission 21
 
-- [x] Reflection — Missions 1–12
-- [ ] Reflection — Missions 13–21
+- [x] Reflection — Missions 1–20
+- [ ] Reflection — Mission 21
 
-- [x] Rewards — Missions 1–12
-- [ ] Rewards — Missions 13–21
+- [x] Rewards — Missions 1–20
+- [ ] Rewards — Mission 21
 
 Deliverable
 
-One mission reaches production quality. ✅ (Missions 1–12)
+One mission reaches production quality. ✅ (Missions 1–20)
 
 Repeat for remaining missions.
 
@@ -565,4 +565,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Phase 5 (Asset Compiler) is complete for all 21 missions.** Phase 6 (Mission Polish) is now underway: **Missions 1–12 have reached production quality**, covering all of Chapters 1–3. Beats, Core activity storyContext/instructions, and reflection prompts were rewritten for stronger story flow and curiosity, grounded in each mission's canonical Story Summary, with no new plot facts invented — Mission 4 (Dr. Quinn's name first appears), Mission 8 (her first recorded voice) and Mission 11 (the Cliffhanger now echoes Mission 8's "deliberately" language) got particular narrative care. Two missions required protecting already-published generated assets from contradiction: Mission 10's experiment activity (`ACTIVITY-0058`) was left byte-for-byte untouched to match `generated/resources/experiments.json`'s "Finding the Blockage" entry, and Mission 12's "Measure Angles" activity was kept consistent with its existing star-chart image spec and printable. Extension/Rabbit Hole activities were reviewed but left unchanged where already appropriately open-ended. All twelve missions verified against `mission-engine.js`'s actual validation rules and rendered end-to-end in a headless browser with no console errors and no Parent Guide leakage (ADR-006). The platform still doesn't render `beats` to the learner yet (confirmed by reading `activity-engine.js`/`router.js`) — polished anyway since load-bearing in the mission template design, but no unrendered optional Activity fields (`hints`, `resources`, `parentNotes`) were added. Awaiting user direction on which mission(s) to polish next.
+**Phase 5 (Asset Compiler) is complete for all 21 missions.** Phase 6 (Mission Polish) is now underway: **Missions 1–20 have reached production quality** — only Mission 21 (the finale) remains. Beats, Core activity storyContext/instructions, and reflection prompts were rewritten for stronger story flow and curiosity, grounded in each mission's canonical Story Summary, with no new plot facts invented. Key narrative beats got particular care: Mission 4/8 (Dr. Quinn's name, then her voice), Mission 14 (the "protect, not hide" reveal), Mission 18 (the full-campaign synthesis), Mission 19 (the mystery's actual resolution), and Mission 20 (an explicit callback to Mission 1 ahead of graduation). Missions 10, 12, 15 and 17 each required protecting already-published generated assets or internally-consistent experiment framing from contradiction — their tied activities were left untouched or only lightly adjusted after confirming no verbatim text dependency existed. Extension/Rabbit Hole activities were reviewed but left unchanged where already appropriately open-ended. All twenty missions verified against `mission-engine.js`'s actual validation rules and rendered end-to-end in a headless browser with no console errors and no Parent Guide leakage (ADR-006). The platform still doesn't render `beats` to the learner yet (confirmed by reading `activity-engine.js`/`router.js`) — polished anyway since load-bearing in the mission template design, but no unrendered optional Activity fields (`hints`, `resources`, `parentNotes`) were added. Awaiting user direction — likely Mission 21 to complete Phase 6 entirely.
