@@ -249,7 +249,7 @@ Success Criteria
 Status
 
 ```
-IN PROGRESS — World Bible Compiler complete (src/world/ + src/parent/ populated); Asset Compiler Batches 1–3 complete (Missions 1–15: workbook, parent enrichment, image specs, experiments.json); Batch 4 (Missions 16–21, final batch) next
+COMPLETE — World Bible Compiler (src/world/ + src/parent/) and Asset Compiler (all 4 batches, Missions 1–21: workbook pages, parent enrichment, image specifications, experiments.json) both fully populated across the whole campaign
 ```
 
 Goal
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Asset Compiler Batch 3 (Missions 11–15) is complete** — notebook instructions, one justified printable (Mission 12's star chart), parent enrichment with curriculum references, embedded vocabulary, image specifications, and a third experiment (Mission 15's signal-path troubleshooting) are all generated. Mission 11 was confirmed to need no experiment despite the resources document's PhET/circuits reference, by scanning its compiled JSON directly. Await approval to start Batch 4 (Missions 16–21), the final batch, which will complete Phase 5.
+**Phase 5 (Asset Compiler) is now complete for all 21 missions.** Every mission has notebook instructions, parent enrichment, and at least one image specification under `portal/campaigns/campaign01/generated/`; `experiments.json` correctly covers exactly Missions 7, 10, 15 and 17 (the only missions with a `type: "experiment"` activity, verified by scanning every mission's compiled JSON directly). Mission 17's entry is a general fair-test framework rather than a fixed experiment, since that mission deliberately gives the learner no fixed topic. Phase 6 (Mission Polish) is next per this document's own roadmap, but no specific milestone has been scoped yet — awaiting user direction on where to focus first.

@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0021",
+  "curriculumRefs": ["CURRICULUM-0001", "CURRICULUM-0002", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "This mission can get treated as just a wrap-up or celebration and rushed through, missing that the mission's own assessment specifically looks for 'genuine reflection on growth across the whole campaign, not just a summary of what happened.'",
+    "Children may undersell their own growth by comparing themselves only to where they are now, rather than explicitly looking back at how they answered things in Mission 1."
+  ],
+  "stretchQuestions": [
+    "Looking back at your Mission 1 expectations entry, what surprised you most about how the campaign actually went?",
+    "What's one Explorer habit you didn't have at the start that you have now?"
+  ],
+  "estimatedSupervision": "Minimal — a strong opportunity for a shared celebration and conversation, per the mission's own parent guide suggestion to 'consider celebrating this milestone together.'"
+}

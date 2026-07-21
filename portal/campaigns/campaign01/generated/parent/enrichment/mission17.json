@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0017",
+  "curriculumRefs": ["CURRICULUM-0002", "CURRICULUM-0004", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children may pick an investigation topic that's exciting but genuinely hard to test fairly, or unintentionally change more than one variable at once while still believing they've run a fair test.",
+    "The Extension's repeated test can feel like unnecessary busywork rather than genuine reliability-checking — worth framing it as 'checking whether your first result was a fluke,' which is the real reason scientists repeat tests."
+  ],
+  "stretchQuestions": [
+    "If a friend tested the exact same question and got a different result, what would that tell you?",
+    "What's the difference between an investigation that failed and one that just didn't confirm your prediction?"
+  ],
+  "estimatedSupervision": "Moderate — since the learner defines their own topic and materials, an adult may need to help gather whatever's needed and check the plan is genuinely safe before testing begins. See `generated/resources/experiments.json` (Mission 17 entry) for the general fair-test framework, since specific materials can't be prescribed in advance."
+}

@@ -90,6 +90,42 @@
       "notebookPage": "pages/mission15.md",
       "printable": null,
       "printableReason": "The test-and-refine task is a full experiment (see generated/resources/experiments.json); the surrounding inspection, sequencing and design-decision tasks are notebook-native writing."
+    },
+    {
+      "missionId": "MISSION-0016",
+      "notebookPage": "pages/mission16.md",
+      "printable": null,
+      "printableReason": "Sample notes, layer sketches and the field sketch are all naturally hand-drawn in the journal; an exemplar image spec (IMAGE-0019) is offered for reference, but nothing here needs printing."
+    },
+    {
+      "missionId": "MISSION-0017",
+      "notebookPage": "pages/mission17.md",
+      "printable": null,
+      "printableReason": "The fair test is a full experiment framework (see generated/resources/experiments.json) the learner applies to their own chosen topic; a fixed printable would contradict the mission's own point that no instructions survive."
+    },
+    {
+      "missionId": "MISSION-0018",
+      "notebookPage": "pages/mission18.md",
+      "printable": null,
+      "printableReason": "Evidence review, grouping and the investigation board are all naturally hand-drawn in the journal; an exemplar image spec (IMAGE-0021) is offered for reference, but nothing here needs printing."
+    },
+    {
+      "missionId": "MISSION-0019",
+      "notebookPage": "pages/mission19.md",
+      "printable": null,
+      "printableReason": "Reading, comparison and writing tasks are all notebook-native; nothing here is clearer printed."
+    },
+    {
+      "missionId": "MISSION-0020",
+      "notebookPage": "pages/mission20.md",
+      "printable": null,
+      "printableReason": "This mission is deliberately open-ended with no fixed topic, matching Mission 17; a fixed printable would contradict its own design intent."
+    },
+    {
+      "missionId": "MISSION-0021",
+      "notebookPage": "pages/mission21.md",
+      "printable": "printables/mission21-explorer-certificate.md",
+      "printableReason": "An optional Explorer Certificate template — a certificate is a ceremonial keepsake genuinely suited to printing, unlike the campaign's working content, and it's explicitly offered as an alternative to designing one directly in the journal, not the only path."
     }
   ]
 }

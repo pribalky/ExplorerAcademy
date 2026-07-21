@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0020",
+  "curriculumRefs": ["CURRICULUM-0002", "CURRICULUM-0004", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children may look for a single 'correct' answer to present, rather than understanding the assessment values a well-reasoned process even without a definitive conclusion — worth reassuring that an honest, well-justified 'we're not fully sure' is a legitimate outcome here.",
+    "Without step-by-step instructions, some children stall rather than start — encourage picking any reasonable first step over waiting for the 'right' one."
+  ],
+  "stretchQuestions": [
+    "If you'd had unlimited time, what would you have investigated differently?",
+    "Which decision during this investigation are you least sure was the right one, and why?"
+  ],
+  "estimatedSupervision": "Minimal — this mission is deliberately open-ended and designed for independent work, mirroring Mission 17."
+}

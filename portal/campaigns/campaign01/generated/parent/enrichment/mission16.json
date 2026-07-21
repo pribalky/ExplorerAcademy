@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0016",
+  "curriculumRefs": ["CURRICULUM-0004", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children can treat one source (usually the rock samples, since they're the most tangible) as sufficient on its own, rather than combining samples, layers and maps together — the mission's own assessment specifically calls for evidence 'from the samples, layers and maps together, not just one source.'",
+    "A field sketch can end up decorative rather than informative if it isn't labelled — a pretty drawing isn't the same as a useful one."
+  ],
+  "stretchQuestions": [
+    "Which single piece of evidence — samples, layers, or maps — was most convincing on its own, and which needed the others to make sense?",
+    "How might disturbing the survey area, rather than just observing it, have changed what future Explorers could learn?"
+  ],
+  "estimatedSupervision": "Light — real rocks or stones can help if available, per the mission's own parent guide, but nothing is required."
+}

@@ -2,57 +2,76 @@
 
 ## Phase
 
-5 – Asset Compiler
+6 – Mission Polish
 
 ## Milestone
 
-Asset Compiler execution — Batch 4 (Missions 16–21, final batch)
+Not yet defined — awaiting direction
 
 ## Objective
 
-Complete the Asset Compiler run for the last batch of missions, following the same pattern established in Batches 1–3: notebook instructions, parent enrichment (misconceptions/stretch questions/supervision, with `curriculumRefs` grounded in each mission's actual activity `type` fields), vocabulary embedded in the notebook page where a mission's own text introduces new terms, image specifications for key scenes, and experiment instructions for any mission with a `type: "experiment"` activity. This closes out Phase 5.
+Phase 5 (Asset Compiler) is now complete across all 21 missions. TODO.md lists Phase 6 as "Mission Polish" (story flow, curiosity, difficulty, Discovery Log, Rabbit Holes, reflection, rewards — one mission reaches production quality, then repeat), but no specific milestone has been scoped or approved yet. Per CLAUDE.md's workflow, do not begin Phase 6 work until the user reviews the completed Phase 5 output and confirms scope and direction for the next milestone.
 
 ## Inputs
 
-- `prompts/ASSET_COMPILER.md`
-- `portal/campaigns/campaign01/src/missions/mission16.json`–`mission21.json`
-- `portal/campaigns/campaign01/src/world/*.json`, `src/parent/curriculum-mapping.json` (for grounding/references)
-- `portal/campaigns/campaign01/generated/workbook/pages/mission01.md`–`mission15.md`, `generated/parent/enrichment/mission01.json`–`mission15.json`, and `generated/resources/experiments.json` as the established pattern to follow
+N/A — awaiting user direction.
 
 ## Relevant Documentation
 
-`prompts/ASSET_COMPILER.md` itself — all decisions are encoded there.
+`docs/00-foundation/007_AI_CONTRIBUTING_GUIDE.md`, `TODO.md`'s Phase 6 section, once a specific milestone is scoped.
 
 ## Files Expected to Change
 
-- `portal/campaigns/campaign01/generated/workbook/workbook.json` (extend index), `pages/mission16.md`–`mission21.md` (+ printables only where justified)
-- `portal/campaigns/campaign01/generated/parent/enrichment/mission16.json`–`mission21.json`
-- `portal/campaigns/campaign01/generated/image-specifications/images.json` (extend with entries for missions 16–21)
-- `portal/campaigns/campaign01/generated/resources/experiments.json` (extend — per `ASSET_COMPILER.md`'s Campaign 01 example, Mission 17 is expected to be experiment-driven; confirm by scanning each mission's `activities[]` for a `type: "experiment"` entry before adding anything, same rule as every prior batch. Mission 16 needs a sketch-map image spec per the same Campaign 01 example.)
+N/A — awaiting user direction.
 
 ## Implementation Plan
 
-Same as Batches 1–3: read each mission JSON directly, scan `activities[]` for `type: "experiment"` rather than assuming from memory, ground `curriculumRefs` in actual activity types, write notebook instructions, add a printable only where the PHILOSOPHY bar is met, add an image spec per key scene (plus a diagram/map spec only where an activity's output or input specifically requires one). Missions 17, 20, 21 form the campaign's reward arc culminating in "Certified Explorer" — treat Mission 21's content with extra care as the campaign's closing mission.
+N/A — awaiting user direction.
 
 ## Out of Scope
 
-Missions 1–15 (done). Anything already covered (Discovery Log prompts beyond the existing reflection prompt, additional Extension activities, reading/resource recommendations already in `505_RESOURCES.md`).
+N/A.
 
 ## Success Criteria
 
-Same as Batch 3, plus: this batch completes all 21 missions, so a final full-campaign consistency check (every mission has a notebook page and parent enrichment file, no orphan image/experiment entries) is worthwhile before marking Phase 5 complete.
+N/A.
 
 ## Manual Verification
 
-JSON/Markdown validity; spot-check no duplication of existing mission fields; confirm no `src/` files touched; full-campaign ID/coverage check across all `generated/` assets.
+N/A.
 
 ## Deliverables
 
-Batch 4 generated assets for Missions 16–21 — completing Phase 5.
+N/A.
 
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Asset Compiler execution — Batch 4 (Missions 16–21, final batch) — COMPLETE
+
+## Completion Summary
+
+Ran `prompts/ASSET_COMPILER.md` against Missions 16–21, completing Phase 5 across all 21 missions:
+
+- **Notebook instructions** for all 6 missions (`generated/workbook/pages/mission16.md`–`mission21.md`).
+- **Fourth experiment — Mission 17, handled as a framework rather than a fixed experiment**: Mission 17 has two `type: "experiment"` activities (`ACTIVITY-0102` Core "Plan a Fair Test", `ACTIVITY-0106` Extension "Repeat With a Changed Variable"), but the mission's own narrative explicitly gives the learner no fixed topic ("no detailed instructions survive... the design is up to the learner"). Rather than inventing a specific topic that would contradict this design intent, the `experiments.json` entry is a general fair-test framework (define question → prediction → identify the one variable → hold everything else constant → collect evidence → analyse → repeat with one change) that the learner applies to their own self-chosen investigation, with a `note` field explaining why this entry differs in shape from the other three.
+- **Two further printables**: Mission 21's Explorer Certificate template (`printables/mission21-explorer-certificate.md`) — a ceremonial keepsake genuinely suited to printing, offered as an alternative to designing one in the journal, not the only path. Missions 16–20 were assessed and needed none; Mission 17 and 20 specifically got none because a fixed printable would contradict their deliberately open-ended, learner-defined design.
+- **Parent enrichment** (`mission16.json`–`mission21.json`), `curriculumRefs` grounded in actual activity types as in every prior batch.
+- **Vocabulary**: embedded for Missions 16 ("strata"), 17 ("fair test"), 19 ("archive"). Missions 18, 20, 21 got none — their own text reuses vocabulary already established in earlier missions rather than introducing new terms.
+- **Image specifications** (IMAGE-0018–0024): key-scene spec per mission, plus two further exemplar diagram specs matching the established Mission 2/16 sketch-output pattern — Mission 16's field sketch (per `ASSET_COMPILER.md`'s own Campaign 01 example) and Mission 18's investigation board (its Extension activity's output is explicitly "a visual investigation board"). Mission 17's and Mission 20's specs are deliberately generic/topic-agnostic scenes, since both missions are learner-defined with no fixed subject. Mission 19's spec shows the archive room itself rather than Dr. Quinn, since no physical description of her exists anywhere in the World Bible. Mission 21's spec (IMAGE-0024) is deliberately composed to echo IMAGE-0001 (Mission 1's Director Orion briefing scene), bookending the campaign per Director Orion's own World Bible entry noting he "welcomes the learner at the start of the campaign (Mission 1) and again at Graduation (Mission 21)."
+
+## Manual Verification
+
+- Validated all new/modified generated JSON with `python3 -c "json.load(...)"` — all files parse.
+- `git status --short` confirmed only files under `generated/` were touched; nothing under `src/`.
+- **Full-campaign consistency check** (this being the final batch): confirmed `workbook.json` lists exactly `MISSION-0001`–`MISSION-0021` in order; confirmed 21 parent enrichment files exist (one per mission); confirmed all 21 missions have at least one image specification; confirmed `experiments.json` contains exactly Missions 7, 10, 15 and 17 — the complete, correct set of missions with a `type: "experiment"` activity across the whole campaign, verified by scanning every mission's compiled JSON directly rather than relying on `505_RESOURCES.md`'s or `ASSET_COMPILER.md`'s own worked examples (which turned out to be imprecise about Mission 11, correctly excluded back in Batch 3).
+
+## Verification
+
+Phase 5 is complete: every one of the 21 compiled missions now has notebook instructions, parent enrichment, and at least one image specification under `generated/`, with printables and experiments produced only where each mission's own content genuinely justified one — no padding, no orphaned assets, and no `src/` files touched across all four batches. ✅
 
 ---
 

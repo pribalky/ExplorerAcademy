@@ -187,6 +187,83 @@
       "orientation": "portrait",
       "aspectRatio": "3:4",
       "priority": "high"
+    },
+    {
+      "imageId": "IMAGE-0018",
+      "missionId": "MISSION-0016",
+      "title": "The Underground Survey Area",
+      "purpose": "Key scene image for the mission's Hook beat, where restoring power reveals the previously inaccessible underground geological survey area.",
+      "description": "A lantern- or headlamp-lit underground chamber beneath Outpost Echo, showing exposed rock layers along one wall, a small table with catalogued rock samples, and rolled-up survey maps. A sense of careful, ongoing scientific work rather than a natural cave.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0019",
+      "missionId": "MISSION-0016",
+      "title": "Example Geological Field Sketch",
+      "purpose": "Reference exemplar for the Extension 'Produce a Geological Field Sketch' activity, matching the Campaign 01 example in ASSET_COMPILER.md, which notes Mission 16 needs a sketch-map-style spec since its Core/Extension activities produce one.",
+      "description": "A simple hand-drawn-style geological cross-section sketch showing labelled rock layers and one or two surface features, plain and legible rather than decorative, so it reads as something a learner could realistically produce themselves.",
+      "style": "Simple line-art diagram, not a painted scene.",
+      "orientation": "landscape",
+      "aspectRatio": "4:3",
+      "priority": "low"
+    },
+    {
+      "imageId": "IMAGE-0020",
+      "missionId": "MISSION-0017",
+      "title": "An Independent Investigation",
+      "purpose": "Key scene image representing the mission's open-ended nature, where the learner defines and runs their own investigation with no fixed topic.",
+      "description": "A station workbench with a deliberately generic mix of everyday investigation materials laid out (a notebook, a ruler, some containers, a torch) — no specific topic implied, since Mission 17's whole point is that the learner chooses their own. The learner's hands are shown arranging materials, not a specific experiment mid-progress.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "4:3",
+      "priority": "low"
+    },
+    {
+      "imageId": "IMAGE-0021",
+      "missionId": "MISSION-0018",
+      "title": "Example Investigation Board",
+      "purpose": "Reference exemplar for the Extension 'Produce an Investigation Board' activity, whose output is explicitly a visual investigation board — matching the same diagram-output pattern already established for Missions 2 and 16.",
+      "description": "A simple reference version of an investigation board: a handful of labelled cards representing evidence types (a log fragment, a weather chart, a sample jar) connected by string to a central conclusion card. Deliberately generic rather than using specific Campaign 01 plot details, so it reads as a template the learner fills in with their own evidence.",
+      "style": "Simple line-art diagram, not a painted scene.",
+      "orientation": "landscape",
+      "aspectRatio": "4:3",
+      "priority": "low"
+    },
+    {
+      "imageId": "IMAGE-0022",
+      "missionId": "MISSION-0019",
+      "title": "The Unlocked Archive",
+      "purpose": "Key scene image for the mission's Hook beat, where the learner unlocks the expedition's protected archive.",
+      "description": "A secure records room or vault at Outpost Echo, its door now open, shelves of carefully preserved files and a single glowing terminal displaying the newly unlocked archive. Dr. Elara Quinn is not shown — no physical description of her exists in the World Bible, and she remains known only through her records throughout the campaign.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0023",
+      "missionId": "MISSION-0020",
+      "title": "Presenting to Explorer Academy",
+      "purpose": "Key scene image for the mission's Breakthrough beat, where the learner presents their conclusions.",
+      "description": "The learner presenting findings — journal open, evidence laid out — to Director Orion and Atlas in a Mission Control-style room, both listening attentively rather than judging. The topic of the investigation itself is left generic, since Mission 20 is deliberately open-ended.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0024",
+      "missionId": "MISSION-0021",
+      "title": "Graduation Day",
+      "purpose": "Key scene image for the mission's Breakthrough beat, where the learner officially graduates and receives their Explorer Certificate — deliberately bookending IMAGE-0001 (Director Orion's Briefing, Mission 1), per Director Orion's World Bible entry: 'Welcomes the learner at the start of the campaign (Mission 1) and again at Graduation (Mission 21).'",
+      "description": "Director Orion presenting the Explorer Certificate to the learner in the same briefing room at Explorer Academy Headquarters as Mission 1's scene, now warmly lit and celebratory rather than serious. Atlas is present in the background. Composition deliberately echoes IMAGE-0001 to visually close the loop.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "high"
     }
   ]
 }

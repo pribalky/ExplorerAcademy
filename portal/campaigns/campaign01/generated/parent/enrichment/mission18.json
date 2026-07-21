@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0018",
+  "curriculumRefs": ["CURRICULUM-0001", "CURRICULUM-0002", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children can support their conclusion using only the evidence that confirms it, quietly setting aside anything that complicates the picture — the mission's own assessment specifically calls for accounting for 'the full range of evidence, not just the most memorable pieces.'",
+    "Evaluating alternative explanations can turn into dismissing them too quickly, rather than genuinely explaining why the evidence favours one account over another."
+  ],
+  "stretchQuestions": [
+    "Is there any piece of evidence that doesn't fit your conclusion neatly? How do you explain it?",
+    "If you had to convince someone who disagreed with you, which piece of evidence would you lead with, and why?"
+  ],
+  "estimatedSupervision": "Minimal — a strong mission for independent synthesis, with a parent enjoying the finished investigation board or conclusion afterwards."
+}

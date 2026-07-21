@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0019",
+  "curriculumRefs": ["CURRICULUM-0001", "CURRICULUM-0002", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Children might read 'the expedition suspended operations' as the expedition having failed or given up, rather than as a deliberate, responsible scientific choice to verify before publishing — worth discussing that distinction explicitly.",
+    "The summary step can become a retelling of events rather than an explanation of Dr. Quinn's intentions, which is what the mission's own assessment is actually looking for."
+  ],
+  "stretchQuestions": [
+    "Why might publishing an unverified discovery be worse than waiting, even if the discovery turns out to be true?",
+    "What would you have done in Dr. Quinn's position?"
+  ],
+  "estimatedSupervision": "Minimal — a good mission for a shared conversation afterwards, given its reflective, story-resolving content."
+}

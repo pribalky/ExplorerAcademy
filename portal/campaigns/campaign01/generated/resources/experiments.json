@@ -81,6 +81,33 @@
       ],
       "expectedObservations": "A direct, aligned torch reaches the target clearly. Obstruction blocks the light almost completely regardless of alignment or distance. Misalignment can redirect the light away from the target entirely if severe enough. Increased distance dims and spreads the light without fully blocking it, unless combined with another fault.",
       "scientificExplanation": "Light — like a radio signal — travels in a straight line and needs a clear, aligned path to reach its target. Real signal towers can fail in the same three ways (misalignment, obstruction, insufficient range), which is why engineers diagnose and prioritise each fault separately instead of guessing at a single fix."
+    },
+    {
+      "missionId": "MISSION-0017",
+      "activityId": "ACTIVITY-0102",
+      "extensionActivityId": "ACTIVITY-0106",
+      "title": "Design Your Own Fair Test",
+      "note": "Unlike the other experiments in this file, Mission 17 deliberately gives the learner no fixed topic — 'no detailed instructions survive' for this investigation, and 'the design is up to the learner.' This entry is a general framework for planning and running a fair test, not a specific experiment, since the actual topic and materials are chosen by the learner and cannot be prescribed in advance.",
+      "objective": "Help the learner design and run a genuinely fair test for a self-chosen investigation question, changing only one variable at a time.",
+      "materials": [
+        "Whatever the learner's own investigation question requires — determined by their chosen topic, not prescribed here",
+        "A notebook to record the plan, evidence and results"
+      ],
+      "steps": [
+        "Write down the exact question the investigation will try to answer.",
+        "Form a prediction for what the test will show, and explain the reasoning behind it.",
+        "Identify the one thing (the variable) that will be changed during the test.",
+        "List everything else that must be kept exactly the same, so any difference in the result can be attributed to the one thing that changed.",
+        "Carry out the test and record the evidence as it's collected, not from memory afterwards.",
+        "Analyse whether the evidence supports the original prediction.",
+        "For the Extension activity, repeat the test with one variable changed from the original, and compare the two sets of results."
+      ],
+      "safetyNotes": [
+        "Since the materials aren't known in advance, an adult should check the learner's plan before testing begins to confirm it's safe with whatever materials they've chosen.",
+        "If the investigation involves anything sharp, hot, or otherwise requiring extra care, adult supervision during the test itself is recommended."
+      ],
+      "expectedObservations": "Will vary entirely depending on the learner's own chosen investigation — this is expected and appropriate, since the mission's point is designing the test, not reaching any particular predetermined result.",
+      "scientificExplanation": "A test is 'fair' when only one variable changes between comparisons and everything else is held constant — this is what allows a scientist (or an Explorer) to attribute any difference in outcome specifically to that one variable, rather than to some other uncontrolled factor."
     }
   ]
 }
