@@ -10,7 +10,7 @@ Not yet defined — awaiting direction on which mission(s) to polish next
 
 ## Objective
 
-Missions 1–8 have reached production quality (see completed milestones below). TODO.md's Phase 6 checklist calls for repeating this for the remaining missions, but per CLAUDE.md's workflow, do not begin polishing another mission until the user chooses one.
+Missions 1–12 have reached production quality (see completed milestones below). TODO.md's Phase 6 checklist calls for repeating this for the remaining missions, but per CLAUDE.md's workflow, do not begin polishing another mission until the user chooses one.
 
 ## Inputs
 
@@ -47,6 +47,32 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Mission Polish: Missions 9–12 reach production quality — COMPLETE
+
+## Completion Summary
+
+Applied the same approach as Missions 1–8 to Missions 9 ("Mystery Samples"), 10 ("Water Under Pressure"), 11 ("The Energy Problem") and 12 ("Star Maps"), editing `portal/campaigns/campaign01/src/missions/mission09–12.json` directly, grounded in each mission's canonical Story Summary in `501_CAMPAIGN_01.md`. This batch covers all of Chapter 3.
+
+- **Mission 9**: Atlas's "classify by evidence, not appearance" warning (originally a fairly flat MYSTERY beat) was rewritten as a genuine cautionary note the learner is set up to test against, and the reflection prompt now asks whether any sample surprised them by not belonging where it looked like it should.
+- **Mission 10**: beats and non-experiment activities (`ACTIVITY-0057` Trace Water Flow, `ACTIVITY-0059` Interpret Diagrams, `ACTIVITY-0060` Recommend Repairs) were rewritten for stronger flow. **Deliberately left `ACTIVITY-0058`'s ("Conduct Simple Experiments") storyContext/instructions untouched** and verified byte-for-byte against `generated/resources/experiments.json`'s "Finding the Blockage" entry, which quotes this activity's exact original text — editing it would have silently invalidated that already-published experiment.
+- **Mission 11**: the Cliffhanger was strengthened to explicitly echo Mission 8's "deliberately shut down" language (now "deliberately conserving power"), reinforcing the campaign's slow-building pattern of the expedition making intentional, unexplained choices rather than simply running into problems.
+- **Mission 12**: beats and activities were rewritten while keeping `ACTIVITY-0071` ("Measure Angles") consistent with the already-published star-chart image spec (`IMAGE-0014`) and printable (`generated/workbook/printables/mission12-star-chart.md`) — the instructions now explicitly reference "using the star chart" rather than contradicting its existence.
+- **Extension/Rabbit Hole activities**: reviewed across all four missions, left unchanged — already appropriately open-ended.
+- **Left unchanged**: all IDs, `rewards`, `completionCriteria`, `parentGuide` core fields, for the same reasons as every prior mission.
+
+## Manual Verification
+
+- Validated all four files against `mission-engine.js`'s actual required-field/beat-type/activity-field/reward-field/parentGuide checks via script — all pass.
+- Grepped `generated/` for each mission's superseded reflection-prompt text — no stale references found.
+- Confirmed Mission 10's `ACTIVITY-0058` storyContext/instructions match `generated/resources/experiments.json`'s Mission 10 entry exactly (`grep` on both exact strings).
+- Served the app locally and drove it with headless Chromium: loaded all four missions in turn, confirmed each renders its correct title, confirmed updated activity/reflection text appears in the rendered page, and confirmed no `parentGuide` content leaks into the DOM for any of the four (ADR-006 holds). No console errors.
+
+## Verification
+
+Missions 9–12 now satisfy the same Mission Quality Checklist bar as Missions 1–8, completing all of Chapter 3 at production quality, with both already-published generated assets (Mission 10's experiment, Mission 12's star chart) confirmed still consistent with the polished source content. ✅
 
 ---
 

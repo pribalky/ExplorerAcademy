@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "independent",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "The station's water recycling system has partially failed.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Something is preventing water from moving properly through the outpost.", "trigger": "Water system found failing" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner traces how water flows through the station's systems.", "trigger": "Water flow traced" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Diagrams and simple experiments begin to reveal where the malfunction is occurring.", "trigger": "Diagrams and experiments examined" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must interpret the diagrams and recommend a repair.", "trigger": "Repair recommended" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner identifies the source of the malfunction and proposes a fix.", "trigger": "Malfunction identified" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how water shortages may have influenced the expedition's earlier decisions.", "trigger": "Findings reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Repairing the system restores another section of the station, and additional laboratories become accessible.", "trigger": "Additional laboratories unlocked" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Water pressure across the station drops without warning — the recycling system has partially failed, and nobody yet knows where.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Somewhere between the intake and the taps, something is stopping water moving the way it should — and the fault could be hiding anywhere along that path.", "trigger": "Water system found failing" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner traces how water is meant to flow through the station's systems, step by step, looking for where reality stops matching the diagram.", "trigger": "Water flow traced" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Between the diagrams and a few simple tests, the malfunction starts to narrow down to somewhere specific, rather than being a mystery hiding everywhere at once.", "trigger": "Diagrams and experiments examined" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must interpret what the diagrams are actually showing and turn that into a clear recommendation for the repair.", "trigger": "Repair recommended" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The source of the malfunction is finally identified — and with it, a fix Atlas can actually act on.", "trigger": "Malfunction identified" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how a shortage of something as basic as water could have quietly shaped decisions the expedition made long before now.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "With the system repaired, water pressure returns to another section of the station — and with it, laboratories nobody has been able to reach until now.", "trigger": "Additional laboratories unlocked" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "observation",
       "duration": 8,
       "difficulty": "independent",
-      "storyContext": "The station's water recycling system has partially failed, and water isn't moving properly through the outpost.",
-      "instructions": "Trace how water is meant to flow through the station's systems, following the pipework diagram.",
+      "storyContext": "The station's water recycling system has partially failed, and water isn't reaching every part of the outpost the way it should.",
+      "instructions": "Trace how water is meant to flow through the station's systems, following the pipework diagram from start to finish rather than skipping to where you think the problem is.",
       "output": "A traced path of the station's water flow.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "science",
       "duration": 8,
       "difficulty": "independent",
-      "storyContext": "The station's engineering diagrams hold clues about where the system might be failing.",
-      "instructions": "Interpret the water system diagrams to identify where the malfunction is most likely occurring.",
+      "storyContext": "The station's engineering diagrams hold real clues about where the system is failing — if you know how to read them.",
+      "instructions": "Interpret the water system diagrams, using what your experiment showed, to identify exactly where the malfunction is most likely occurring.",
       "output": "A diagram interpretation identifying the likely fault.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "writing",
       "duration": 7,
       "difficulty": "independent",
-      "storyContext": "A clear recommendation will help Atlas carry out the repair.",
-      "instructions": "Write a recommendation explaining what repair should be made and why.",
+      "storyContext": "Atlas can carry out the repair, but only from a recommendation that's clear enough to act on without guessing at what you meant.",
+      "instructions": "Write a recommendation explaining what repair should be made and why, linking it clearly back to what your tracing and testing actually showed.",
       "output": "A written repair recommendation.",
       "schedulerCategory": "core"
     },
@@ -104,7 +104,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["How did tracing the water flow help you find the malfunction?"]
+    "prompts": ["How did tracing the water flow help you find the malfunction, and would you have found it without doing that step first?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0010",

@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "independent",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "Inside the station laboratory, several unidentified samples remain carefully catalogued but incompletely labelled.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Atlas reminds the learner that scientists classify by evidence, not appearance alone.", "trigger": "Samples found incompletely labelled" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner observes the properties of each sample carefully.", "trigger": "Properties observed" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Grouping similar specimens reveals patterns among the samples.", "trigger": "Specimens grouped" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must record evidence and justify how each sample was classified.", "trigger": "Evidence recorded and classifications justified" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner successfully classifies the samples using observable properties rather than assumptions.", "trigger": "Samples classified" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how classifying by evidence differs from judging by appearance alone.", "trigger": "Findings reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The classified samples uncover another area of the expedition's research, and the laboratory records begin making sense.", "trigger": "Laboratory records make sense" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Deep in the station laboratory, a row of samples sits carefully catalogued — but whoever was labelling them never finished the job.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Atlas offers one warning before the learner touches a single sample: scientists classify by evidence, not by what something looks like at a glance — and that distinction is about to matter.", "trigger": "Samples found incompletely labelled" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner works through the samples one at a time, observing their properties carefully rather than trusting a first impression.", "trigger": "Properties observed" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Grouping the samples by what they actually share, rather than how they look side by side, starts to reveal a pattern nobody labelled for them.", "trigger": "Specimens grouped" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must record the evidence behind every grouping and be ready to justify exactly why each sample belongs where it does.", "trigger": "Evidence recorded and classifications justified" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Every sample ends up classified using nothing but observable properties — no assumptions, no guessing from appearance alone.", "trigger": "Samples classified" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how differently the samples sorted out once evidence, rather than appearance, was doing the work.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "With the samples finally classified, the laboratory's incomplete records start making sense — and they point toward another part of the expedition's research nobody has reached yet.", "trigger": "Laboratory records make sense" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "observation",
       "duration": 8,
       "difficulty": "independent",
-      "storyContext": "Several unidentified samples remain carefully catalogued but incompletely labelled in the station laboratory.",
-      "instructions": "Observe each sample carefully and record its properties — colour, texture, size and any other details.",
+      "storyContext": "Several samples sit carefully catalogued in the station laboratory — someone clearly meant to label them properly, and never got the chance.",
+      "instructions": "Observe each sample carefully and record its properties — colour, texture, size and any other details you can actually point to, not what you assume it might be.",
       "output": "A list of observed properties for each sample.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "science",
       "duration": 7,
       "difficulty": "independent",
-      "storyContext": "Atlas reminds the learner that scientists classify by evidence, not appearance alone.",
-      "instructions": "Group the samples into categories based on their observed properties.",
+      "storyContext": "Atlas's warning still stands: classify by evidence, not by appearance alone — two samples that look similar at a glance won't always belong together.",
+      "instructions": "Group the samples into categories based on the properties you actually observed, not how they look sitting next to each other.",
       "output": "Samples grouped into evidence-based categories.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "writing",
       "duration": 8,
       "difficulty": "independent",
-      "storyContext": "Clear records will help future Explorers understand how each sample was classified.",
-      "instructions": "Write up the evidence supporting each group you created.",
+      "storyContext": "A classification nobody can check is barely better than a guess — clear records let a future Explorer verify your work without redoing it.",
+      "instructions": "Write up the specific evidence supporting each group you created.",
       "output": "Written evidence records for each group.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "reflection",
       "duration": 7,
       "difficulty": "independent",
-      "storyContext": "A good classification can always be explained using evidence.",
-      "instructions": "Explain why each sample belongs in its group, using your recorded evidence.",
+      "storyContext": "A good classification can always be explained using evidence — if it can't, it isn't really a classification yet.",
+      "instructions": "Explain why each sample belongs in its group, pointing directly to the evidence you recorded rather than restating your first impression.",
       "output": "A justified classification for each sample.",
       "schedulerCategory": "core"
     },
@@ -104,7 +104,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["What evidence did you use to classify the samples, rather than just their appearance?"]
+    "prompts": ["What evidence did you use to classify the samples, and did any of them surprise you by not belonging where they looked like they should?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0009",

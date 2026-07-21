@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "independent",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "A damaged observatory contains unfinished astronomical observations.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Star charts and positional clues hint at what the expedition had been tracking.", "trigger": "Damaged observations found" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner matches constellations and reads the station's star maps.", "trigger": "Constellations matched and star maps read" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Measuring angles between recorded positions begins to reveal a pattern in the sky.", "trigger": "Angles measured" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must interpret the observations to reconstruct what the expedition was studying.", "trigger": "Observations interpreted" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The reconstructed observations reveal the expedition's wider scientific objectives.", "trigger": "Objectives revealed" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how much can be learned from carefully recorded, unfinished data.", "trigger": "Findings reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The observatory becomes operational again, hinting that the expedition's research extended far beyond the station itself.", "trigger": "Observatory reactivated" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "The station's damaged observatory still holds a telescope angled at the sky — pointed at something the expedition never finished recording.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Star charts and positional notes survive, but only in pieces — enough to hint at what the expedition was tracking, not enough to say for certain, yet.", "trigger": "Damaged observations found" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner matches the recorded star patterns to known constellations and reads through the station's own star maps.", "trigger": "Constellations matched and star maps read" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Measuring the angles between the recorded positions turns scattered notes into something with real shape — a pattern in the sky, not just a list of coordinates.", "trigger": "Angles measured" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must interpret what the matched constellations and measured angles actually mean, and reconstruct what the expedition was really studying.", "trigger": "Observations interpreted" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The reconstructed observations reveal something bigger than a single station's worth of curiosity — the expedition's scientific objectives reached far wider than anyone assumed.", "trigger": "Objectives revealed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how much can still be learned from data that was never even finished being recorded — as long as it was recorded carefully.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The observatory hums back to life. Whatever the expedition was really working on, it's now clear their research extended far beyond the walls of Outpost Echo itself.", "trigger": "Observatory reactivated" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "observation",
       "duration": 8,
       "difficulty": "independent",
-      "storyContext": "A damaged observatory contains unfinished astronomical observations.",
-      "instructions": "Match the recorded star patterns to known constellations.",
+      "storyContext": "The damaged observatory's surviving records show star patterns nobody finished identifying.",
+      "instructions": "Match the recorded star patterns to known constellations, one at a time.",
       "output": "A list of matched constellations.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "reading",
       "duration": 7,
       "difficulty": "independent",
-      "storyContext": "Star charts and positional clues hint at what the expedition had been tracking.",
-      "instructions": "Read the station's star maps and note the positions the expedition recorded.",
+      "storyContext": "The station's own star charts and positional notes are the closest thing to a direct clue about what the expedition had been tracking.",
+      "instructions": "Read the station's star maps carefully and note down the exact positions the expedition recorded.",
       "output": "Notes on the recorded star positions.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "mathematics",
       "duration": 8,
       "difficulty": "independent",
-      "storyContext": "The positions recorded by the expedition may form a pattern in the sky.",
-      "instructions": "Measure the angles between the recorded star positions.",
+      "storyContext": "Scattered on their own, the recorded positions don't mean much — measured against each other, they may form a genuine pattern in the sky.",
+      "instructions": "Using the star chart, measure the angles between the recorded star positions and record each one precisely.",
       "output": "A set of measured angles between recorded positions.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "science",
       "duration": 7,
       "difficulty": "independent",
-      "storyContext": "Reconstructing the observations may reveal what the expedition was studying.",
-      "instructions": "Interpret the matched constellations and measured angles to reconstruct the expedition's observations.",
+      "storyContext": "Constellations and angles are just data on their own — put together, they should finally reveal what the expedition was actually studying.",
+      "instructions": "Interpret the matched constellations and measured angles together to reconstruct what the expedition's observations were actually showing.",
       "output": "A reconstructed set of astronomical observations.",
       "schedulerCategory": "core"
     },
@@ -104,7 +104,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["What do you think the expedition was studying with the observatory?"]
+    "prompts": ["What do you think the expedition was studying with the observatory, and which piece of evidence made you think so?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0012",
