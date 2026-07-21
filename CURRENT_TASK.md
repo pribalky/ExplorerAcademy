@@ -6,11 +6,11 @@
 
 ## Milestone
 
-Not yet defined — awaiting direction on which mission (if any) to polish next
+Not yet defined — awaiting direction on which mission(s) to polish next
 
 ## Objective
 
-Mission 1 has reached production quality (see completed milestone below). TODO.md's Phase 6 checklist calls for repeating this for the remaining missions, but per CLAUDE.md's workflow, do not begin polishing another mission until the user chooses one.
+Missions 1–4 have reached production quality (see completed milestones below). TODO.md's Phase 6 checklist calls for repeating this for the remaining missions, but per CLAUDE.md's workflow, do not begin polishing another mission until the user chooses one.
 
 ## Inputs
 
@@ -47,6 +47,30 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Mission Polish: Missions 2–4 reach production quality — COMPLETE
+
+## Completion Summary
+
+Applied the same approach established for Mission 1 to Missions 2 ("Arrival at Outpost Echo"), 3 ("Explorer's Toolkit") and 4 ("The Silent Logs"), editing `portal/campaigns/campaign01/src/missions/mission02–04.json` directly:
+
+- **Beats**: rewrote all 8 `narrativeText` values per mission for stronger story flow and curiosity, grounded in each mission's canonical Story Summary in `501_CAMPAIGN_01.md` (re-read before editing) — no new plot facts invented. Mission 4 got the most careful treatment, since its Breakthrough beat is the first appearance of Dr. Elara Quinn's name — the narrative hinge the rest of the campaign builds on.
+- **Core activities**: rewrote `storyContext`/`instructions` for every Core activity in all three missions to read as vivid, second-person challenges rather than dry instructions (e.g. Mission 3's estimate-then-measure activity now explicitly instructs writing the estimate down *before* measuring, matching the exact misconception already flagged in `generated/parent/enrichment/mission03.json` — "children sometimes measure first and then quietly adjust their estimate").
+- **Extension/Rabbit Hole activities**: reviewed but left unchanged in all three missions — already open-ended and evocative by design (their whole job is unprompted curiosity), so rewriting them for the sake of symmetry with Core activities would have been padding, not polish.
+- **Reflection prompts**: lightly sharpened for stronger metacognition (e.g. Mission 4's now explicitly asks for an assumption "even if it feels likely," again matching that mission's own flagged misconception) — kept to one prompt per mission, preserving the one-prompt convention already established campaign-wide.
+- **Left unchanged**: all IDs, `rewards`, `completionCriteria`, and `parentGuide` core fields, for the same reasons as Mission 1 (no unrendered optional fields added; no duplication of the already-separate `generated/parent/enrichment/` content).
+
+## Manual Verification
+
+- Validated all three files against `mission-engine.js`'s actual required-field/beat-type/activity-field/reward-field/parentGuide checks via script — all pass.
+- Grepped `generated/` for each mission's superseded reflection-prompt text — no stale references found in any of the three.
+- Served the app locally and drove it with headless Chromium: loaded `#/mission/mission02`, `mission03` and `mission04` in turn, confirmed each renders its correct title and updated content (waited on the actual heading text rather than element presence, after an initial test run surfaced a race condition in the *test script* itself, not the app), and confirmed `parentGuide` content never appears in the rendered DOM for any of the three (ADR-006 holds).
+
+## Verification
+
+Missions 2–4 now satisfy the same Mission Quality Checklist bar as Mission 1, with Mission 4 specifically carrying the extra narrative weight of introducing Dr. Quinn — the campaign's first four missions are now consistently production quality. ✅
 
 ---
 

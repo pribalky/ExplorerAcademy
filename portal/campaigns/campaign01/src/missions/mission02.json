@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "guided",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "The learner arrives at the deserted Outpost Echo research station.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Although everything appears quiet, the station clearly shows signs of previous activity — equipment remains where it was left, doors are unlocked, and observation boards still display unfinished notes.", "trigger": "Arrival at the station" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "Atlas helps the learner perform an initial survey of the station, exploring the map and labelling important areas.", "trigger": "Atlas's guidance" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "The learner records unusual observations while exploring, noticing the first hints that something is not quite right.", "trigger": "Observations recorded" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must produce a simple sketch map of the station using their own observations.", "trigger": "Sketch map assigned" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The completed sketch map reveals the layout of Outpost Echo clearly for the first time.", "trigger": "Sketch map completed" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on what the untouched equipment and unfinished notes might mean.", "trigger": "Survey concluded" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "As the survey ends, the first real hints of mystery begin to appear.", "trigger": "Mystery hints noticed" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "After the long journey, the learner finally arrives at Outpost Echo — and the station is silent. Not the silence of a place that was never used, but the silence of a place that stopped mid-sentence.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Everything looks quiet, but nothing looks abandoned the way it should. Equipment sits exactly where it was left. Doors are unlocked. Observation boards still show notes nobody ever finished writing. Whoever was here didn't plan to be gone this long.", "trigger": "Arrival at the station" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "Atlas guides the learner through an initial survey of the station, walking the map together and working out what each area was actually used for.", "trigger": "Atlas's guidance" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "As the survey continues, the learner starts noticing small things that don't quite add up — the first hints that something happened here that nobody planned for.", "trigger": "Observations recorded" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must turn their own survey into a simple sketch map of the station — not a copy of anyone else's, but one built entirely from what they've actually seen.", "trigger": "Sketch map assigned" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "With the sketch map finished, Outpost Echo finally has a shape the learner can hold in their head — the first real sense of where they are, and what still needs investigating.", "trigger": "Sketch map completed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on the untouched equipment and the unfinished notes — and on the question neither of those things has answered yet: why did everyone leave without finishing?", "trigger": "Survey concluded" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The survey is complete, but the questions it raised aren't. Something happened at Outpost Echo — and the first real hints of what are only just starting to surface.", "trigger": "Mystery hints noticed" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "observation",
       "duration": 8,
       "difficulty": "guided",
-      "storyContext": "Atlas provides a basic map of Outpost Echo to help the learner begin their initial survey.",
-      "instructions": "Walk through the station map with Atlas, noting the main areas and how they connect.",
+      "storyContext": "Atlas pulls up a basic map of Outpost Echo — the first real look at the place the learner will be investigating for weeks to come.",
+      "instructions": "Walk through the station map with Atlas. Note the main areas you pass and how they connect to each other — you'll need this later, so pay attention now rather than trying to remember it afterwards.",
       "output": "A list of the station's main areas in the Explorer Journal.",
       "schedulerCategory": "core"
     },
@@ -38,7 +38,7 @@
       "category": "writing",
       "duration": 7,
       "difficulty": "guided",
-      "storyContext": "Knowing the station's layout will help later investigations.",
+      "storyContext": "A map with no labels is just a shape — knowing what each area actually was will matter the moment an investigation sends you back to one of them.",
       "instructions": "Label the important areas of the station map, such as the laboratory, observatory and living quarters.",
       "output": "A labelled station map.",
       "schedulerCategory": "core"
@@ -51,8 +51,8 @@
       "category": "observation",
       "duration": 8,
       "difficulty": "guided",
-      "storyContext": "Equipment remains where it was left, and observation boards still display unfinished notes.",
-      "instructions": "Record anything unusual you notice about the station in your Explorer Journal.",
+      "storyContext": "Equipment sits exactly where it was left, and the observation boards still show notes nobody finished writing — as if the whole station paused mid-task.",
+      "instructions": "As you explore, record anything unusual you notice in your Explorer Journal — especially anything that looks interrupted rather than simply old.",
       "output": "A list of unusual observations.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "drawing",
       "duration": 7,
       "difficulty": "guided",
-      "storyContext": "A clear map will help the learner navigate Outpost Echo in future missions.",
-      "instructions": "Draw a simple sketch map of the station based on your survey.",
+      "storyContext": "A clear map will help the learner navigate Outpost Echo in every mission still to come.",
+      "instructions": "Draw a simple sketch map of the station based on your own survey — what you actually saw and labelled, not what you think a map of a research station should look like.",
       "output": "A hand-drawn sketch map of Outpost Echo.",
       "schedulerCategory": "core"
     },
@@ -104,7 +104,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["What did you notice about Outpost Echo that made you feel like something was left unfinished?"]
+    "prompts": ["Which detail made you feel like something at Outpost Echo was left unfinished, and why did it stand out to you?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0002",

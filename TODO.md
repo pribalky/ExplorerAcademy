@@ -309,7 +309,7 @@ Produces
 Status
 
 ```
-IN PROGRESS — Mission 1 ("The Invitation") reaches production quality; 20 missions remain
+IN PROGRESS — Missions 1-4 reach production quality ("The Invitation", "Arrival at Outpost Echo", "Explorer's Toolkit", "The Silent Logs"); 17 missions remain
 ```
 
 Goal
@@ -318,30 +318,30 @@ Improve each mission.
 
 Checklist (per mission)
 
-- [x] Story flow — Mission 1
-- [ ] Story flow — Missions 2–21
+- [x] Story flow — Missions 1–4
+- [ ] Story flow — Missions 5–21
 
-- [x] Curiosity — Mission 1
-- [ ] Curiosity — Missions 2–21
+- [x] Curiosity — Missions 1–4
+- [ ] Curiosity — Missions 5–21
 
-- [x] Difficulty — Mission 1
-- [ ] Difficulty — Missions 2–21
+- [x] Difficulty — Missions 1–4
+- [ ] Difficulty — Missions 5–21
 
-- [x] Discovery Log — Mission 1
-- [ ] Discovery Log — Missions 2–21
+- [x] Discovery Log — Missions 1–4
+- [ ] Discovery Log — Missions 5–21
 
-- [x] Rabbit Holes — Mission 1
-- [ ] Rabbit Holes — Missions 2–21
+- [x] Rabbit Holes — Missions 1–4
+- [ ] Rabbit Holes — Missions 5–21
 
-- [x] Reflection — Mission 1
-- [ ] Reflection — Missions 2–21
+- [x] Reflection — Missions 1–4
+- [ ] Reflection — Missions 5–21
 
-- [x] Rewards — Mission 1
-- [ ] Rewards — Missions 2–21
+- [x] Rewards — Missions 1–4
+- [ ] Rewards — Missions 5–21
 
 Deliverable
 
-One mission reaches production quality. ✅ (Mission 1)
+One mission reaches production quality. ✅ (Missions 1–4)
 
 Repeat for remaining missions.
 
@@ -565,4 +565,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Phase 5 (Asset Compiler) is complete for all 21 missions.** Phase 6 (Mission Polish) is now underway: **Mission 1 ("The Invitation") has reached production quality** — beats, activity storyContext/instructions, and the reflection prompt were rewritten for stronger story flow and curiosity, verified against `mission-engine.js`'s actual validation rules and rendered end-to-end in a headless browser with no console errors and no Parent Guide leakage (ADR-006). Notably, the platform doesn't render `beats` to the learner yet (confirmed by reading `activity-engine.js`/`router.js`) — this was polished anyway since it's clearly load-bearing in the mission template design, but no unrendered optional Activity fields (`hints`, `resources`, `parentNotes`) were added, to avoid generating idle content. Awaiting user direction on which mission to polish next.
+**Phase 5 (Asset Compiler) is complete for all 21 missions.** Phase 6 (Mission Polish) is now underway: **Missions 1–4 have reached production quality** ("The Invitation", "Arrival at Outpost Echo", "Explorer's Toolkit", "The Silent Logs") — beats, Core activity storyContext/instructions, and reflection prompts were rewritten for stronger story flow and curiosity, grounded in each mission's canonical Story Summary in `501_CAMPAIGN_01.md`, with no new plot facts invented. Extension/Rabbit Hole activities were reviewed but left unchanged where already appropriately open-ended. All four verified against `mission-engine.js`'s actual validation rules and rendered end-to-end in a headless browser with no console errors and no Parent Guide leakage (ADR-006). The platform still doesn't render `beats` to the learner yet (confirmed by reading `activity-engine.js`/`router.js`) — polished anyway since load-bearing in the mission template design, but no unrendered optional Activity fields (`hints`, `resources`, `parentNotes`) were added. Awaiting user direction on which mission(s) to polish next.

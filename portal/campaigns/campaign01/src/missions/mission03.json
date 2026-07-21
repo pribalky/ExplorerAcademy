@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "guided",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "Before beginning any investigation, Atlas introduces the essential habits and tools of every Explorer.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Rather than relying on advanced technology, successful explorers depend on careful measurement, accurate recording and systematic thinking.", "trigger": "Atlas's introduction" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner compares different measuring tools to understand what each is best suited for.", "trigger": "Tools compared" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "The learner discovers that estimating first, then measuring, reveals how accurate their instincts really are.", "trigger": "Estimates tested against measurements" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must create an observation table and practise recording evidence clearly and consistently.", "trigger": "Table and recording practice assigned" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner assembles a complete investigation kit, ready for real fieldwork.", "trigger": "Toolkit assembled" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how the Explorer Journal has become an essential recurring tool.", "trigger": "Journal reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "With their toolkit assembled, the learner is ready to begin real investigations at Outpost Echo.", "trigger": "Ready for fieldwork" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Before the real investigating starts, Atlas stops the learner: there's still one thing missing, and it isn't a piece of equipment — it's a set of habits.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Atlas explains that the most useful thing at Outpost Echo isn't any of its abandoned technology — it's careful measurement, accurate recording and systematic thinking, done consistently, mission after mission.", "trigger": "Atlas's introduction" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner compares a handful of measuring tools, working out what each one is actually good for — and what it isn't.", "trigger": "Tools compared" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Estimating an object's size before measuring it turns out to be its own kind of test — not of the object, but of how accurate the learner's own instincts really are.", "trigger": "Estimates tested against measurements" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must build an observation table of their own and practise recording evidence clearly enough that someone else could understand it without asking a single follow-up question.", "trigger": "Table and recording practice assigned" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Tool by tool, the learner's investigation kit comes together — no longer borrowed habits from Atlas, but a working method that's genuinely their own.", "trigger": "Toolkit assembled" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how the Explorer Journal has quietly become the one tool that's been there since Mission 1 — and will be there for every mission after this.", "trigger": "Journal reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Toolkit assembled, method in hand — the learner is finally ready to put it to use on whatever Outpost Echo has actually been hiding.", "trigger": "Ready for fieldwork" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "observation",
       "duration": 7,
       "difficulty": "guided",
-      "storyContext": "Atlas explains that successful explorers depend on careful measurement rather than advanced technology.",
-      "instructions": "Compare a few different measuring tools and note what each is best used for.",
+      "storyContext": "Atlas lays out a handful of tools and makes a point of it: successful explorers depend on careful measurement, not advanced technology.",
+      "instructions": "Compare a few different measuring tools you have access to, and note what each one is genuinely best used for — not just what it's called.",
       "output": "Notes comparing different measuring tools.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "mathematics",
       "duration": 8,
       "difficulty": "guided",
-      "storyContext": "Good explorers learn to trust their instincts, then check them with evidence.",
-      "instructions": "Estimate the size of a few objects, then measure them to check your estimates.",
+      "storyContext": "Good explorers learn to trust their instincts — but only after they've learned exactly how far to trust them.",
+      "instructions": "Estimate the size of a few objects and write your estimate down first. Only then measure each one to check yourself — no adjusting the estimate afterwards, even if it's tempting.",
       "output": "A table comparing estimates and actual measurements.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "writing",
       "duration": 7,
       "difficulty": "guided",
-      "storyContext": "Evidence is only useful if it is recorded clearly enough for others to understand.",
-      "instructions": "Practise recording a piece of evidence clearly and consistently in your Explorer Journal.",
+      "storyContext": "Evidence is only useful if it's recorded clearly enough that someone else could pick up the journal and understand it without you there to explain.",
+      "instructions": "Practise recording a piece of evidence clearly and consistently in your Explorer Journal — write it as if a future Explorer, not you, has to make sense of it.",
       "output": "A clearly recorded piece of evidence.",
       "schedulerCategory": "core"
     },
@@ -104,7 +104,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["Which investigation tool do you think will be most useful, and why?"]
+    "prompts": ["Which investigation tool do you think will be most useful once your real investigating at Outpost Echo begins, and why?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0003",
