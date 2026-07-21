@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "supported",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "Atlas successfully restores part of the outpost's communications array.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Among the recovered audio files is a heavily corrupted transmission from Dr. Elara Quinn, with large portions missing.", "trigger": "Communications array restored" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner listens for repeated patterns, missing words and contextual clues within the damaged message.", "trigger": "Message examined for patterns" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Piecing the clues together, the learner begins decoding what the message actually says.", "trigger": "Message partly decoded" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must complete the missing sections and compare possible interpretations of the message.", "trigger": "Missing sections completed" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner identifies which facts in the reconstructed message are confirmed.", "trigger": "Facts confirmed" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on what the recovered message reveals about the expedition's actions.", "trigger": "Findings reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The message suggests the expedition deliberately shut down parts of the station — but gives no explanation why.", "trigger": "Motive remains unexplained" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "Atlas restores part of the outpost's communications array — and for the first time, there's more than text in the archive. There are voices.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "One of the recovered audio files is a transmission from Dr. Elara Quinn — a name from the logs, now an actual voice, buried in static with whole sections missing.", "trigger": "Communications array restored" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner listens closely for repeated patterns, missing words and whatever context clues survive in the damaged message.", "trigger": "Message examined for patterns" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Piecing the surviving fragments together, the learner begins to make out what Dr. Quinn was actually trying to say.", "trigger": "Message partly decoded" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must fill in the missing sections and weigh up more than one possible interpretation of what the message means.", "trigger": "Missing sections completed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Out of everything reconstructed, the learner identifies exactly which facts the message actually confirms.", "trigger": "Facts confirmed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on what this first real message from Dr. Quinn reveals about the expedition's actions — and how different it feels to hear her, rather than just read about her.", "trigger": "Findings reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "One thing is now certain: the expedition deliberately shut down parts of the station. What's still missing is why — and Dr. Quinn's own recorded voice hasn't given that away yet.", "trigger": "Motive remains unexplained" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "reading",
       "duration": 8,
       "difficulty": "supported",
-      "storyContext": "A heavily corrupted transmission from Dr. Elara Quinn has been recovered from the restored communications array.",
-      "instructions": "Read through the damaged transmission and note any words or phrases you can make out.",
+      "storyContext": "A heavily corrupted transmission from Dr. Elara Quinn has been recovered from the restored communications array — the first time her own words, not just her name, have surfaced.",
+      "instructions": "Read through the damaged transmission carefully and note any words or phrases you can make out, even ones that seem like fragments on their own.",
       "output": "Notes on what can be understood from the damaged transmission.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "writing",
       "duration": 7,
       "difficulty": "supported",
-      "storyContext": "Large portions of the message are missing and must be reconstructed from context.",
-      "instructions": "Use repeated patterns and context clues to suggest what the missing sections might say.",
+      "storyContext": "Large portions of the message are missing entirely — reconstructing them means working from context, not guesswork.",
+      "instructions": "Use repeated patterns and context clues from the parts you can read to suggest what the missing sections might say.",
       "output": "A reconstructed version of the message.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "discussion",
       "duration": 8,
       "difficulty": "supported",
-      "storyContext": "More than one interpretation of the reconstructed message may seem plausible.",
-      "instructions": "Compare a few possible interpretations of the message and decide which is best supported by the evidence.",
+      "storyContext": "More than one interpretation of the reconstructed message can sound plausible — that's exactly why it's worth comparing them properly rather than settling on the first one.",
+      "instructions": "Compare a few possible interpretations of the message and decide which is best supported by the evidence, not just which one sounds most dramatic.",
       "output": "Notes comparing possible interpretations of the message.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "reflection",
       "duration": 7,
       "difficulty": "supported",
-      "storyContext": "Not everything in the reconstructed message can be fully trusted.",
-      "instructions": "List the facts from the message that are confirmed by clear evidence.",
+      "storyContext": "Not everything in the reconstructed message can be fully trusted — some of it is Dr. Quinn's own words, and some of it is the learner's best reconstruction.",
+      "instructions": "List only the facts from the message that are confirmed by clear evidence, leaving out anything you're still just reconstructing.",
       "output": "A list of confirmed facts from the message.",
       "schedulerCategory": "core"
     },
@@ -104,7 +104,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["What do you think the expedition was hiding when they shut down parts of the station?"]
+    "prompts": ["What do you think the expedition was hiding when they deliberately shut down parts of the station — and what makes you think that?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0008",

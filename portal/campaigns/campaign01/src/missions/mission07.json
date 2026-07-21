@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "supported",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "One of the station's access bridges has partially collapsed, blocking the way to a storage facility.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "The storage facility is believed to contain additional expedition records, but repairing the bridge directly isn't an option.", "trigger": "Bridge found collapsed" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner analyses the engineering problem and plans a lightweight bridge design.", "trigger": "Problem analysed and design planned" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Atlas explains that Explorer Academy values iterative design more than a perfect first attempt.", "trigger": "Iterative design explained" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must build a prototype bridge capable of supporting a specified load using limited materials.", "trigger": "Prototype built" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "By testing and refining the design, the learner successfully strengthens the bridge.", "trigger": "Prototype tested and refined" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner records the improvements made during testing and reflects on what changed between attempts.", "trigger": "Improvements recorded" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "With the bridge repaired, the learner gains access to the storage facility and recovers new expedition evidence.", "trigger": "Storage facility accessed" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "One of the station's access bridges has partially collapsed — and on the other side of the gap is a storage facility nobody has been able to reach in years.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "The storage facility is believed to hold more of the expedition's records, but the bridge itself is beyond a simple repair. Whatever gets the learner across, it won't be fixing what was already there.", "trigger": "Bridge found collapsed" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner works out exactly what the bridge needs to support and what's actually available to build it from, then plans a lightweight design of their own.", "trigger": "Problem analysed and design planned" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Before any building starts, Atlas makes one thing clear: Explorer Academy cares far more about a design that gets better through testing than one that happens to be perfect on the first try.", "trigger": "Iterative design explained" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must build an actual prototype bridge — one that has to hold a specified load, using only the limited materials on hand.", "trigger": "Prototype built" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The first attempt doesn't hold. Testing what failed and adjusting the design, the learner gets a second attempt to actually work — and that difference is the whole point.", "trigger": "Prototype tested and refined" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner records exactly what changed between the first attempt and the final one, and reflects on why that specific change mattered.", "trigger": "Improvements recorded" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The bridge holds. For the first time, the learner has built something that stood between them and the answer — and won. The storage facility is open, and whatever the expedition left inside it is finally within reach.", "trigger": "Storage facility accessed" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "engineering",
       "duration": 6,
       "difficulty": "supported",
-      "storyContext": "A partially collapsed bridge blocks access to a storage facility believed to hold expedition records.",
-      "instructions": "Work out what the bridge needs to support and what materials are available to build it.",
+      "storyContext": "A partially collapsed bridge stands between the learner and a storage facility believed to hold more of the expedition's records.",
+      "instructions": "Work out exactly what the bridge needs to support, and take stock of what materials are actually available to build it.",
       "output": "Notes describing the engineering problem to solve.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "engineering",
       "duration": 6,
       "difficulty": "supported",
-      "storyContext": "A good design starts with a clear plan before any building begins.",
-      "instructions": "Sketch and plan a lightweight bridge design capable of supporting a specified load.",
+      "storyContext": "A good design starts with a clear plan — building first and figuring it out as you go tends to waste your best materials.",
+      "instructions": "Sketch and plan a lightweight bridge design capable of supporting the specified load, before you build anything.",
       "output": "A bridge design plan.",
       "schedulerCategory": "core"
     },
@@ -51,7 +51,7 @@
       "category": "engineering",
       "duration": 6,
       "difficulty": "supported",
-      "storyContext": "Atlas explains that Explorer Academy values iterative design more than a perfect first attempt.",
+      "storyContext": "Atlas is clear that nobody expects this to work perfectly on the first try — Explorer Academy cares about what you do next if it doesn't.",
       "instructions": "Build a simple prototype of your bridge design using the available materials.",
       "output": "A built bridge prototype.",
       "schedulerCategory": "core"
@@ -77,8 +77,8 @@
       "category": "writing",
       "duration": 6,
       "difficulty": "supported",
-      "storyContext": "Explorer Academy values understanding why a design improved, not just that it did.",
-      "instructions": "Record what you changed between your first and final design, and why each change helped.",
+      "storyContext": "Explorer Academy cares about understanding why a design improved, not just being able to say that it did.",
+      "instructions": "Record what you changed between your first and final design, and explain specifically why each change helped it hold more weight.",
       "output": "A written record of design improvements.",
       "schedulerCategory": "core"
     },

@@ -10,7 +10,7 @@ Not yet defined — awaiting direction on which mission(s) to polish next
 
 ## Objective
 
-Missions 1–4 have reached production quality (see completed milestones below). TODO.md's Phase 6 checklist calls for repeating this for the remaining missions, but per CLAUDE.md's workflow, do not begin polishing another mission until the user chooses one.
+Missions 1–8 have reached production quality (see completed milestones below). TODO.md's Phase 6 checklist calls for repeating this for the remaining missions, but per CLAUDE.md's workflow, do not begin polishing another mission until the user chooses one.
 
 ## Inputs
 
@@ -47,6 +47,32 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Mission Polish: Missions 5–8 reach production quality — COMPLETE
+
+## Completion Summary
+
+Applied the same approach as Missions 1–4 to Missions 5 ("Strange Footprints"), 6 ("Weather Watch"), 7 ("The Broken Bridge") and 8 ("Message in the Static"), editing `portal/campaigns/campaign01/src/missions/mission05–08.json` directly, grounded in each mission's canonical Story Summary re-read from `501_CAMPAIGN_01.md` (including the "Narrative Checkpoint (After Mission 7)" section, which shaped how Mission 7's Cliffhanger was treated).
+
+- **Mission 5**: this is the campaign's first fully independent "eliminate, don't guess" investigation — beats and Core activities now explicitly frame the task as ruling out explanations one at a time, and the Cliffhanger emphasises this being the learner's first *complete* investigation, start to finish.
+- **Mission 6**: the weakest MYSTERY beat of the batch going in (fairly expository) was rewritten to pose a genuine question — why did the expedition track weather carefully enough to leave an archive worth comparing against — and the Breakthrough/reflection now explicitly tie today's ordinary weather reading to the expedition's own past decisions.
+- **Mission 7**: identified as a structural checkpoint — `501_CAMPAIGN_01.md`'s own "Narrative Checkpoint (After Mission 7)" note says the learner should feel established as an Explorer and ready to move into more open-ended enquiry by Mission 8. The Cliffhanger was rewritten to carry that weight ("the learner has built something that stood between them and the answer — and won"), while the DISCOVERY beat (Atlas's iterative-design lesson) was reframed as reassurance rather than exposition, matching 402's "build confidence / feel achievable" design principles. Deliberately left `ACTIVITY-0041`'s ("Test and Refine") storyContext/instructions and the reflection prompt untouched, since both already read strongly and match the already-published `generated/resources/experiments.json` Bridge Load Test entry — editing them risked contradicting content already treated as final.
+- **Mission 8**: the mission where Dr. Elara Quinn moves from "a name in old logs" (Mission 4) to an actual recorded voice — beats and activities were rewritten to make that escalation explicit ("a name from the logs, now an actual voice"), without inventing any plot detail beyond what 501 and the World Bible already establish.
+- **Extension/Rabbit Hole activities**: reviewed across all four missions, left unchanged — already appropriately open-ended.
+- **Left unchanged**: all IDs, `rewards`, `completionCriteria`, `parentGuide` core fields, for the same reasons as every prior mission (no unrendered optional fields added; no duplication of `generated/parent/enrichment/` content).
+
+## Manual Verification
+
+- Validated all four files against `mission-engine.js`'s actual required-field/beat-type/activity-field/reward-field/parentGuide checks via script — all pass.
+- Grepped `generated/` for each mission's superseded reflection-prompt text — no stale references found (Mission 7's prompt was intentionally left unchanged, confirmed still present verbatim).
+- Confirmed Mission 7's `ACTIVITY-0041` storyContext still reads "The first prototype rarely works perfectly the first time," matching `generated/resources/experiments.json`'s Bridge Load Test entry exactly.
+- Served the app locally and drove it with headless Chromium: loaded all four missions in turn, confirmed each renders its correct title, confirmed updated activity/reflection text appears in the rendered page (one initial check against beat-only text correctly returned false, re-confirming beats still aren't rendered — not a regression), and confirmed no `parentGuide` content leaks into the DOM for any of the four (ADR-006 holds). No console errors.
+
+## Verification
+
+Missions 5–8 now satisfy the same Mission Quality Checklist bar as Missions 1–4, completing the first eight missions (through the end of Part 3 / the Mission 7 narrative checkpoint) at production quality. ✅
 
 ---
 

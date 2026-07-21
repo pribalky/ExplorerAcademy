@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "supported",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "Outside the station, the learner discovers a series of unusual footprints recorded in the expedition's field notes.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Several explanations for the footprints seem possible, but only one fits all the available evidence.", "trigger": "Footprints found" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner measures the tracks and compares them against the recorded evidence.", "trigger": "Tracks measured and compared" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Careful comparison reveals similarities and differences between the possible explanations.", "trigger": "Comparison completed" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must eliminate the unlikely explanations rather than simply guessing which one is correct.", "trigger": "Explanations narrowed" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "By working through the evidence systematically, the learner justifies a single well-supported conclusion.", "trigger": "Conclusion justified" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on how ruling out explanations was more useful than guessing.", "trigger": "Investigation reviewed" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "This is the learner's first complete scientific investigation, and their confidence as an Explorer begins to grow.", "trigger": "Confidence grows" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "In the ground just outside the station, the expedition's field notes record something the learner wasn't expecting: a trail of footprints, and no explanation for whose they are.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Atlas offers a few possible explanations for the tracks. Several sound plausible on their own — but only one can actually fit every piece of evidence at once.", "trigger": "Footprints found" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner measures the tracks carefully and lines up each measurement against the recorded evidence.", "trigger": "Tracks measured and compared" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Comparing each possible explanation side by side reveals exactly where they agree with the evidence — and where they don't.", "trigger": "Comparison completed" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner's job isn't to guess the right answer — it's to rule out every explanation the evidence doesn't support, until only one is left standing.", "trigger": "Explanations narrowed" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "Working through the evidence one explanation at a time, the learner arrives at a single conclusion — not a guess, but one they can actually defend.", "trigger": "Conclusion justified" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on something that wasn't obvious at the start: ruling explanations out turned out to matter more than trying to guess the right one from the beginning.", "trigger": "Investigation reviewed" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "Start to finish, this is the learner's first complete scientific investigation — and for the first time, their confidence as an Explorer feels earned rather than just given.", "trigger": "Confidence grows" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "mathematics",
       "duration": 8,
       "difficulty": "supported",
-      "storyContext": "A series of unusual footprints has been found outside the station, recorded in the expedition's field notes.",
-      "instructions": "Measure the length, width and spacing of the tracks and record your measurements.",
+      "storyContext": "A series of unusual footprints has been found outside the station, recorded in the expedition's field notes but never explained.",
+      "instructions": "Measure the length, width and spacing of the tracks, and record your measurements precisely — the exact numbers are what will let you rule things out later.",
       "output": "A set of track measurements in the Explorer Journal.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "observation",
       "duration": 7,
       "difficulty": "supported",
-      "storyContext": "Several explanations for the tracks seem possible.",
-      "instructions": "Compare your measurements with the possible explanations Atlas provides.",
+      "storyContext": "Atlas offers a few possible explanations for the tracks — each one sounds reasonable until you check it against the evidence.",
+      "instructions": "Compare your measurements with each possible explanation Atlas provides, one at a time.",
       "output": "Notes comparing the evidence against each possible explanation.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "science",
       "duration": 8,
       "difficulty": "supported",
-      "storyContext": "Only one explanation fits all of the available evidence.",
-      "instructions": "Identify the similarities and differences between each possible explanation and the evidence you have gathered.",
+      "storyContext": "Only one explanation fits everything you've measured — the rest will fall apart under close comparison.",
+      "instructions": "For each possible explanation, identify exactly where it matches your evidence and where it doesn't.",
       "output": "A list of similarities and differences for each explanation.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "reflection",
       "duration": 7,
       "difficulty": "supported",
-      "storyContext": "Explorer Academy values conclusions that eliminate unlikely explanations rather than guesses.",
-      "instructions": "Explain which explanation the evidence best supports, and why the others can be ruled out.",
+      "storyContext": "Explorer Academy doesn't want your best guess — it wants a conclusion you can defend by explaining why every other option fails.",
+      "instructions": "Explain which explanation the evidence best supports, and for each of the others, name the specific evidence that rules it out.",
       "output": "A justified conclusion supported by evidence.",
       "schedulerCategory": "core"
     },
@@ -104,7 +104,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["Which explanation did you rule out, and what evidence helped you eliminate it?"]
+    "prompts": ["Which explanation did you rule out first, and what specific piece of evidence made you eliminate it?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0005",
