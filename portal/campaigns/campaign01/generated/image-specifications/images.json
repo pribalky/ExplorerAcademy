@@ -132,6 +132,61 @@
       "orientation": "landscape",
       "aspectRatio": "4:3",
       "priority": "high"
+    },
+    {
+      "imageId": "IMAGE-0013",
+      "missionId": "MISSION-0011",
+      "title": "The Station's Power Panel",
+      "purpose": "Key scene image for the mission's Breakthrough beat, where major systems return online.",
+      "description": "A control panel inside Outpost Echo with several labelled switches and indicator lights, most now glowing steadily after being restored, one or two still dark awaiting later missions. No characters needed — the panel itself tells the story.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "4:3",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0014",
+      "missionId": "MISSION-0012",
+      "title": "The Observatory's Star Chart",
+      "purpose": "Reference diagram for the Core 'Measure Angles' activity, giving the learner recorded star positions to measure between — matching the Campaign 01 example in ASSET_COMPILER.md, which notes Mission 12 needs a star-chart spec.",
+      "description": "A simple star chart as it would appear in the station's damaged Observatory: a scattering of labelled star positions on a plain grid, plotted accurately enough that angles between them can be measured with a protractor and ruler.",
+      "style": "Simple line-art chart diagram, not a painted scene.",
+      "orientation": "landscape",
+      "aspectRatio": "4:3",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0015",
+      "missionId": "MISSION-0013",
+      "title": "The Connections Board",
+      "purpose": "Key scene image for the mission's Breakthrough beat, where the hidden pattern connects evidence from several earlier missions at once.",
+      "description": "A corkboard or wall inside Outpost Echo with small labelled cards or photos — a weather chart, a water pipe diagram, a sample jar, a bridge sketch — connected by lengths of string converging on a single central point. Represents the moment scattered investigations turn out to be linked, without needing to depict any specific new plot detail.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "16:9",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0016",
+      "missionId": "MISSION-0014",
+      "title": "Dr. Quinn's Final Notebook Pages",
+      "purpose": "Key scene image for the mission's Investigation beat, where the learner combines surviving notebook pages with other evidence.",
+      "description": "A handful of worn, water-stained notebook pages spread out on a table at Outpost Echo, alongside a magnifying glass, a map, and a few earlier journal entries used for cross-referencing. Dr. Elara Quinn herself is not shown — she remains known only through her records at this point in the story.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "landscape",
+      "aspectRatio": "4:3",
+      "priority": "medium"
+    },
+    {
+      "imageId": "IMAGE-0017",
+      "missionId": "MISSION-0015",
+      "title": "The Signal Tower",
+      "purpose": "Key scene image for the mission's Hook/Investigation beats, where the learner inspects the tower's systems up close.",
+      "description": "The Signal Tower at Outpost Echo: a tall, weathered communications mast with visible cabling and an access panel open, the learner (or their equipment) inspecting a section for faults. Overcast sky, sense of a structure long dormant rather than freshly damaged.",
+      "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
+      "orientation": "portrait",
+      "aspectRatio": "3:4",
+      "priority": "high"
     }
   ]
 }

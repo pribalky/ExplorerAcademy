@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0014",
+  "curriculumRefs": ["CURRICULUM-0001", "CURRICULUM-0002", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "As in Mission 4's facts-vs-assumptions task, invented content for the missing sections can blur with confirmed fact — the added nuance here is distinguishing a genuine inference (evidence-supported reasoning) from a pure guess, a harder line to draw than earlier missions asked for.",
+    "Children may resolve every gap in the notebook confidently, when 'I'm not sure enough to infer this' is sometimes the more honest answer."
+  ],
+  "stretchQuestions": [
+    "What's the difference between something you inferred and something you simply hoped was true?",
+    "If you found one more surviving page, what would most change your reconstruction?"
+  ],
+  "estimatedSupervision": "Minimal — independent reading, writing and reflection."
+}

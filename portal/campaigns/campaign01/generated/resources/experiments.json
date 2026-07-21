@@ -56,6 +56,31 @@
       ],
       "expectedObservations": "Water flows freely and quickly through the clear tube. With a blockage in place, the water slows down noticeably, pools or backs up just above the blockage point, or stops entirely, depending on how much of the tube's width is blocked.",
       "scientificExplanation": "A blockage narrows the space available for water to pass through, increasing resistance to flow. Pressure builds up behind the blockage until the water finds another way through or the blockage is cleared — the same basic principle engineers use to diagnose faults in real plumbing and water recycling systems."
+    },
+    {
+      "missionId": "MISSION-0015",
+      "activityId": "ACTIVITY-0090",
+      "title": "Signal Path Troubleshooting",
+      "objective": "Investigate how misalignment, obstruction, and distance each affect whether a signal reaches its target, to understand why the Signal Tower's faults needed to be diagnosed and repaired in a particular order.",
+      "materials": [
+        "A torch or phone flashlight",
+        "A piece of paper taped to a wall as a fixed target",
+        "A book or box to act as an obstruction",
+        "A ruler or a length of string (about 2 metres) to measure distance"
+      ],
+      "steps": [
+        "Stand close to the target with the torch switched on, aimed directly at it. Confirm the light reaches the target clearly — this is your working baseline.",
+        "Test misalignment: staying the same distance away, angle the torch slightly off the target instead of aiming directly at it. Record what happens to the light on the target.",
+        "Test obstruction: re-aim the torch directly at the target, then hold the book between the torch and the target. Record what happens.",
+        "Test distance: re-aim the torch directly at the target again, but move much further away. Record what happens to how much light reaches the target.",
+        "Compare all three faults: which one had the biggest effect on the signal reaching the target? Record your answer and reasoning."
+      ],
+      "safetyNotes": [
+        "Use only a torch or phone flashlight, and don't shine it directly into anyone's eyes.",
+        "If testing in a dimmed room, watch for trip hazards and keep the room only as dark as needed to see the light clearly."
+      ],
+      "expectedObservations": "A direct, aligned torch reaches the target clearly. Obstruction blocks the light almost completely regardless of alignment or distance. Misalignment can redirect the light away from the target entirely if severe enough. Increased distance dims and spreads the light without fully blocking it, unless combined with another fault.",
+      "scientificExplanation": "Light — like a radio signal — travels in a straight line and needs a clear, aligned path to reach its target. Real signal towers can fail in the same three ways (misalignment, obstruction, insufficient range), which is why engineers diagnose and prioritise each fault separately instead of guessing at a single fix."
     }
   ]
 }

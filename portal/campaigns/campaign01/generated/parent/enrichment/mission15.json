@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0015",
+  "curriculumRefs": ["CURRICULUM-0002", "CURRICULUM-0004", "CURRICULUM-0005", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Test-and-refine can end up applied as one overall pass rather than a separate cycle per fault — worth checking each diagnosed fault gets its own test-and-refine attempt.",
+    "Repair order can get chosen by which fault seems easiest to fix rather than which is most critical to fix first — the mission's own assessment specifically looks for a sequence justified by reasoning, not ease."
+  ],
+  "stretchQuestions": [
+    "If you could only fix two of the faults today, which two would you choose, and why?",
+    "What's the risk of testing a fix and moving straight to the next fault without confirming it actually worked?"
+  ],
+  "estimatedSupervision": "Moderate — adult involvement recommended for the signal-path experiment (see `generated/resources/experiments.json`, Mission 15 entry); simple materials for modelling the tower are optional but can help."
+}

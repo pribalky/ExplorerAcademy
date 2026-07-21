@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0012",
+  "curriculumRefs": ["CURRICULUM-0001", "CURRICULUM-0003", "CURRICULUM-0004", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "Small imprecision in angle measurement can go unnoticed by a child, even though it may change the interpreted pattern — worth double-checking a couple of key angles together.",
+    "Recognising a constellation's shape can get treated as the same skill as reading a star map's positional information, when the mission actually asks for both separately."
+  ],
+  "stretchQuestions": [
+    "If your measured angles were slightly different, would your interpretation change? How sensitive is your conclusion to small measurement errors?",
+    "What do you think made this pattern important enough for the expedition to track for so long?"
+  ],
+  "estimatedSupervision": "Light — a protractor is useful for the angle-measuring step; a real star map or night-sky app can enrich the session if available, per the mission's own parent guide."
+}

@@ -1,0 +1,13 @@
+{
+  "missionId": "MISSION-0013",
+  "curriculumRefs": ["CURRICULUM-0003", "CURRICULUM-0004", "CURRICULUM-0006"],
+  "expectedMisconceptions": [
+    "A pattern spotted in only one or two datasets can get generalised to 'all the data' without checking it actually holds across every dataset compared.",
+    "A genuine trend can be confused with a single unusual data point — worth asking whether the pattern still holds if that one point is set aside."
+  ],
+  "stretchQuestions": [
+    "Would your conclusion survive if you removed one of your datasets and only used the rest? What does that tell you about how strong the pattern is?",
+    "What evidence would change your mind about this trend?"
+  ],
+  "estimatedSupervision": "Minimal — independent graphing and reasoning; a parent might enjoy hearing which earlier missions the child thinks the pattern connects."
+}

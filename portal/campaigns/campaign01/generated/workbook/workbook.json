@@ -60,6 +60,36 @@
       "notebookPage": "pages/mission10.md",
       "printable": "printables/mission10-water-system-diagram.md",
       "printableReason": "Optional printed copy of the station's water system diagram (IMAGE-0012) — the Core 'Trace Water Flow' and 'Interpret Diagrams' activities explicitly require tracing an existing pipework diagram, meeting the PHILOSOPHY bar for a diagram that's genuinely useful printed. Hand-copying it works just as well; the printable is offered only for convenience."
+    },
+    {
+      "missionId": "MISSION-0011",
+      "notebookPage": "pages/mission11.md",
+      "printable": null,
+      "printableReason": "Energy tables, circuit notes and the priority list are all naturally drawn in the journal; the circuit challenges themselves are handled in-app, not on paper."
+    },
+    {
+      "missionId": "MISSION-0012",
+      "notebookPage": "pages/mission12.md",
+      "printable": "printables/mission12-star-chart.md",
+      "printableReason": "Optional printed star chart (IMAGE-0014) for the Core 'Measure Angles' activity — measuring accurately with a protractor is easier on a printed, precisely plotted chart than a hand-copied one. Hand-copying the recorded positions still works; the printable is offered only for convenience."
+    },
+    {
+      "missionId": "MISSION-0013",
+      "notebookPage": "pages/mission13.md",
+      "printable": null,
+      "printableReason": "Graphs and comparisons are drawn directly in the journal; no reference card is needed."
+    },
+    {
+      "missionId": "MISSION-0014",
+      "notebookPage": "pages/mission14.md",
+      "printable": null,
+      "printableReason": "Reassembly notes, the timeline and the reconstructed writing are all notebook-native tasks."
+    },
+    {
+      "missionId": "MISSION-0015",
+      "notebookPage": "pages/mission15.md",
+      "printable": null,
+      "printableReason": "The test-and-refine task is a full experiment (see generated/resources/experiments.json); the surrounding inspection, sequencing and design-decision tasks are notebook-native writing."
     }
   ]
 }

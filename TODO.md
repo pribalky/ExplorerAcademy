@@ -249,7 +249,7 @@ Success Criteria
 Status
 
 ```
-IN PROGRESS — World Bible Compiler complete (src/world/ + src/parent/ populated); Asset Compiler Batches 1–2 complete (Missions 1–10: workbook, parent enrichment, image specs, experiments.json); Batch 3 (Missions 11–15) next
+IN PROGRESS — World Bible Compiler complete (src/world/ + src/parent/ populated); Asset Compiler Batches 1–3 complete (Missions 1–15: workbook, parent enrichment, image specs, experiments.json); Batch 4 (Missions 16–21, final batch) next
 ```
 
 Goal
@@ -552,4 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Asset Compiler Batch 2 (Missions 6–10) is complete** — notebook instructions, one justified printable (Mission 10's water-system diagram), parent enrichment with curriculum references, embedded vocabulary, image specifications, and the first `generated/resources/experiments.json` entries (Mission 7's bridge load test, Mission 10's water-blockage test) are all generated. Await approval to start Batch 3 (Missions 11–15).
+**Asset Compiler Batch 3 (Missions 11–15) is complete** — notebook instructions, one justified printable (Mission 12's star chart), parent enrichment with curriculum references, embedded vocabulary, image specifications, and a third experiment (Mission 15's signal-path troubleshooting) are all generated. Mission 11 was confirmed to need no experiment despite the resources document's PhET/circuits reference, by scanning its compiled JSON directly. Await approval to start Batch 4 (Missions 16–21), the final batch, which will complete Phase 5.

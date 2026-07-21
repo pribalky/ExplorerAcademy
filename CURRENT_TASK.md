@@ -6,18 +6,18 @@
 
 ## Milestone
 
-Asset Compiler execution — Batch 3 (Missions 11–15)
+Asset Compiler execution — Batch 4 (Missions 16–21, final batch)
 
 ## Objective
 
-Continue the Asset Compiler run for the next batch of missions, following the same pattern established in Batches 1–2: notebook instructions, parent enrichment (misconceptions/stretch questions/supervision, with `curriculumRefs` grounded in each mission's actual activity `type` fields), vocabulary embedded in the notebook page where a mission's own text introduces new terms, image specifications for key scenes, and experiment instructions for any mission with a `type: "experiment"` activity.
+Complete the Asset Compiler run for the last batch of missions, following the same pattern established in Batches 1–3: notebook instructions, parent enrichment (misconceptions/stretch questions/supervision, with `curriculumRefs` grounded in each mission's actual activity `type` fields), vocabulary embedded in the notebook page where a mission's own text introduces new terms, image specifications for key scenes, and experiment instructions for any mission with a `type: "experiment"` activity. This closes out Phase 5.
 
 ## Inputs
 
 - `prompts/ASSET_COMPILER.md`
-- `portal/campaigns/campaign01/src/missions/mission11.json`–`mission15.json`
+- `portal/campaigns/campaign01/src/missions/mission16.json`–`mission21.json`
 - `portal/campaigns/campaign01/src/world/*.json`, `src/parent/curriculum-mapping.json` (for grounding/references)
-- `portal/campaigns/campaign01/generated/workbook/pages/mission01.md`–`mission10.md`, `generated/parent/enrichment/mission01.json`–`mission10.json`, and `generated/resources/experiments.json` as the established pattern to follow
+- `portal/campaigns/campaign01/generated/workbook/pages/mission01.md`–`mission15.md`, `generated/parent/enrichment/mission01.json`–`mission15.json`, and `generated/resources/experiments.json` as the established pattern to follow
 
 ## Relevant Documentation
 
@@ -25,34 +25,60 @@ Continue the Asset Compiler run for the next batch of missions, following the sa
 
 ## Files Expected to Change
 
-- `portal/campaigns/campaign01/generated/workbook/workbook.json` (extend index), `pages/mission11.md`–`mission15.md` (+ printables only where justified)
-- `portal/campaigns/campaign01/generated/parent/enrichment/mission11.json`–`mission15.json`
-- `portal/campaigns/campaign01/generated/image-specifications/images.json` (extend with entries for missions 11–15)
-- `portal/campaigns/campaign01/generated/resources/experiments.json` (extend — Mission 11 is engineering/circuits-focused per `505_RESOURCES.md`'s PhET reference; confirm by scanning mission11.json's `activities[]` for a `type: "experiment"` entry before adding anything, same rule as Batch 2)
+- `portal/campaigns/campaign01/generated/workbook/workbook.json` (extend index), `pages/mission16.md`–`mission21.md` (+ printables only where justified)
+- `portal/campaigns/campaign01/generated/parent/enrichment/mission16.json`–`mission21.json`
+- `portal/campaigns/campaign01/generated/image-specifications/images.json` (extend with entries for missions 16–21)
+- `portal/campaigns/campaign01/generated/resources/experiments.json` (extend — per `ASSET_COMPILER.md`'s Campaign 01 example, Mission 17 is expected to be experiment-driven; confirm by scanning each mission's `activities[]` for a `type: "experiment"` entry before adding anything, same rule as every prior batch. Mission 16 needs a sketch-map image spec per the same Campaign 01 example.)
 
 ## Implementation Plan
 
-Same as Batches 1–2: read each mission JSON directly, scan `activities[]` for `type: "experiment"` rather than assuming from memory, ground `curriculumRefs` in actual activity types, write notebook instructions, add a printable only where the PHILOSOPHY bar is met, add an image spec per key scene (plus a diagram/map spec only where an activity's output or input specifically requires one).
+Same as Batches 1–3: read each mission JSON directly, scan `activities[]` for `type: "experiment"` rather than assuming from memory, ground `curriculumRefs` in actual activity types, write notebook instructions, add a printable only where the PHILOSOPHY bar is met, add an image spec per key scene (plus a diagram/map spec only where an activity's output or input specifically requires one). Missions 17, 20, 21 form the campaign's reward arc culminating in "Certified Explorer" — treat Mission 21's content with extra care as the campaign's closing mission.
 
 ## Out of Scope
 
-Missions 1–10 (done), 16–21 (later batches). Anything already covered (Discovery Log prompts beyond the existing reflection prompt, additional Extension activities, reading/resource recommendations already in `505_RESOURCES.md`).
+Missions 1–15 (done). Anything already covered (Discovery Log prompts beyond the existing reflection prompt, additional Extension activities, reading/resource recommendations already in `505_RESOURCES.md`).
 
 ## Success Criteria
 
-Same as Batch 2.
+Same as Batch 3, plus: this batch completes all 21 missions, so a final full-campaign consistency check (every mission has a notebook page and parent enrichment file, no orphan image/experiment entries) is worthwhile before marking Phase 5 complete.
 
 ## Manual Verification
 
-JSON/Markdown validity; spot-check no duplication of existing mission fields; confirm no `src/` files touched.
+JSON/Markdown validity; spot-check no duplication of existing mission fields; confirm no `src/` files touched; full-campaign ID/coverage check across all `generated/` assets.
 
 ## Deliverables
 
-Batch 3 generated assets for Missions 11–15.
+Batch 4 generated assets for Missions 16–21 — completing Phase 5.
 
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Asset Compiler execution — Batch 3 (Missions 11–15) — COMPLETE
+
+## Completion Summary
+
+Ran `prompts/ASSET_COMPILER.md` against Missions 11–15, extending the established pattern:
+
+- **Notebook instructions** (`generated/workbook/pages/mission11.md`–`mission15.md`).
+- **Confirmed Mission 11 has no experiment-type activity** despite `505_RESOURCES.md`'s PhET/circuits reference — its "Solve Circuit Challenges" activity is typed `science`, not `experiment` (scanned directly from `mission11.json`, not assumed from the resources document). Correctly produced no experiment for it.
+- **Third experiment produced**: Mission 15 (`ACTIVITY-0090`, "Test and Refine Solutions") — a household light/torch analogy ("Signal Path Troubleshooting") testing misalignment, obstruction and distance against a fixed target, since the mission's own multi-fault Signal Tower repair has no single obvious physical prototype the way Missions 7 and 10 did. Grounded in the same "signal needs a clear, aligned path" principle real communication towers rely on.
+- **Two further printables**: Mission 12's star chart (`printables/mission12-star-chart.md`, IMAGE-0014) — justified because the Core "Measure Angles" activity needs a precisely plotted chart to measure accurately with a protractor, matching `ASSET_COMPILER.md`'s own Campaign 01 example calling out Mission 12 for a star-chart spec. Missions 11, 13, 14, 15 were assessed and needed none.
+- **Parent enrichment** (`generated/parent/enrichment/mission11.json`–`mission15.json`), `curriculumRefs` grounded in each mission's actual activity `type` fields as in prior batches.
+- **Vocabulary**: embedded for Missions 11 ("circuit"), 12 ("constellation"), 13 ("trend"), 14 ("inference" — deliberately distinguished from Mission 4's "assumption" as a more advanced, evidence-supported form of the same idea), 15 ("diagnose").
+- **Image specifications** (IMAGE-0013–0017): one key-scene spec per mission, including a star-chart reference diagram for Mission 12 (matching `ASSET_COMPILER.md`'s own worked example) and a "Connections Board" scene for Mission 13's more abstract data-pattern Breakthrough beat. Mission 14's spec again avoids depicting Dr. Elara Quinn.
+
+## Manual Verification
+
+- Validated all new/modified generated JSON with `python3 -c "json.load(...)"` — all files parse.
+- `git status --short` confirmed only files under `generated/` were touched; nothing under `src/`.
+- Confirmed Mission 15's experiment references an actual `type: "experiment"` activity, and that Mission 11 was correctly excluded after checking its JSON directly rather than assuming from `505_RESOURCES.md`.
+
+## Verification
+
+Batch 3 extends the same pattern to Missions 11–15, and specifically validates that the experiment-scoping rule holds even when a mission's resources document seems to imply an experiment (Mission 11) that its own compiled JSON doesn't actually contain. ✅
 
 ---
 
