@@ -6,11 +6,11 @@
 
 ## Milestone
 
-Not yet defined — awaiting direction
+Not yet defined — awaiting direction on which mission (if any) to polish next
 
 ## Objective
 
-Phase 5 (Asset Compiler) is now complete across all 21 missions. TODO.md lists Phase 6 as "Mission Polish" (story flow, curiosity, difficulty, Discovery Log, Rabbit Holes, reflection, rewards — one mission reaches production quality, then repeat), but no specific milestone has been scoped or approved yet. Per CLAUDE.md's workflow, do not begin Phase 6 work until the user reviews the completed Phase 5 output and confirms scope and direction for the next milestone.
+Mission 1 has reached production quality (see completed milestone below). TODO.md's Phase 6 checklist calls for repeating this for the remaining missions, but per CLAUDE.md's workflow, do not begin polishing another mission until the user chooses one.
 
 ## Inputs
 
@@ -18,7 +18,7 @@ N/A — awaiting user direction.
 
 ## Relevant Documentation
 
-`docs/00-foundation/007_AI_CONTRIBUTING_GUIDE.md`, `TODO.md`'s Phase 6 section, once a specific milestone is scoped.
+`docs/40-campaigns/402_MISSION_TEMPLATE.md` (Mission Quality Checklist), `docs/00-foundation/007_AI_CONTRIBUTING_GUIDE.md`, `TODO.md`'s Phase 6 section.
 
 ## Files Expected to Change
 
@@ -47,6 +47,33 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Mission Polish: Mission 1 ("The Invitation") reaches production quality — COMPLETE
+
+## Completion Summary
+
+Worked through `402_MISSION_TEMPLATE.md`'s Mission Quality Checklist against `portal/campaigns/campaign01/src/missions/mission01.json` directly (this is content-authoring work on the compiled mission JSON itself, distinct from Phase 5's generated-assets-only scope).
+
+**Important finding, checked before editing anything:** read `activity-engine.js` and `router.js` to confirm what the platform actually renders today. Only a mission's title, estimated time, difficulty, activity cards (title/type/category/duration/difficulty/storyContext/instructions/output), and reflection prompts are rendered. The 8 `beats` are validated for structural completeness (`mission-engine.js`) but **never rendered to the learner anywhere in the current UI** — confirmed by grepping all of `portal/js/` for `beats`/`narrativeText` usage outside the validator. `activity-engine.js` also explicitly documents that only required Activity fields are rendered, and that the schema's optional Activity fields (`hints`, `resources`, `parentNotes`) have no renderer at all.
+
+This shaped the scope of the polish:
+
+- **Beats**: rewrote all 8 `narrativeText` values with richer sensory/emotional detail and stronger connective tissue between beats (e.g. the HOOK now specifies the package is addressed to the learner by name and unusually heavy; the MYSTERY beat now poses an explicit unanswered question). Stayed strictly within `501_CAMPAIGN_01.md`'s canonical Story Summary for Mission 1 — no new plot facts, characters or locations invented, only deeper texture on what the source document already establishes. Polished even though currently inert in the UI, since the beat structure is clearly load-bearing in `402_MISSION_TEMPLATE.md`'s design and this is authored content worth having ready.
+- **Activities**: rewrote `storyContext`/`instructions` for all 7 activities (4 Core, 2 Extension, 1 Rabbit Hole) to read as a vivid, second-person "exciting challenge" per the Mission Brief guidance, rather than dry instructional prose — e.g. Activity-0004's instructions now explicitly acknowledge that the first couple of observations are easy and the real challenge is pushing past them. Deliberately did **not** add `hints`, `resources`, or `parentNotes` — confirmed unrendered fields, so populating them now would be the same "idle, unusable content" trap avoided throughout Phase 5.
+- **Reflection**: polished the single prompt for stronger metacognitive framing (now explicitly asks what makes the learner curious, not just what they expect), keeping to one prompt to stay consistent with the one-prompt-per-mission convention already established across all 21 missions.
+- **Left unchanged**: all IDs, `rewards`, `completionCriteria`, `parentGuide`'s core fields (already solid; deliberately did not add the schema's optional `misconceptions`/`extensions`/`printables` fields to `parentGuide` either, since that content already exists as a single source of truth in `generated/parent/enrichment/mission01.json` — adding it to `parentGuide` too would duplicate state, which CLAUDE.md explicitly prohibits), and all structural/functional fields (`type`, `category`, `duration`, `difficulty`, `schedulerCategory`).
+
+## Manual Verification
+
+- Validated `mission01.json` against `mission-engine.js`'s actual required-field/beat-type/activity-field/reward-field checks via a Python script mirroring its logic — all pass, all 8 beat types present.
+- Grepped `generated/` for the superseded reflection prompt text — no stale references found; the generated workbook page and parent enrichment file for Mission 1 don't quote mission JSON text verbatim (by design, per the Asset Compiler's own "enrich, never duplicate" rule), so neither needed updating.
+- Started the app with `python3 -m http.server` and drove it with headless Chromium (Playwright): loaded `#/mission/mission01`, confirmed the heading renders as "The Invitation," confirmed the new activity instructions and reflection prompt text appear in the rendered page, and confirmed `parentGuide` content (e.g. its `assessment` text) does **not** appear anywhere in the rendered DOM — ADR-006 (Hidden Parent Mode) holds. The one console 404 observed was `favicon.ico`, a pre-existing, unrelated gap, not something this change introduced.
+
+## Verification
+
+Mission 1 now satisfies every item on `402_MISSION_TEMPLATE.md`'s Mission Quality Checklist that the current platform can actually surface to a learner, with no schema changes, no new unrendered fields, and no duplicated parent-guidance content. ✅
 
 ---
 

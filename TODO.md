@@ -306,29 +306,42 @@ Produces
 
 # Phase 6 — Mission Polish
 
+Status
+
+```
+IN PROGRESS — Mission 1 ("The Invitation") reaches production quality; 20 missions remain
+```
+
 Goal
 
 Improve each mission.
 
-Checklist
+Checklist (per mission)
 
-- [ ] Story flow
+- [x] Story flow — Mission 1
+- [ ] Story flow — Missions 2–21
 
-- [ ] Curiosity
+- [x] Curiosity — Mission 1
+- [ ] Curiosity — Missions 2–21
 
-- [ ] Difficulty
+- [x] Difficulty — Mission 1
+- [ ] Difficulty — Missions 2–21
 
-- [ ] Discovery Log
+- [x] Discovery Log — Mission 1
+- [ ] Discovery Log — Missions 2–21
 
-- [ ] Rabbit Holes
+- [x] Rabbit Holes — Mission 1
+- [ ] Rabbit Holes — Missions 2–21
 
-- [ ] Reflection
+- [x] Reflection — Mission 1
+- [ ] Reflection — Missions 2–21
 
-- [ ] Rewards
+- [x] Rewards — Mission 1
+- [ ] Rewards — Missions 2–21
 
 Deliverable
 
-One mission reaches production quality.
+One mission reaches production quality. ✅ (Mission 1)
 
 Repeat for remaining missions.
 
@@ -552,4 +565,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Phase 5 (Asset Compiler) is now complete for all 21 missions.** Every mission has notebook instructions, parent enrichment, and at least one image specification under `portal/campaigns/campaign01/generated/`; `experiments.json` correctly covers exactly Missions 7, 10, 15 and 17 (the only missions with a `type: "experiment"` activity, verified by scanning every mission's compiled JSON directly). Mission 17's entry is a general fair-test framework rather than a fixed experiment, since that mission deliberately gives the learner no fixed topic. Phase 6 (Mission Polish) is next per this document's own roadmap, but no specific milestone has been scoped yet — awaiting user direction on where to focus first.
+**Phase 5 (Asset Compiler) is complete for all 21 missions.** Phase 6 (Mission Polish) is now underway: **Mission 1 ("The Invitation") has reached production quality** — beats, activity storyContext/instructions, and the reflection prompt were rewritten for stronger story flow and curiosity, verified against `mission-engine.js`'s actual validation rules and rendered end-to-end in a headless browser with no console errors and no Parent Guide leakage (ADR-006). Notably, the platform doesn't render `beats` to the learner yet (confirmed by reading `activity-engine.js`/`router.js`) — this was polished anyway since it's clearly load-bearing in the mission template design, but no unrendered optional Activity fields (`hints`, `resources`, `parentNotes`) were added, to avoid generating idle content. Awaiting user direction on which mission to polish next.

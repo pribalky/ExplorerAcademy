@@ -7,14 +7,14 @@
   "estimatedTime": "60 minutes",
   "difficulty": "guided",
   "beats": [
-    { "type": "HOOK", "sequence": 1, "narrativeText": "An unexpected package arrives containing a letter from Explorer Academy.", "trigger": "Mission start" },
-    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Explorer Academy has been observing individuals who show curiosity, persistence and careful observation — and the learner has been selected as a potential Explorer.", "trigger": "Package opened" },
-    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reads the invitation carefully to understand what becoming an Explorer will require.", "trigger": "Letter read" },
-    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Director Orion explains that before joining permanently, the learner must complete a probationary expedition at Outpost Echo, a long-abandoned research station whose final expedition disappeared from communication many years ago.", "trigger": "Director Orion's briefing" },
-    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must decide how to respond to the invitation and begin an Explorer Journal to record their own observations.", "trigger": "Decision to respond" },
-    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner completes their first observation challenge, demonstrating the habits Explorer Academy is looking for.", "trigger": "Observation challenge completed" },
-    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on what it means to accept the invitation and begin training as an Explorer.", "trigger": "Journal entry recorded" },
-    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The learner accepts the invitation and sets out for Outpost Echo, unaware of what waits at the abandoned station.", "trigger": "Departure for Outpost Echo" }
+    { "type": "HOOK", "sequence": 1, "narrativeText": "A package arrives, addressed to the learner by name — heavier than it looks, sealed with a crest nobody recognises. Nobody sends real mail like this anymore.", "trigger": "Mission start" },
+    { "type": "MYSTERY", "sequence": 2, "narrativeText": "Inside is a letter from Explorer Academy. It says they have been watching for individuals who show curiosity, persistence and careful observation — and that the learner has been selected as a potential Explorer. The question the letter doesn't answer: for how long, and why now?", "trigger": "Package opened" },
+    { "type": "INVESTIGATION", "sequence": 3, "narrativeText": "The learner reads the invitation from the beginning again, more slowly this time, looking for exactly what Explorer Academy expects from someone who accepts it.", "trigger": "Letter read" },
+    { "type": "DISCOVERY", "sequence": 4, "narrativeText": "Director Orion explains that before joining permanently, the learner must complete a probationary expedition at Outpost Echo, a long-abandoned research station whose final expedition disappeared from communication many years ago and was never fully explained.", "trigger": "Director Orion's briefing" },
+    { "type": "CHALLENGE", "sequence": 5, "narrativeText": "The learner must decide how to respond to the invitation, and begin an Explorer Journal — the first tool of the expedition — to record their own observations from here on.", "trigger": "Decision to respond" },
+    { "type": "BREAKTHROUGH", "sequence": 6, "narrativeText": "The learner completes their first observation challenge, noticing details in something perfectly ordinary that most people would walk straight past — exactly the habit Explorer Academy is looking for.", "trigger": "Observation challenge completed" },
+    { "type": "REFLECTION", "sequence": 7, "narrativeText": "The learner reflects on what it means to accept the invitation and begin training as an Explorer, knowing there's no way to be certain yet what that will actually require of them.", "trigger": "Journal entry recorded" },
+    { "type": "CLIFFHANGER", "sequence": 8, "narrativeText": "The learner accepts the invitation and sets out for Outpost Echo, Explorer Journal in hand, with no way of knowing yet what silence at a research station for that many years really means.", "trigger": "Departure for Outpost Echo" }
   ],
   "activities": [
     {
@@ -25,8 +25,8 @@
       "category": "reading",
       "duration": 8,
       "difficulty": "guided",
-      "storyContext": "A letter from Explorer Academy has arrived, inviting the learner to begin probationary training.",
-      "instructions": "Read the invitation letter carefully. Notice what Explorer Academy says it is looking for in a future Explorer.",
+      "storyContext": "The envelope is heavier than it looks, sealed with the Explorer Academy crest — and it's addressed to the learner by name.",
+      "instructions": "Read the invitation letter carefully, all the way to the end. Explorer Academy is telling you exactly what kind of person they're looking for — the clues are right there in the wording.",
       "output": "A short note of the letter's key points in the Explorer Journal.",
       "schedulerCategory": "core"
     },
@@ -38,8 +38,8 @@
       "category": "creative",
       "duration": 8,
       "difficulty": "guided",
-      "storyContext": "Every Explorer keeps a journal to record observations throughout their expedition.",
-      "instructions": "Set up a notebook or sketchbook as your Explorer Journal. Add a title page and your Explorer name.",
+      "storyContext": "Every Explorer who has ever worked for the Academy has kept one of these — a journal that travels with them from their very first mission to their last.",
+      "instructions": "Choose a notebook or sketchbook to become your Explorer Journal. On the first page, write a title and the name you'll go by as an Explorer — this journal is yours for the whole expedition.",
       "output": "A personal Explorer Journal, ready for the expedition.",
       "schedulerCategory": "core"
     },
@@ -51,8 +51,8 @@
       "category": "writing",
       "duration": 7,
       "difficulty": "guided",
-      "storyContext": "Before departing for Outpost Echo, Director Orion asks every new recruit to record their expectations.",
-      "instructions": "Write a few sentences in your Explorer Journal describing what you expect to find at Outpost Echo.",
+      "storyContext": "Director Orion has one tradition for every new recruit before they leave: writing down what they expect to find, before anything has the chance to change their mind.",
+      "instructions": "In your Explorer Journal, write a few honest sentences describing what you expect to find at Outpost Echo. Don't worry about sounding impressive — Director Orion wants to know what you actually think right now.",
       "output": "A journal entry recording first expectations.",
       "schedulerCategory": "core"
     },
@@ -64,8 +64,8 @@
       "category": "observation",
       "duration": 7,
       "difficulty": "guided",
-      "storyContext": "Atlas sets a simple first task to see how carefully the learner can observe their surroundings.",
-      "instructions": "Choose an everyday object nearby and record five careful observations about it in your Explorer Journal.",
+      "storyContext": "Atlas has one question before training really begins: can the learner notice things that most people walk straight past?",
+      "instructions": "Choose any ordinary object near you and look at it properly — longer than you normally would. Record five careful observations in your Explorer Journal. The first couple will be easy; the last few are where real Explorers are made.",
       "output": "Five recorded observations of a chosen object.",
       "schedulerCategory": "core"
     },
@@ -77,8 +77,8 @@
       "category": "drawing",
       "duration": 15,
       "difficulty": "guided",
-      "storyContext": "Every Explorer eventually designs a personal emblem to mark their journal and equipment.",
-      "instructions": "Sketch a personal emblem that represents you as an Explorer.",
+      "storyContext": "Every Explorer eventually designs a personal emblem — something that marks their journal and equipment as unmistakably theirs.",
+      "instructions": "Sketch a personal emblem in your journal that represents you as an Explorer. It doesn't need to be complicated — it just needs to be yours.",
       "output": "A drawn emblem in the Explorer Journal.",
       "schedulerCategory": "extension"
     },
@@ -91,7 +91,7 @@
       "duration": 15,
       "difficulty": "guided",
       "storyContext": "Director Orion mentions that Explorer Academy was founded on the work of real explorers throughout history.",
-      "instructions": "Find out about one real explorer and note three interesting facts about their expeditions.",
+      "instructions": "Choose one real explorer from history and find out about their expeditions. Note three facts that genuinely surprised you — not just the ones everybody already knows.",
       "output": "Three facts about a real explorer, recorded in the Explorer Journal.",
       "schedulerCategory": "extension"
     },
@@ -117,7 +117,7 @@
     }
   ],
   "reflection": {
-    "prompts": ["What expectations do you have as you begin your journey to Outpost Echo?"]
+    "prompts": ["What do you expect to find at Outpost Echo, and what about it makes you most curious?"]
   },
   "parentGuide": {
     "id": "PARENTGUIDE-0001",
