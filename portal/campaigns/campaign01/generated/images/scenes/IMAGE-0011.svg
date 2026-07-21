@@ -1,0 +1,29 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Failing Water System">
+  <rect width="800" height="450" fill="#2C3E50"/>
+
+  <!-- storage tank -->
+  <rect x="120" y="130" width="140" height="220" rx="16" fill="#9AA5AC"/>
+  <rect x="120" y="130" width="140" height="30" rx="16" fill="#4A5A63"/>
+
+  <!-- pipework -->
+  <g stroke="#9AA5AC" stroke-width="12" fill="none">
+    <path d="M260 250 H420"/>
+    <path d="M420 250 V330"/>
+    <path d="M420 330 H600"/>
+  </g>
+  <g stroke="#4A5A63" stroke-width="2" fill="none">
+    <path d="M260 250 H420"/>
+    <path d="M420 250 V330"/>
+    <path d="M420 330 H600"/>
+  </g>
+
+  <!-- control panel -->
+  <rect x="600" y="180" width="130" height="160" rx="8" fill="#22303D" stroke="#4A5A63" stroke-width="4"/>
+  <circle cx="665" cy="220" r="12" fill="#E8A73E"/>
+  <circle cx="665" cy="260" r="12" fill="#4FB3B3" opacity="0.4"/>
+  <rect x="625" y="290" width="80" height="16" rx="4" fill="#4A5A63"/>
+
+  <!-- drip -->
+  <path d="M420 330 q6 14 0 22 q-6 -8 0 -22 z" fill="#4FB3B3"/>
+  <ellipse cx="420" cy="366" rx="10" ry="4" fill="#4FB3B3" opacity="0.5"/>
+</svg>

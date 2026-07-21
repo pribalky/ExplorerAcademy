@@ -1,0 +1,33 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Underground Survey Area">
+  <rect width="800" height="450" fill="#1B2530"/>
+  <!-- rock layer bands on left wall -->
+  <g>
+    <rect x="0" y="0" width="220" height="450" fill="#3D3428"/>
+    <rect x="0" y="60" width="220" height="34" fill="#5E4B3C"/>
+    <rect x="0" y="140" width="220" height="26" fill="#8B7355"/>
+    <rect x="0" y="220" width="220" height="40" fill="#4A3728"/>
+    <rect x="0" y="310" width="220" height="30" fill="#6B5744"/>
+  </g>
+
+  <!-- lantern glow -->
+  <radialGradient id="lantern18" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#E8A73E" stop-opacity="0.6"/>
+    <stop offset="1" stop-color="#E8A73E" stop-opacity="0"/>
+  </radialGradient>
+  <ellipse cx="480" cy="300" rx="220" ry="140" fill="url(#lantern18)"/>
+  <circle cx="480" cy="290" r="10" fill="#E8A73E"/>
+  <line x1="480" y1="290" x2="480" y2="250" stroke="#5E4B3C" stroke-width="3"/>
+
+  <!-- sample table -->
+  <rect x="380" y="330" width="200" height="16" fill="#5E4B3C"/>
+  <rect x="390" y="336" width="10" height="60" fill="#3D2E22"/>
+  <rect x="560" y="336" width="10" height="60" fill="#3D2E22"/>
+  <g fill="#8B9A5B">
+    <ellipse cx="430" cy="322" rx="18" ry="12"/>
+    <ellipse cx="470" cy="326" rx="16" ry="10"/>
+    <ellipse cx="510" cy="320" rx="20" ry="13"/>
+  </g>
+
+  <!-- rolled maps -->
+  <rect x="600" y="300" width="70" height="18" rx="9" fill="#EDE3D0" transform="rotate(-10 635 309)"/>
+</svg>

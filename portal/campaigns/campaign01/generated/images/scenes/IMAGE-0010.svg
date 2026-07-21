@@ -1,0 +1,31 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Laboratory's Uncatalogued Samples">
+  <rect width="800" height="600" fill="#2C3E50"/>
+  <!-- shelf -->
+  <rect x="60" y="260" width="680" height="24" fill="#5E4B3C"/>
+  <rect x="60" y="420" width="680" height="24" fill="#5E4B3C"/>
+
+  <!-- sample jars, row 1 -->
+  <g stroke="#22303D" stroke-width="2">
+    <rect x="100" y="180" width="60" height="80" rx="8" fill="#4FB3B3"/>
+    <rect x="180" y="160" width="60" height="100" rx="8" fill="#C97C3D"/>
+    <rect x="260" y="190" width="60" height="70" rx="8" fill="#8B9A5B"/>
+    <rect x="340" y="170" width="60" height="90" rx="8" fill="#E8A73E"/>
+    <rect x="420" y="185" width="60" height="75" rx="8" fill="#9AA5AC"/>
+    <rect x="500" y="165" width="60" height="95" rx="8" fill="#4FB3B3" opacity="0.7"/>
+    <rect x="580" y="195" width="60" height="65" rx="8" fill="#C97C3D" opacity="0.7"/>
+  </g>
+
+  <!-- catalogue cards scattered -->
+  <g fill="#EDE3D0" stroke="#9AA5AC" stroke-width="1.5">
+    <rect x="120" y="300" width="70" height="46" transform="rotate(-4 155 323)"/>
+    <rect x="230" y="310" width="70" height="46" transform="rotate(6 265 333)"/>
+    <rect x="360" y="300" width="70" height="46" transform="rotate(-8 395 323)"/>
+    <rect x="480" y="312" width="70" height="46" transform="rotate(3 515 335)"/>
+  </g>
+
+  <!-- row 2 jars -->
+  <g stroke="#22303D" stroke-width="2">
+    <rect x="140" y="340" width="55" height="70" rx="8" fill="#9AA5AC" opacity="0.7"/>
+    <rect x="600" y="340" width="55" height="70" rx="8" fill="#8B9A5B" opacity="0.7"/>
+  </g>
+</svg>

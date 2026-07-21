@@ -1,0 +1,21 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Communications Array Restored">
+  <rect width="800" height="450" fill="#22303D"/>
+  <rect x="200" y="90" width="400" height="270" rx="10" fill="#2C3E50" stroke="#4A5A63" stroke-width="6"/>
+  <rect x="230" y="120" width="340" height="150" rx="4" fill="#0F1519"/>
+
+  <!-- waveform -->
+  <polyline points="240,195 270,195 285,150 300,240 315,170 330,220 345,195 375,195 390,160 405,230 420,180 435,205 450,195 480,195 495,150 510,240 525,170 540,220 555,195 570,195"
+    fill="none" stroke="#4FB3B3" stroke-width="3"/>
+
+  <!-- dials/knobs -->
+  <circle cx="260" cy="310" r="16" fill="#9AA5AC"/>
+  <circle cx="310" cy="310" r="16" fill="#9AA5AC"/>
+  <circle cx="360" cy="310" r="16" fill="#9AA5AC"/>
+  <rect x="410" y="298" width="150" height="24" rx="4" fill="#E8A73E"/>
+
+  <!-- antenna lines rising from array -->
+  <line x1="260" y1="90" x2="240" y2="30" stroke="#4FB3B3" stroke-width="3"/>
+  <line x1="540" y1="90" x2="560" y2="30" stroke="#4FB3B3" stroke-width="3"/>
+  <circle cx="240" cy="26" r="5" fill="#4FB3B3"/>
+  <circle cx="560" cy="26" r="5" fill="#4FB3B3"/>
+</svg>

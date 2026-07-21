@@ -1,0 +1,27 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Broken Bridge">
+  <defs>
+    <linearGradient id="sky8" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4E4C1"/>
+      <stop offset="1" stop-color="#E8A87C"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#sky8)"/>
+
+  <!-- ravine ledges -->
+  <path d="M0 260 L300 260 L340 400 L0 400 Z" fill="#8B7355"/>
+  <path d="M800 260 L500 260 L460 400 L800 400 Z" fill="#8B7355"/>
+  <path d="M300 260 L340 400 L370 400 L330 260 Z" fill="#5E4B3C"/>
+  <path d="M500 260 L460 400 L430 400 L470 260 Z" fill="#5E4B3C"/>
+
+  <!-- broken bridge planks -->
+  <g fill="#6B5A44" stroke="#3D2E22" stroke-width="2">
+    <rect x="320" y="255" width="34" height="10"/>
+    <rect x="356" y="258" width="34" height="10" transform="rotate(4 373 263)"/>
+    <rect x="392" y="270" width="34" height="10" transform="rotate(18 409 275)"/>
+    <rect x="440" y="270" width="34" height="10" transform="rotate(-14 457 275)"/>
+    <rect x="474" y="258" width="34" height="10" transform="rotate(-4 491 263)"/>
+    <rect x="510" y="255" width="34" height="10"/>
+  </g>
+  <!-- rope rails, sagging -->
+  <path d="M320 250 Q400 300 480 250" stroke="#8B7355" stroke-width="4" fill="none"/>
+</svg>

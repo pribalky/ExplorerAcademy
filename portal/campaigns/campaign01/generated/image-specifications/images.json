@@ -10,7 +10,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "high"
+      "priority": "high",
+      "file": "../images/scenes/IMAGE-0001.svg"
     },
     {
       "imageId": "IMAGE-0002",
@@ -21,7 +22,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "high"
+      "priority": "high",
+      "file": "../images/scenes/IMAGE-0002.svg"
     },
     {
       "imageId": "IMAGE-0003",
@@ -32,7 +34,8 @@
       "style": "Simple line-art map diagram, not a painted scene.",
       "orientation": "portrait",
       "aspectRatio": "3:4",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/diagrams/IMAGE-0003.svg"
     },
     {
       "imageId": "IMAGE-0004",
@@ -43,7 +46,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "4:3",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0004.svg"
     },
     {
       "imageId": "IMAGE-0005",
@@ -54,7 +58,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "high"
+      "priority": "high",
+      "file": "../images/scenes/IMAGE-0005.svg"
     },
     {
       "imageId": "IMAGE-0006",
@@ -65,7 +70,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0006.svg"
     },
     {
       "imageId": "IMAGE-0007",
@@ -76,7 +82,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0007.svg"
     },
     {
       "imageId": "IMAGE-0008",
@@ -87,7 +94,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "high"
+      "priority": "high",
+      "file": "../images/scenes/IMAGE-0008.svg"
     },
     {
       "imageId": "IMAGE-0009",
@@ -98,7 +106,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0009.svg"
     },
     {
       "imageId": "IMAGE-0010",
@@ -109,7 +118,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "4:3",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0010.svg"
     },
     {
       "imageId": "IMAGE-0011",
@@ -120,7 +130,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0011.svg"
     },
     {
       "imageId": "IMAGE-0012",
@@ -131,7 +142,8 @@
       "style": "Simple line-art schematic diagram, not a painted scene.",
       "orientation": "landscape",
       "aspectRatio": "4:3",
-      "priority": "high"
+      "priority": "high",
+      "file": "../images/diagrams/IMAGE-0012.svg"
     },
     {
       "imageId": "IMAGE-0013",
@@ -142,7 +154,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "4:3",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0013.svg"
     },
     {
       "imageId": "IMAGE-0014",
@@ -153,7 +166,8 @@
       "style": "Simple line-art chart diagram, not a painted scene.",
       "orientation": "landscape",
       "aspectRatio": "4:3",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/diagrams/IMAGE-0014.svg"
     },
     {
       "imageId": "IMAGE-0015",
@@ -164,7 +178,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0015.svg"
     },
     {
       "imageId": "IMAGE-0016",
@@ -175,7 +190,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "4:3",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0016.svg"
     },
     {
       "imageId": "IMAGE-0017",
@@ -186,7 +202,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "portrait",
       "aspectRatio": "3:4",
-      "priority": "high"
+      "priority": "high",
+      "file": "../images/scenes/IMAGE-0017.svg"
     },
     {
       "imageId": "IMAGE-0018",
@@ -197,7 +214,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0018.svg"
     },
     {
       "imageId": "IMAGE-0019",
@@ -208,7 +226,8 @@
       "style": "Simple line-art diagram, not a painted scene.",
       "orientation": "landscape",
       "aspectRatio": "4:3",
-      "priority": "low"
+      "priority": "low",
+      "file": "../images/diagrams/IMAGE-0019.svg"
     },
     {
       "imageId": "IMAGE-0020",
@@ -219,7 +238,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "4:3",
-      "priority": "low"
+      "priority": "low",
+      "file": "../images/scenes/IMAGE-0020.svg"
     },
     {
       "imageId": "IMAGE-0021",
@@ -230,7 +250,8 @@
       "style": "Simple line-art diagram, not a painted scene.",
       "orientation": "landscape",
       "aspectRatio": "4:3",
-      "priority": "low"
+      "priority": "low",
+      "file": "../images/diagrams/IMAGE-0021.svg"
     },
     {
       "imageId": "IMAGE-0022",
@@ -241,7 +262,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0022.svg"
     },
     {
       "imageId": "IMAGE-0023",
@@ -252,7 +274,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "medium"
+      "priority": "medium",
+      "file": "../images/scenes/IMAGE-0023.svg"
     },
     {
       "imageId": "IMAGE-0024",
@@ -263,7 +286,8 @@
       "style": "Warm, painterly illustration consistent with the campaign's exploration theme; avoid photorealism.",
       "orientation": "landscape",
       "aspectRatio": "16:9",
-      "priority": "high"
+      "priority": "high",
+      "file": "../images/scenes/IMAGE-0024.svg"
     }
   ]
 }

@@ -380,25 +380,31 @@ Features
 
 # Phase 9 — Visual Assets
 
+Status
+
+```
+COMPLETE (as flat-vector SVG placeholder art) — all 24 images.json specs and all 10 badge/rank/knowledgeCore reward icons have a generated SVG; see generated/images/STYLE_GUIDE.md for the documented limitation and swap-out path if real illustration becomes available later
+```
+
 Goal
 
 Generate visuals.
 
 Includes
 
-- Maps
+- [x] Maps — the 5 diagram specs (sketch map, water system, star chart, geological sketch, investigation board)
 
-- Character art
+- [ ] Character art — not attempted; would need real illustration, not a diagram-style stand-in (see STYLE_GUIDE.md)
 
-- Icons
+- [x] Icons — 10 badge/rank/knowledgeCore reward icons
 
-- Diagrams
+- [x] Diagrams — same 5 as Maps above
 
-- Story scenes
+- [x] Story scenes — 19 scenes, as flat-vector SVG stand-ins (no image-generation tool available in this environment)
 
-- Badges
+- [x] Badges — 3 badge icons
 
-- Rank graphics
+- [x] Rank graphics — 3 escalating rank-tier icons
 
 ---
 
@@ -558,4 +564,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Phase 5 (Asset Compiler) and Phase 6 (Mission Polish) are both complete for all 21 missions.** Every mission's beats, Core activity storyContext/instructions, and reflection prompts were rewritten for stronger story flow and curiosity, grounded in each mission's canonical Story Summary, with no new plot facts invented. Key narrative beats got particular care throughout: Mission 4/8 (Dr. Quinn's name, then her voice), Mission 14 (the "protect, not hide" reveal), Mission 18 (the full-campaign synthesis), Mission 19 (the mystery's actual resolution), and Mission 21 (the finale, deliberately bookending Mission 1 in both story JSON and the already-published image specs). Missions 10, 12, 15 and 17 each required protecting already-published generated assets or internally-consistent experiment framing from contradiction. Extension/Rabbit Hole activities were reviewed but left unchanged where already appropriately open-ended. All 21 missions verified against `mission-engine.js`'s actual validation rules in a single full-campaign pass and rendered end-to-end in a headless browser with no console errors and no Parent Guide leakage (ADR-006). The platform still doesn't render `beats` to the learner yet (confirmed by reading `activity-engine.js`/`router.js`) — polished anyway since load-bearing in the mission template design, but no unrendered optional Activity fields (`hints`, `resources`, `parentNotes`) were added. Awaiting user direction on the next phase — candidates are Phase 7 (Workbook), Phase 8 (Parent Mode), or Phase 9 (Visual Assets, for which 24 image specs already exist and are ready to act on).
+**Phases 5, 6 and 9 are all complete.** Phase 9 (Visual Assets) generated a real, renderable SVG asset for all 24 `images.json` specs plus 10 badge/rank/knowledgeCore reward icons — but only after flagging to the user that no image-generation tool is available in this environment, so the 19 specs written as "warm, painterly illustration" can't be produced as genuine illustrations. The user chose flat-vector SVG for everything, in one consistent style (`generated/images/STYLE_GUIDE.md`), over skipping the scene specs entirely. Mission 1's and Mission 21's scene SVGs deliberately mirror each other's composition. Unlock and story rewards were deliberately left without bespoke icons (they're access/narrative flags, not collectible badges). All 34 SVGs validated as well-formed XML and spot-checked visually via headless-Chromium screenshots. Noted but did not fix: no compiled Knowledge Core catalog exists in `src/` despite 504_JSON_SCHEMA.md requiring `description`/`icon` fields on that entity — a data-model gap, not a visual-asset one. Awaiting user direction on the next phase — candidates are Phase 7 (Workbook), Phase 8 (Parent Mode), or Phase 10 (Testing).

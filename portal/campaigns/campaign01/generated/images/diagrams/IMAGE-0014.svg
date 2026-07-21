@@ -1,0 +1,47 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Observatory's Star Chart">
+  <rect width="800" height="600" fill="#FBF8F2"/>
+  <!-- grid -->
+  <g stroke="#C9BCA3" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="0" y1="500" x2="800" y2="500"/>
+    <line x1="100" y1="0" x2="100" y2="600"/>
+    <line x1="200" y1="0" x2="200" y2="600"/>
+    <line x1="300" y1="0" x2="300" y2="600"/>
+    <line x1="400" y1="0" x2="400" y2="600"/>
+    <line x1="500" y1="0" x2="500" y2="600"/>
+    <line x1="600" y1="0" x2="600" y2="600"/>
+    <line x1="700" y1="0" x2="700" y2="600"/>
+  </g>
+
+  <!-- labelled star positions -->
+  <g fill="#2C3E50">
+    <circle cx="150" cy="130" r="6"/>
+    <circle cx="320" cy="160" r="6"/>
+    <circle cx="480" cy="120" r="6"/>
+    <circle cx="620" cy="220" r="6"/>
+    <circle cx="250" cy="330" r="6"/>
+    <circle cx="440" cy="360" r="6"/>
+    <circle cx="580" cy="420" r="6"/>
+    <circle cx="180" cy="470" r="6"/>
+  </g>
+  <g font-family="sans-serif" font-size="16" fill="#2C3E50">
+    <text x="160" y="122">A</text>
+    <text x="330" y="152">B</text>
+    <text x="490" y="112">C</text>
+    <text x="630" y="212">D</text>
+    <text x="260" y="322">E</text>
+    <text x="450" y="352">F</text>
+    <text x="590" y="412">G</text>
+    <text x="190" y="462">H</text>
+  </g>
+
+  <!-- example angle measured between two stars -->
+  <g stroke="#C97C3D" stroke-width="2" fill="none">
+    <line x1="150" y1="130" x2="320" y2="160"/>
+    <line x1="150" y1="130" x2="480" y2="120"/>
+    <path d="M195 135 A48 48 0 0 1 200 148" />
+  </g>
+</svg>

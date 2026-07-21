@@ -1,0 +1,40 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Assembled Explorer Toolkit">
+  <rect width="800" height="600" fill="#8B7355"/>
+  <rect x="40" y="40" width="720" height="520" fill="#9C8262"/>
+
+  <!-- journal -->
+  <rect x="120" y="120" width="220" height="160" rx="6" fill="#3D2E22"/>
+  <rect x="132" y="132" width="196" height="136" rx="3" fill="#EDE3D0"/>
+  <line x1="150" y1="160" x2="300" y2="160" stroke="#8B7355" stroke-width="3"/>
+  <line x1="150" y1="185" x2="300" y2="185" stroke="#8B7355" stroke-width="3"/>
+  <line x1="150" y1="210" x2="260" y2="210" stroke="#8B7355" stroke-width="3"/>
+
+  <!-- ruler -->
+  <rect x="400" y="150" width="280" height="26" rx="3" fill="#E8A73E"/>
+  <g stroke="#5E4B3C" stroke-width="2">
+    <line x1="420" y1="150" x2="420" y2="163"/>
+    <line x1="450" y1="150" x2="450" y2="176"/>
+    <line x1="480" y1="150" x2="480" y2="163"/>
+    <line x1="510" y1="150" x2="510" y2="176"/>
+    <line x1="540" y1="150" x2="540" y2="163"/>
+    <line x1="570" y1="150" x2="570" y2="176"/>
+    <line x1="600" y1="150" x2="600" y2="163"/>
+    <line x1="630" y1="150" x2="630" y2="176"/>
+  </g>
+
+  <!-- tape measure coil -->
+  <circle cx="560" cy="330" r="60" fill="#C97C3D"/>
+  <circle cx="560" cy="330" r="38" fill="#EDE3D0"/>
+  <rect x="596" y="322" width="70" height="16" rx="3" fill="#EDE3D0"/>
+
+  <!-- pencil -->
+  <rect x="150" y="330" width="200" height="16" rx="4" fill="#E8A73E" transform="rotate(-8 150 330)"/>
+  <path d="M340 322 L370 332 L340 342 Z" fill="#3D2E22" transform="rotate(-8 150 330)"/>
+
+  <!-- sample jars -->
+  <g>
+    <rect x="150" y="420" width="46" height="60" rx="8" fill="#4FB3B3" opacity="0.85"/>
+    <rect x="210" y="410" width="46" height="70" rx="8" fill="#C97C3D" opacity="0.85"/>
+    <rect x="270" y="425" width="46" height="55" rx="8" fill="#8B9A5B" opacity="0.85"/>
+  </g>
+</svg>

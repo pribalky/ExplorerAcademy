@@ -1,0 +1,38 @@
+<svg viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Example Sketch Map of Outpost Echo">
+  <rect width="600" height="800" fill="#FBF8F2"/>
+  <g fill="none" stroke="#2C3E50" stroke-width="3">
+    <!-- entrance -->
+    <rect x="230" y="620" width="140" height="100"/>
+    <!-- main corridor -->
+    <rect x="270" y="360" width="60" height="260"/>
+    <!-- laboratory -->
+    <rect x="90" y="280" width="180" height="140"/>
+    <!-- living quarters -->
+    <rect x="330" y="280" width="180" height="140"/>
+    <!-- observatory (top) -->
+    <rect x="230" y="140" width="140" height="120"/>
+    <line x1="300" y1="260" x2="300" y2="360"/>
+  </g>
+
+  <g font-family="sans-serif" font-size="20" fill="#2C3E50">
+    <text x="300" y="675" text-anchor="middle">Entrance</text>
+    <text x="300" y="500" text-anchor="middle">Corridor</text>
+    <text x="180" y="355" text-anchor="middle">Laboratory</text>
+    <text x="420" y="355" text-anchor="middle">Living Quarters</text>
+    <text x="300" y="205" text-anchor="middle">Observatory</text>
+  </g>
+
+  <!-- key -->
+  <g stroke="#2C3E50" stroke-width="2" fill="none">
+    <rect x="70" y="700" width="460" height="80" stroke-dasharray="4 4"/>
+  </g>
+  <g font-family="sans-serif" font-size="18" fill="#2C3E50">
+    <text x="90" y="730">Key:</text>
+    <rect x="90" y="740" width="14" height="14" fill="#2C3E50"/>
+    <text x="115" y="752">Door</text>
+    <line x1="200" y1="748" x2="224" y2="748" stroke="#2C3E50" stroke-width="3"/>
+    <text x="235" y="752">Corridor</text>
+    <circle cx="350" cy="747" r="6" fill="none" stroke="#2C3E50" stroke-width="2"/>
+    <text x="365" y="752">Point of interest</text>
+  </g>
+</svg>

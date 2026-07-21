@@ -1,0 +1,34 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Presenting to Explorer Academy">
+  <rect width="800" height="450" fill="#22303D"/>
+  <!-- background screens -->
+  <g fill="#2C3E50" stroke="#4FB3B3" stroke-width="2" opacity="0.7">
+    <rect x="60" y="60" width="120" height="80" rx="4"/>
+    <rect x="620" y="60" width="120" height="80" rx="4"/>
+  </g>
+
+  <!-- learner presenting, centre, journal open -->
+  <g>
+    <ellipse cx="400" cy="380" rx="34" ry="10" fill="#000" opacity="0.25"/>
+    <path d="M378 380 Q378 300 400 288 Q422 300 422 380 Z" fill="#3D2E22"/>
+    <circle cx="400" cy="272" r="20" fill="#3D2E22"/>
+    <rect x="340" y="340" width="60" height="46" rx="3" fill="#EDE3D0" transform="rotate(-10 370 363)"/>
+  </g>
+
+  <!-- Director Orion, left, listening -->
+  <g>
+    <ellipse cx="230" cy="360" rx="26" ry="8" fill="#000" opacity="0.2"/>
+    <path d="M212 360 Q212 300 230 292 Q248 300 248 360 Z" fill="#4A3728"/>
+    <circle cx="230" cy="280" r="16" fill="#4A3728"/>
+  </g>
+
+  <!-- Atlas, right, procedural/robotic silhouette -->
+  <g>
+    <rect x="540" y="300" width="50" height="70" rx="10" fill="#4FB3B3" opacity="0.85"/>
+    <circle cx="565" cy="284" r="18" fill="#4FB3B3" opacity="0.85"/>
+    <circle cx="558" cy="280" r="4" fill="#0F1519"/>
+    <circle cx="572" cy="280" r="4" fill="#0F1519"/>
+  </g>
+
+  <!-- evidence laid out on floor table -->
+  <rect x="330" y="400" width="140" height="14" fill="#5E4B3C"/>
+</svg>

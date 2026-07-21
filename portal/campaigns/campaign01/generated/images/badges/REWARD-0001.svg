@@ -1,0 +1,17 @@
+<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Explorer Recruit badge">
+  <circle cx="120" cy="120" r="108" fill="#FBF8F2" stroke="#C97C3D" stroke-width="10"/>
+  <!-- compass rose -->
+  <g stroke="#2C3E50" stroke-width="3" fill="none">
+    <circle cx="120" cy="120" r="60"/>
+  </g>
+  <g fill="#C97C3D">
+    <path d="M120 66 L134 120 L120 108 L106 120 Z"/>
+  </g>
+  <g fill="#2C3E50">
+    <path d="M120 174 L106 120 L120 132 L134 120 Z"/>
+    <path d="M66 120 L120 106 L108 120 L120 134 Z"/>
+    <path d="M174 120 L120 134 L132 120 L120 106 Z"/>
+  </g>
+  <circle cx="120" cy="120" r="6" fill="#2C3E50"/>
+  <text x="120" y="212" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#2C3E50">EXPLORER RECRUIT</text>
+</svg>

@@ -1,0 +1,25 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dr. Quinn's Final Notebook Pages">
+  <rect width="800" height="600" fill="#5E4B3C"/>
+  <rect x="60" y="60" width="680" height="480" fill="#6B5744"/>
+
+  <!-- overlapping worn pages -->
+  <g stroke="#B8A98C" stroke-width="1.5">
+    <rect x="150" y="150" width="220" height="280" fill="#F2E9D8" transform="rotate(-6 260 290)"/>
+    <rect x="330" y="140" width="220" height="280" fill="#EDE0C8" transform="rotate(4 440 280)"/>
+    <rect x="260" y="190" width="220" height="280" fill="#F7EFE2" transform="rotate(-2 370 330)"/>
+  </g>
+  <g stroke="#C9BCA3" stroke-width="2" opacity="0.7">
+    <line x1="290" y1="230" x2="450" y2="225" transform="rotate(-2 370 330)"/>
+    <line x1="290" y1="260" x2="450" y2="255" transform="rotate(-2 370 330)"/>
+    <line x1="290" y1="290" x2="420" y2="285" transform="rotate(-2 370 330)"/>
+    <line x1="290" y1="320" x2="450" y2="315" transform="rotate(-2 370 330)"/>
+  </g>
+
+  <!-- magnifying glass -->
+  <circle cx="600" cy="220" r="50" fill="none" stroke="#9AA5AC" stroke-width="10"/>
+  <line x1="636" y1="256" x2="680" y2="300" stroke="#5E4B3C" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- small map -->
+  <rect x="580" y="360" width="130" height="90" fill="#EDE3D0" stroke="#9AA5AC" stroke-width="2" transform="rotate(5 645 405)"/>
+  <path d="M600 400 L640 380 L690 410" stroke="#8B7355" stroke-width="2" fill="none" transform="rotate(5 645 405)"/>
+</svg>

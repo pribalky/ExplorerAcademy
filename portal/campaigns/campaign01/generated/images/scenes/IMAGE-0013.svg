@@ -1,0 +1,26 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Station's Power Panel">
+  <rect width="800" height="600" fill="#22303D"/>
+  <rect x="140" y="140" width="520" height="360" rx="12" fill="#2C3E50" stroke="#4A5A63" stroke-width="6"/>
+
+  <!-- grid of switches/lights: 4x3, mostly lit -->
+  <g>
+    <!-- row 1 -->
+    <circle cx="220" cy="220" r="16" fill="#4FB3B3"/>
+    <circle cx="320" cy="220" r="16" fill="#4FB3B3"/>
+    <circle cx="420" cy="220" r="16" fill="#4FB3B3"/>
+    <circle cx="520" cy="220" r="16" fill="#4FB3B3"/>
+    <circle cx="600" cy="220" r="16" fill="#22303D" stroke="#4A5A63" stroke-width="3"/>
+    <!-- row 2 -->
+    <rect x="205" y="290" width="30" height="60" rx="6" fill="#4FB3B3"/>
+    <rect x="305" y="290" width="30" height="60" rx="6" fill="#4FB3B3"/>
+    <rect x="405" y="290" width="30" height="60" rx="6" fill="#E8A73E"/>
+    <rect x="505" y="290" width="30" height="60" rx="6" fill="#4FB3B3"/>
+    <rect x="585" y="290" width="30" height="60" rx="6" fill="#22303D" stroke="#4A5A63" stroke-width="3"/>
+    <!-- row 3 dials -->
+    <circle cx="220" cy="420" r="20" fill="#9AA5AC"/>
+    <circle cx="320" cy="420" r="20" fill="#9AA5AC"/>
+    <circle cx="420" cy="420" r="20" fill="#9AA5AC"/>
+    <circle cx="520" cy="420" r="20" fill="#9AA5AC"/>
+    <circle cx="600" cy="420" r="20" fill="#4A5A63"/>
+  </g>
+</svg>

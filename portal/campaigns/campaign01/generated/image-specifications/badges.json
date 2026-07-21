@@ -1,0 +1,86 @@
+{
+  "campaignId": "CAMPAIGN-0001",
+  "note": "Covers only badge/rank/knowledgeCore rewards from missions[].rewards[] — unlock and story rewards are deliberately out of scope, since they're access/narrative flags rather than collectible visual badges (504_JSON_SCHEMA.md's Reward Type distinctions). See generated/images/STYLE_GUIDE.md for the shared icon frame language.",
+  "badges": [
+    {
+      "rewardId": "REWARD-0001",
+      "missionId": "MISSION-0001",
+      "type": "badge",
+      "value": "Explorer Recruit",
+      "file": "../images/badges/REWARD-0001.svg",
+      "designRationale": "A compass rose — the first tool of orientation, matching the very first reward of the campaign."
+    },
+    {
+      "rewardId": "REWARD-0002",
+      "missionId": "MISSION-0002",
+      "type": "badge",
+      "value": "Outpost Surveyor",
+      "file": "../images/badges/REWARD-0002.svg",
+      "designRationale": "A folded map with a marked route, echoing Mission 2's sketch-map activity."
+    },
+    {
+      "rewardId": "REWARD-0005",
+      "missionId": "MISSION-0005",
+      "type": "badge",
+      "value": "Field Investigator",
+      "file": "../images/badges/REWARD-0005.svg",
+      "designRationale": "A magnifying glass over a footprint, directly referencing Mission 5's investigation."
+    },
+    {
+      "rewardId": "REWARD-0003",
+      "missionId": "MISSION-0003",
+      "type": "knowledgeCore",
+      "value": "Explorer's Method",
+      "file": "../images/badges/REWARD-0003.svg",
+      "designRationale": "An open journal — the Explorer's Method is fundamentally about the recording habit Mission 3 establishes."
+    },
+    {
+      "rewardId": "REWARD-0012",
+      "missionId": "MISSION-0012",
+      "type": "knowledgeCore",
+      "value": "Expedition's Wider Objectives",
+      "file": "../images/badges/REWARD-0012.svg",
+      "designRationale": "A telescope and stars, matching Mission 12's observatory and the reveal that the expedition's research reached beyond the station."
+    },
+    {
+      "rewardId": "REWARD-0013",
+      "missionId": "MISSION-0013",
+      "type": "knowledgeCore",
+      "value": "Pattern Recognition",
+      "file": "../images/badges/REWARD-0013.svg",
+      "designRationale": "Connected data points forming a line graph, matching Mission 13's hidden-pattern discovery."
+    },
+    {
+      "rewardId": "REWARD-0016",
+      "missionId": "MISSION-0016",
+      "type": "knowledgeCore",
+      "value": "Environmental Context",
+      "file": "../images/badges/REWARD-0016.svg",
+      "designRationale": "Layered rock strata, matching Mission 16's geological survey."
+    },
+    {
+      "rewardId": "REWARD-0017",
+      "missionId": "MISSION-0017",
+      "type": "rank",
+      "value": "Independent Investigator",
+      "file": "../images/badges/REWARD-0017.svg",
+      "designRationale": "First of three escalating rank tiers (1 of 3 chevrons filled) — the reward-arc pattern already noted in CURRENT_TASK.md culminating in Mission 21's Certified Explorer."
+    },
+    {
+      "rewardId": "REWARD-0020",
+      "missionId": "MISSION-0020",
+      "type": "rank",
+      "value": "Explorer Academy Candidate",
+      "file": "../images/badges/REWARD-0020.svg",
+      "designRationale": "Second rank tier (2 of 3 chevrons filled)."
+    },
+    {
+      "rewardId": "REWARD-0021",
+      "missionId": "MISSION-0021",
+      "type": "rank",
+      "value": "Certified Explorer",
+      "file": "../images/badges/REWARD-0021.svg",
+      "designRationale": "Final rank tier (3 of 3 chevrons filled, plus a laurel) — the campaign's culminating reward, deliberately the most elaborate of the three ranks."
+    }
+  ]
+}

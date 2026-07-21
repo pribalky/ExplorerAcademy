@@ -1,0 +1,38 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Director Orion's Briefing">
+  <defs>
+    <linearGradient id="room" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3B4B5C"/>
+      <stop offset="1" stop-color="#22303D"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.55" r="0.5">
+      <stop offset="0" stop-color="#4FB3B3" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#4FB3B3" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="800" height="450" fill="url(#room)"/>
+  <rect x="0" y="380" width="800" height="70" fill="#1B2530"/>
+  <ellipse cx="400" cy="330" rx="260" ry="60" fill="url(#glow)"/>
+
+  <!-- round table with map/hologram -->
+  <ellipse cx="400" cy="345" rx="120" ry="22" fill="#5E4B3C"/>
+  <rect x="360" y="300" width="80" height="46" rx="4" fill="#9AA5AC" opacity="0.85"/>
+  <path d="M368 310 L432 310 L420 336 L380 336 Z" fill="#4FB3B3" opacity="0.7"/>
+
+  <!-- Director Orion, left -->
+  <g>
+    <ellipse cx="290" cy="340" rx="34" ry="10" fill="#000" opacity="0.25"/>
+    <path d="M270 340 Q270 270 290 260 Q310 270 310 340 Z" fill="#3D2E22"/>
+    <circle cx="290" cy="245" r="20" fill="#3D2E22"/>
+  </g>
+
+  <!-- Learner, right -->
+  <g>
+    <ellipse cx="510" cy="345" rx="30" ry="9" fill="#000" opacity="0.25"/>
+    <path d="M493 345 Q493 285 510 276 Q527 285 527 345 Z" fill="#4A3728"/>
+    <circle cx="510" cy="262" r="17" fill="#4A3728"/>
+  </g>
+
+  <!-- distant windows -->
+  <rect x="60" y="90" width="60" height="90" rx="4" fill="#2C3E50" stroke="#4FB3B3" stroke-width="2" opacity="0.6"/>
+  <rect x="680" y="90" width="60" height="90" rx="4" fill="#2C3E50" stroke="#4FB3B3" stroke-width="2" opacity="0.6"/>
+</svg>

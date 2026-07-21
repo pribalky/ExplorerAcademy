@@ -1,0 +1,36 @@
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Connections Board">
+  <rect width="800" height="450" fill="#22303D"/>
+  <rect x="100" y="60" width="600" height="340" rx="6" fill="#8B7355"/>
+  <rect x="100" y="60" width="600" height="340" rx="6" fill="#000" opacity="0.08"/>
+
+  <!-- cards -->
+  <g fill="#EDE3D0" stroke="#5E4B3C" stroke-width="2">
+    <rect x="150" y="100" width="90" height="60" transform="rotate(-4 195 130)"/>
+    <rect x="560" y="100" width="90" height="60" transform="rotate(5 605 130)"/>
+    <rect x="150" y="290" width="90" height="60" transform="rotate(3 195 320)"/>
+    <rect x="560" y="290" width="90" height="60" transform="rotate(-6 605 320)"/>
+    <rect x="330" y="90" width="90" height="60" transform="rotate(2 375 120)"/>
+    <rect x="330" y="300" width="90" height="60" transform="rotate(-3 375 330)"/>
+  </g>
+
+  <!-- central conclusion pin -->
+  <circle cx="400" cy="230" r="10" fill="#E8A73E"/>
+
+  <!-- string lines converging -->
+  <g stroke="#C97C3D" stroke-width="2">
+    <line x1="195" y1="160" x2="400" y2="230"/>
+    <line x1="605" y1="160" x2="400" y2="230"/>
+    <line x1="195" y1="290" x2="400" y2="230"/>
+    <line x1="605" y1="290" x2="400" y2="230"/>
+    <line x1="375" y1="150" x2="400" y2="230"/>
+    <line x1="375" y1="300" x2="400" y2="230"/>
+  </g>
+  <g fill="#C97C3D">
+    <circle cx="195" cy="130" r="5"/>
+    <circle cx="605" cy="130" r="5"/>
+    <circle cx="195" cy="320" r="5"/>
+    <circle cx="605" cy="320" r="5"/>
+    <circle cx="375" cy="120" r="5"/>
+    <circle cx="375" cy="330" r="5"/>
+  </g>
+</svg>

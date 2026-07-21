@@ -2,15 +2,15 @@
 
 ## Phase
 
-6 – Mission Polish
+9 – Visual Assets
 
 ## Milestone
 
-Not yet defined — Phase 6 (Mission Polish) is complete for all 21 missions; awaiting direction on Phase 7 or another priority
+Not yet defined — Phase 9 is complete for all 24 image specs plus 10 reward icons; awaiting direction on Phase 7, Phase 8, or another priority
 
 ## Objective
 
-All 21 missions have reached production quality (see completed milestones below). This closes out Phase 6 entirely. Per CLAUDE.md's workflow, do not begin the next phase until the user chooses a direction — candidates per TODO.md's own roadmap are Phase 7 (Workbook — though `generated/workbook/` already has substantial content from Phase 5), Phase 8 (Parent Mode), or Phase 9 (Visual Assets, for which `generated/image-specifications/` already has 24 specs ready to act on).
+All 24 `images.json` specs and all 10 badge/rank/knowledgeCore reward icons now have a corresponding generated SVG asset (see completed milestone below). Per CLAUDE.md's workflow, do not begin the next phase until the user chooses a direction — candidates per TODO.md's own roadmap are Phase 7 (Workbook), Phase 8 (Parent Mode), or Phase 10 (Testing).
 
 ## Inputs
 
@@ -18,7 +18,7 @@ N/A — awaiting user direction.
 
 ## Relevant Documentation
 
-`TODO.md`'s Phase 7/8/9 sections, once a specific direction is chosen.
+`TODO.md`'s Phase 7/8/10 sections, once a specific direction is chosen.
 
 ## Files Expected to Change
 
@@ -47,6 +47,31 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Phase 9: Visual Assets — COMPLETE
+
+## Completion Summary
+
+Generated visual assets for all 24 `images.json` specs plus 10 reward icons, closing out Phase 9. Before starting, flagged a real capability gap to the user: no image-generation tool is available in this environment, so the 19 specs written as "warm, painterly illustration" could not be produced as genuine illustrations. Asked the user how to proceed via `AskUserQuestion`; they chose the recommended option — simplified flat-vector SVG for everything, in one consistent visual language, rather than skipping the scene specs or attempting a mismatched fidelity level.
+
+- **Style system** (`generated/images/STYLE_GUIDE.md`): defined a shared palette (warm/interior gradients for scenes, `#FBF8F2`/`#2C3E50` line-art for diagrams, category-coded rings for badge/rank/knowledgeCore icons), canonical viewBox sizes per `images.json`'s orientation/aspectRatio combinations, and a shape language (geometric silhouettes, never a detailed face — consistent with the World Bible's own choice not to over-specify character appearance, and with Dr. Elara Quinn never being depicted in missions where she's "known only through records").
+- **19 scene SVGs** (`generated/images/scenes/`): one per painterly-style spec. Two deliberately mirror each other — IMAGE-0001 (Mission 1 briefing) and IMAGE-0024 (Mission 21 graduation) reuse the same room composition and character positions, matching the callback already written into IMAGE-0024's own spec text.
+- **5 diagram SVGs** (`generated/images/diagrams/`): the sketch map, water system schematic, star chart, geological cross-section and investigation board, in plain line-art matching each spec's own "something a learner could realistically produce themselves" requirement.
+- **10 badge/rank/knowledgeCore icons** (`generated/images/badges/`): covers the 3 badge, 4 knowledgeCore and 3 rank rewards found across all 21 missions' `rewards[]` arrays (inventoried directly from the mission JSON, not assumed). Deliberately scoped out the 6 `unlock` and 5 `story` reward types — they're access/narrative flags, not collectible visual badges, per 504_JSON_SCHEMA.md's own Reward Type distinctions. The 3 rank icons use an escalating chevron design (1 of 3 → 2 of 3 → 3 of 3, the last with an added laurel), visually reinforcing the reward-arc pattern already noted for Missions 17/20/21.
+- **Manifests**: extended `images.json` with a `file` field per entry (via script, preserving existing formatting/content — verified after) and created `generated/image-specifications/badges.json` cataloguing the 10 reward icons with id/value/file/design rationale, following the same spec-plus-generated-output pattern established since the Asset Compiler phase.
+- Noted as a genuine, undecided gap (not silently resolved): no compiled "Knowledge Core" catalog exists anywhere in `src/` (only embedded `{id, type, value}` per mission) even though 504_JSON_SCHEMA.md's Knowledge Core entity requires `description` and `icon` fields. Fixing that is a data-model compilation task, not a visual-asset task, so it was left as a flagged observation rather than folded into this milestone.
+
+## Manual Verification
+
+- Validated both `images.json` and the new `badges.json` as JSON via `python3 -c "json.load(...)"`.
+- Validated all 34 SVG files as well-formed XML via `xml.etree.ElementTree` — all pass.
+- Served the `generated/images/` directory locally and captured headless-Chromium screenshots of a representative sample across all three categories (2 scenes including the Mission 1/21 mirrored pair, 2 diagrams, 2 badge/rank icons) — all rendered legibly and matched their intended composition.
+
+## Verification
+
+Phase 9 now has a real, renderable visual layer for every mission scene, diagram and collectible reward — offline, dependency-free, and internally consistent — while being explicit in `STYLE_GUIDE.md` that this is a placeholder layer to replace wholesale if real illustration ever becomes available, not a permanent design decision. ✅
 
 ---
 
