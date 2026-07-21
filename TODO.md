@@ -552,6 +552,4 @@ The project is complete when:
 
 # Current Next Action
 
-**World Bible Compiler complete** (`src/world/world-bible.json`, `characters.json`, `locations.json`, `timeline.json`; `src/parent/curriculum-mapping.json`, `orientation.json` — all real, ID-verified, `campaign.json`'s `worldBibleId` now resolves). Also complete: a full mission-by-mission resource curation pass (`docs/50-content/505_RESOURCES.md`, all 21 missions, every resource confirmed real via live web search).
-
-**Next**: draft a notebook-first Workbook Compiler prompt (revised `ASSET_COMPILER.md` or new `WORKBOOK_COMPILER.md`) encoding the user's stated philosophy — plain notebook first, printables optional/extension-only, minimal specs, enrich-not-duplicate for content that overlaps with what's already embedded per mission — for review before any workbook/parent/image-specification content is generated.
+**`prompts/ASSET_COMPILER.md` revised and committed** — notebook-first philosophy, minimal specs, enrich-not-duplicate rules, experiments scoped to Missions 7/10/11/17, World Bible grounding, all encoded. Await approval to start Phase 5 execution in batches (proposed: Missions 1–5 first), generating `generated/workbook/`, `generated/parent/enrichment/`, `generated/image-specifications/`.
