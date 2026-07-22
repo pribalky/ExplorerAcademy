@@ -42,3 +42,28 @@ export function evaluateMissionRewards({ campaignId, missionId, rewards }) {
 export function getEarnedRewards() {
   return loadEarnedRewards();
 }
+
+// Resolves a knowledgeCore/rank reward's optional coreId/rankId against
+// campaign-supplied catalogs (portal/campaigns/campaign01/src/world/
+// knowledge-cores.json, ranks.json) into display metadata — closing the
+// gap where 503_DATA_MODEL.md/504_JSON_SCHEMA.md define Knowledge Core and
+// Explorer Rank as entities with their own description/icon, but reward
+// objects previously carried only an inline display string. Catalogs are
+// passed in rather than fetched here, keeping this module free of network
+// concerns; callers that already load campaign data (router.js,
+// parent-mode.js) supply them. Returns null for reward types with no
+// catalog (badge, unlock, story, collectible) or when the reference
+// doesn't resolve, so callers can fall back to the plain reward.value.
+export function resolveRewardDetails(reward, { knowledgeCores = [], ranks = [] } = {}) {
+  if (reward.type === 'knowledgeCore' && reward.coreId) {
+    const core = knowledgeCores.find((entry) => entry.id === reward.coreId);
+    return core ? { title: core.name, description: core.description, icon: core.icon } : null;
+  }
+
+  if (reward.type === 'rank' && reward.rankId) {
+    const rank = ranks.find((entry) => entry.id === reward.rankId);
+    return rank ? { title: rank.title, description: rank.description, icon: rank.icon } : null;
+  }
+
+  return null;
+}

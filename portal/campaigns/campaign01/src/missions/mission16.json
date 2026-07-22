@@ -100,7 +100,8 @@
     {
       "id": "REWARD-0016",
       "type": "knowledgeCore",
-      "value": "Environmental Context"
+      "value": "Environmental Context",
+      "coreId": "KC-0004"
     }
   ],
   "reflection": {

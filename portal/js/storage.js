@@ -10,11 +10,12 @@
 //
 // Only a thin slice of the full Save Game shape (504_JSON_SCHEMA.md) is
 // implemented so far: currentSession (Milestone: Save State),
-// discoveryLog (Milestone: Discovery Log) and earnedRewards (Milestone:
-// Reward Engine) — enough to make "Continue Mission", recorded
-// reflections and earned rewards all durable across a reload.
-// explorerProfile, completedMissions, completedActivities and settings
-// are not implemented yet.
+// discoveryLog (Milestone: Discovery Log), earnedRewards (Milestone:
+// Reward Engine) and settings (Milestone: Settings Manager) — enough to
+// make "Continue Mission", recorded reflections, earned rewards and the
+// preferred session duration all durable across a reload.
+// explorerProfile, completedMissions and completedActivities are not
+// implemented yet.
 //
 // Each of these fields was added additively on top of the previous
 // milestone's shape — readSave()'s `{ ...defaultSave(), ...data }` merge
@@ -30,7 +31,8 @@ function defaultSave() {
     timestamp: null,
     currentSession: null,
     discoveryLog: [],
-    earnedRewards: []
+    earnedRewards: [],
+    settings: {}
   };
 }
 
@@ -106,4 +108,16 @@ export function appendEarnedRewards(rewards) {
 export function loadEarnedRewards() {
   const save = readSave();
   return Array.isArray(save.earnedRewards) ? save.earnedRewards : [];
+}
+
+export function saveSettings(settings) {
+  const save = readSave();
+  save.settings = { ...(save.settings ?? {}), ...settings };
+  save.timestamp = new Date().toISOString();
+  writeSave(save);
+}
+
+export function loadSettings() {
+  const save = readSave();
+  return save.settings && typeof save.settings === 'object' ? save.settings : {};
 }

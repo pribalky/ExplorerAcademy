@@ -2,15 +2,15 @@
 
 ## Phase
 
-7 – Workbook
+Pre-Phase-10 — Architecture Audit Follow-up
 
 ## Milestone
 
-Not yet defined — Phase 7 is complete; awaiting direction on Phase 10 or another priority
+Not yet defined — the two functional gaps found by the pre-Phase-10 audit (Session Duration control, Knowledge Core/Explorer Rank catalog) are now closed; awaiting direction on Phase 10 (Testing) or the remaining documented-but-deferred process gaps
 
 ## Objective
 
-All four Phase 7 deliverables (Printable PDF, Notebook alternatives, Answer guide, Parent guide) are complete (see completed milestone below). Every phase in TODO.md's roadmap except Phase 10 (Testing) is now done. Per CLAUDE.md's workflow, do not begin the next phase until the user chooses a direction.
+Before starting Phase 10, the user asked for a full audit of the foundation documents against the actual implementation, looking for ambiguity, architecture/implementation clashes, open questions and philosophy drift. The audit found two genuine functional gaps (of eight findings total) and the user chose to close those two before testing begins; the other six (workbook/ directory placement, Decision Log hygiene, stale Changelog, uncommitted build script, a doc path typo, incomplete Home/Profile pages) were left as documented, deferred follow-ups. See completed milestone below for what was fixed. Per CLAUDE.md's workflow, do not begin Phase 10 or any further docs-hygiene work until the user chooses a direction.
 
 ## Inputs
 
@@ -47,6 +47,34 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Pre-Phase-10 audit: close Session Duration and Knowledge Core/Rank gaps — COMPLETE
+
+## Completion Summary
+
+Ran a full audit of all ten priority foundation documents (plus 502, 505 and the Changelog) against the actual codebase, at the user's request before starting Phase 10. Found 8 issues, presented them prioritized, and the user chose to fix the two functional gaps now (deferring the rest):
+
+- **Session Duration had no working control.** ADR-009, 002_PROJECT_CONTEXT, 301_PLATFORM_ARCHITECTURE and 601_HTML_ARCHITECTURE all describe parents choosing a 30/45/60/90-minute session that the Scheduler adapts to — but `settings.js` was a one-line empty placeholder, the `/settings` route fell through to the generic placeholder, and `router.js` called `scheduleActivities()` with a hardcoded `DEFAULT_DURATION_MINUTES` (60). Fixed: `storage.js` gained a generic `settings` field (closing another gap its own header comment had flagged) with `saveSettings()`/`loadSettings()`; `settings.js` is now a real Settings Manager (`getSessionDuration()`/`setSessionDuration()`, validated against the schema's 4 supported durations); `router.js`'s `/settings` route now renders a real form (radio buttons, persisted on submit), and both the Campaign Overview's "Session Duration" display and the actual `scheduleActivities()` call now read the stored preference instead of the hardcoded constant.
+- **Knowledge Core and Explorer Rank had no backing entities.** 503_DATA_MODEL.md and 504_JSON_SCHEMA.md both define these as entities with their own `id`/`description`/`icon` (Knowledge Core) or `id`/`title`/`requiredKnowledge` (Explorer Rank) — but every mission reward of these types was just an inline `{id, type, value}` string with nothing behind it. Fixed additively (no change to existing `value` semantics, so nothing that already rendered `reward.value` regressed): created `portal/campaigns/campaign01/src/world/knowledge-cores.json` (4 entries: KC-0001–0004, for missions 3/12/13/16) and `ranks.json` (3 entries: RANK-0001–0003, for missions 17/20/21), seeded from Phase 9's already-generated `badges.json` icons/rationale, with `requiredKnowledge` populated as the Knowledge Cores earned by the point each rank is awarded. Added an optional `coreId`/`rankId` field to each of the 7 relevant mission reward objects (surgical single-field insertions, not a full-file reformat — verified minimal diffs). Added `resolveRewardDetails()` to `reward-engine.js` (pure function, catalogs passed in, no fetching inside — keeps the module free of network concerns) and wired it into both `router.js`'s Explorer Profile (now shows an icon and description per resolved reward, a genuine improvement toward 601_HTML_ARCHITECTURE.md's Explorer Badge component spec) and `parent-mode.js`'s Progress Dashboard reward list (description appended when resolved).
+- **Documented both fixes in `504_JSON_SCHEMA.md`** with inline "Note (added during the Settings/Progression milestone)" annotations, following the same pattern already established there for prior implementation-discovered gaps (parentGuide, Discovery Log fields, Session Configuration weights) — so a future contributor sees why these fields exist without needing this conversation.
+- **Deliberately deferred** (documented to the user, not silently dropped): root `workbook/` vs `portal/.../generated/workbook/` placement clash with 601_HTML_ARCHITECTURE.md's explicit statement; 006_DESIGN_DECISION_LOG.md not reflecting several real decisions made across Phases 7–9 (SVG-placeholder reinterpretation, session-only parent gate, answer-guide-as-checklist); 009_CHANGELOG.md stalled at v0.4.0 despite Phases 1–9 being complete; the workbook PDF's build script existing only in scratchpad rather than the repo's own `scripts/` directory; CLAUDE.md's own doc-path list pointing at `docs/40-campaigns/` instead of the real `docs/50-content/`; Home/Explorer Profile pages still being thin relative to 601's documented responsibilities.
+
+## Manual Verification
+
+- Served the app locally (`python3 -m http.server` from `portal/`) and drove it with headless Chromium (Playwright):
+  - Set session duration to 90 minutes via `/settings`, confirmed the save-confirmation message, reloaded the page and confirmed the radio button was still checked, then loaded a mission and confirmed "Session Duration" now reads "90 minutes" (previously always "60 minutes" regardless of any setting).
+  - Completed Mission 3's reflection (same browser session) to earn its `knowledgeCore` reward, then loaded `#/profile` and confirmed the reward renders with the resolved icon (`<img>` pointing at the real `REWARD-0003.svg`) and description text, not just the bare `value` string.
+  - Loaded Parent Mode in the same browser session (shared `localStorage`/origin) and confirmed the same reward's resolved description appears in the Progress Dashboard's "Earned rewards" list.
+  - Confirmed all three test runs produced zero console/page errors.
+  - Loaded all 21 missions in sequence and confirmed each renders its correct title with zero page errors, verifying the 7 surgical mission-JSON edits didn't break anything.
+- Validated all 21 mission JSON files plus both new catalog files as JSON via `python3 -c "json.load(...)"`.
+- Confirmed via `git diff --stat` that the 7 edited mission files show minimal, single-field diffs (3 lines changed each), not full-file reformats.
+
+## Verification
+
+Both functional gaps identified by the audit are closed and verified end-to-end in a real browser session: a parent can now actually select and persist a session duration that changes what the Scheduler assembles, and Knowledge Core/Explorer Rank rewards now resolve to real, described, iconed entities instead of bare strings — with the fix documented inline in `504_JSON_SCHEMA.md` for future contributors. ✅
 
 ---
 

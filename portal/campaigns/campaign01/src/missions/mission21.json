@@ -113,7 +113,8 @@
     {
       "id": "REWARD-0021",
       "type": "rank",
-      "value": "Certified Explorer"
+      "value": "Certified Explorer",
+      "rankId": "RANK-0003"
     }
   ],
   "reflection": {

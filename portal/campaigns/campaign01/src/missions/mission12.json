@@ -100,7 +100,8 @@
     {
       "id": "REWARD-0012",
       "type": "knowledgeCore",
-      "value": "Expedition's Wider Objectives"
+      "value": "Expedition's Wider Objectives",
+      "coreId": "KC-0002"
     }
   ],
   "reflection": {

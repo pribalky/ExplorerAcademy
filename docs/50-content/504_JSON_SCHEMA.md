@@ -383,6 +383,8 @@ story
 collectible
 ```
 
+> **Note (added during the Settings/Progression milestone):** rewards of type `knowledgeCore`/`rank` now carry an optional `coreId`/`rankId` field referencing the campaign's `src/world/knowledge-cores.json`/`ranks.json` catalog (see below) — additive, per this document's own Forward Compatibility rules. `value` remains the authoritative display string and is unchanged; `coreId`/`rankId` let the platform additionally resolve a description and icon. Older rewards without this field still render exactly as before.
+
 ---
 
 # Knowledge Core
@@ -396,6 +398,8 @@ description
 icon
 ```
 
+> **Note (added during the Settings/Progression milestone):** previously an unimplemented gap — mission rewards of type `knowledgeCore` carried only an inline `value` string with no entity behind it, contradicting this section and 503_DATA_MODEL.md's description of Knowledge Core as a reusable, described, iconed entity. `portal/campaigns/campaign01/src/world/knowledge-cores.json` now provides this catalog for Campaign 1; rewards reference it via the optional `coreId` field above.
+
 ---
 
 # Explorer Rank
@@ -407,6 +411,8 @@ id
 title
 requiredKnowledge
 ```
+
+> **Note (added during the Settings/Progression milestone):** same gap and same fix as Knowledge Core above — `portal/campaigns/campaign01/src/world/ranks.json` now provides this catalog, with `requiredKnowledge` populated as the Knowledge Core IDs earned by the point each rank is awarded. Rewards reference it via the optional `rankId` field on Reward.
 
 ---
 
@@ -574,6 +580,8 @@ Supported Durations
 ```
 
 > **Note (added during the Scheduler milestone):** `coreWeight`, `extensionWeight` and `rabbitHoleWeight` are reserved fields — no document defines the formula they participate in. The Adaptive Scheduler currently implements the simpler duration-band model described in `601_HTML_ARCHITECTURE.md`'s Adaptive Scheduler section (Core always included; Extension activities added while time allows; Rabbit Hole activities included only at the 90-minute band) and does not read these three fields. Treat them as not-yet-implemented until a future milestone defines and implements a weighted model.
+>
+> **Note (added during the Settings/Progression milestone):** `duration` ("Preferred Session Duration") is now implemented — `portal/js/settings.js` persists a parent-chosen value from the four Supported Durations via `storage.js`'s `settings` field, and the learner shell's `/settings` page (`router.js`) is the control surface. `scheduler.js`'s `scheduleActivities()` is called with this stored value instead of a hardcoded default. `coreWeight`/`extensionWeight`/`rabbitHoleWeight` remain unimplemented as above.
 
 ---
 

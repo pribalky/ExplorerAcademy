@@ -113,7 +113,8 @@
     {
       "id": "REWARD-0020",
       "type": "rank",
-      "value": "Explorer Academy Candidate"
+      "value": "Explorer Academy Candidate",
+      "rankId": "RANK-0002"
     }
   ],
   "reflection": {

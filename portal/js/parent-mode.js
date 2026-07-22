@@ -41,7 +41,7 @@
 import { loadCampaign } from './campaign-loader.js';
 import { loadMission } from './mission-engine.js';
 import { getDiscoveryLog } from './discovery-log.js';
-import { getEarnedRewards } from './reward-engine.js';
+import { getEarnedRewards, resolveRewardDetails } from './reward-engine.js';
 import { fetchJson } from './utils.js';
 
 const CAMPAIGN_ID = 'campaign01'; // same simplification router.js already makes; no multi-campaign linking exists yet
@@ -205,7 +205,7 @@ function renderCurriculumMapping(container, curriculum) {
   container.appendChild(section);
 }
 
-function renderProgressDashboard(container, campaign, earnedRewards, discoveryLog) {
+function renderProgressDashboard(container, campaign, earnedRewards, discoveryLog, catalogs) {
   const section = document.createElement('section');
   addHeading(section, 2, 'Progress Dashboard');
 
@@ -225,10 +225,12 @@ function renderProgressDashboard(container, campaign, earnedRewards, discoveryLo
     const sorted = [...earnedRewards].sort((a, b) => new Date(a.earnedAt) - new Date(b.earnedAt));
     addList(
       section,
-      sorted.map(
-        (reward) =>
-          `${reward.value} (${reward.type}) — ${reward.missionId}, earned ${new Date(reward.earnedAt).toLocaleDateString()}`
-      )
+      sorted.map((reward) => {
+        const details = resolveRewardDetails(reward, catalogs);
+        const title = details?.title ?? reward.value;
+        const base = `${title} (${reward.type}) — ${reward.missionId}, earned ${new Date(reward.earnedAt).toLocaleDateString()}`;
+        return details?.description ? `${base}. ${details.description}` : base;
+      })
     );
   } else {
     addParagraph(section, 'No rewards earned yet — progress will appear here once the Explorer completes a reflection.');
@@ -320,13 +322,19 @@ async function renderDashboard(root) {
   }
   const campaign = campaignResult.campaign;
 
-  const [orientationResult, curriculumResult] = await Promise.all([
+  const [orientationResult, curriculumResult, coresResult, ranksResult] = await Promise.all([
     fetchJson(`campaigns/${CAMPAIGN_ID}/src/parent/orientation.json`),
-    fetchJson(`campaigns/${CAMPAIGN_ID}/src/parent/curriculum-mapping.json`)
+    fetchJson(`campaigns/${CAMPAIGN_ID}/src/parent/curriculum-mapping.json`),
+    fetchJson(`campaigns/${CAMPAIGN_ID}/src/world/knowledge-cores.json`),
+    fetchJson(`campaigns/${CAMPAIGN_ID}/src/world/ranks.json`)
   ]);
   const orientation = orientationResult.ok ? orientationResult.data : null;
   const curriculum = curriculumResult.ok && Array.isArray(curriculumResult.data) ? curriculumResult.data : [];
   const curriculumById = new Map(curriculum.map((entry) => [entry.id, entry]));
+  const rewardCatalogs = {
+    knowledgeCores: coresResult.ok ? coresResult.data : [],
+    ranks: ranksResult.ok ? ranksResult.data : []
+  };
 
   const earnedRewards = getEarnedRewards();
   const discoveryLog = getDiscoveryLog();
@@ -343,7 +351,7 @@ async function renderDashboard(root) {
   renderWelcome(root, orientation);
   renderSessionAndMaterials(root, orientation);
   renderCurriculumMapping(root, curriculum);
-  renderProgressDashboard(root, campaign, earnedRewards, discoveryLog);
+  renderProgressDashboard(root, campaign, earnedRewards, discoveryLog, rewardCatalogs);
 
   const missionsSection = document.createElement('section');
   addHeading(missionsSection, 2, 'Mission-by-Mission Guidance');

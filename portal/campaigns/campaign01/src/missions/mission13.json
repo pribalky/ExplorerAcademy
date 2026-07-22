@@ -100,7 +100,8 @@
     {
       "id": "REWARD-0013",
       "type": "knowledgeCore",
-      "value": "Pattern Recognition"
+      "value": "Pattern Recognition",
+      "coreId": "KC-0003"
     }
   ],
   "reflection": {

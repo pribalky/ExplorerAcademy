@@ -10,10 +10,12 @@
 import { loadCampaign } from './campaign-loader.js';
 import { loadMission } from './mission-engine.js';
 import { renderActivities } from './activity-engine.js';
-import { scheduleActivities, DEFAULT_DURATION_MINUTES } from './scheduler.js';
+import { scheduleActivities } from './scheduler.js';
 import { saveCurrentSession, loadCurrentSession } from './storage.js';
 import { recordReflection, getDiscoveryLog } from './discovery-log.js';
-import { evaluateMissionRewards, getEarnedRewards } from './reward-engine.js';
+import { evaluateMissionRewards, getEarnedRewards, resolveRewardDetails } from './reward-engine.js';
+import { getSessionDuration, setSessionDuration, SUPPORTED_SESSION_DURATIONS } from './settings.js';
+import { fetchJson } from './utils.js';
 
 export const ROUTES = [
   { path: '/', label: 'Home', title: 'Explorer Academy' },
@@ -218,9 +220,10 @@ async function renderMission(outlet, missionId) {
     dd.textContent = String(value);
     details.append(dt, dd);
   };
+  const sessionDuration = getSessionDuration();
   addRow('Estimated Time', mission.estimatedTime);
   addRow('Difficulty', mission.difficulty);
-  addRow('Session Duration', `${DEFAULT_DURATION_MINUTES} minutes`);
+  addRow('Session Duration', `${sessionDuration} minutes`);
   section.appendChild(details);
 
   const activitiesHeading = document.createElement('h3');
@@ -230,9 +233,7 @@ async function renderMission(outlet, missionId) {
   const activitiesContainer = document.createElement('div');
   section.appendChild(activitiesContainer);
 
-  // No Settings Manager exists yet to let a parent choose the session
-  // duration, so DEFAULT_DURATION_MINUTES stands in until that exists.
-  const scheduled = scheduleActivities(mission.activities, DEFAULT_DURATION_MINUTES);
+  const scheduled = scheduleActivities(mission.activities, sessionDuration);
   renderActivities(activitiesContainer, scheduled);
 
   buildReflectionSection(section, mission, missionId);
@@ -384,10 +385,13 @@ function renderDiscoveryLog(outlet, route) {
 }
 
 // Explorer Profile: lists earned rewards (achievements), or a sensible
-// empty state. Explorer name/avatar/campaign progress/statistics from
-// 601_HTML_ARCHITECTURE.md's Explorer Profile page aren't implemented
-// yet — there is no Explorer Profile module, only earned-rewards data.
-function renderProfile(outlet, route) {
+// empty state. Knowledge Core/Rank rewards resolve their coreId/rankId
+// against the campaign's world catalogs for an icon and description;
+// other reward types (badge, unlock, story, collectible) fall back to
+// the plain value. Explorer name/avatar/campaign progress/statistics
+// from 601_HTML_ARCHITECTURE.md's Explorer Profile page aren't
+// implemented yet — there is no Explorer Profile module.
+async function renderProfile(outlet, route) {
   outlet.innerHTML = `
     <section aria-labelledby="route-heading">
       <h2 id="route-heading">${route.label}</h2>
@@ -404,6 +408,15 @@ function renderProfile(outlet, route) {
     return;
   }
 
+  const [coresResult, ranksResult] = await Promise.all([
+    fetchJson('campaigns/campaign01/src/world/knowledge-cores.json'),
+    fetchJson('campaigns/campaign01/src/world/ranks.json')
+  ]);
+  const catalogs = {
+    knowledgeCores: coresResult.ok ? coresResult.data : [],
+    ranks: ranksResult.ok ? ranksResult.data : []
+  };
+
   const heading = document.createElement('h3');
   heading.textContent = 'Achievements';
   section.appendChild(heading);
@@ -411,17 +424,96 @@ function renderProfile(outlet, route) {
   const list = document.createElement('ul');
   rewards.forEach((reward) => {
     const item = document.createElement('li');
-    item.textContent = `${reward.value} (${reward.type}) — earned ${new Date(reward.earnedAt).toLocaleString()}`;
+    const details = resolveRewardDetails(reward, catalogs);
+
+    if (details?.icon) {
+      const icon = document.createElement('img');
+      icon.src = `campaigns/campaign01/${details.icon}`;
+      icon.alt = '';
+      icon.width = 32;
+      icon.height = 32;
+      item.appendChild(icon);
+    }
+
+    const text = document.createElement('span');
+    const title = details?.title ?? reward.value;
+    text.textContent = `${title} (${reward.type}) — earned ${new Date(reward.earnedAt).toLocaleString()}`;
+    item.appendChild(text);
+
+    if (details?.description) {
+      const description = document.createElement('p');
+      description.textContent = details.description;
+      item.appendChild(description);
+    }
+
     list.appendChild(item);
   });
   section.appendChild(list);
+}
+
+// Settings: lets a parent choose the session duration that
+// scheduleActivities() uses to assemble each mission (ADR-009, Adjustable
+// Daily Duration). Persists via settings.js/storage.js so the choice
+// survives a reload.
+function renderSettings(outlet, route) {
+  outlet.innerHTML = `
+    <section aria-labelledby="route-heading">
+      <h2 id="route-heading">${route.label}</h2>
+    </section>
+  `;
+
+  const section = outlet.querySelector('section');
+
+  const intro = document.createElement('p');
+  intro.textContent = 'Choose how long each mission session should be. Core activities are always included; longer sessions add Extension activities and, at 90 minutes, a Rabbit Hole.';
+  section.appendChild(intro);
+
+  const form = document.createElement('form');
+  const currentDuration = getSessionDuration();
+
+  SUPPORTED_SESSION_DURATIONS.forEach((minutes) => {
+    const label = document.createElement('label');
+    label.style.display = 'block';
+
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'sessionDuration';
+    input.value = String(minutes);
+    input.checked = minutes === currentDuration;
+
+    label.appendChild(input);
+    label.append(` ${minutes} minutes`);
+    form.appendChild(label);
+  });
+
+  const submit = document.createElement('button');
+  submit.type = 'submit';
+  submit.textContent = 'Save';
+  form.appendChild(submit);
+
+  const feedback = document.createElement('p');
+  feedback.setAttribute('role', 'status');
+  form.appendChild(feedback);
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const selected = form.querySelector('input[name="sessionDuration"]:checked');
+    const minutes = selected ? Number(selected.value) : null;
+    const result = setSessionDuration(minutes);
+    feedback.textContent = result.ok
+      ? `Session duration set to ${minutes} minutes.`
+      : result.errors.join(' ');
+  });
+
+  section.appendChild(form);
 }
 
 const STATIC_VIEWS = {
   '/': renderHome,
   '/campaigns': renderCampaignSelect,
   '/discovery': renderDiscoveryLog,
-  '/profile': renderProfile
+  '/profile': renderProfile,
+  '/settings': renderSettings
 };
 
 function defaultPlaceholder(outlet, route) {

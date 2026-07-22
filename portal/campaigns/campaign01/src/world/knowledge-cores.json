@@ -1,0 +1,26 @@
+[
+  {
+    "id": "KC-0001",
+    "name": "Explorer's Method",
+    "description": "The habit of estimating, measuring and recording carefully before drawing a conclusion — established in Mission 3 (Explorer's Toolkit) and used in every mission afterward.",
+    "icon": "generated/images/badges/REWARD-0003.svg"
+  },
+  {
+    "id": "KC-0002",
+    "name": "Expedition's Wider Objectives",
+    "description": "The realisation, from Mission 12's observatory (Star Maps), that the original expedition's research reached beyond Outpost Echo itself.",
+    "icon": "generated/images/badges/REWARD-0012.svg"
+  },
+  {
+    "id": "KC-0003",
+    "name": "Pattern Recognition",
+    "description": "Recognising that a trend seen in one dataset only becomes meaningful once matched against another — established in Mission 13 (Hidden Patterns).",
+    "icon": "generated/images/badges/REWARD-0013.svg"
+  },
+  {
+    "id": "KC-0004",
+    "name": "Environmental Context",
+    "description": "Reading a landscape itself as evidence — connecting rock layers, samples and maps to explain past decisions, established in Mission 16 (Secrets Underground).",
+    "icon": "generated/images/badges/REWARD-0016.svg"
+  }
+]

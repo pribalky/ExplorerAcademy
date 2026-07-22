@@ -100,7 +100,8 @@
     {
       "id": "REWARD-0003",
       "type": "knowledgeCore",
-      "value": "Explorer's Method"
+      "value": "Explorer's Method",
+      "coreId": "KC-0001"
     }
   ],
   "reflection": {

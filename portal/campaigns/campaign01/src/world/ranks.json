@@ -1,0 +1,23 @@
+[
+  {
+    "id": "RANK-0001",
+    "title": "Independent Investigator",
+    "description": "Awarded in Mission 17 (The Final Experiment) for designing and running a fair test with no prescribed instructions.",
+    "requiredKnowledge": ["KC-0001", "KC-0002", "KC-0003", "KC-0004"],
+    "icon": "generated/images/badges/REWARD-0017.svg"
+  },
+  {
+    "id": "RANK-0002",
+    "title": "Explorer Academy Candidate",
+    "description": "Awarded in Mission 20 (Explorer Assessment) for completing a fully self-directed investigation.",
+    "requiredKnowledge": ["KC-0001", "KC-0002", "KC-0003", "KC-0004"],
+    "icon": "generated/images/badges/REWARD-0020.svg"
+  },
+  {
+    "id": "RANK-0003",
+    "title": "Certified Explorer",
+    "description": "Awarded in Mission 21 (Graduation Day), the campaign's culminating rank, for consistently demonstrating the behaviours expected of an Explorer.",
+    "requiredKnowledge": ["KC-0001", "KC-0002", "KC-0003", "KC-0004"],
+    "icon": "generated/images/badges/REWARD-0021.svg"
+  }
+]

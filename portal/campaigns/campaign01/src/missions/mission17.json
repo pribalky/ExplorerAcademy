@@ -126,7 +126,8 @@
     {
       "id": "REWARD-0017",
       "type": "rank",
-      "value": "Independent Investigator"
+      "value": "Independent Investigator",
+      "rankId": "RANK-0001"
     }
   ],
   "reflection": {
