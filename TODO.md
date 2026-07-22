@@ -342,19 +342,25 @@ Repeat for remaining missions. ✅ (all 21 complete)
 
 # Phase 7 — Workbook
 
+Status
+
+```
+COMPLETE — printable PDF compiled and rendered; answer guide authored as a "what a strong response looks like" checklist; notebook alternatives and parent guide were already complete from Phases 5/8 and are now bound into the single compiled document
+```
+
 Goal
 
 Produce printable workbook.
 
 Deliverables
 
-- Printable PDF
+- [x] Printable PDF — `generated/workbook/Campaign-01-Workbook.pdf` (47 pages), built from `Campaign-01-Workbook-Compiled.md`
 
-- Notebook alternatives
+- [x] Notebook alternatives — all 21 `generated/workbook/pages/missionNN.md` notebook pages (from Phase 5), now embedded in the compiled workbook
 
-- Answer guide
+- [x] Answer guide — `generated/workbook/answer-guide.json`, a "what a strong response looks like" checklist per mission (not a traditional answer key — see note field), with real physical-science outcomes quoted from `experiments.json` for Missions 7/10/15 only
 
-- Parent guide
+- [x] Parent guide — welcome, session length & materials, and curriculum mapping content (from `src/parent/`) compiled into the same PDF ahead of the mission sections
 
 ---
 
@@ -570,4 +576,6 @@ The project is complete when:
 
 # Current Next Action
 
-**Phases 5, 6, 8 and 9 are all complete.** Phase 8 (Parent Mode) replaced `parent-mode.js`'s empty placeholder with a real implementation, wired up to the already-existing `portal/parent/index.html` static entry point (never linked from the learner shell, per `router.js`'s own documented architecture and ADR-006). It covers all five TODO.md features by reusing content already generated in Phases 4/5 — no new content authored. The standout feature is Assessment Evidence: each mission's parent guidance is paired with the Explorer's own actual recorded Discovery Log entries, verified end-to-end (completed a reflection in the learner shell, confirmed it appeared in Parent Mode). "Verify parent access" is a session-only confirmation click rather than a PIN, since no such field exists in the save schema — documented as an explicit, revisitable choice. Found and fixed a real path-resolution bug along the way (`portal/parent/index.html` sits one directory deeper than the learner shell assumes) via a single `<base href="../">` tag rather than touching shared loader modules. Phase 9 (Visual Assets) generated a real, renderable SVG asset for all 24 `images.json` specs plus 10 badge/rank/knowledgeCore reward icons — but only after flagging to the user that no image-generation tool is available in this environment, so the 19 specs written as "warm, painterly illustration" can't be produced as genuine illustrations. The user chose flat-vector SVG for everything, in one consistent style (`generated/images/STYLE_GUIDE.md`), over skipping the scene specs entirely. Mission 1's and Mission 21's scene SVGs deliberately mirror each other's composition. Unlock and story rewards were deliberately left without bespoke icons (they're access/narrative flags, not collectible badges). All 34 SVGs validated as well-formed XML and spot-checked visually via headless-Chromium screenshots. Noted but did not fix: no compiled Knowledge Core catalog exists in `src/` despite 504_JSON_SCHEMA.md requiring `description`/`icon` fields on that entity — a data-model gap, not a visual-asset one. Awaiting user direction on the next phase — candidates are Phase 7 (Workbook) or Phase 10 (Testing).
+**Phases 5, 6, 7, 8 and 9 are all complete.** Phase 8 (Parent Mode) replaced `parent-mode.js`'s empty placeholder with a real implementation, wired up to the already-existing `portal/parent/index.html` static entry point (never linked from the learner shell, per `router.js`'s own documented architecture and ADR-006). It covers all five TODO.md features by reusing content already generated in Phases 4/5 — no new content authored. The standout feature is Assessment Evidence: each mission's parent guidance is paired with the Explorer's own actual recorded Discovery Log entries, verified end-to-end (completed a reflection in the learner shell, confirmed it appeared in Parent Mode). "Verify parent access" is a session-only confirmation click rather than a PIN, since no such field exists in the save schema — documented as an explicit, revisitable choice. Found and fixed a real path-resolution bug along the way (`portal/parent/index.html` sits one directory deeper than the learner shell assumes) via a single `<base href="../">` tag rather than touching shared loader modules. Phase 9 (Visual Assets) generated a real, renderable SVG asset for all 24 `images.json` specs plus 10 badge/rank/knowledgeCore reward icons — but only after flagging to the user that no image-generation tool is available in this environment, so the 19 specs written as "warm, painterly illustration" can't be produced as genuine illustrations. The user chose flat-vector SVG for everything, in one consistent style (`generated/images/STYLE_GUIDE.md`), over skipping the scene specs entirely. Mission 1's and Mission 21's scene SVGs deliberately mirror each other's composition. Unlock and story rewards were deliberately left without bespoke icons (they're access/narrative flags, not collectible badges). All 34 SVGs validated as well-formed XML and spot-checked visually via headless-Chromium screenshots. Noted but did not fix: no compiled Knowledge Core catalog exists in `src/` despite 504_JSON_SCHEMA.md requiring `description`/`icon` fields on that entity — a data-model gap, not a visual-asset one.
+
+Phase 7 (Workbook) authored `generated/workbook/answer-guide.json` (a "what a strong response looks like" checklist per mission, deliberately not a traditional answer key, consistent with `orientation.json`'s own Assessment Philosophy — real physical outcomes only quoted where a genuine one exists, i.e. Missions 7/10/15's household experiments), then assembled a new `Campaign-01-Workbook-Compiled.md` (welcome/materials/curriculum-mapping content + all 21 notebook pages + all 4 existing printables + the answer guide, in one document) and rendered it to `Campaign-01-Workbook.pdf` (47 pages) via a Markdown→HTML→Chromium-print pipeline built in-session (no pandoc/weasyprint available in this environment). Verified via PyMuPDF (page count, expected-content checks) and visual inspection of 3 sample pages. `workbook.json` now points to both new files. Per ADR-005, the PDF remains entirely optional — every mission is still fully completable with a blank notebook. Only remaining phase before release is Phase 10 (Testing). Awaiting user direction.

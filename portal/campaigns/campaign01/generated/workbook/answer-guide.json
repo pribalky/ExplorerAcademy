@@ -1,0 +1,202 @@
+{
+  "campaignId": "CAMPAIGN-0001",
+  "note": "This is a 'what a strong response looks like' guide, not a traditional answer key — almost every activity is open-ended by design (observations of whatever's actually in front of the child, reasoned arguments, personal reflections), consistent with orientation.json's own Assessment Philosophy ('Explorer Academy does not rely on traditional tests'). Each entry expands the mission's existing parentGuide.assessment into checkable points. Only the household-experiment missions (7, 10, 15) have a genuinely fixed physical outcome worth stating outright — quoted from generated/resources/experiments.json, not invented here.",
+  "missions": [
+    {
+      "missionId": "MISSION-0001",
+      "missionNumber": 1,
+      "title": "The Invitation",
+      "whatAGoodResponseIncludes": [
+        "The journal's first entry names at least 2–3 specific qualities Explorer Academy says it's looking for, not a vague restatement of the letter.",
+        "The recorded expectations are genuine and specific, even if uncertain or ordinary — not a generic \"I expect it to be exciting.\"",
+        "The five observations go beyond the first, obvious detail — at least a couple describe something a first glance would miss."
+      ]
+    },
+    {
+      "missionId": "MISSION-0002",
+      "missionNumber": 2,
+      "title": "Arrival at Outpost Echo",
+      "whatAGoodResponseIncludes": [
+        "The sketch map labels at least the main areas explored (laboratory, observatory, living quarters, etc.) — it doesn't need to be to scale, just clearly ordered.",
+        "\"Unusual observations\" name a specific detail (e.g. \"a notebook left open mid-sentence\") rather than a general feeling (\"it felt weird\")."
+      ]
+    },
+    {
+      "missionId": "MISSION-0003",
+      "missionNumber": 3,
+      "title": "Explorer's Toolkit",
+      "whatAGoodResponseIncludes": [
+        "Estimates were written down before measuring — if every estimate matches the actual measurement suspiciously closely, it may have been adjusted afterwards.",
+        "The observation table has clear column headings and consistent units — someone else could read it without asking a follow-up question."
+      ]
+    },
+    {
+      "missionId": "MISSION-0004",
+      "missionNumber": 4,
+      "title": "The Silent Logs",
+      "whatAGoodResponseIncludes": [
+        "The chronological order is justified by specific clues from the logs, not just a plausible-sounding guess.",
+        "Each item in the \"assumptions\" list is something inferred, not something the logs directly state — anything in the \"facts\" list should be traceable to a specific line in the logs."
+      ]
+    },
+    {
+      "missionId": "MISSION-0005",
+      "missionNumber": 5,
+      "title": "Strange Footprints",
+      "whatAGoodResponseIncludes": [
+        "Each rejected explanation has a specific reason tied to a measurement — \"it didn't fit\" isn't enough; \"the spacing didn't match\" is.",
+        "The surviving conclusion is the one explanation that fits every measurement, not just the most exciting one."
+      ],
+      "note": "The campaign deliberately doesn't specify a single fixed cause for the footprints — the point of this mission is the elimination process, not landing on one universally \"correct\" answer. Judge the reasoning, not which explanation was chosen."
+    },
+    {
+      "missionId": "MISSION-0006",
+      "missionNumber": 6,
+      "title": "Weather Watch",
+      "whatAGoodResponseIncludes": [
+        "Today's temperature is labelled as measured or estimated — it shouldn't be presented as more precise than it actually is.",
+        "The chart lets you compare today's reading against the archived data at a glance, without needing the surrounding notes to make sense of it."
+      ]
+    },
+    {
+      "missionId": "MISSION-0007",
+      "missionNumber": 7,
+      "title": "The Broken Bridge",
+      "whatAGoodResponseIncludes": [
+        "Two distinct attempts are recorded, not just one \"final\" design with no visible history of what came before.",
+        "The explanation of what changed names a specific structural reason (e.g. \"folding the card added rigidity\"), not just \"it worked better.\""
+      ],
+      "expectedOutcome": "A flat, unfolded sheet of card bends and fails quickly under only a little weight. Folded into a ridge, tube or arch shape, the same material holds noticeably more weight before buckling — folding increases rigidity by spreading the load along the fold instead of concentrating it at one weak point (see generated/resources/experiments.json, Mission 7)."
+    },
+    {
+      "missionId": "MISSION-0008",
+      "missionNumber": 8,
+      "title": "Message in the Static",
+      "whatAGoodResponseIncludes": [
+        "Guesses for the missing sections point back to a specific pattern or context clue in the parts that are legible.",
+        "The \"confirmed facts\" list only includes what the message actually states — reconstructed guesses, however plausible, stay out of it."
+      ]
+    },
+    {
+      "missionId": "MISSION-0009",
+      "missionNumber": 9,
+      "title": "Mystery Samples",
+      "whatAGoodResponseIncludes": [
+        "Groupings use more than one observed property, not colour alone — check whether two different-coloured samples with the same texture ended up in different groups without explanation.",
+        "Each group's justification names the specific shared properties, not just \"these looked similar.\""
+      ]
+    },
+    {
+      "missionId": "MISSION-0010",
+      "missionNumber": 10,
+      "title": "Water Under Pressure",
+      "whatAGoodResponseIncludes": [
+        "The recommendation names a specific location in the system, using the diagram's own labels, not a general \"something's blocked somewhere.\"",
+        "The reasoning explicitly connects back to what the household experiment actually showed."
+      ],
+      "expectedOutcome": "A blockage narrows the space available for water to flow, increasing resistance — water visibly slows, pools, or stops just above the blockage point, and moving the blockage to a different point changes where that happens (see generated/resources/experiments.json, Mission 10)."
+    },
+    {
+      "missionId": "MISSION-0011",
+      "missionNumber": 11,
+      "title": "The Energy Problem",
+      "whatAGoodResponseIncludes": [
+        "Each system in the sequence has a stated reason for its position — \"because it needs the least power\" or \"because other systems depend on it,\" not just a number.",
+        "The sequence respects the actual energy budget calculated earlier in the mission, not a guessed one."
+      ]
+    },
+    {
+      "missionId": "MISSION-0012",
+      "missionNumber": 12,
+      "title": "Star Maps",
+      "whatAGoodResponseIncludes": [
+        "Measured angles are specific numbers, not rounded to convenient values that weren't actually measured.",
+        "The interpretation of what the expedition was tracking is supported by at least two matched positions, not a single coincidental pattern."
+      ]
+    },
+    {
+      "missionId": "MISSION-0013",
+      "missionNumber": 13,
+      "title": "Hidden Patterns",
+      "whatAGoodResponseIncludes": [
+        "The trend is described specifically (e.g. \"readings rise every third week\") rather than vaguely (\"there's a pattern\").",
+        "At least two different datasets are cited as supporting the same trend — a pattern seen in only one dataset isn't yet a trend."
+      ]
+    },
+    {
+      "missionId": "MISSION-0014",
+      "missionNumber": 14,
+      "title": "The Missing Notebook",
+      "whatAGoodResponseIncludes": [
+        "Reconstructed sections reference specific surviving pages or earlier discoveries, not just \"what seems likely.\"",
+        "The learner can explain the difference between something they inferred and something they're simply hoping is true."
+      ]
+    },
+    {
+      "missionId": "MISSION-0015",
+      "missionNumber": 15,
+      "title": "The Signal Tower",
+      "whatAGoodResponseIncludes": [
+        "Each fault has its own diagnosis and its own test-and-refine cycle — not one overall attempt covering everything at once.",
+        "The repair order is justified by which fault is most critical, not which was easiest to fix first."
+      ],
+      "expectedOutcome": "Light (standing in for a signal) needs a clear, aligned path to reach its target — obstruction blocks it almost completely regardless of alignment or distance, misalignment can redirect it away entirely if severe enough, and distance alone dims and spreads it without fully blocking it (see generated/resources/experiments.json, Mission 15)."
+    },
+    {
+      "missionId": "MISSION-0016",
+      "missionNumber": 16,
+      "title": "Secrets Underground",
+      "whatAGoodResponseIncludes": [
+        "The explanation draws on at least two of the three evidence sources (samples, layers, maps), not just whichever felt easiest to describe.",
+        "Specific properties or features are named, not general statements like \"the rocks looked old.\""
+      ]
+    },
+    {
+      "missionId": "MISSION-0017",
+      "missionNumber": 17,
+      "title": "The Final Experiment",
+      "whatAGoodResponseIncludes": [
+        "Only one variable changed between the original test and any repeat — if several things changed at once, it isn't a fair test.",
+        "The reflection names a real, specific limitation (not \"everything went perfectly\") — a specific limitation is a sign of genuine reflection, not a lack of success."
+      ],
+      "note": "There's no fixed outcome to check here — since the learner chose the investigation topic themselves, judge the reasoning and fairness of the test, not any specific result."
+    },
+    {
+      "missionId": "MISSION-0018",
+      "missionNumber": 18,
+      "title": "Connecting the Evidence",
+      "whatAGoodResponseIncludes": [
+        "The conclusion addresses evidence from several different earlier missions, not just the most dramatic one or two.",
+        "At least one alternative explanation is named and specifically ruled out, not just dismissed."
+      ]
+    },
+    {
+      "missionId": "MISSION-0019",
+      "missionNumber": 19,
+      "title": "Recover the Archive",
+      "whatAGoodResponseIncludes": [
+        "The summary explains why the expedition suspended operations, not just what they did.",
+        "The completed archive sections draw on discoveries the learner actually made earlier in the campaign, not invented details."
+      ]
+    },
+    {
+      "missionId": "MISSION-0020",
+      "missionNumber": 20,
+      "title": "Explorer Assessment",
+      "whatAGoodResponseIncludes": [
+        "The plan was written before evidence was collected, and the learner can explain why they chose that approach.",
+        "Justifications are specific to decisions actually made during the investigation, not generic statements about \"being careful.\""
+      ],
+      "note": "This mission has no fixed correct answer by design — assess the reasoning and process, matching the mission's own reward (a rank, not a knowledge badge)."
+    },
+    {
+      "missionId": "MISSION-0021",
+      "missionNumber": 21,
+      "title": "Graduation Day",
+      "whatAGoodResponseIncludes": [
+        "The reflection compares who the learner is now against Mission 1 specifically — not just a general \"I learned a lot.\"",
+        "Favourite investigations are named with a specific reason each, not a generic \"they were all fun.\""
+      ]
+    }
+  ]
+}

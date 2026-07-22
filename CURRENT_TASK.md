@@ -2,15 +2,15 @@
 
 ## Phase
 
-8 – Parent Mode
+7 – Workbook
 
 ## Milestone
 
-Not yet defined — Phase 8 is complete; awaiting direction on Phase 7, Phase 10, or another priority
+Not yet defined — Phase 7 is complete; awaiting direction on Phase 10 or another priority
 
 ## Objective
 
-Parent Mode now has real logic (`portal/js/parent-mode.js`), replacing the empty placeholder, covering all of TODO.md's Phase 8 feature list (see completed milestone below). Per CLAUDE.md's workflow, do not begin the next phase until the user chooses a direction — candidates per TODO.md's own roadmap are Phase 7 (Workbook) or Phase 10 (Testing).
+All four Phase 7 deliverables (Printable PDF, Notebook alternatives, Answer guide, Parent guide) are complete (see completed milestone below). Every phase in TODO.md's roadmap except Phase 10 (Testing) is now done. Per CLAUDE.md's workflow, do not begin the next phase until the user chooses a direction.
 
 ## Inputs
 
@@ -18,7 +18,7 @@ N/A — awaiting user direction.
 
 ## Relevant Documentation
 
-`TODO.md`'s Phase 7/10 sections, once a specific direction is chosen.
+`TODO.md`'s Phase 10 section, once a specific direction is chosen.
 
 ## Files Expected to Change
 
@@ -47,6 +47,32 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Phase 7: Workbook — COMPLETE
+
+## Completion Summary
+
+Produced all four TODO.md Phase 7 deliverables (Printable PDF, Notebook alternatives, Answer guide, Parent guide), completing every roadmap phase except Phase 10 (Testing).
+
+- **Flagged a philosophy tension before building anything**: TODO.md names "Answer guide" as a deliverable, but no other document defines it, and it's in direct tension with `orientation.json`'s own Assessment Philosophy ("Explorer Academy does not rely on traditional tests... success is measured by growth in investigative thinking"). Almost every activity is genuinely open-ended (observations of whatever's in front of the child, reasoned arguments, personal reflections) — a traditional right-answer key would contradict the campaign's own stated pedagogy. Confirmed by checking `501_CAMPAIGN_01.md`: Mission 5's footprint mystery deliberately never states a specific cause, so even that mission has no fixed "answer" to give.
+- **Resolution**: built `generated/workbook/answer-guide.json` as a "what a strong response looks like" checklist guide instead — one entry per mission, expanding the mission's existing `parentGuide.assessment` sentence into 2–3 checkable points, grounded in each mission's actual `completionCriteria` and Core activity outputs (queried directly from the mission JSON, not recalled from memory). The 3 household-experiment missions (7, 10, 15) additionally quote their already-documented, real physical outcomes from `generated/resources/experiments.json` — genuine science facts, not invented campaign narrative, so safe to state outright. Missions 5, 17 and 20 explicitly note they have no fixed outcome by design.
+- **Compiled Printable PDF**: wrote a script (not checked in — see `workbook.json`'s own note on why) that assembles a single Markdown document from already-existing sources — `campaign.json`, `orientation.json`, `curriculum-mapping.json`, all 21 `generated/workbook/pages/*.md` notebook pages (with their heading levels demoted to nest correctly), all 4 existing printables (embedded in full, not just referenced), and the new `answer-guide.json` — then rendered it to PDF via headless Chromium's print-to-PDF (`page.pdf()`), since no pandoc/weasyprint/reportlab was available; `markdown` was pip-installed to do the Markdown→HTML conversion step. Output: `generated/workbook/Campaign-01-Workbook-Compiled.md` (48KB, the source) and `generated/workbook/Campaign-01-Workbook.pdf` (47 pages, 248KB).
+- **Notebook alternatives**: already 100% complete from Phase 5 — every mission's notebook page is reproduced in full inside the compiled PDF, not just referenced.
+- **Parent guide**: already 100% complete from Phases 4/5/8 — the PDF's front matter reproduces `orientation.json`'s welcome/Mission Control role/session length/materials/Supporting Your Child/Assessment Philosophy and all 6 curriculum mapping entries, giving parents a printable counterpart to Phase 8's on-screen Parent Mode. Progress-dashboard content (learner-specific, stored in `localStorage`) was deliberately excluded from the static PDF — it has no meaning outside a specific device's save data.
+- **`workbook.json`** gained an `answerGuide` reference and a `compiledWorkbook` block (source + pdf paths, plus a note on how to regenerate) — same spec-plus-generated-output pattern used throughout Phases 5 and 9.
+
+## Manual Verification
+
+- Validated `answer-guide.json` and the updated `workbook.json` as JSON.
+- Verified the compiled Markdown's heading nesting is correct by inspection (mission pages' own `#`/`##`/`###` levels demoted so they nest under each `## Mission N` section without skipping levels).
+- Verified the PDF directly (via PyMuPDF, since `pypdf` had a broken `cffi`/`cryptography` dependency in this environment unrelated to this work): 47 pages, correct page count, title page and closing note both present, all 21 "Answer Guide" headings present (`full_text.count("Answer Guide") == 21`), all 4 printables' actual content embedded (water-system diagram arrows, certificate text), Mission 7's real bridge-folding physics fact present, and confirmed learner-specific Progress Dashboard content is correctly absent from this static document.
+- Rendered 3 sample pages (title page, a mid-campaign mission page, an Answer Guide section) to PNG and visually inspected them — clean typography, correct heading hierarchy, no overlapping or malformed content.
+
+## Verification
+
+Phase 7 is complete: a genuine, working 47-page printable PDF exists, entirely optional per ADR-005, containing every mission's notebook instructions, every existing printable in full, a philosophy-consistent answer guide, and the full parent guide content — assembled from already-existing sources with no content invented or duplicated. ✅
 
 ---
 

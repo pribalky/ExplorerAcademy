@@ -1,5 +1,11 @@
 {
   "campaignId": "CAMPAIGN-0001",
+  "answerGuide": "answer-guide.json",
+  "compiledWorkbook": {
+    "source": "Campaign-01-Workbook-Compiled.md",
+    "pdf": "Campaign-01-Workbook.pdf",
+    "note": "The PDF is entirely optional, per ADR-005 — every mission remains fully completable with a blank notebook alone. It compiles the welcome/materials/curriculum-mapping parent content, all 21 notebookPage entries below, every printable listed here, and answer-guide.json into a single printable document. Regenerate by rebuilding the compiled Markdown from these same source files, then rendering it to PDF (this repo has no build script for that step yet — it was done by hand this milestone via a one-off script, not checked in, since it only reads already-committed generated/ and src/ files)."
+  },
   "missions": [
     {
       "missionId": "MISSION-0001",
