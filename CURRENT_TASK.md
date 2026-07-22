@@ -2,15 +2,15 @@
 
 ## Phase
 
-9 – Visual Assets
+8 – Parent Mode
 
 ## Milestone
 
-Not yet defined — Phase 9 is complete for all 24 image specs plus 10 reward icons; awaiting direction on Phase 7, Phase 8, or another priority
+Not yet defined — Phase 8 is complete; awaiting direction on Phase 7, Phase 10, or another priority
 
 ## Objective
 
-All 24 `images.json` specs and all 10 badge/rank/knowledgeCore reward icons now have a corresponding generated SVG asset (see completed milestone below). Per CLAUDE.md's workflow, do not begin the next phase until the user chooses a direction — candidates per TODO.md's own roadmap are Phase 7 (Workbook), Phase 8 (Parent Mode), or Phase 10 (Testing).
+Parent Mode now has real logic (`portal/js/parent-mode.js`), replacing the empty placeholder, covering all of TODO.md's Phase 8 feature list (see completed milestone below). Per CLAUDE.md's workflow, do not begin the next phase until the user chooses a direction — candidates per TODO.md's own roadmap are Phase 7 (Workbook) or Phase 10 (Testing).
 
 ## Inputs
 
@@ -18,7 +18,7 @@ N/A — awaiting user direction.
 
 ## Relevant Documentation
 
-`TODO.md`'s Phase 7/8/10 sections, once a specific direction is chosen.
+`TODO.md`'s Phase 7/10 sections, once a specific direction is chosen.
 
 ## Files Expected to Change
 
@@ -47,6 +47,34 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Phase 8: Parent Mode — COMPLETE
+
+## Completion Summary
+
+Implemented `portal/js/parent-mode.js`, replacing the empty placeholder (`// No logic yet`), covering all five TODO.md Phase 8 features (Curriculum mapping, Progress dashboard, Assessment evidence, Suggested interventions, Extension ideas) plus 601_HTML_ARCHITECTURE.md's Parent Mode Responsibilities list (campaign overview, curriculum mapping, mission preparation, required materials, completed learning outcomes).
+
+- **Architecture already decided, just filled in**: `router.js`'s own header comment already stated Parent Mode is "a separate static entry point (`portal/parent/index.html`), kept invisible to the learner shell per ADR-006" — not a hash route. `portal/parent/index.html` already existed as a scaffold. Implemented against that existing decision rather than inventing a new one.
+- **"Verify parent access"** (601's Parent Mode Manager responsibility) is implemented as a one-time, session-only confirmation click, not a PIN — no PIN/access-code field exists anywhere in 504_JSON_SCHEMA.md's Save Game shape, and adding one would be a storage-schema change beyond this milestone. Being a separate, unlinked page (never referenced from `router.js` or `portal/index.html`'s nav) is the actual access control; documented this choice explicitly in the module's own header comment so it isn't mistaken for a real security gate later.
+- **Data sources, all already existing from Phases 4/5** — no new content authored, only wired up: `campaign.json`, `src/parent/orientation.json`, `src/parent/curriculum-mapping.json`, each mission's embedded `parentGuide`, each mission's `generated/parent/enrichment/missionNN.json`, and the mission's own embedded Extension activity.
+- **Assessment evidence** (the most valuable feature, only possible because Discovery Log already stores `missionId`/`learnerNotes`/`timestamp`): each mission's card pairs its `parentGuide.assessment` guidance directly with the Explorer's own recorded Discovery Log entries for that mission — real evidence, not just a rubric.
+- **Progress dashboard**: derived entirely from the existing save shape via `reward-engine.js`/`discovery-log.js`'s own public functions (`getEarnedRewards`/`getDiscoveryLog`) — the same modules `router.js` already goes through — rather than reading `storage.js` directly or adding a new `completedMissions` field. "Missions with recorded progress" is the union of missions with an earned reward and missions with at least one Discovery Log entry.
+- **Suggested interventions** = enrichment's `expectedMisconceptions`; **Extension ideas** = enrichment's `stretchQuestions` plus the mission's own embedded Extension activity — both degrade gracefully to nothing shown if a mission's enrichment file is missing, since `generated/` content is disposable by design.
+- **Added `portal/js/utils.js`'s first real content** (`fetchJson()`): factors out the fetch-then-parse pattern for the several campaign-namespaced files with no dedicated loader module (orientation, curriculum mapping, per-mission enrichment) — `campaign-loader.js`/`mission-engine.js` keep their own existing inline copies rather than being refactored mid-milestone.
+- **One real bug found and fixed**: `portal/parent/index.html` sits one directory deeper than `portal/index.html`, so `campaign-loader.js`/`mission-engine.js`'s relative fetch paths (which assume being called from `portal/` root) resolved to `portal/parent/campaigns/...` and 404'd. Fixed with a single `<base href="../">` tag (and updated the two existing asset hrefs from `../css/...`/`../js/...` to `css/...`/`js/...` accordingly) rather than modifying the shared loader modules — scheme-agnostic, so it works under `file://` too.
+
+## Manual Verification
+
+- Served the app locally and drove it with headless Chromium: loaded `portal/parent/index.html`, clicked through the access gate, confirmed all sections render (campaign overview, welcome/Mission Control, session length & materials, curriculum mapping, progress dashboard, 21 mission `<details>` blocks) with real content, not placeholders.
+- Confirmed the full learner-to-parent loop: completed Mission 1's reflection in the learner shell, then confirmed in Parent Mode (same browser context, same origin, same `localStorage`) that the exact recorded reflection text appears under Mission 1's "Assessment evidence," and the newly earned "Explorer Recruit" badge appears in the Progress Dashboard.
+- Confirmed via `git diff --stat` that `router.js` and `portal/index.html` (the learner shell) are completely untouched — no navigation link was added anywhere the learner could reach Parent Mode from.
+- No console errors beyond the pre-existing, unrelated missing favicon.
+
+## Verification
+
+Phase 8 is complete: Parent Mode is a real, working feature — reachable only by direct URL, never by the learner shell — that surfaces curriculum mapping, campaign-wide orientation content, a live progress dashboard, and mission-by-mission preparation/assessment/intervention/extension guidance, with assessment evidence genuinely backed by the Explorer's own recorded Discovery Log entries. ✅
 
 ---
 

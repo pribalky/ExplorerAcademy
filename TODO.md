@@ -360,21 +360,27 @@ Deliverables
 
 # Phase 8 — Parent Mode
 
+Status
+
+```
+COMPLETE — portal/js/parent-mode.js implements all five features below, wired to portal/parent/index.html as a standalone page never linked from the learner shell
+```
+
 Goal
 
 Complete hidden parent experience.
 
 Features
 
-- Curriculum mapping
+- [x] Curriculum mapping — rendered from src/parent/curriculum-mapping.json
 
-- Progress dashboard
+- [x] Progress dashboard — derived from earned rewards + Discovery Log entries (no new storage field needed)
 
-- Assessment evidence
+- [x] Assessment evidence — each mission's parentGuide.assessment paired with the Explorer's own recorded Discovery Log entries for that mission
 
-- Suggested interventions
+- [x] Suggested interventions — generated/parent/enrichment's expectedMisconceptions, where available
 
-- Extension ideas
+- [x] Extension ideas — enrichment's stretchQuestions plus each mission's embedded Extension activity
 
 ---
 
@@ -564,4 +570,4 @@ The project is complete when:
 
 # Current Next Action
 
-**Phases 5, 6 and 9 are all complete.** Phase 9 (Visual Assets) generated a real, renderable SVG asset for all 24 `images.json` specs plus 10 badge/rank/knowledgeCore reward icons — but only after flagging to the user that no image-generation tool is available in this environment, so the 19 specs written as "warm, painterly illustration" can't be produced as genuine illustrations. The user chose flat-vector SVG for everything, in one consistent style (`generated/images/STYLE_GUIDE.md`), over skipping the scene specs entirely. Mission 1's and Mission 21's scene SVGs deliberately mirror each other's composition. Unlock and story rewards were deliberately left without bespoke icons (they're access/narrative flags, not collectible badges). All 34 SVGs validated as well-formed XML and spot-checked visually via headless-Chromium screenshots. Noted but did not fix: no compiled Knowledge Core catalog exists in `src/` despite 504_JSON_SCHEMA.md requiring `description`/`icon` fields on that entity — a data-model gap, not a visual-asset one. Awaiting user direction on the next phase — candidates are Phase 7 (Workbook), Phase 8 (Parent Mode), or Phase 10 (Testing).
+**Phases 5, 6, 8 and 9 are all complete.** Phase 8 (Parent Mode) replaced `parent-mode.js`'s empty placeholder with a real implementation, wired up to the already-existing `portal/parent/index.html` static entry point (never linked from the learner shell, per `router.js`'s own documented architecture and ADR-006). It covers all five TODO.md features by reusing content already generated in Phases 4/5 — no new content authored. The standout feature is Assessment Evidence: each mission's parent guidance is paired with the Explorer's own actual recorded Discovery Log entries, verified end-to-end (completed a reflection in the learner shell, confirmed it appeared in Parent Mode). "Verify parent access" is a session-only confirmation click rather than a PIN, since no such field exists in the save schema — documented as an explicit, revisitable choice. Found and fixed a real path-resolution bug along the way (`portal/parent/index.html` sits one directory deeper than the learner shell assumes) via a single `<base href="../">` tag rather than touching shared loader modules. Phase 9 (Visual Assets) generated a real, renderable SVG asset for all 24 `images.json` specs plus 10 badge/rank/knowledgeCore reward icons — but only after flagging to the user that no image-generation tool is available in this environment, so the 19 specs written as "warm, painterly illustration" can't be produced as genuine illustrations. The user chose flat-vector SVG for everything, in one consistent style (`generated/images/STYLE_GUIDE.md`), over skipping the scene specs entirely. Mission 1's and Mission 21's scene SVGs deliberately mirror each other's composition. Unlock and story rewards were deliberately left without bespoke icons (they're access/narrative flags, not collectible badges). All 34 SVGs validated as well-formed XML and spot-checked visually via headless-Chromium screenshots. Noted but did not fix: no compiled Knowledge Core catalog exists in `src/` despite 504_JSON_SCHEMA.md requiring `description`/`icon` fields on that entity — a data-model gap, not a visual-asset one. Awaiting user direction on the next phase — candidates are Phase 7 (Workbook) or Phase 10 (Testing).

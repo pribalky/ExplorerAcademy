@@ -4,10 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Explorer Academy — Parent Mode</title>
-  <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="../css/layout.css">
-  <link rel="stylesheet" href="../css/components.css">
-  <link rel="stylesheet" href="../css/themes.css">
+  <!-- Resolves every relative URL in this page (fetch() calls in
+       parent-mode.js included) as if this page lived at portal/ root, the
+       same assumption campaign-loader.js/mission-engine.js already make.
+       Without this, "campaigns/campaign01/..." fetches resolve to
+       portal/parent/campaigns/... instead of portal/campaigns/... -->
+  <base href="../">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/themes.css">
 </head>
 <body>
   <header>
@@ -15,9 +21,9 @@
   </header>
 
   <main id="parent-app">
-    <!-- Parent Mode renders here in a later milestone -->
+    <!-- Parent Mode renders here, via js/parent-mode.js -->
   </main>
 
-  <script type="module" src="../js/parent-mode.js"></script>
+  <script type="module" src="js/parent-mode.js"></script>
 </body>
 </html>
