@@ -2,51 +2,61 @@
 
 ## Phase
 
-Pre-Phase-10 — Architecture Audit Follow-up
+Unscheduled (Platform Polish) — Home & Explorer Profile Parity — PROPOSED, NOT STARTED
 
 ## Milestone
 
-Not yet defined — the two functional gaps found by the pre-Phase-10 audit (Session Duration control, Knowledge Core/Explorer Rank catalog) are now closed; awaiting direction on Phase 10 (Testing) or the remaining documented-but-deferred process gaps
+Bring the Home and Explorer Profile pages up to the responsibilities `601_HTML_ARCHITECTURE.md` documents for them. This is a proposed plan only, per CLAUDE.md's Milestone Lifecycle — awaiting user approval before implementation begins.
 
 ## Objective
 
-Before starting Phase 10, the user asked for a full audit of the foundation documents against the actual implementation, looking for ambiguity, architecture/implementation clashes, open questions and philosophy drift. The audit found two genuine functional gaps (of eight findings total) and the user chose to close those two before testing begins; the other six (workbook/ directory placement, Decision Log hygiene, stale Changelog, uncommitted build script, a doc path typo, incomplete Home/Profile pages) were left as documented, deferred follow-ups. See completed milestone below for what was fixed. Per CLAUDE.md's workflow, do not begin Phase 10 or any further docs-hygiene work until the user chooses a direction.
+The pre-Phase-10 audit's last deferred item: Home currently only shows a bare "Continue Mission" link (or nothing) instead of 601's documented welcome/continue/recent-discovery/achievements/campaign-selection; Explorer Profile only lists raw earned rewards with no name, avatar or progress statistics. Both gaps are already flagged in the code's own comments, so nothing here is a surprise — this plan exists so the user can decide when (or whether) to schedule the work, not to begin it now.
 
 ## Inputs
 
-N/A — awaiting user direction.
+- `docs/60-engineering/601_HTML_ARCHITECTURE.md` — Home Page section (Purpose, Primary Actions, Typical Layout) and Explorer Profile section (Responsibilities: name, avatar, completed campaigns, missions completed, discoveries recorded, achievements, favourite campaign, exploration statistics).
+- `docs/50-content/503_DATA_MODEL.md` — Explorer Profile entity (required: Explorer ID, Display Name, Active Campaign; optional: Rank, Achievements, Preferences).
+- Existing `storage.js`, `discovery-log.js`, `reward-engine.js`, and `parent-mode.js`'s existing "missions with recorded progress" derivation (union of earned-reward mission IDs and Discovery Log mission IDs) — reusable here rather than adding a new `completedMissions` storage field, per CLAUDE.md's "do not duplicate state."
 
 ## Relevant Documentation
 
-`TODO.md`'s Phase 10 section, once a specific direction is chosen.
+`601_HTML_ARCHITECTURE.md` (Home Page, Explorer Profile, Settings sections), `503_DATA_MODEL.md` (Explorer Profile).
 
 ## Files Expected to Change
 
-N/A — awaiting user direction.
+- `portal/js/storage.js` — add an `explorerProfile` field (`displayName`, `avatar`, `createdAt`) to the save shape, with `saveExplorerProfile()`/`loadExplorerProfile()`.
+- `portal/js/settings.js` — add `getExplorerProfile()`/`setExplorerProfile()`, since 601 places "explorer profile" management under the Settings page's own Responsibilities, not a separate editor.
+- `portal/js/router.js` — extend `renderSettings` with a name + emoji-avatar picker (a small fixed emoji set, not image upload — keeps this within the "no external runtime dependencies" constraint); extend `renderHome` with a recent-discovery line and an achievements count when a session exists, and a clearer "Choose Campaign" call to action when none does; extend `renderProfile` with the stored name/avatar and real progress stats (missions with recorded progress out of total, reusing Parent Mode's existing derivation logic for consistency between the two views).
 
 ## Implementation Plan
 
-N/A — awaiting user direction.
+1. `storage.js`: additive `explorerProfile` field, default `{ displayName: null, avatar: null, createdAt: null }`.
+2. `settings.js`: `getExplorerProfile()` (returns stored profile or a null-name default), `setExplorerProfile({ displayName, avatar })` (validates a non-empty trimmed name; avatar restricted to a small fixed emoji list).
+3. `router.js` Settings page: add the name/avatar form above or below the existing session-duration form.
+4. `router.js` Home page: when a session exists, add "Achievements: N earned" and "Most recent discovery: <prompt>, <date>" lines (from `getEarnedRewards()`/`getDiscoveryLog()`, already available, no new data needed); when none exists, replace the placeholder text with a clear "Choose Campaign" link to `/campaigns` (already implemented).
+5. `router.js` Explorer Profile page: header shows `displayName` (or "Unnamed Explorer" with a link to Settings if unset) and `avatar`; add a stats block — missions with recorded progress / total missions in the installed campaign, matching Parent Mode's Progress Dashboard derivation exactly, so the two views never disagree.
 
 ## Out of Scope
 
-N/A.
+Avatar image upload or a custom asset library (a fixed emoji set only). Multi-campaign statistics or a "favourite campaign" field — only one campaign is installed today, and inventing cross-campaign comparison logic for a single campaign would be speculative. Accessibility, audio and offline preferences — a separate, already-documented Settings gap, not this milestone's target.
 
 ## Success Criteria
 
-N/A.
+- Home shows more than a bare link in both the "session in progress" and "no session" states, using only already-stored data.
+- Explorer Profile shows a settable display name/avatar and a real missions-with-progress statistic that matches Parent Mode's own dashboard number for the same save data.
+- No new campaign-specific logic anywhere in the platform layer; no duplicated progress-tracking state.
 
-## Manual Verification
+## Manual Verification (planned)
 
-N/A.
+Set a name/avatar via Settings, confirm it appears on Explorer Profile. Complete a mission's reflection, confirm Home's recent-discovery line and Profile's stats update, and that Profile's "missions with progress" number matches Parent Mode's own dashboard for the same browser session. Confirm no regression to the existing Session Duration control or reward-earning flow.
 
 ## Deliverables
 
-N/A.
+Updated `storage.js`, `settings.js`, `router.js`; manual verification notes; `TODO.md` updated to record this as a completed milestone once done.
 
 ## Completion Notes
 
-Not yet started.
+Not started — awaiting user approval to begin.
 
 ---
 

@@ -36,8 +36,8 @@ Priority order:
 5. docs/30-architecture/301_PLATFORM_ARCHITECTURE.md
 6. docs/40-campaigns/401_CAMPAIGN_TEMPLATE.md
 7. docs/40-campaigns/402_MISSION_TEMPLATE.md
-8. docs/40-campaigns/503_DATA_MODEL.md
-9. docs/40-campaigns/504_JSON_SCHEMA.md
+8. docs/50-content/503_DATA_MODEL.md
+9. docs/50-content/504_JSON_SCHEMA.md
 10. docs/60-engineering/601_HTML_ARCHITECTURE.md
 
 Repository documentation overrides conversation history.
@@ -88,10 +88,11 @@ The application should run from a lightweight local web server.
 ```
 docs/
 portal/
-workbook/
 assets/
 scripts/
 ```
+
+Workbook content is not a top-level directory — it lives under each campaign's own `portal/campaigns/campaignXX/generated/workbook/`, alongside that campaign's other generated assets (see Campaign Structure below).
 
 Within `portal/`:
 

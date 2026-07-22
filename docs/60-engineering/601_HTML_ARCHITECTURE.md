@@ -371,7 +371,7 @@ portal/
     └── index.html
 ```
 
-Printable workbook resources live in the repository-root `workbook/` directory, not inside `portal/`.
+> **Correction (added during the pre-Phase-10 audit):** the sentence below contradicted the Repository Structure tree directly above it, which already correctly shows `generated/workbook/` nested under each campaign. Printable workbook resources live at `portal/campaigns/<campaign>/generated/workbook/`, alongside that campaign's other generated assets — not in a repository-root `workbook/` directory. A root `workbook/` directory was scaffolded early on but was never used and has been removed from the documented structure; this keeps workbook content correctly owned by its campaign rather than shared platform-wide, consistent with this document's own Platform/Campaign separation.
 
 This structure ensures:
 

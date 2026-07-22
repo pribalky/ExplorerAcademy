@@ -363,6 +363,390 @@ Every architectural change must first be reflected in documentation.
 
 ---
 
+# ADR-012
+
+## Hidden Parent Mode Is a Separate Static Page, Not a Hash Route
+
+**Status**
+
+Accepted
+
+### Context
+
+ADR-006 established that Parent Mode must stay invisible to the learner, but did not specify the implementation mechanism.
+
+### Decision
+
+Parent Mode is implemented as its own static HTML entry point (`portal/parent/index.html`), loaded by direct URL only. It is never one of the learner shell's hash routes (`router.js`) and is never linked from any learner-facing navigation.
+
+### Alternatives Considered
+
+A hidden hash route (e.g. `/parent`) gated by a client-side check.
+
+### Rationale
+
+A route that exists in the same single-page app as the learner shell is one navigation mistake away from being reachable — a stray link, a browser-history entry, a shared bookmark. A physically separate page has no code path connecting it to the learner shell at all.
+
+### Consequences
+
+Parent Mode reuses the same validated loaders (`campaign-loader.js`, `mission-engine.js`) as the learner shell rather than duplicating them, but renders through its own module (`parent-mode.js`) and mounts into its own page. Being one directory deeper than `portal/index.html`, it needs its own relative-path handling (see the `<base href="../">` fix applied when this was built).
+
+### Affected Documents
+
+601_HTML_ARCHITECTURE.md (Parent Mode section)
+
+---
+
+# ADR-013
+
+## Parent Access Is a Session-Only Confirmation, Not a PIN
+
+**Status**
+
+Accepted
+
+### Context
+
+601_HTML_ARCHITECTURE.md's Parent Mode Manager responsibility says the platform must "verify parent access." No PIN, password or access-code field exists anywhere in 504_JSON_SCHEMA.md's Save Game shape.
+
+### Decision
+
+"Verify parent access" is implemented as a one-time, session-only confirmation click on entering Parent Mode, not a PIN or credential check.
+
+### Alternatives Considered
+
+Adding a PIN field to the Save Game schema and a real credential gate.
+
+### Rationale
+
+A real PIN is a storage-schema change with its own consequences (recovery if forgotten, where it's set, whether it syncs across devices) that goes beyond what any current document specifies. Being a separate, unlinked static page (ADR-012) is the actual access control today; the confirmation click is a deliberate-intent check for whoever already found the page, not a security boundary.
+
+### Consequences
+
+This is explicitly a placeholder, not a real gate. A future milestone can add genuine PIN protection to the Save Game schema without changing anything else about how Parent Mode is reached.
+
+### Affected Documents
+
+504_JSON_SCHEMA.md (Save Game), 601_HTML_ARCHITECTURE.md (Parent Mode Manager)
+
+---
+
+# ADR-014
+
+## Reward Unlock Trigger: Mission Reflection Completion
+
+**Status**
+
+Accepted
+
+### Context
+
+504_JSON_SCHEMA.md's Reward entity requires only `id`, `type` and `value` — there is no `unlockCondition` field to drive a finer-grained trigger for when a mission's rewards are actually earned.
+
+### Decision
+
+A mission's full `rewards[]` unlocks the first time any of its reflection prompts is saved to the Discovery Log. `evaluateMissionRewards()` is idempotent on repeat calls.
+
+### Rationale
+
+"Reflection completed" is the simplest signal already available in the data that reliably means a mission session is done, without inventing a new schema field this milestone didn't call for.
+
+### Consequences
+
+All of a mission's rewards are granted together, not per-activity. Per ADR-007, this is acknowledgement of a completed session, not scoring — there is no partial-credit or points logic anywhere in the Reward Engine.
+
+### Affected Documents
+
+504_JSON_SCHEMA.md (Reward)
+
+---
+
+# ADR-015
+
+## Discovery Log Entry Schema Extended With learnerNotes, timestamp, campaignId, missionId
+
+**Status**
+
+Accepted
+
+### Context
+
+504_JSON_SCHEMA.md's Discovery Log Entry only requires `id`, `prompt` and `entryType` — no field for the learner's actual written response. 601_HTML_ARCHITECTURE.md's Discovery Log Entry component and 503_DATA_MODEL.md's conceptual model each describe a different, non-overlapping field set; none of the three documents agree.
+
+### Decision
+
+The implementation extends the required list with `learnerNotes` (the response text), `timestamp`, `campaignId` and `missionId`, additively.
+
+### Rationale
+
+Without `learnerNotes` the Discovery Log couldn't store what a child actually wrote — the entire point of the feature. `campaignId`/`missionId` support 601_HTML_ARCHITECTURE.md's own statement that "the Discovery Log spans all campaigns," which requires knowing which campaign/mission an entry came from.
+
+### Consequences
+
+Only `entryType: "reflection"` is produced today — the platform has no UI yet for drawing, prediction, observation or diagram entries, despite the schema listing them as valid types.
+
+### Affected Documents
+
+504_JSON_SCHEMA.md (Discovery Log Entry)
+
+---
+
+# ADR-016
+
+## Mission's Parent Guide Is Required and Embedded, Not Referenced
+
+**Status**
+
+Accepted
+
+### Context
+
+504_JSON_SCHEMA.md's Mission required-fields list omitted `parentGuide`, even though the same document separately defines a full Parent Guide schema and 503_DATA_MODEL.md explicitly says Parent Guide is "Referenced by Missions."
+
+### Decision
+
+`parentGuide` is required on every Mission object and embedded directly (not referenced by ID), for the same reason `activities`, `rewards` and `beats` are embedded: it is 1:1 owned by its mission, never shared or reused across missions.
+
+### Rationale
+
+Embedding is lossless here and needs no new reference-resolution machinery. `mission-engine.js` validates its presence.
+
+### Consequences
+
+`parentGuide` must never be rendered to the learner (ADR-006). `activity-engine.js`/`router.js` confirm it isn't.
+
+### Affected Documents
+
+504_JSON_SCHEMA.md (Mission, Parent Guide)
+
+---
+
+# ADR-017
+
+## Adaptive Scheduler Uses Duration Bands, Not Weighted Session Configuration Fields
+
+**Status**
+
+Accepted
+
+### Context
+
+504_JSON_SCHEMA.md's Session Configuration defines `coreWeight`, `extensionWeight` and `rabbitHoleWeight`, but no document defines the formula they participate in.
+
+### Decision
+
+The Adaptive Scheduler implements the simpler duration-band model from 601_HTML_ARCHITECTURE.md's Adaptive Scheduler section instead: Core activities are always included, Extension activities are added while the remaining time budget allows, and Rabbit Hole activities are included only at the 90-minute band.
+
+### Alternatives Considered
+
+Implementing a weighted-scoring model using the three reserved fields.
+
+### Rationale
+
+601_HTML_ARCHITECTURE.md already specifies a complete, unambiguous band model with worked examples for all four durations (30/45/60/90 minutes). The weighted fields have no such specification anywhere.
+
+### Consequences
+
+`coreWeight`/`extensionWeight`/`rabbitHoleWeight` remain reserved, unimplemented fields. A future milestone could define and implement a weighted model without breaking the band model's existing behaviour, since the fields are simply unread today.
+
+### Affected Documents
+
+504_JSON_SCHEMA.md (Session Configuration)
+
+---
+
+# ADR-018
+
+## Campaign-Authoring Prompts Separate Reusable Rules From Campaign 1's Specific Answers
+
+**Status**
+
+Accepted
+
+### Context
+
+The five compiler prompts (`CAMPAIGN_COMPILER.md`, `MISSION_COMPILER.md`, `WORLD_BIBLE_COMPILER.md`, `MISSION_RESOURCE_CURATOR.md`, `ASSET_COMPILER.md`) had Campaign 01's specific answers written as if they were universal rules — e.g. naming Orion/Atlas/Quinn directly in general Characters instructions, or hardcoding which mission numbers have experiment activities.
+
+### Decision
+
+Every compiler prompt now opens with an explicit Campaign Parameters block (`<source-document>`, `<campaign-slug>`, `<mission-count>`, `<resources-document>`), and any Campaign-1-specific answer is rewritten as the underlying computable rule (e.g. "scan the compiled mission JSON directly for `type: "experiment"` activities") with Campaign 1's actual numbers moved into a clearly labelled "Campaign 01 example" callout.
+
+### Rationale
+
+Re-running these prompts against a future campaign's own content would otherwise silently produce wrong output — not just need a find-and-replace — since several passages stated Campaign 1's specific answers as if they were general rules.
+
+### Consequences
+
+A future Campaign 2 can point these same five prompts at its own source document and mission count without inheriting Campaign 1's character names, curriculum breakdown or mission numbers.
+
+### Affected Documents
+
+`prompts/CAMPAIGN_COMPILER.md`, `prompts/MISSION_COMPILER.md`, `prompts/WORLD_BIBLE_COMPILER.md`, `prompts/MISSION_RESOURCE_CURATOR.md`, `prompts/ASSET_COMPILER.md`
+
+---
+
+# ADR-019
+
+## Flat-Vector SVG as a Placeholder for "Painterly Illustration" Image Specs
+
+**Status**
+
+Accepted
+
+### Context
+
+Phase 5's image specifications describe most scene images as "warm, painterly illustration." No image-generation tool is available in this environment, so genuine illustrations matching that description could not be produced.
+
+### Decision
+
+All 24 image specifications plus 10 reward icons were generated as flat-vector SVG in one consistent style (documented in `generated/images/STYLE_GUIDE.md`), rather than leaving the scene specs unfulfilled.
+
+### Alternatives Considered
+
+Skipping the 19 painterly-style scene specs entirely and producing only diagrams/badges/icons.
+
+### Rationale
+
+Presented to the user as an explicit capability gap via `AskUserQuestion`; the user chose consistent flat-vector SVG over leaving scenes unfulfilled or attempting a mismatched fidelity level.
+
+### Consequences
+
+`STYLE_GUIDE.md` explicitly frames this as a disposable placeholder layer to replace wholesale if a real image-generation capability becomes available later — not a permanent design decision. Character portraits were deliberately not attempted, since they would need genuine illustration rather than a diagram-style stand-in.
+
+### Affected Documents
+
+`generated/images/STYLE_GUIDE.md`, `generated/image-specifications/images.json`, `generated/image-specifications/badges.json`
+
+---
+
+# ADR-020
+
+## Workbook Answer Guide Is a Response-Quality Checklist, Not a Traditional Answer Key
+
+**Status**
+
+Accepted
+
+### Context
+
+TODO.md names "Answer guide" as a Phase 7 deliverable, but no other document defines what it should contain, and almost every mission activity is genuinely open-ended (observations of whatever's in front of the child, reasoned arguments, personal reflections) — in direct tension with `src/parent/orientation.json`'s own Assessment Philosophy ("Explorer Academy does not rely on traditional tests").
+
+### Decision
+
+`generated/workbook/answer-guide.json` is a "what a strong response looks like" checklist per mission — 2–3 checkable points expanding each mission's existing `parentGuide.assessment` — rather than fixed correct answers. Only the three household-experiment missions (7, 10, 15) state a genuinely fixed physical outcome, quoted from `generated/resources/experiments.json`.
+
+### Alternatives Considered
+
+A traditional right-answer key, as the deliverable name might suggest at face value.
+
+### Rationale
+
+A fixed-answer key would contradict the campaign's own stated pedagogy. Missions 5, 17 and 20 are confirmed (by re-reading `501_CAMPAIGN_01.md` and the mission JSON itself) to have no single fixed outcome by design.
+
+### Consequences
+
+Missions 5, 17 and 20's answer-guide entries explicitly say there is no fixed answer, and instruct judging reasoning/process instead.
+
+### Affected Documents
+
+`generated/workbook/answer-guide.json`
+
+---
+
+# ADR-021
+
+## Workbook PDF Is Built by a Checked-In Compile Script, Not Produced by Hand
+
+**Status**
+
+Accepted
+
+### Context
+
+The Phase 7 workbook PDF was first produced by a one-off, unversioned scratchpad script (Markdown assembly → HTML via the `markdown` package → PDF via headless Chromium's `page.pdf()`, since no pandoc/weasyprint/reportlab was available in this environment). This left no reproducible way to regenerate the PDF if any source content changed.
+
+### Decision
+
+The pipeline is now `scripts/build_workbook.py`, a single checked-in script accepting a campaign slug, that reads only already-committed `src/`/`generated/` files and reproducibly writes the compiled Markdown and PDF.
+
+### Rationale
+
+CLAUDE.md's own Repository Layout names a top-level `scripts/` directory for exactly this kind of build tooling. A shipped deliverable (the PDF) with no way to regenerate it is a real maintenance risk.
+
+### Consequences
+
+The script's two pip dependencies (`markdown`, `playwright`) are build-tooling only — they do not run in the shipped browser application and do not violate the "no external runtime dependencies" Technology Constraint, which governs the learner-facing platform, not authoring tools. Re-running the script against the same inputs was verified to reproduce byte-identical Markdown and a PDF with the same page count and content.
+
+### Affected Documents
+
+`portal/campaigns/campaign01/generated/workbook/workbook.json` (compiledWorkbook.note)
+
+---
+
+# ADR-022
+
+## Knowledge Core and Explorer Rank Rewards Reference Catalog Entities via Optional IDs
+
+**Status**
+
+Accepted
+
+### Context
+
+503_DATA_MODEL.md and 504_JSON_SCHEMA.md both define Knowledge Core and Explorer Rank as entities with their own `description`/`icon` (or `requiredKnowledge`), referenced by ID so campaigns don't duplicate them. The implementation instead carried these as bare `{id, type, value}` strings in mission rewards, with no catalog behind them anywhere in `src/`.
+
+### Decision
+
+Added `portal/campaigns/campaign01/src/world/knowledge-cores.json` and `ranks.json` as the missing catalogs, and an optional `coreId`/`rankId` field on the relevant reward objects that resolves against them via `reward-engine.js`'s `resolveRewardDetails()`.
+
+### Alternatives Considered
+
+Repurposing the existing `value` field to hold an ID instead of a display string.
+
+### Rationale
+
+Changing `value`'s semantics would have been a breaking change to every place already rendering it directly. Adding a new optional field is purely additive, per 503_DATA_MODEL.md's own Forward Compatibility Strategy ("future readers should safely ignore unknown optional fields").
+
+### Consequences
+
+Explorer Profile and Parent Mode now show a resolved icon and description for these rewards where available, falling back to the plain `value` string for reward types with no catalog (badge, unlock, story, collectible) or when a reference doesn't resolve.
+
+### Affected Documents
+
+504_JSON_SCHEMA.md (Reward, Knowledge Core, Explorer Rank)
+
+---
+
+# ADR-023
+
+## Parent-Selectable Session Duration via a Settings Manager
+
+**Status**
+
+Accepted
+
+### Context
+
+ADR-009 established that parents choose a session duration and the Scheduler adapts to it, but no Settings Manager existed — `settings.js` was an empty placeholder and `router.js` always scheduled a hardcoded 60-minute default regardless of any preference.
+
+### Decision
+
+`settings.js` is now a real Settings Manager (`getSessionDuration()`/`setSessionDuration()`, validated against the four Supported Durations), backed by a new `settings` field in `storage.js`'s save shape. The learner shell's existing `/settings` route (previously a generic placeholder) is the control surface.
+
+### Rationale
+
+601_HTML_ARCHITECTURE.md's own Settings page responsibilities already name "preferred session duration" as belonging there; no new route or Parent Mode page was needed.
+
+### Consequences
+
+`scheduleActivities()` is now called with the stored preference instead of a hardcoded constant everywhere it's used. Explorer profile, accessibility, audio and offline preferences remain unimplemented in `settings.js`.
+
+### Affected Documents
+
+504_JSON_SCHEMA.md (Session Configuration)
+
+---
+
 # Decision Review Process
 
 Before proposing a new ADR:

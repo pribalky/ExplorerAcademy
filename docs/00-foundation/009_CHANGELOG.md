@@ -105,6 +105,33 @@ Repository foundation substantially complete.
 
 ---
 
+## v0.5.0
+
+### Portal and Campaign 1 Implementation
+
+> **Note on versioning:** this entry documents implementation delivered well ahead of the Foundation-document-approval milestones below (v1.0.0/v1.1.0), which track document *status* (Draft → Approved → Frozen per 000_PROJECT_MANIFEST.md's Document Lifecycle) rather than code. Foundation documents remain formally Draft, so this is versioned as a v0.x continuation rather than claiming v1.0.0/v2.0.0's doc-approval milestones prematurely.
+
+### Added
+
+- Full platform engine: Router, Campaign Loader, Mission Engine, Activity Engine, Adaptive Scheduler, Storage Manager, Reward Engine, Discovery Log, Settings Manager.
+- Campaign 1 ("Outpost Echo"), all 21 missions, compiled from `501_CAMPAIGN_01.md` and polished to the Mission Quality Checklist bar.
+- Asset Compiler output for every mission: notebook pages, parent enrichment, image specifications, experiments, printables where genuinely justified.
+- Parent Mode: curriculum mapping, progress dashboard, per-mission assessment evidence backed by real Discovery Log entries, suggested interventions, extension ideas.
+- Visual assets: flat-vector SVG for all 24 image specs and 10 reward icons (documented placeholder pending real illustration capability — see ADR-019).
+- Printable workbook: compiled 47-page PDF, answer guide, notebook alternatives, parent guide — all optional per ADR-005.
+- Knowledge Core / Explorer Rank catalogs, resolved into Explorer Profile and Parent Mode reward displays.
+- Parent-selectable session duration, wired into the Adaptive Scheduler.
+
+### Changed
+
+- `504_JSON_SCHEMA.md` extended additively in several places where implementation found real gaps against the original spec (Discovery Log Entry fields, Mission's required `parentGuide`, Reward's optional `coreId`/`rankId`) — see ADR-014 through ADR-023 for the individual decisions.
+
+### Notes
+
+See `006_DESIGN_DECISION_LOG.md`'s ADR-012 through ADR-023 for the individual architectural decisions made while building this milestone.
+
+---
+
 ## Future Releases
 
 ### v1.0.0
@@ -133,15 +160,7 @@ Campaign framework complete.
 
 ### v2.0.0
 
-Planned
-
-Campaign 1 implemented.
-
-Portal MVP released.
-
-Offline support available.
-
-Parent Mode operational.
+Delivered ahead of schedule as v0.5.0 above, pending only the Foundation-document-approval status this entry originally described. Once Foundation documents formally move from Draft to Approved (v1.0.0/v1.1.0 above), this version number can be assigned retroactively.
 
 ---
 
