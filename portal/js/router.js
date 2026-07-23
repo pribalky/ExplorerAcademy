@@ -11,11 +11,24 @@ import { loadCampaign } from './campaign-loader.js';
 import { loadMission } from './mission-engine.js';
 import { renderActivities } from './activity-engine.js';
 import { scheduleActivities } from './scheduler.js';
-import { saveCurrentSession, loadCurrentSession } from './storage.js';
+import { saveCurrentSession, loadCurrentSession, loadEarnedRewards, loadDiscoveryLog } from './storage.js';
 import { recordReflection, getDiscoveryLog } from './discovery-log.js';
 import { evaluateMissionRewards, getEarnedRewards, resolveRewardDetails } from './reward-engine.js';
 import { getSessionDuration, setSessionDuration, SUPPORTED_SESSION_DURATIONS } from './settings.js';
 import { fetchJson } from './utils.js';
+import {
+  listProfiles,
+  getActiveChild,
+  selectActiveChild,
+  createProfile,
+  createProfileFromLegacySave,
+  hasUnmigratedLegacySave,
+  touchLastPlayed
+} from './explorer-profiles.js';
+
+// A small fixed emoji set, not image upload, per Milestone 11's scope
+// decision (avatar image upload is explicitly out of scope).
+const AVATAR_CHOICES = ['🦊', '🐻', '🐸', '🦉', '🐢', '🦁', '🐧', '🐙'];
 
 export const ROUTES = [
   { path: '/', label: 'Home', title: 'Explorer Academy' },
@@ -315,29 +328,206 @@ function buildReflectionSection(section, mission, missionId) {
 
 // Home: offers "Continue Mission" when a saved current session exists
 // (Storage Manager), otherwise falls back to the generic placeholder.
+// Home: if an Explorer is already active on this device, shows their
+// normal dashboard (Continue Mission). Otherwise shows the "Who's
+// Exploring Today?" selector (Milestone 11) — this is the only place a
+// child is picked; every other route relies on storage.js's active-child
+// default and needs no profile-awareness of its own. Content renders into
+// a dedicated inner container (not `section` directly) so activating a
+// profile can redraw just that part without disturbing the heading.
 function renderHome(outlet, route) {
   outlet.innerHTML = `
     <section aria-labelledby="route-heading">
       <h2 id="route-heading">${route.label}</h2>
+      <div data-home-content></div>
     </section>
   `;
 
-  const section = outlet.querySelector('section');
-  const session = loadCurrentSession();
+  const content = outlet.querySelector('[data-home-content]');
+  const activeChild = getActiveChild();
 
+  if (activeChild) {
+    renderHomeDashboard(content, activeChild);
+  } else {
+    renderExplorerSelector(content);
+  }
+}
+
+function renderHomeDashboard(content, child) {
+  content.innerHTML = '';
+
+  const status = document.createElement('p');
+  status.textContent = `Exploring as: ${[child.avatar, child.displayName].filter(Boolean).join(' ')}`;
+  content.appendChild(status);
+
+  const session = loadCurrentSession();
   if (session && session.missionId) {
     const continueParagraph = document.createElement('p');
     const link = document.createElement('a');
     link.href = `#/mission/${session.missionId}`;
     link.textContent = 'Continue Mission';
     continueParagraph.appendChild(link);
-    section.appendChild(continueParagraph);
+    content.appendChild(continueParagraph);
     return;
   }
 
   const message = document.createElement('p');
-  message.textContent = 'This is a placeholder for the Home page. Content arrives in a later milestone.';
-  section.appendChild(message);
+  message.textContent = 'No mission in progress yet.';
+  content.appendChild(message);
+
+  const chooseLink = document.createElement('a');
+  chooseLink.href = '#/campaigns';
+  chooseLink.textContent = 'Choose Campaign';
+  content.appendChild(chooseLink);
+}
+
+function countMissionsWithProgress(childId) {
+  const missionIds = new Set([
+    ...loadEarnedRewards(childId).map((reward) => reward.missionId),
+    ...loadDiscoveryLog(childId).map((entry) => entry.missionId)
+  ]);
+  return missionIds.size;
+}
+
+function activateProfile(content, childId) {
+  selectActiveChild(childId);
+  touchLastPlayed(childId);
+  renderHomeDashboard(content, getActiveChild());
+}
+
+function renderExplorerSelector(content) {
+  content.innerHTML = '';
+
+  const heading = document.createElement('h3');
+  heading.textContent = "Who's Exploring Today?";
+  content.appendChild(heading);
+
+  const profiles = listProfiles();
+
+  if (profiles.length === 0) {
+    const empty = document.createElement('p');
+    empty.textContent = 'No Explorers set up on this device yet.';
+    content.appendChild(empty);
+  } else {
+    const list = document.createElement('ul');
+    profiles.forEach((profile) => {
+      const item = document.createElement('li');
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = [profile.avatar, profile.displayName].filter(Boolean).join(' ');
+      button.addEventListener('click', () => activateProfile(content, profile.id));
+      item.appendChild(button);
+
+      const stats = document.createElement('p');
+      const created = new Date(profile.createdAt).toLocaleDateString();
+      const lastPlayed = profile.lastPlayedAt ? new Date(profile.lastPlayedAt).toLocaleDateString() : 'Never';
+      const streakCount = profile.streak?.count ?? 0;
+      const missionsCompleted = countMissionsWithProgress(profile.id);
+      stats.textContent =
+        `Explorer since ${created} — Last played: ${lastPlayed} — ` +
+        `Streak: ${streakCount} day${streakCount === 1 ? '' : 's'} — ` +
+        `Missions with progress: ${missionsCompleted}`;
+      item.appendChild(stats);
+
+      list.appendChild(item);
+    });
+    content.appendChild(list);
+  }
+
+  renderNewExplorerForm(content);
+}
+
+// "+ New Explorer": collapsed behind a <details> so the selector stays
+// uncluttered when several children already exist. If this device has an
+// unmigrated pre-Milestone-11 save and no profiles yet, the first
+// profile created adopts that save (explorer-profiles.js's
+// createProfileFromLegacySave) instead of starting blank.
+function renderNewExplorerForm(content) {
+  const isFirstProfile = listProfiles().length === 0 && hasUnmigratedLegacySave();
+
+  const details = document.createElement('details');
+  const summary = document.createElement('summary');
+  summary.textContent = '+ New Explorer';
+  details.appendChild(summary);
+
+  if (isFirstProfile) {
+    const legacyNotice = document.createElement('p');
+    legacyNotice.textContent =
+      'We found existing progress on this device — creating your first Explorer here will keep it.';
+    details.appendChild(legacyNotice);
+  }
+
+  const form = document.createElement('form');
+
+  const nameLabel = document.createElement('label');
+  const nameLabelText = document.createElement('span');
+  nameLabelText.textContent = 'Explorer name';
+  const nameInput = document.createElement('input');
+  nameInput.type = 'text';
+  nameInput.required = true;
+  nameLabel.append(nameLabelText, nameInput);
+  form.appendChild(nameLabel);
+
+  const avatarFieldset = document.createElement('fieldset');
+  const avatarLegend = document.createElement('legend');
+  avatarLegend.textContent = 'Avatar';
+  avatarFieldset.appendChild(avatarLegend);
+  let selectedAvatar = AVATAR_CHOICES[0];
+  AVATAR_CHOICES.forEach((avatar, index) => {
+    const avatarLabel = document.createElement('label');
+    const avatarInput = document.createElement('input');
+    avatarInput.type = 'radio';
+    avatarInput.name = 'newExplorerAvatar';
+    avatarInput.value = avatar;
+    avatarInput.checked = index === 0;
+    avatarInput.addEventListener('change', () => {
+      selectedAvatar = avatar;
+    });
+    avatarLabel.append(avatarInput, ` ${avatar}`);
+    avatarFieldset.appendChild(avatarLabel);
+  });
+  form.appendChild(avatarFieldset);
+
+  const pinLabel = document.createElement('label');
+  const pinLabelText = document.createElement('span');
+  pinLabelText.textContent = 'PIN (4-8 digits — a parent will use this to open Parent Mode)';
+  const pinInput = document.createElement('input');
+  pinInput.type = 'text';
+  pinInput.inputMode = 'numeric';
+  pinInput.pattern = '\\d{4,8}';
+  pinInput.required = true;
+  pinLabel.append(pinLabelText, pinInput);
+  form.appendChild(pinLabel);
+
+  const submit = document.createElement('button');
+  submit.type = 'submit';
+  submit.textContent = 'Create Explorer';
+  form.appendChild(submit);
+
+  const feedback = document.createElement('p');
+  feedback.setAttribute('role', 'status');
+  form.appendChild(feedback);
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const displayName = nameInput.value;
+    const pin = pinInput.value;
+    const result = isFirstProfile
+      ? await createProfileFromLegacySave({ displayName, avatar: selectedAvatar, pin })
+      : await createProfile({ displayName, avatar: selectedAvatar, pin });
+
+    if (!result.ok) {
+      feedback.textContent = result.errors.join(' ');
+      return;
+    }
+
+    activateProfile(content, result.profile.id);
+  });
+
+  details.appendChild(form);
+  content.appendChild(details);
 }
 
 // Discovery Log: lists saved reflections (most recent first), or a
@@ -568,6 +758,18 @@ export function init({ outlet, nav }) {
     updateActiveNavLink(nav, path);
     outlet.focus({ preventScroll: true });
   }
+
+  // "Switch Explorer" isn't a route (it shares Home's "#/" target) — it
+  // needs its own handler because, unlike a plain nav link, it must clear
+  // the active child first so Home shows the selector again instead of
+  // silently redrawing the same Explorer's dashboard.
+  const switchExplorerLink = nav?.querySelector('[data-switch-explorer]');
+  switchExplorerLink?.addEventListener('click', (event) => {
+    event.preventDefault();
+    selectActiveChild(null);
+    window.location.hash = '/';
+    render();
+  });
 
   window.addEventListener('hashchange', render);
   render();

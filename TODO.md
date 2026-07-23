@@ -425,7 +425,7 @@ Includes
 Status
 
 ```
-IN PROGRESS — storage foundation and profile CRUD complete and verified; Home/Settings/Parent Mode UI not started
+IN PROGRESS — storage foundation, profile CRUD, and Home page rework (selector + Switch Explorer) complete and verified; Settings/Explorer-Profile/Parent-Mode UI not started
 ```
 
 Goal
@@ -440,9 +440,9 @@ Checklist
 
 - [x] Profile CRUD (create/list/verify PIN/update/change PIN/delete/touch last-played)
 
-- [ ] Home page: "Who's Exploring Today?" selector + inline "+ New Explorer" form
+- [x] Home page: "Who's Exploring Today?" selector + inline "+ New Explorer" form
 
-- [ ] "Switch Explorer" navigation affordance on every learner-shell route
+- [x] "Switch Explorer" navigation affordance on every learner-shell route
 
 - [ ] Per-child accessibility settings (font scale, high contrast, reduced motion)
 
@@ -641,4 +641,6 @@ Testing (now Phase 11, renumbered to make room for Phase 10 above) and Campaign 
 
 **Phase 10 is now underway.** The user asked to start with storage foundation and profile CRUD (implementation-plan steps 1-3). Done and verified: `storage.js` gained a profiles registry, per-child save keying (`explorerAcademy.save.<childId>`), an active-child pointer, and PIN hashing — every existing save function now takes an optional child ID and falls back to the original single-save key when no profile is active, so nothing else in the app changed behaviour yet. New `explorer-profiles.js` implements full CRUD (create/list/verify PIN/update/change PIN/delete/touch-last-played), with case-insensitive name-uniqueness checks, 4-8 digit PIN validation, and per-profile PIN isolation, all verified via headless Chromium against the real modules. The pre-existing single anonymous save isn't lost: `hasUnmigratedLegacySave()`/`createProfileFromLegacySave()` can move it into a first profile, verified against a seeded legacy save. Two new ADRs (024, 025) record the multi-child-profile decision and the explicit "PIN is a deterrent, not real security" stance; ADR-013 is marked Superseded rather than deleted. `503_DATA_MODEL.md`/`504_JSON_SCHEMA.md` updated to describe Explorer Profile as a real multi-instance entity and Save Game as keyed per profile.
 
-**Not started yet:** Home page rework (the "Who's Exploring Today?" selector and "+ New Explorer" form), "Switch Explorer" navigation, per-child accessibility settings, Explorer Profile stats display, and the Parent Mode PIN gate — none of the CRUD built so far is wired into any UI yet. Awaiting direction on whether to continue with the Home page rework next.
+**Home page rework and Switch Explorer are now done too.** `router.js`'s Home route checks for an active Explorer: if none, it shows "Who's Exploring Today?" (existing profiles with avatar/Explorer-since/last-played/streak/missions-with-progress, plus a collapsed "+ New Explorer" form); if one is active, it shows the normal dashboard (Continue Mission / Choose Campaign) scoped to them. Creating or selecting a profile activates it immediately and calls `touchLastPlayed()`. A profile created while an unmigrated legacy save exists adopts it automatically via `createProfileFromLegacySave()`, surfaced with an explanatory notice in the form. "Switch Explorer" is a persistent link in the footer nav (`components/navigation/nav.js`) with its own click handler in `router.js` that clears the active child before returning to Home — a deliberate design choice made during implementation: once a child is active, Home shows their dashboard directly (not the picker) so a single-child household isn't reprompted on every visit, and "Switch Explorer" is what makes changing identity an explicit, never-silent action. Verified end-to-end: two independently-created profiles never leaked mission progress, rewards, or Discovery Log entries into each other; the legacy-save migration works through the real UI, not just as a pure function; and a full regression pass (all 21 missions, Settings, Parent Mode) confirmed the legacy-key fallback still works perfectly when no profile has ever been created.
+
+**Not started yet:** per-child accessibility settings, Explorer Profile page stats display, and the Parent Mode PIN gate. Awaiting direction on which to tackle next — likely Parent Mode's PIN gate, since it's the more architecturally significant of the three.
