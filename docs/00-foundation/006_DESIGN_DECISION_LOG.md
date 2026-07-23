@@ -403,7 +403,7 @@ Parent Mode reuses the same validated loaders (`campaign-loader.js`, `mission-en
 
 **Status**
 
-Accepted
+Superseded by ADR-024
 
 ### Context
 
@@ -744,6 +744,74 @@ ADR-009 established that parents choose a session duration and the Scheduler ada
 ### Affected Documents
 
 504_JSON_SCHEMA.md (Session Configuration)
+
+---
+
+# ADR-024
+
+## Multi-Child Explorer Profiles, Each With Their Own PIN
+
+**Status**
+
+Accepted
+
+### Context
+
+The platform had exactly one implicit, anonymous save per device (ADR-013's context). The user wants multiple named children to share one device, each with independent progress, and wants a parent to be able to check a specific child's Parent Mode dashboard without seeing another child's data. ADR-013 accepted a session-only confirmation specifically because "no PIN field exists... adding one would be a storage-schema change beyond this milestone" — that constraint no longer applies once this milestone is explicitly about adding one.
+
+### Decision
+
+Explorer Profile becomes a real, multi-instance, top-level entity (`explorerAcademy.profiles` in `localStorage`: id, displayName, avatar, pinHash, createdAt, lastPlayedAt, streak) instead of a single field nested in one Save Game. Each profile's PIN is per-child, not shared across children. Save Game becomes keyed per Explorer Profile ID (`explorerAcademy.save.<childId>`) instead of a single implicit save. Until a profile is created and made active, the platform falls back to the original single save key unchanged, so existing behaviour isn't disturbed mid-migration.
+
+### Alternatives Considered
+
+One shared family PIN protecting Parent Mode for every child (rejected by the user — per-child was explicitly requested, matching "ask for the PIN based on child name").
+
+### Rationale
+
+A per-child PIN matches how the feature was actually requested and lets different children's data stay genuinely separate, not just cosmetically labelled. Falling back to the legacy key when no profile is active keeps every commit in this milestone runnable without needing an atomic cutover.
+
+### Consequences
+
+`storage.js`'s save-reading/writing functions all gained an optional trailing `childId` parameter. A new `explorer-profiles.js` module owns profile CRUD and PIN logic; `storage.js` remains the only module touching `localStorage` directly. Supersedes ADR-013.
+
+### Affected Documents
+
+503_DATA_MODEL.md (Explorer Profile, Save Game), 504_JSON_SCHEMA.md (Explorer Profile, Save Game)
+
+---
+
+# ADR-025
+
+## Parent PIN Is a Client-Side-Hashed Deterrent, Not Real Security
+
+**Status**
+
+Accepted
+
+### Context
+
+ADR-024 adds a PIN per child. This is a fully static, backend-less application (Design Constraints, Technology Constraints) — there is no server to hold a secret away from the device the PIN is meant to gate.
+
+### Decision
+
+PINs are hashed with the browser's built-in Web Crypto API (`crypto.subtle.digest('SHA-256', ...)`) before being stored, and only ever compared as hashes. No new dependency is introduced. There is deliberately no PIN-recovery flow.
+
+### Alternatives Considered
+
+Storing the PIN as plain text (rejected — trivially visible in `localStorage`/devtools for zero effort). A "forgot PIN" recovery flow (rejected — impossible to build honestly without a backend of some kind; any client-side-only "recovery" would just be a second bypass mechanism).
+
+### Rationale
+
+Hashing prevents the PIN from being casually visible in storage, but this is explicitly communicated as a deterrent, not access control: the child necessarily has access to the same browser/device the hash lives in, and could still clear `localStorage` (losing that profile's PIN, not bypassing it) or, with enough technical curiosity, defeat any client-only scheme. Setting the right expectation with the user mattered more than pretending otherwise.
+
+### Consequences
+
+Forgetting a PIN means resetting that child's profile — there is no recovery path. PIN changes can only happen from inside Parent Mode itself (after entering the current PIN), never from the child-facing Settings page, so a child cannot lock a parent out by changing it.
+
+### Affected Documents
+
+504_JSON_SCHEMA.md (Explorer Profile)
 
 ---
 

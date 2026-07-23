@@ -425,7 +425,7 @@ Includes
 Status
 
 ```
-PLANNED — full implementation plan written to CURRENT_TASK.md as "Milestone 11"; awaiting user approval to begin
+IN PROGRESS — storage foundation and profile CRUD complete and verified; Home/Settings/Parent Mode UI not started
 ```
 
 Goal
@@ -434,11 +434,11 @@ Turn the single implicit, anonymous save into multiple named child profiles, eac
 
 Checklist
 
-- [ ] Storage foundation: profiles index, per-child save keying, active-child pointer, PIN hashing (Web Crypto SHA-256)
+- [x] Storage foundation: profiles index, per-child save keying, active-child pointer, PIN hashing (Web Crypto SHA-256)
 
-- [ ] Migration path for the pre-existing single-key save
+- [x] Migration path for the pre-existing single-key save (storage/logic layer done; not yet wired into any UI prompt)
 
-- [ ] Profile CRUD (create/list/verify PIN/update/change PIN/touch last-played)
+- [x] Profile CRUD (create/list/verify PIN/update/change PIN/delete/touch last-played)
 
 - [ ] Home page: "Who's Exploring Today?" selector + inline "+ New Explorer" form
 
@@ -637,4 +637,8 @@ The user then asked to clear the remaining six deferred items, all now done exce
 
 **That plan has since grown substantially.** The user wants multiple named children able to share one device, each with fully independent saved state, selected explicitly on Home, with Parent Mode gated per-child by a PIN the parent sets when creating that child's profile. A clarifying round resolved the real ambiguities: PIN is per-child (not shared), hashed client-side via the Web Crypto API but explicitly acknowledged as a deterrent only (no backend, no recovery flow — losing a PIN means resetting that profile), new-child creation happens inline on Home ("+ New Explorer"), Home always shows a "Who's Exploring Today?" selector rather than auto-resuming (plus a persistent "Switch Explorer" link everywhere), and selecting a child loads only their own state (no per-child content restrictions). Also confirmed in scope: per-child session duration and accessibility settings, plus Home-screen stats (Explorer-since date, last-played date, streak count, total missions completed). This is now written up as **Phase 10 — Explorer Profiles & Multi-Child Support** above and "Milestone 11" in `CURRENT_TASK.md`, with a full implementation plan (storage redesign, migration path, profile CRUD, Home/Settings/Explorer-Profile/Parent-Mode changes, new ADR(s) superseding ADR-013) — not started, awaiting explicit approval to begin.
 
-Testing (now Phase 11, renumbered to make room for Phase 10 above) and Campaign Release (now Phase 12) remain the phases after this. Awaiting user direction on whether to begin Phase 10 (Explorer Profiles) now, adjust its scope, or proceed straight to Testing instead.
+Testing (now Phase 11, renumbered to make room for Phase 10 above) and Campaign Release (now Phase 12) remain the phases after this.
+
+**Phase 10 is now underway.** The user asked to start with storage foundation and profile CRUD (implementation-plan steps 1-3). Done and verified: `storage.js` gained a profiles registry, per-child save keying (`explorerAcademy.save.<childId>`), an active-child pointer, and PIN hashing — every existing save function now takes an optional child ID and falls back to the original single-save key when no profile is active, so nothing else in the app changed behaviour yet. New `explorer-profiles.js` implements full CRUD (create/list/verify PIN/update/change PIN/delete/touch-last-played), with case-insensitive name-uniqueness checks, 4-8 digit PIN validation, and per-profile PIN isolation, all verified via headless Chromium against the real modules. The pre-existing single anonymous save isn't lost: `hasUnmigratedLegacySave()`/`createProfileFromLegacySave()` can move it into a first profile, verified against a seeded legacy save. Two new ADRs (024, 025) record the multi-child-profile decision and the explicit "PIN is a deterrent, not real security" stance; ADR-013 is marked Superseded rather than deleted. `503_DATA_MODEL.md`/`504_JSON_SCHEMA.md` updated to describe Explorer Profile as a real multi-instance entity and Save Game as keyed per profile.
+
+**Not started yet:** Home page rework (the "Who's Exploring Today?" selector and "+ New Explorer" form), "Switch Explorer" navigation, per-child accessibility settings, Explorer Profile stats display, and the Parent Mode PIN gate — none of the CRUD built so far is wired into any UI yet. Awaiting direction on whether to continue with the Home page rework next.

@@ -2,11 +2,11 @@
 
 ## Phase
 
-Unscheduled — Milestone 11: Multi-Child Explorer Profiles — PLANNED, NOT STARTED
+Unscheduled — Milestone 11: Multi-Child Explorer Profiles — IN PROGRESS (steps 1-3 of 11 complete)
 
 ## Milestone
 
-**Milestone 11 — Multi-Child Explorer Profiles, Per-Child Save Slots, and PIN-Gated Parent Mode.** This supersedes the earlier, narrower "Home & Explorer Profile Parity" draft — that work is now folded into this milestone's scope. This is a full implementation plan only, per CLAUDE.md's Milestone Lifecycle — awaiting explicit user approval before any code is written.
+**Milestone 11 — Multi-Child Explorer Profiles, Per-Child Save Slots, and PIN-Gated Parent Mode.** This supersedes the earlier, narrower "Home & Explorer Profile Parity" draft — that work is now folded into this milestone's scope. Implementation Plan steps 1 (Storage foundation), 2 (Migration), and 3 (Profile CRUD) are complete and verified; steps 4-10 (Home/Settings/Explorer-Profile/Parent-Mode UI, streak wiring, accessibility application) are not started. The user explicitly asked to begin with "storage foundation and profile CRUD first."
 
 ## Objective
 
@@ -45,10 +45,10 @@ The platform today has exactly one implicit, anonymous save (`explorerAcademy.sa
 
 ## Implementation Plan
 
-1. **Storage foundation**: implement the profiles index, per-child save keying, active-child pointer, and `hashPin()` (Web Crypto SHA-256). Refactor every existing per-save function in `storage.js` to be child-scoped.
-2. **Migration**: on first load after this ships, if the old single-key `explorerAcademy.save` exists and no profiles exist yet, prompt once to create a first profile (name + PIN) from that existing data, rather than silently discarding it.
-3. **Profile CRUD**: `listProfiles()`, `createProfile()`, `verifyProfilePin()`, `updateProfile()`, `changePin()`, `touchLastPlayed()`.
-4. **Home page rework**: default "Who's Exploring Today?" selector (avatar, name, Explorer-since, last-played, streak, missions-completed count per profile) + "+ New Explorer" inline form (name + PIN, both required). Selecting a profile sets the active child and reveals normal Home content scoped to them.
+1. ✅ **Storage foundation** — DONE. `storage.js` gained a profiles registry (`loadProfiles`/`saveProfiles`), an active-child pointer (`getActiveChildId`/`setActiveChildId`), and per-child save keying (`explorerAcademy.save.<childId>`). Every existing save function (`saveCurrentSession`, `loadCurrentSession`, `appendDiscoveryLogEntry`, `loadDiscoveryLog`, `appendEarnedRewards`, `loadEarnedRewards`, `saveSettings`, `loadSettings`) now takes an optional trailing `childId`, defaulting to the active child. With no active child set, every function falls back to the original single `explorerAcademy.save` key, so nothing else in the app needed to change yet.
+2. ✅ **Migration** — DONE at the storage/logic layer. `storage.js` exposes `hasLegacySave()`/`migrateLegacySaveTo()`/`clearLegacySave()`; `explorer-profiles.js` exposes `hasUnmigratedLegacySave()`/`createProfileFromLegacySave({ displayName, avatar, pin })`, which creates a profile and moves the legacy save's `currentSession`/`discoveryLog`/`earnedRewards`/`settings` into it. **Not yet wired into any UI** — that's Home's job in step 4, once it exists to actually prompt for a name/PIN.
+3. ✅ **Profile CRUD** — DONE. New `portal/js/explorer-profiles.js`: `listProfiles()`, `findProfile()`, `getActiveChild()`, `selectActiveChild()`, `createProfile({ displayName, avatar, pin })` (validates non-empty trimmed name, case-insensitive uniqueness, 4-8 digit PIN), `verifyProfilePin(childId, pin)`, `updateProfile(childId, { displayName, avatar })`, `changePin(childId, { currentPin, newPin })`, `deleteProfile(childId)`, `touchLastPlayed(childId)` (calendar-day streak tracking). PINs are hashed via `crypto.subtle.digest('SHA-256', ...)` and never stored or compared as plain text.
+4. **Home page rework** (not started): default "Who's Exploring Today?" selector (avatar, name, Explorer-since, last-played, streak, missions-completed count per profile) + "+ New Explorer" inline form (name + PIN, both required). Selecting a profile sets the active child and reveals normal Home content scoped to them.
 5. **Switch Explorer**: persistent nav-level link/button on every learner-shell route, returning to Home's selector without needing a full navigation detour.
 6. **Settings page**: add accessibility controls (font scale, high contrast, reduced motion) for the active child, alongside the existing (now implicitly per-child) session duration control. No PIN control here.
 7. **Explorer Profile page**: surface Explorer-since, last-played, streak, and total missions completed (a count; if a time figure is shown, explicitly labelled "estimated," summed from completed missions' own `estimatedTime` fields).
@@ -69,17 +69,26 @@ Cross-device sync or any hosting/backend. Save export/import as a downloadable f
 - PINs are never stored or displayed as plain text anywhere (hashed at rest).
 - Migration path does not silently destroy pre-existing single-profile save data.
 
-## Manual Verification (planned)
+## Manual Verification
 
-Create two child profiles with different PINs; play a mission's reflection as each; confirm rewards/Discovery Log/settings never cross between them. Confirm Home's selector always appears on a fresh visit and after "Switch Explorer." Confirm Parent Mode rejects a wrong PIN and a PIN belonging to a different child, and only shows the correct child's dashboard on success. Confirm changing accessibility/duration settings under one child never affects the other. Confirm the migration path against a save created before this milestone.
+**Steps 1-3 (done now), via headless Chromium against the real modules (not a mock):**
+
+- Created two profiles ("Jamie"/"Alex") with different PINs; confirmed a duplicate name (case-insensitive) is rejected, an invalid (non-4-8-digit) PIN is rejected, each profile's PIN only verifies against its own hash (Alex's PIN correctly fails against Jamie's profile), a rename correctly checks uniqueness against the other profile, `changePin` invalidates the old PIN immediately, `touchLastPlayed` increments a streak once and does not double-count a same-day repeat call, and `deleteProfile` removes exactly the targeted profile and clears the active-child pointer only if it was the one deleted.
+- Confirmed the **legacy-key fallback**: with no profile ever created or made active, existing Settings/mission-reflection/reward-earning/Discovery-Log flows all behave exactly as before this milestone (regression-tested via the same flows used throughout Phases 2-9) — zero risk from the `storage.js` refactor to anyone not yet using profiles.
+- Confirmed the **migration path**: seeded a legacy save (session/discoveryLog/settings) directly in `localStorage` the way a pre-Milestone-11 save would look, called `createProfileFromLegacySave()`, and confirmed the new profile's own keyed save contains the exact migrated data, the legacy key is cleared afterward, and `hasUnmigratedLegacySave()` correctly flips to `false`.
+- All test runs produced zero console/page errors.
+
+**Steps 4-11 (not started) verification remains as planned:** create two profiles end-to-end through the (not-yet-built) Home UI; confirm Parent Mode's PIN gate rejects a wrong PIN and a different child's correct PIN; confirm accessibility/duration settings never cross between children; confirm the migration prompt surfaces correctly on first load for an existing pre-Milestone-11 user.
 
 ## Deliverables
 
-Updated `storage.js`, new profile-management module, updated `settings.js`/`router.js`/`parent-mode.js`, updated CSS for accessibility states, updated `503_DATA_MODEL.md`/`504_JSON_SCHEMA.md`/`006_DESIGN_DECISION_LOG.md`, a new `TODO.md` phase entry, and manual verification notes.
+**Done:** `portal/js/storage.js` (profiles registry, per-child save keying, legacy fallback/migration primitives), new `portal/js/explorer-profiles.js` (profile CRUD, PIN hashing/verification, streak tracking), `docs/00-foundation/006_DESIGN_DECISION_LOG.md` (ADR-024, ADR-025; ADR-013 marked Superseded), `docs/50-content/503_DATA_MODEL.md` and `504_JSON_SCHEMA.md` (Explorer Profile / Save Game notes).
+
+**Remaining:** updated `settings.js` (accessibility), `router.js` (Home selector, Switch Explorer, Settings/Profile UI), `parent-mode.js` (PIN gate), CSS for accessibility states, and the `TODO.md` phase checklist ticked off as each lands.
 
 ## Completion Notes
 
-Not started — awaiting explicit user approval to begin implementation.
+In progress. Steps 1-3 of 11 complete and verified (see Manual Verification above). Next up, per the implementation plan: step 4, Home page rework — will check in before starting since it's the first step that changes what the learner actually sees.
 
 ---
 

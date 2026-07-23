@@ -599,6 +599,8 @@ knowledgeCores
 settings
 ```
 
+> **Note (added during Milestone 11 — Multi-Child Explorer Profiles):** implemented as `portal/js/explorer-profiles.js`'s profile object, stored in a registry (`explorerAcademy.profiles`) separate from any single Save Game — a device can hold several profiles. The actual required fields turned out to be `id`, `displayName` (this document's `explorerName`), `avatar`, `pinHash`, `createdAt`, `lastPlayedAt`, `streak: { count, lastPlayedDate }`. `currentCampaign`/`currentMission`/`rank`/`knowledgeCores`/`settings` are not duplicated on the profile — they live on that profile's own Save Game (`currentSession`, `earnedRewards`, `settings`) to avoid the same fact existing in two places. `pinHash` gates that profile's Parent Mode dashboard: hashed client-side via the Web Crypto API, deliberately a deterrent rather than real security (see ADR-025) since this platform has no backend to keep a secret away from the device the child uses.
+
 ---
 
 # Save Game
@@ -620,6 +622,8 @@ discoveryLog
 
 settings
 ```
+
+> **Note (added during Milestone 11):** a Save Game is now identified by which Explorer Profile ID it's keyed under (`explorerAcademy.save.<profileId>` in `localStorage`) rather than embedding an `explorerProfile` field — see 503_DATA_MODEL.md's equivalent note. `completedMissions`/`completedActivities` remain unimplemented, same as before this milestone (reward-engine.js/discovery-log.js's own entries are still the closest available signal of mission completion). Until a profile exists and is made active, saves fall back to a single legacy, unkeyed save for backward compatibility with pre-Milestone-11 data — `storage.js`'s `hasLegacySave()`/`migrateLegacySaveTo()`/`clearLegacySave()` support a one-time move into a newly created profile.
 
 ---
 

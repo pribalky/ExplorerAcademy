@@ -811,6 +811,8 @@ References:
 
 Platform-owned.
 
+> **Note (added during Milestone 11 — Multi-Child Explorer Profiles):** this entity is now implemented as a real, multiple-instance registry (`portal/js/explorer-profiles.js`, backed by `storage.js`), one device supporting several named children rather than a single implicit learner. Two fields not listed above turned out to be necessary in practice: a `pinHash` (see ADR-024/ADR-025 — gates that Explorer's Parent Mode dashboard, hashed client-side, deliberately a deterrent rather than real security since this platform has no backend) and a `streak` object (`{ count, lastPlayedDate }`, consecutive-calendar-days-played, kept on the profile rather than any single Save Game since it's a fact about the child across campaigns, not campaign progress). "Active Campaign" isn't tracked directly on the profile; each Save Game already records its own `currentSession`, so "active campaign" is derived from whichever Save Game a profile currently owns rather than duplicated here.
+
 ---
 
 # 23. Save Game
@@ -825,6 +827,8 @@ Stores learner progress.
 * Explorer ID
 * Campaign ID
 * Mission Progress
+
+> **Note (added during Milestone 11):** "Explorer ID" here now means a Save Game is keyed by (belongs to) exactly one Explorer Profile ID, rather than a single Save Game embedding one profile — each Explorer Profile can accumulate exactly one Save Game today (multi-campaign support per profile is unimplemented, same as before this milestone). Until a profile exists and is made active, the platform falls back to a single legacy save for backward compatibility with pre-Milestone-11 data.
 
 ### Optional
 
