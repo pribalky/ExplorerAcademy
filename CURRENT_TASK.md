@@ -2,61 +2,84 @@
 
 ## Phase
 
-Unscheduled (Platform Polish) — Home & Explorer Profile Parity — PROPOSED, NOT STARTED
+Unscheduled — Milestone 11: Multi-Child Explorer Profiles — PLANNED, NOT STARTED
 
 ## Milestone
 
-Bring the Home and Explorer Profile pages up to the responsibilities `601_HTML_ARCHITECTURE.md` documents for them. This is a proposed plan only, per CLAUDE.md's Milestone Lifecycle — awaiting user approval before implementation begins.
+**Milestone 11 — Multi-Child Explorer Profiles, Per-Child Save Slots, and PIN-Gated Parent Mode.** This supersedes the earlier, narrower "Home & Explorer Profile Parity" draft — that work is now folded into this milestone's scope. This is a full implementation plan only, per CLAUDE.md's Milestone Lifecycle — awaiting explicit user approval before any code is written.
 
 ## Objective
 
-The pre-Phase-10 audit's last deferred item: Home currently only shows a bare "Continue Mission" link (or nothing) instead of 601's documented welcome/continue/recent-discovery/achievements/campaign-selection; Explorer Profile only lists raw earned rewards with no name, avatar or progress statistics. Both gaps are already flagged in the code's own comments, so nothing here is a surprise — this plan exists so the user can decide when (or whether) to schedule the work, not to begin it now.
+The platform today has exactly one implicit, anonymous save (`explorerAcademy.save` in `localStorage`) and Parent Mode is a single global, unauthenticated dashboard. The user wants multiple named children to share one device, each with their own persisted state (rank, completed missions, earned rewards, Discovery Log, settings, accessibility preferences), selected explicitly on Home, with Parent Mode gated per-child by a PIN that parent sets when creating that child's profile. This is a genuine data-model and architecture change (turns the single Save Game into N Save Games behind a new Explorer Profile registry), decided through a clarifying round with the user rather than assumed:
+
+- **PIN is per-child**, not one shared family PIN.
+- **PIN is hashed client-side** via the browser's built-in Web Crypto API (`crypto.subtle.digest('SHA-256', ...)`) before storage — no new dependency, but explicitly acknowledged as a deterrent only, not real security: this app has no backend, so anyone with devtools access to the same browser/device (which the child necessarily has) could still inspect or clear it. There is no PIN-recovery flow for the same reason — forgetting a PIN means resetting that child's profile.
+- **New-child creation happens inline on Home** ("+ New Explorer" opens a small name + PIN form right there), not a separate admin page.
+- **Home always shows "Who's Exploring Today?" first** — it never silently auto-resumes the last-played child (protects siblings sharing a device) — but a persistent **"Switch Explorer"** link is available from every learner-shell page as a fast path back to that picker.
+- Selecting an *existing* child loads their own state and drives what they see next (rank, unlocked/completed missions, earned rewards) — nothing more exotic than "each child's own save genuinely drives their own experience." No per-child content restriction concept is being introduced.
+- Confirmed in scope: per-child session duration (a required consequence of adding profiles at all — the existing global duration setting becomes per-child), per-child accessibility preferences (font scale, high contrast, reduced motion), and Home-screen stats — Explorer-since date, last-played date, a simple streak count, and total missions completed (a count, or a clearly-labelled *estimated* time sum from missions' own `estimatedTime` fields — never presented as measured time, since no session timer exists; same honesty standard already applied in the Mission 6 answer-guide entry).
+- Explicitly **not** requested and therefore **not** in scope unless the user asks: cross-device sync/hosting, save export/import as a file, avatar image upload (a small fixed emoji set only), separate parent-account logins.
 
 ## Inputs
 
-- `docs/60-engineering/601_HTML_ARCHITECTURE.md` — Home Page section (Purpose, Primary Actions, Typical Layout) and Explorer Profile section (Responsibilities: name, avatar, completed campaigns, missions completed, discoveries recorded, achievements, favourite campaign, exploration statistics).
-- `docs/50-content/503_DATA_MODEL.md` — Explorer Profile entity (required: Explorer ID, Display Name, Active Campaign; optional: Rank, Achievements, Preferences).
-- Existing `storage.js`, `discovery-log.js`, `reward-engine.js`, and `parent-mode.js`'s existing "missions with recorded progress" derivation (union of earned-reward mission IDs and Discovery Log mission IDs) — reusable here rather than adding a new `completedMissions` storage field, per CLAUDE.md's "do not duplicate state."
+- `docs/50-content/503_DATA_MODEL.md` — Explorer Profile entity (Explorer ID, Display Name, Active Campaign; optional Rank, Achievements, Preferences) and Save Game entity (Save ID, Explorer ID, Campaign ID, Mission Progress) — this milestone is largely *finally implementing* these two entities as real, multiple, selectable things, rather than contradicting the data model.
+- `docs/50-content/504_JSON_SCHEMA.md` — Explorer Profile and Save Game required-field lists.
+- `docs/60-engineering/601_HTML_ARCHITECTURE.md` — Home Page, Explorer Profile, Settings and Parent Mode sections; Storage Manager's already-documented (never implemented) Import/Export responsibility is explicitly *not* being picked up here.
+- ADR-013 (Parent Access Is a Session-Only Confirmation, Not a PIN) — this milestone supersedes it with a new ADR; ADR-013 stays in the log with an updated status rather than being deleted, per the log's own "Superseded decisions remain in the log" rule.
+- Existing `storage.js` (single-key save shape), `settings.js` (session duration), `reward-engine.js`, `discovery-log.js`, `parent-mode.js` (existing per-mission progress derivation, reused rather than duplicated).
 
 ## Relevant Documentation
 
-`601_HTML_ARCHITECTURE.md` (Home Page, Explorer Profile, Settings sections), `503_DATA_MODEL.md` (Explorer Profile).
+`503_DATA_MODEL.md` (Explorer Profile, Save Game), `504_JSON_SCHEMA.md` (Explorer Profile, Save Game, Session Configuration), `601_HTML_ARCHITECTURE.md` (Home Page, Explorer Profile, Settings, Parent Mode, Storage Manager), `006_DESIGN_DECISION_LOG.md` (ADR-013, to be superseded).
 
 ## Files Expected to Change
 
-- `portal/js/storage.js` — add an `explorerProfile` field (`displayName`, `avatar`, `createdAt`) to the save shape, with `saveExplorerProfile()`/`loadExplorerProfile()`.
-- `portal/js/settings.js` — add `getExplorerProfile()`/`setExplorerProfile()`, since 601 places "explorer profile" management under the Settings page's own Responsibilities, not a separate editor.
-- `portal/js/router.js` — extend `renderSettings` with a name + emoji-avatar picker (a small fixed emoji set, not image upload — keeps this within the "no external runtime dependencies" constraint); extend `renderHome` with a recent-discovery line and an achievements count when a session exists, and a clearer "Choose Campaign" call to action when none does; extend `renderProfile` with the stored name/avatar and real progress stats (missions with recorded progress out of total, reusing Parent Mode's existing derivation logic for consistency between the two views).
+- `portal/js/storage.js` — the biggest change. New: a profiles index (`explorerAcademy.profiles`), a per-child save keyed by child ID (`explorerAcademy.save.<childId>`, replacing the single `explorerAcademy.save` key), an active-child pointer (`explorerAcademy.activeChildId`), PIN hashing/verification, and a one-time migration path for the single pre-existing anonymous save. Every existing read/write function (`saveCurrentSession`, `loadCurrentSession`, `appendDiscoveryLogEntry`, `loadDiscoveryLog`, `appendEarnedRewards`, `loadEarnedRewards`, `saveSettings`, `loadSettings`) needs to become child-scoped: implicitly the active child for learner-shell callers, or an explicit child ID for Parent Mode callers checking a specific (not necessarily "active") child.
+- `portal/js/settings.js` — extend with accessibility getters/setters (`getAccessibilityPreferences()`/`setAccessibilityPreferences()`); session duration functions become implicitly child-scoped via the `storage.js` refactor, no signature change needed at this layer.
+- New `portal/js/explorer-profiles.js` (or fold into `storage.js` if it stays small) — `listProfiles()`, `createProfile({ displayName, avatar, pin })`, `verifyProfilePin(childId, pin)`, `updateProfile(childId, { displayName, avatar })`, `changePin(childId, { currentPin, newPin })`, `touchLastPlayed(childId)` (updates `lastPlayedAt` and the streak counter by calendar-day comparison).
+- `portal/js/router.js` — Home becomes a two-state page: an Explorer selector ("Who's Exploring Today?" — existing profiles with avatar/Explorer-since/last-played/streak, plus "+ New Explorer") shown by default, and the existing Home content (Continue Mission, achievements, recent discovery) shown once a child is selected for this visit. A "Switch Explorer" link is added to the shared navigation, visible on every learner-shell route. Settings page gains accessibility controls. Explorer Profile page gains the stats block.
+- `portal/js/parent-mode.js` — access gate becomes: pick a child by name (from the profiles index — names alone aren't sensitive) → enter that child's PIN (verified via hash comparison) → dashboard renders scoped to that child's save slot instead of the single global save. Add a "Change PIN" control inside Parent Mode itself (requires the current PIN) — deliberately the *only* place a PIN can be changed, since a child managing their own play session must never be able to lock a parent out.
+- `portal/css/*.css` — accessibility classes (large-font, high-contrast, reduced-motion) applied at the shell level.
+- `docs/50-content/503_DATA_MODEL.md` / `504_JSON_SCHEMA.md` — document Explorer Profile as a real multi-instance entity with a PIN field, and Save Game as keyed per Explorer Profile.
+- `docs/00-foundation/006_DESIGN_DECISION_LOG.md` — new ADR(s) for multi-child profiles + per-child PIN (superseding ADR-013), and for the PIN-as-deterrent security model.
 
 ## Implementation Plan
 
-1. `storage.js`: additive `explorerProfile` field, default `{ displayName: null, avatar: null, createdAt: null }`.
-2. `settings.js`: `getExplorerProfile()` (returns stored profile or a null-name default), `setExplorerProfile({ displayName, avatar })` (validates a non-empty trimmed name; avatar restricted to a small fixed emoji list).
-3. `router.js` Settings page: add the name/avatar form above or below the existing session-duration form.
-4. `router.js` Home page: when a session exists, add "Achievements: N earned" and "Most recent discovery: <prompt>, <date>" lines (from `getEarnedRewards()`/`getDiscoveryLog()`, already available, no new data needed); when none exists, replace the placeholder text with a clear "Choose Campaign" link to `/campaigns` (already implemented).
-5. `router.js` Explorer Profile page: header shows `displayName` (or "Unnamed Explorer" with a link to Settings if unset) and `avatar`; add a stats block — missions with recorded progress / total missions in the installed campaign, matching Parent Mode's Progress Dashboard derivation exactly, so the two views never disagree.
+1. **Storage foundation**: implement the profiles index, per-child save keying, active-child pointer, and `hashPin()` (Web Crypto SHA-256). Refactor every existing per-save function in `storage.js` to be child-scoped.
+2. **Migration**: on first load after this ships, if the old single-key `explorerAcademy.save` exists and no profiles exist yet, prompt once to create a first profile (name + PIN) from that existing data, rather than silently discarding it.
+3. **Profile CRUD**: `listProfiles()`, `createProfile()`, `verifyProfilePin()`, `updateProfile()`, `changePin()`, `touchLastPlayed()`.
+4. **Home page rework**: default "Who's Exploring Today?" selector (avatar, name, Explorer-since, last-played, streak, missions-completed count per profile) + "+ New Explorer" inline form (name + PIN, both required). Selecting a profile sets the active child and reveals normal Home content scoped to them.
+5. **Switch Explorer**: persistent nav-level link/button on every learner-shell route, returning to Home's selector without needing a full navigation detour.
+6. **Settings page**: add accessibility controls (font scale, high contrast, reduced motion) for the active child, alongside the existing (now implicitly per-child) session duration control. No PIN control here.
+7. **Explorer Profile page**: surface Explorer-since, last-played, streak, and total missions completed (a count; if a time figure is shown, explicitly labelled "estimated," summed from completed missions' own `estimatedTime` fields).
+8. **Parent Mode rework**: name selector → PIN entry → hash-verified access → dashboard scoped to that child's save. Add "Change PIN" (requires current PIN) inside Parent Mode only.
+9. **Streak/last-played tracking**: `touchLastPlayed()` called on Home's child selection and on reflection completion; streak increments on a new calendar day since last play, resets after a missed day.
+10. **Accessibility application**: apply the active child's stored preferences (CSS classes on the shell) at app init and whenever Settings changes them.
+11. **Documentation**: update `503_DATA_MODEL.md`/`504_JSON_SCHEMA.md` for the now-real, multi-instance, PIN-bearing Explorer Profile and per-profile Save Game; add new ADR(s) to `006_DESIGN_DECISION_LOG.md` (superseding ADR-013); add a new `TODO.md` phase entry for this milestone.
 
 ## Out of Scope
 
-Avatar image upload or a custom asset library (a fixed emoji set only). Multi-campaign statistics or a "favourite campaign" field — only one campaign is installed today, and inventing cross-campaign comparison logic for a single campaign would be speculative. Accessibility, audio and offline preferences — a separate, already-documented Settings gap, not this milestone's target.
+Cross-device sync or any hosting/backend. Save export/import as a downloadable file (a good future idea, but not requested this round). PIN recovery (none is possible without a backend — losing a PIN means resetting that child's profile; this is stated plainly to the user rather than engineered around). Avatar image upload (fixed emoji set only). Separate parent-account logins or multiple PINs per child. Per-child content/mission restrictions (explicitly confirmed out of scope — every child sees the same campaign content, just their own progress through it).
 
 ## Success Criteria
 
-- Home shows more than a bare link in both the "session in progress" and "no session" states, using only already-stored data.
-- Explorer Profile shows a settable display name/avatar and a real missions-with-progress statistic that matches Parent Mode's own dashboard number for the same save data.
-- No new campaign-specific logic anywhere in the platform layer; no duplicated progress-tracking state.
+- Two differently-named child profiles on the same device/browser have completely independent saves (mission progress, rewards, Discovery Log, session duration, accessibility settings) that never leak into each other.
+- Home always requires an explicit selection before showing any child's content; "Switch Explorer" reliably returns to that selector from anywhere in the learner shell.
+- Parent Mode requires picking the correct child's name and that child's specific PIN before showing any of that child's data; a wrong PIN shows an error and allows retry; a correct PIN never shows another child's data.
+- PINs are never stored or displayed as plain text anywhere (hashed at rest).
+- Migration path does not silently destroy pre-existing single-profile save data.
 
 ## Manual Verification (planned)
 
-Set a name/avatar via Settings, confirm it appears on Explorer Profile. Complete a mission's reflection, confirm Home's recent-discovery line and Profile's stats update, and that Profile's "missions with progress" number matches Parent Mode's own dashboard for the same browser session. Confirm no regression to the existing Session Duration control or reward-earning flow.
+Create two child profiles with different PINs; play a mission's reflection as each; confirm rewards/Discovery Log/settings never cross between them. Confirm Home's selector always appears on a fresh visit and after "Switch Explorer." Confirm Parent Mode rejects a wrong PIN and a PIN belonging to a different child, and only shows the correct child's dashboard on success. Confirm changing accessibility/duration settings under one child never affects the other. Confirm the migration path against a save created before this milestone.
 
 ## Deliverables
 
-Updated `storage.js`, `settings.js`, `router.js`; manual verification notes; `TODO.md` updated to record this as a completed milestone once done.
+Updated `storage.js`, new profile-management module, updated `settings.js`/`router.js`/`parent-mode.js`, updated CSS for accessibility states, updated `503_DATA_MODEL.md`/`504_JSON_SCHEMA.md`/`006_DESIGN_DECISION_LOG.md`, a new `TODO.md` phase entry, and manual verification notes.
 
 ## Completion Notes
 
-Not started — awaiting user approval to begin.
+Not started — awaiting explicit user approval to begin implementation.
 
 ---
 

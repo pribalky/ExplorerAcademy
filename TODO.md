@@ -420,7 +420,47 @@ Includes
 
 ---
 
-# Phase 10 — Testing
+# Phase 10 — Explorer Profiles & Multi-Child Support
+
+Status
+
+```
+PLANNED — full implementation plan written to CURRENT_TASK.md as "Milestone 11"; awaiting user approval to begin
+```
+
+Goal
+
+Turn the single implicit, anonymous save into multiple named child profiles, each with their own persisted state, selected explicitly on Home, with Parent Mode gated per-child by a PIN.
+
+Checklist
+
+- [ ] Storage foundation: profiles index, per-child save keying, active-child pointer, PIN hashing (Web Crypto SHA-256)
+
+- [ ] Migration path for the pre-existing single-key save
+
+- [ ] Profile CRUD (create/list/verify PIN/update/change PIN/touch last-played)
+
+- [ ] Home page: "Who's Exploring Today?" selector + inline "+ New Explorer" form
+
+- [ ] "Switch Explorer" navigation affordance on every learner-shell route
+
+- [ ] Per-child accessibility settings (font scale, high contrast, reduced motion)
+
+- [ ] Explorer Profile stats: Explorer-since, last-played, streak, missions completed
+
+- [ ] Parent Mode: per-child name + PIN gate, scoped dashboard, in-Parent-Mode "Change PIN"
+
+- [ ] Streak/last-played tracking
+
+- [ ] Documentation: 503_DATA_MODEL.md/504_JSON_SCHEMA.md updated for multi-instance Explorer Profile + per-profile Save Game; new ADR(s) superseding ADR-013
+
+Deliverable
+
+Two or more children can share one device with fully independent progress, and a parent can view any specific child's Parent Mode dashboard only after that child's own PIN.
+
+---
+
+# Phase 11 — Testing
 
 Checklist
 
@@ -440,9 +480,11 @@ Checklist
 
 - [ ] Parent Mode
 
+- [ ] Multi-child profile isolation (Phase 10)
+
 ---
 
-# Phase 11 — Campaign Release
+# Phase 12 — Campaign Release
 
 Checklist
 
@@ -593,4 +635,6 @@ The user then asked to clear the remaining six deferred items, all now done exce
 - **Fixed: CLAUDE.md doc-path typo.** `docs/40-campaigns/503_DATA_MODEL.md`/`504_JSON_SCHEMA.md` corrected to their real location, `docs/50-content/`.
 - **Planned, not started: Home/Explorer Profile parity.** Rather than implementing this without a check-in, wrote a full proposed milestone plan into `CURRENT_TASK.md` (objective, files, step-by-step implementation plan, explicit scope boundaries, success criteria) and left it awaiting approval, per CLAUDE.md's Milestone Lifecycle.
 
-Only remaining phase before release is Phase 10 (Testing). Awaiting user direction on that or on approving the proposed Home/Explorer Profile milestone.
+**That plan has since grown substantially.** The user wants multiple named children able to share one device, each with fully independent saved state, selected explicitly on Home, with Parent Mode gated per-child by a PIN the parent sets when creating that child's profile. A clarifying round resolved the real ambiguities: PIN is per-child (not shared), hashed client-side via the Web Crypto API but explicitly acknowledged as a deterrent only (no backend, no recovery flow — losing a PIN means resetting that profile), new-child creation happens inline on Home ("+ New Explorer"), Home always shows a "Who's Exploring Today?" selector rather than auto-resuming (plus a persistent "Switch Explorer" link everywhere), and selecting a child loads only their own state (no per-child content restrictions). Also confirmed in scope: per-child session duration and accessibility settings, plus Home-screen stats (Explorer-since date, last-played date, streak count, total missions completed). This is now written up as **Phase 10 — Explorer Profiles & Multi-Child Support** above and "Milestone 11" in `CURRENT_TASK.md`, with a full implementation plan (storage redesign, migration path, profile CRUD, Home/Settings/Explorer-Profile/Parent-Mode changes, new ADR(s) superseding ADR-013) — not started, awaiting explicit approval to begin.
+
+Testing (now Phase 11, renumbered to make room for Phase 10 above) and Campaign Release (now Phase 12) remain the phases after this. Awaiting user direction on whether to begin Phase 10 (Explorer Profiles) now, adjust its scope, or proceed straight to Testing instead.
