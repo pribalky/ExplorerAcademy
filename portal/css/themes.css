@@ -1,1 +1,23 @@
-/* themes.css — Placeholder. Colour and theme variables. No rules yet (Milestone 1.1). */
+/* themes.css — High-contrast theme.
+   A full colour/theme system remains a future milestone; the rule below
+   exists specifically to make Milestone 11's per-child "high contrast"
+   accessibility setting have a real, visible effect. */
+
+html.a11y-high-contrast {
+  background: #000;
+  color: #fff;
+}
+
+html.a11y-high-contrast a {
+  color: #ffff00;
+}
+
+html.a11y-high-contrast button {
+  background: #000;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+html.a11y-high-contrast :focus-visible {
+  outline: 3px solid #ffff00;
+}

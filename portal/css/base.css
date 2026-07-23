@@ -1,1 +1,20 @@
-/* base.css — Placeholder. Resets and root typography. No rules yet (Milestone 1.1). */
+/* base.css — Root typography and accessibility behaviour.
+   General resets/layout typography remain a future milestone; the rules
+   below exist specifically to make Milestone 11's per-child accessibility
+   settings (font scale, reduced motion) have a real, visible effect. */
+
+html.a11y-font-large {
+  font-size: 125%;
+}
+
+html.a11y-font-x-large {
+  font-size: 150%;
+}
+
+html.a11y-reduced-motion,
+html.a11y-reduced-motion * {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}

@@ -425,7 +425,7 @@ Includes
 Status
 
 ```
-IN PROGRESS — storage foundation, profile CRUD, Home page rework (selector + Switch Explorer), and Parent Mode PIN gate complete and verified; per-child Settings/Explorer-Profile-stats UI not started
+COMPLETE — all 11 implementation-plan steps delivered and verified; see CURRENT_TASK.md's "Previous Milestone — Milestone 11" for full detail
 ```
 
 Goal
@@ -436,7 +436,7 @@ Checklist
 
 - [x] Storage foundation: profiles index, per-child save keying, active-child pointer, PIN hashing (Web Crypto SHA-256)
 
-- [x] Migration path for the pre-existing single-key save (storage/logic layer done; not yet wired into any UI prompt)
+- [x] Migration path for the pre-existing single-key save (wired into Home's "+ New Explorer" form)
 
 - [x] Profile CRUD (create/list/verify PIN/update/change PIN/delete/touch last-played)
 
@@ -444,15 +444,15 @@ Checklist
 
 - [x] "Switch Explorer" navigation affordance on every learner-shell route
 
-- [ ] Per-child accessibility settings (font scale, high contrast, reduced motion)
+- [x] Per-child accessibility settings (font scale, high contrast, reduced motion)
 
-- [ ] Explorer Profile stats: Explorer-since, last-played, streak, missions completed
+- [x] Explorer Profile stats: Explorer-since, last-played, streak, missions completed
 
 - [x] Parent Mode: per-child name + PIN gate, scoped dashboard, in-Parent-Mode "Change PIN"
 
-- [ ] Streak/last-played tracking
+- [x] Streak/last-played tracking (Home selection and reflection completion, idempotent same-day)
 
-- [ ] Documentation: 503_DATA_MODEL.md/504_JSON_SCHEMA.md updated for multi-instance Explorer Profile + per-profile Save Game; new ADR(s) superseding ADR-013
+- [x] Documentation: 503_DATA_MODEL.md/504_JSON_SCHEMA.md updated for multi-instance Explorer Profile + per-profile Save Game; ADR-024/ADR-025 added, ADR-013 marked Superseded
 
 Deliverable
 
@@ -645,4 +645,6 @@ Testing (now Phase 11, renumbered to make room for Phase 10 above) and Campaign 
 
 **Parent Mode's PIN gate is now done too**, at the user's explicit request to tackle it next. `parent-mode.js`'s old one-click "I'm a parent" gate is replaced with a three-step flow: pick which Explorer by name (`renderExplorerPicker` — names alone aren't sensitive), enter that Explorer's own PIN (`renderPinGate`, hash-verified via `explorer-profiles.js`'s `verifyProfilePin()`, retryable with no lockout since a PIN here is a deterrent per ADR-025, not real security with a backend to reset against), then a dashboard scoped to exactly that child's save. `reward-engine.js`/`discovery-log.js`'s getters gained an optional `childId` parameter so Parent Mode can read a specific (not necessarily learner-shell-active) child's data. A "Change PIN" control lives at the bottom of the dashboard — requiring the current PIN — and is deliberately the *only* place a PIN can change, since a child managing their own play session must never be able to lock a parent out. Verified end-to-end: a wrong PIN and a different child's correct PIN are both rejected against the wrong gate; a correct PIN shows only that child's data (rewards, Discovery Log entries) with zero leakage from a sibling profile in either direction; changing a PIN immediately invalidates the old one; and the zero-profiles case shows a friendly message instead of a broken picker. Full regression (21 missions, Home, Settings, Parent Mode) confirms the legacy-key fallback is untouched.
 
-**Not started yet:** per-child accessibility settings (Settings page) and Explorer Profile page stats display (Explorer-since/last-played/streak/missions-completed, mirroring what Home's selector already shows per-profile). These are the two smaller, lower-risk pieces left in Milestone 11. Awaiting direction on whether to continue with those next.
+**Milestone 11 is now fully complete.** The last two pieces: Settings gained an Accessibility section (text-size radios, high-contrast and reduced-motion checkboxes) backed by new `getAccessibilityPreferences()`/`setAccessibilityPreferences()`/`applyAccessibilityPreferences()` in `settings.js` — the last of these toggles CSS classes on `<html>`, styled by genuinely new rules in `base.css`/`themes.css` (the first real content either file has had since the Milestone 1.1 placeholder). It's called at app bootstrap, whenever a profile is activated or cleared, and immediately after saving new preferences, so two children's accessibility settings never bleed into each other and a reload never flashes unstyled content — verified via `getComputedStyle` actually changing (16px → 24px font, black/white high-contrast colors), not just a stored value with nothing rendering it. Explorer Profile page gained a stats block (Explorer-since, last-played, streak, missions-with-progress count) reusing Home's exact same counting helper so the two views can never disagree. Also completed while in the area: `touchLastPlayed()` now fires on reflection completion too, not just Home selection (confirmed idempotent — no double-counting on the same day).
+
+All 11 implementation-plan steps are done and verified across four incremental, individually-tested commits. The platform now genuinely supports multiple named children sharing one device: independent saves, independent PIN-gated Parent Mode views, independent accessibility/duration preferences, independent progress stats — with the original single anonymous save preserved via migration, not discarded. Phase 11 (Testing) is the only phase left on the roadmap. Awaiting user direction.

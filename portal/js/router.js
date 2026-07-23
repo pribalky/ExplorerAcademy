@@ -14,7 +14,15 @@ import { scheduleActivities } from './scheduler.js';
 import { saveCurrentSession, loadCurrentSession, loadEarnedRewards, loadDiscoveryLog } from './storage.js';
 import { recordReflection, getDiscoveryLog } from './discovery-log.js';
 import { evaluateMissionRewards, getEarnedRewards, resolveRewardDetails } from './reward-engine.js';
-import { getSessionDuration, setSessionDuration, SUPPORTED_SESSION_DURATIONS } from './settings.js';
+import {
+  getSessionDuration,
+  setSessionDuration,
+  SUPPORTED_SESSION_DURATIONS,
+  getAccessibilityPreferences,
+  setAccessibilityPreferences,
+  applyAccessibilityPreferences,
+  FONT_SCALES
+} from './settings.js';
 import { fetchJson } from './utils.js';
 import {
   listProfiles,
@@ -306,6 +314,11 @@ function buildReflectionSection(section, mission, missionId) {
       feedback.textContent = 'Saved to your Discovery Log.';
       textarea.value = '';
 
+      const activeChild = getActiveChild();
+      if (activeChild) {
+        touchLastPlayed(activeChild.id);
+      }
+
       const rewardResult = evaluateMissionRewards({
         campaignId: 'campaign01',
         missionId,
@@ -389,9 +402,42 @@ function countMissionsWithProgress(childId) {
   return missionIds.size;
 }
 
+// Explorer Profile page stats (Milestone 11 step 7). Reuses
+// countMissionsWithProgress() rather than a separate calculation so this
+// number can never drift from what Home's selector already shows for the
+// same profile. Shows a count, not an "estimated time" figure — avoids
+// parsing missions' free-text estimatedTime strings for a nice-to-have.
+function renderExplorerStats(section, child) {
+  const heading = document.createElement('h3');
+  heading.textContent = [child.avatar, child.displayName].filter(Boolean).join(' ');
+  section.appendChild(heading);
+
+  const dl = document.createElement('dl');
+  const addRow = (term, value) => {
+    const dt = document.createElement('dt');
+    dt.textContent = term;
+    const dd = document.createElement('dd');
+    dd.textContent = value;
+    dl.append(dt, dd);
+  };
+
+  const created = new Date(child.createdAt).toLocaleDateString();
+  const lastPlayed = child.lastPlayedAt ? new Date(child.lastPlayedAt).toLocaleDateString() : 'Never';
+  const streakCount = child.streak?.count ?? 0;
+  const missionsWithProgress = countMissionsWithProgress(child.id);
+
+  addRow('Explorer since', created);
+  addRow('Last played', lastPlayed);
+  addRow('Streak', `${streakCount} day${streakCount === 1 ? '' : 's'}`);
+  addRow('Missions with progress', String(missionsWithProgress));
+
+  section.appendChild(dl);
+}
+
 function activateProfile(content, childId) {
   selectActiveChild(childId);
   touchLastPlayed(childId);
+  applyAccessibilityPreferences();
   renderHomeDashboard(content, getActiveChild());
 }
 
@@ -589,6 +635,12 @@ async function renderProfile(outlet, route) {
   `;
 
   const section = outlet.querySelector('section');
+
+  const activeChild = getActiveChild();
+  if (activeChild) {
+    renderExplorerStats(section, activeChild);
+  }
+
   const rewards = getEarnedRewards();
 
   if (rewards.length === 0) {
@@ -696,6 +748,87 @@ function renderSettings(outlet, route) {
   });
 
   section.appendChild(form);
+
+  renderAccessibilityForm(section);
+}
+
+// Accessibility preferences (font scale, high contrast, reduced motion).
+// No PIN control lives here — deliberately: PINs can only be changed from
+// inside Parent Mode itself (parent-mode.js's renderChangePinControl),
+// never from this learner-facing page, so a child managing their own
+// play session can never lock a parent out.
+function renderAccessibilityForm(section) {
+  const heading = document.createElement('h3');
+  heading.textContent = 'Accessibility';
+  section.appendChild(heading);
+
+  const form = document.createElement('form');
+  const current = getAccessibilityPreferences();
+
+  const fontFieldset = document.createElement('fieldset');
+  const fontLegend = document.createElement('legend');
+  fontLegend.textContent = 'Text size';
+  fontFieldset.appendChild(fontLegend);
+  FONT_SCALES.forEach((scale) => {
+    const label = document.createElement('label');
+    label.style.display = 'block';
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'fontScale';
+    input.value = scale;
+    input.checked = scale === current.fontScale;
+    label.appendChild(input);
+    label.append(` ${scale}`);
+    fontFieldset.appendChild(label);
+  });
+  form.appendChild(fontFieldset);
+
+  const highContrastLabel = document.createElement('label');
+  highContrastLabel.style.display = 'block';
+  const highContrastInput = document.createElement('input');
+  highContrastInput.type = 'checkbox';
+  highContrastInput.name = 'highContrast';
+  highContrastInput.checked = current.highContrast;
+  highContrastLabel.appendChild(highContrastInput);
+  highContrastLabel.append(' High contrast');
+  form.appendChild(highContrastLabel);
+
+  const reducedMotionLabel = document.createElement('label');
+  reducedMotionLabel.style.display = 'block';
+  const reducedMotionInput = document.createElement('input');
+  reducedMotionInput.type = 'checkbox';
+  reducedMotionInput.name = 'reducedMotion';
+  reducedMotionInput.checked = current.reducedMotion;
+  reducedMotionLabel.appendChild(reducedMotionInput);
+  reducedMotionLabel.append(' Reduce motion');
+  form.appendChild(reducedMotionLabel);
+
+  const submit = document.createElement('button');
+  submit.type = 'submit';
+  submit.textContent = 'Save';
+  form.appendChild(submit);
+
+  const feedback = document.createElement('p');
+  feedback.setAttribute('role', 'status');
+  form.appendChild(feedback);
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const fontScale = form.querySelector('input[name="fontScale"]:checked')?.value;
+    const result = setAccessibilityPreferences({
+      fontScale,
+      highContrast: highContrastInput.checked,
+      reducedMotion: reducedMotionInput.checked
+    });
+    if (!result.ok) {
+      feedback.textContent = result.errors.join(' ');
+      return;
+    }
+    applyAccessibilityPreferences();
+    feedback.textContent = 'Accessibility preferences saved.';
+  });
+
+  section.appendChild(form);
 }
 
 const STATIC_VIEWS = {
@@ -767,6 +900,7 @@ export function init({ outlet, nav }) {
   switchExplorerLink?.addEventListener('click', (event) => {
     event.preventDefault();
     selectActiveChild(null);
+    applyAccessibilityPreferences();
     window.location.hash = '/';
     render();
   });

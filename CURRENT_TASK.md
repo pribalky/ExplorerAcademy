@@ -2,11 +2,55 @@
 
 ## Phase
 
-Unscheduled — Milestone 11: Multi-Child Explorer Profiles — IN PROGRESS (steps 1-5 and 8 of 11 complete)
+Not yet defined — Milestone 11 is complete; awaiting user direction on the next priority
 
 ## Milestone
 
-**Milestone 11 — Multi-Child Explorer Profiles, Per-Child Save Slots, and PIN-Gated Parent Mode.** This supersedes the earlier, narrower "Home & Explorer Profile Parity" draft — that work is now folded into this milestone's scope. Implementation Plan steps 1 (Storage foundation), 2 (Migration), 3 (Profile CRUD), 4 (Home page rework), 5 (Switch Explorer) and 8 (Parent Mode PIN gate) are complete and verified; steps 6-7 (Settings accessibility, Explorer-Profile stats page) and 9-10 (streak wiring beyond Home selection, accessibility CSS application) are not started. Step 8 was tackled ahead of 6-7 at the user's request, since it was "the more architecturally significant" of the remaining pieces.
+Not yet defined — awaiting user direction. Candidates: Phase 11 (Testing, per TODO.md's roadmap), or one of Milestone 11's explicitly out-of-scope ideas (save export/import, avatar upload, etc.) if the user wants to revisit scope.
+
+## Objective
+
+N/A — awaiting user direction.
+
+## Inputs
+
+N/A — awaiting user direction.
+
+## Relevant Documentation
+
+N/A — awaiting user direction.
+
+## Files Expected to Change
+
+N/A — awaiting user direction.
+
+## Implementation Plan
+
+N/A — awaiting user direction.
+
+## Out of Scope
+
+N/A.
+
+## Success Criteria
+
+N/A.
+
+## Manual Verification
+
+N/A.
+
+## Deliverables
+
+N/A.
+
+## Completion Notes
+
+Not yet started.
+
+---
+
+# Previous Milestone — Milestone 11: Multi-Child Explorer Profiles, Per-Child Save Slots, and PIN-Gated Parent Mode — COMPLETE
 
 ## Objective
 
@@ -50,12 +94,14 @@ The platform today has exactly one implicit, anonymous save (`explorerAcademy.sa
 3. ✅ **Profile CRUD** — DONE. New `portal/js/explorer-profiles.js`: `listProfiles()`, `findProfile()`, `getActiveChild()`, `selectActiveChild()`, `createProfile({ displayName, avatar, pin })` (validates non-empty trimmed name, case-insensitive uniqueness, 4-8 digit PIN), `verifyProfilePin(childId, pin)`, `updateProfile(childId, { displayName, avatar })`, `changePin(childId, { currentPin, newPin })`, `deleteProfile(childId)`, `touchLastPlayed(childId)` (calendar-day streak tracking). PINs are hashed via `crypto.subtle.digest('SHA-256', ...)` and never stored or compared as plain text.
 4. ✅ **Home page rework** — DONE. `renderHome()` now checks `getActiveChild()`: if set, shows the existing dashboard content (Continue Mission / Choose Campaign) scoped to that child; if not, shows `renderExplorerSelector()` — a "Who's Exploring Today?" list (avatar, name, Explorer-since, last-played, streak, missions-with-progress count per profile, the last computed the same way Parent Mode already derives it: union of that profile's earned-reward and Discovery-Log mission IDs) plus a collapsed "+ New Explorer" `<details>` form (name, a small fixed emoji avatar picker, 4-8 digit PIN). Submitting the form calls `createProfileFromLegacySave()` instead of `createProfile()` when this is the very first profile on a device with an unmigrated legacy save (surfaced with an explanatory notice), otherwise `createProfile()`. Either way, the new profile is immediately made active and `touchLastPlayed()` is called, matching "on home when a new child name is selected... available based on saved state." Selecting an existing profile does the same. The stale "placeholder" copy for the no-session dashboard state was replaced with a real "Choose Campaign" link while in this code.
 5. ✅ **Switch Explorer** — DONE. Decided the exact interaction during implementation: once a child is active, Home shows their dashboard directly on every visit (not the picker) so a single-child household isn't reprompted constantly; the persistent "Switch Explorer" link added to the footer nav (`components/navigation/nav.js`, wired in `router.js`'s `init()`) is what explicitly clears the active child and returns to the picker — this makes it a genuinely necessary control rather than a redundant duplicate of the "Home" link, and still satisfies "ask who is playing" (nobody sees another child's dashboard without an explicit selection first; switching is always a deliberate action, never silent).
-6. **Settings page**: add accessibility controls (font scale, high contrast, reduced motion) for the active child, alongside the existing (now implicitly per-child) session duration control. No PIN control here.
-7. **Explorer Profile page**: surface Explorer-since, last-played, streak, and total missions completed (a count; if a time figure is shown, explicitly labelled "estimated," summed from completed missions' own `estimatedTime` fields).
+6. ✅ **Settings page** — DONE. `renderAccessibilityForm()` added to the Settings route: text-size radios (`normal`/`large`/`x-large`), a high-contrast checkbox, and a reduced-motion checkbox, backed by `settings.js`'s new `getAccessibilityPreferences()`/`setAccessibilityPreferences()`. No PIN control here, as planned — PINs remain changeable only from inside Parent Mode.
+7. ✅ **Explorer Profile page** — DONE. `renderExplorerStats()` shows Explorer-since, last-played, streak and a missions-with-progress *count* (not an estimated-time figure — kept simple rather than parsing missions' free-text `estimatedTime` strings) for the active child, reusing the exact same `countMissionsWithProgress()` helper Home's selector already uses so the two numbers can never disagree. Gracefully shows nothing extra when no Explorer is active (legacy fallback).
 8. ✅ **Parent Mode rework** — DONE. `parent-mode.js`'s old one-click `renderAccessGate` is replaced by `renderExplorerPicker()` (lists profile names — names alone aren't sensitive) → `renderPinGate(root, profile)` (that Explorer's own PIN, verified via `verifyProfilePin()`, retryable with no lockout, per ADR-025) → `renderDashboard(root, profile)`. `reward-engine.js`'s `getEarnedRewards()` and `discovery-log.js`'s `getDiscoveryLog()` both gained an optional `childId` param (defaulting to the active Explorer as before) so Parent Mode can read a *specific* child's data regardless of who's active in the learner shell. The dashboard shows a "Viewing: `<avatar>` `<name>` — Choose a different Explorer" bar, and a new `renderChangePinControl()` section at the end — the only place a PIN can be changed, requiring the current one, never reachable from the learner-facing Settings page.
-9. **Streak/last-played tracking**: `touchLastPlayed()` called on Home's child selection and on reflection completion; streak increments on a new calendar day since last play, resets after a missed day.
-10. **Accessibility application**: apply the active child's stored preferences (CSS classes on the shell) at app init and whenever Settings changes them.
-11. **Documentation**: update `503_DATA_MODEL.md`/`504_JSON_SCHEMA.md` for the now-real, multi-instance, PIN-bearing Explorer Profile and per-profile Save Game; add new ADR(s) to `006_DESIGN_DECISION_LOG.md` (superseding ADR-013); add a new `TODO.md` phase entry for this milestone.
+9. ✅ **Streak/last-played tracking** — DONE. `touchLastPlayed()` is called both when a profile is selected/created on Home (`activateProfile()`) and on successful reflection completion (`buildReflectionSection()`'s submit handler) — confirmed idempotent same-day (doesn't double-count if both fire on the same calendar day).
+10. ✅ **Accessibility application** — DONE. `settings.js`'s `applyAccessibilityPreferences()` toggles `a11y-font-large`/`a11y-font-x-large`/`a11y-high-contrast`/`a11y-reduced-motion` classes on `<html>`, styled by new rules in `base.css` (font scale, reduced motion) and `themes.css` (high contrast — the first real content either file has had since the Milestone 1.1 placeholder). Called at app bootstrap (`app.js`), whenever a profile is activated or Switch Explorer clears the active one (`router.js`), and immediately after saving new preferences in Settings — so two children's differing preferences never leak into each other and a page reload never flashes unstyled content.
+11. ✅ **Documentation** — DONE (completed incrementally in steps 1-3's commit): `503_DATA_MODEL.md`/`504_JSON_SCHEMA.md` updated for the now-real, multi-instance, PIN-bearing Explorer Profile and per-profile Save Game; ADR-024/ADR-025 added to `006_DESIGN_DECISION_LOG.md` (ADR-013 marked Superseded); `TODO.md` Phase 10 entry created and kept current throughout.
+
+**All 11 implementation-plan steps are now complete. Milestone 11 is done.**
 
 ## Out of Scope
 
@@ -97,17 +143,23 @@ Cross-device sync or any hosting/backend. Save export/import as a downloadable f
 - Zero-profiles case: with no profiles created at all, Parent Mode shows "No Explorer profiles exist on this device yet. Create one from the Home page..." instead of a broken picker.
 - Full regression: all 21 missions, Home's selector, and Parent Mode's empty state all still work correctly with **no profile ever created** (the legacy-key fallback path). Zero console/page errors across every run.
 
-**Steps 6-7 and 9-10 (not started) verification remains as planned:** per-child accessibility/duration isolation; Explorer Profile page stats.
+**Steps 6, 7, 9 (second trigger) and 10 (done now), via headless Chromium against the real running app:**
+
+- Explorer Profile page: created "Jamie," completed a reflection, visited `/profile` — confirmed the stats block (Explorer since, last played, streak, missions with progress) renders correctly above the Achievements list, using the exact same progress-counting logic as Home's selector.
+- Settings page: confirmed the new Accessibility section (text size radios, high-contrast checkbox, reduced-motion checkbox) renders alongside the existing session-duration control, with no PIN control present.
+- Saved font size = x-large + high contrast + reduced motion for Jamie: confirmed via `getComputedStyle` that `<html>`'s `font-size` changed from 16px to 24px and `background-color`/`color` flipped to black/white — the CSS genuinely takes visible effect, not just a stored preference with no rendering behind it.
+- Confirmed **full reload (bootstrap)** reapplies Jamie's saved preferences immediately (`app.js` calling `applyAccessibilityPreferences()` on `DOMContentLoaded`) — no flash of unstyled content.
+- Confirmed **cross-child isolation**: clicking "Switch Explorer" clears all accessibility classes back to default; a freshly-created second Explorer ("Alex") starts with zero accessibility classes despite Jamie's preferences being saved; re-selecting Jamie afterward correctly reapplies exactly her classes again.
+- Confirmed `touchLastPlayed()` firing from *both* trigger points (Home selection and reflection completion) doesn't double-count the streak on the same calendar day — completed a reflection immediately after creating a profile and confirmed the streak stayed at 1, not 2.
+- Full regression: all 21 missions (both with and without an active profile), Home, Settings, and Parent Mode's empty state all still function correctly. Zero console/page errors across every run in this milestone.
 
 ## Deliverables
 
-**Done:** `portal/js/storage.js` (profiles registry, per-child save keying, legacy fallback/migration primitives), new `portal/js/explorer-profiles.js` (profile CRUD, PIN hashing/verification, streak tracking), `portal/js/router.js` (Home page rework: Explorer selector, "+ New Explorer", dashboard scoping; Switch Explorer click handler), `portal/components/navigation/nav.js` (Switch Explorer link), `portal/js/parent-mode.js` (Explorer picker → PIN gate → scoped dashboard → Change PIN), `portal/js/reward-engine.js` and `portal/js/discovery-log.js` (optional `childId` param on their getters), `docs/00-foundation/006_DESIGN_DECISION_LOG.md` (ADR-024, ADR-025; ADR-013 marked Superseded), `docs/50-content/503_DATA_MODEL.md` and `504_JSON_SCHEMA.md` (Explorer Profile / Save Game notes).
-
-**Remaining:** `settings.js` (accessibility controls), Explorer Profile page stats display, CSS for accessibility states, and the `TODO.md` phase checklist ticked off as each lands.
+`portal/js/storage.js` (profiles registry, per-child save keying, legacy fallback/migration primitives), `portal/js/explorer-profiles.js` (new — profile CRUD, PIN hashing/verification, streak tracking), `portal/js/router.js` (Home page rework, Switch Explorer, Settings accessibility form, Explorer Profile stats, `touchLastPlayed()` on reflection completion), `portal/components/navigation/nav.js` (Switch Explorer link), `portal/js/parent-mode.js` (Explorer picker → PIN gate → scoped dashboard → Change PIN), `portal/js/reward-engine.js` and `portal/js/discovery-log.js` (optional `childId` param on their getters), `portal/js/settings.js` (accessibility get/set/apply), `portal/js/app.js` (bootstrap applies accessibility preferences), `portal/css/base.css` and `portal/css/themes.css` (first real content since the Milestone 1.1 placeholder — accessibility rules only, not a full design system), `docs/00-foundation/006_DESIGN_DECISION_LOG.md` (ADR-024, ADR-025; ADR-013 marked Superseded), `docs/50-content/503_DATA_MODEL.md` and `504_JSON_SCHEMA.md` (Explorer Profile / Save Game notes), `TODO.md` (Phase 10 checklist, fully ticked).
 
 ## Completion Notes
 
-In progress. Steps 1-5 and 8 of 11 complete and verified (see Manual Verification above). Next up, per the implementation plan: step 6 (Settings accessibility controls) and/or step 7 (Explorer Profile page stats) — the two smaller, lower-risk remaining pieces.
+**Milestone 11 is complete.** All 11 implementation-plan steps delivered and verified across four incremental commits (storage + CRUD; Home + Switch Explorer; Parent Mode PIN gate; Settings + Profile stats + accessibility application), each left the app in a fully runnable, regression-tested state, matching CLAUDE.md's Commit Philosophy. The platform now supports multiple named children sharing one device, each with a completely independent save, own PIN-gated Parent Mode view, own accessibility/duration preferences, and own progress statistics — with the pre-existing single anonymous save preserved via migration rather than discarded. ✅
 
 ---
 
