@@ -462,25 +462,31 @@ Two or more children can share one device with fully independent progress, and a
 
 # Phase 11 — Testing
 
+Status
+
+```
+COMPLETE — every checklist item verified with an actual test run and an evidenced verdict; two genuine gaps found (one fixed live, one flagged as real implementation work for a future milestone). See CURRENT_TASK.md's "Previous Milestone — Phase 11: Testing" for full detail.
+```
+
 Checklist
 
-- [ ] Desktop
+- [x] Desktop — pass. 1440×900: no overflow, all flows (Home selector, missions, Settings, Discovery Log, Explorer Profile) function correctly.
 
-- [ ] Tablet
+- [x] Tablet — pass functionally (768×1024: no overflow, no broken flows), but with a real finding: buttons measure ~21px tall against the ~44px touch-target guideline 601_HTML_ARCHITECTURE.md calls for ("touch-friendly controls"). Root cause is `layout.css`/`components.css` still being empty Milestone-1.1 placeholders — not a regression, but real design/CSS work to genuinely close, out of scope for this testing pass.
 
-- [ ] Mobile
+- [x] Mobile — same verdict as Tablet (375×667): functionally fine, same touch-target gap.
 
-- [ ] Offline
+- [x] Offline — pass with an important nuance, not a blanket pass/fail: a route already visited while online survives an offline reload (confirmed via ordinary browser HTTP caching, no service worker exists). A route never visited before going offline fails to load (confirmed directly). This is a narrower guarantee than ADR-004/601's "a complete campaign should remain usable without network access" after initial load — it's offline-for-what-you've-seen, not offline-for-the-whole-campaign, since there is no service worker or cache manifest.
 
-- [ ] Accessibility
+- [x] Accessibility — pass, with one real gap found and fixed during testing: OS-level `prefers-reduced-motion` wasn't honoured automatically, only the explicit in-app Settings toggle — added a 2-line `@media (prefers-reduced-motion: reduce)` rule to `base.css`, verified working via Playwright's reduced-motion emulation. Also verified: keyboard tab order is logical, native focus outline is never suppressed anywhere in the CSS, all landmarks present (`header`/`main[aria-live]`/`nav[aria-label]`/`footer`), and every form control (radios, checkboxes, text/PIN inputs) has a verified accessible name via real label association, not just visual proximity.
 
-- [ ] Broken links
+- [x] Broken links — pass. Crawled all 27 learner-shell routes (5 static + 1 campaign overview + 21 missions) plus Parent Mode: zero 4xx/5xx responses, zero console page errors.
 
-- [ ] Save State
+- [x] Save State — pass. Profile, active session and Discovery Log all survive a full page reload; confirmed correct storage isolation (a different browser context sees zero data, as expected for `localStorage`).
 
-- [ ] Parent Mode
+- [x] Parent Mode — pass. Zero-profiles empty state shows the correct friendly message; full picker → PIN → dashboard cycle works correctly end-to-end.
 
-- [ ] Multi-child profile isolation (Phase 10)
+- [x] Multi-child profile isolation — pass. Three simultaneous profiles created and cross-checked in both directions: each Explorer's Discovery Log shows only their own entries, with zero leakage.
 
 ---
 
@@ -649,4 +655,8 @@ Testing (now Phase 11, renumbered to make room for Phase 10 above) and Campaign 
 
 All 11 implementation-plan steps are done and verified across four incremental, individually-tested commits. The platform now genuinely supports multiple named children sharing one device: independent saves, independent PIN-gated Parent Mode views, independent accessibility/duration preferences, independent progress stats — with the original single anonymous save preserved via migration, not discarded. Phase 11 (Testing) is the only phase left on the roadmap.
 
-**Post-Milestone-11, the user asked for a full re-verification of every ADR/vision-doc principle plus a differentiator-feature brainstorm for README.** Re-checked all 26 ADRs against running code (not assumed): found and fixed a stale claim in ADR-023 (per-child settings, made true by ADR-024, weren't reflected in ADR-023's own text), and found a real, previously-unverified gap predating this whole session — `601_HTML_ARCHITECTURE.md`'s claimed "Local filesystem"/"USB distribution" (`file://`) deployment targets have never worked, since browsers block ES module loading under `file://` with a CORS error (confirmed directly, not assumed) — documented in place as a correction, not silently fixed, since a real fix means dropping ES modules platform-wide. Added **ADR-026** resolving a genuine scope-boundary question raised by Milestone 11: Explorer Profiles are local, device-bound save-slot switching, not the "user accounts" 301_PLATFORM_ARCHITECTURE.md's Out of Scope section excludes. Surfaced (not silently resolved) one real philosophy tension for the user's own call: Milestone 11's streak counter and progress stats on Home's first screen sit close to — without technically violating — ADR-007's "completion is not the primary metric" and the Non-Goal of becoming "a reward-driven educational app." Also found and fixed `README.md`'s multi-phase staleness (it still said "no implementation has started") and added a new "🌱 Future Possibilities" section: six true differentiators (Cross-Campaign Continuity, a Habits-of-Mind Portfolio, Real-World-Synced Investigations, an Explorer's Field Journal built from the child's own Discovery Log, cooperative Joint Expedition Missions, Confidence Calibration) plus a shorter list of smaller worthwhile ideas, each tied explicitly back to the project's own founding philosophy. Awaiting user direction on Phase 11 (Testing) or any of the above.
+**Post-Milestone-11, the user asked for a full re-verification of every ADR/vision-doc principle plus a differentiator-feature brainstorm for README.** Re-checked all 26 ADRs against running code (not assumed): found and fixed a stale claim in ADR-023 (per-child settings, made true by ADR-024, weren't reflected in ADR-023's own text), and found a real, previously-unverified gap predating this whole session — `601_HTML_ARCHITECTURE.md`'s claimed "Local filesystem"/"USB distribution" (`file://`) deployment targets have never worked, since browsers block ES module loading under `file://` with a CORS error (confirmed directly, not assumed) — documented in place as a correction, not silently fixed, since a real fix means dropping ES modules platform-wide. Added **ADR-026** resolving a genuine scope-boundary question raised by Milestone 11: Explorer Profiles are local, device-bound save-slot switching, not the "user accounts" 301_PLATFORM_ARCHITECTURE.md's Out of Scope section excludes. Surfaced (not silently resolved) one real philosophy tension for the user's own call: Milestone 11's streak counter and progress stats on Home's first screen sit close to — without technically violating — ADR-007's "completion is not the primary metric" and the Non-Goal of becoming "a reward-driven educational app." Also found and fixed `README.md`'s multi-phase staleness (it still said "no implementation has started") and added a new "🌱 Future Possibilities" section: six true differentiators (Cross-Campaign Continuity, a Habits-of-Mind Portfolio, Real-World-Synced Investigations, an Explorer's Field Journal built from the child's own Discovery Log, cooperative Joint Expedition Missions, Confidence Calibration) plus a shorter list of smaller worthwhile ideas, each tied explicitly back to the project's own founding philosophy.
+
+**Phase 11 (Testing) is now complete** — every checklist item was verified with an actual test run, not assumed. Six items pass cleanly (Desktop, Broken links, Save State, Parent Mode, multi-child isolation, and Accessibility). Accessibility surfaced one real gap that was fixed on the spot: OS-level `prefers-reduced-motion` wasn't honoured automatically, only the explicit in-app toggle — a 2-line CSS media-query addition closed it, verified via Playwright's reduced-motion emulation. Two items pass functionally but surfaced genuine, pre-existing gaps worth a future milestone rather than a quiet patch: Tablet/Mobile have no overflow or broken flows, but buttons measure ~21px tall against the ~44px touch-target guideline, since `layout.css`/`components.css` remain empty placeholders; and Offline turns out to mean "offline for routes you've already visited" (via ordinary browser HTTP caching), not "the whole campaign, offline, after one initial load" as ADR-004/601 promise, since no service worker or cache manifest exists. Both are real, now-documented implementation gaps, not regressions from anything built this session.
+
+Only Phase 12 (Campaign Release) remains on the roadmap, alongside the two testing-surfaced gaps above and Milestone 11's own deferred ideas (save export/import, etc.) as candidates for what comes next. Awaiting user direction.

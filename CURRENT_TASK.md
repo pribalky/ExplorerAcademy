@@ -2,11 +2,11 @@
 
 ## Phase
 
-Not yet defined — Milestone 11 is complete; awaiting user direction on the next priority
+Not yet defined — Phase 11 (Testing) is complete; awaiting user direction on the next priority
 
 ## Milestone
 
-Not yet defined — awaiting user direction. Candidates: Phase 11 (Testing, per TODO.md's roadmap), or one of Milestone 11's explicitly out-of-scope ideas (save export/import, avatar upload, etc.) if the user wants to revisit scope.
+Not yet defined — awaiting user direction. Candidates: Phase 12 (Campaign Release), touch-target/responsive CSS work (from Phase 11's Tablet/Mobile findings), genuine offline caching via a service worker (from Phase 11's Offline findings), or one of Milestone 11's/README's deferred ideas.
 
 ## Objective
 
@@ -47,6 +47,36 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Phase 11: Testing — COMPLETE
+
+## Completion Summary
+
+Worked through all 9 items on `TODO.md`'s Phase 11 checklist as a verification pass — confirming what works, finding and fixing what's genuinely broken, and flagging (not silently building) anything that would need real implementation to properly pass. Every verdict below is backed by an actual Playwright test run against the running app, not inferred from reading code.
+
+**Pass, no findings:**
+- **Broken links** — crawled all 27 learner-shell routes (5 static + campaign overview + 21 missions) plus Parent Mode: zero 4xx/5xx responses, zero console page errors.
+- **Save State** — profile, active session and Discovery Log all survive a full page reload; a different browser context correctly sees zero data (proper `localStorage` isolation).
+- **Parent Mode** — zero-profiles empty state shows the correct message; full picker → PIN → dashboard cycle works end-to-end.
+- **Multi-child profile isolation** — three simultaneous profiles cross-checked in both directions: each Explorer's Discovery Log shows only their own entries.
+- **Desktop** (1440×900) — no overflow, every flow tested works correctly.
+
+**Pass, with one real gap found and fixed live:**
+- **Accessibility** — keyboard tab order is logical, the native focus outline is never suppressed anywhere in the CSS, all landmarks are present (`header`/`main[aria-live]`/`nav[aria-label]`/`footer`), and every form control has a verified accessible name via real label association (checked with Playwright's `get_by_role`/`get_by_label`, not just visual inspection). One genuine gap found: OS-level `prefers-reduced-motion` wasn't being honoured automatically — only the explicit in-app Settings toggle applied it. Fixed with a 2-line `@media (prefers-reduced-motion: reduce)` rule in `base.css`, verified via Playwright's `reduced_motion='reduce'` context emulation before and after the fix.
+
+**Pass functionally, but surfaced genuine pre-existing gaps (not regressions, not silently patched):**
+- **Tablet / Mobile** (768×1024, 375×667) — no horizontal overflow, no broken flows at either size. But measured button heights at ~21px, well under the ~44px touch-target guideline 601_HTML_ARCHITECTURE.md calls for ("touch-friendly controls"). Root cause: `portal/css/layout.css` and `components.css` remain empty Milestone-1.1 placeholders — there is no responsive/touch-aware CSS at all yet, only the narrow accessibility rules Milestone 11 added to `base.css`/`themes.css`. Genuinely closing this needs real design/CSS work, which is exactly the kind of thing this testing pass should surface, not quietly patch with an inline style hack.
+- **Offline** — nuanced, not a blanket pass or fail. Tested precisely: a route already visited while online survives a later offline reload (confirmed — ordinary browser HTTP caching, no service worker involved). A route never visited before going offline fails to load (also confirmed directly, not assumed). This is a narrower guarantee than ADR-004/601_HTML_ARCHITECTURE.md's "a complete campaign should remain usable without network access" after one initial load — it's offline-for-what-you've-already-seen, not offline-for-the-whole-campaign, since no service worker or cache manifest exists anywhere in the platform.
+
+## Manual Verification
+
+Every item above was verified with a dedicated Playwright script run against a locally-served instance of the app (headless Chromium), not inferred from source reading. Specific techniques used: response-status crawling for broken links; `localStorage` cross-context checks for Save State/isolation; `page.keyboard.press('Tab')` sequencing plus `getComputedStyle` for focus/outline for Accessibility; `context.set_offline(True)` for Offline; `browser.new_context(viewport=...)` for the three device sizes; `browser.new_context(reduced_motion='reduce')` before and after the `base.css` fix.
+
+## Verification
+
+Phase 11 (Testing) is complete: 5 of 9 checklist items pass with zero findings, 1 passed after a real gap was found and fixed on the spot, and 2 pass functionally while honestly surfacing genuine, pre-existing implementation gaps (touch-target sizing, offline caching scope) that are real future work, not something to have silently declared "done." ✅
 
 ---
 

@@ -18,3 +18,20 @@ html.a11y-reduced-motion * {
   transition-duration: 0.001ms !important;
   scroll-behavior: auto !important;
 }
+
+/* Found during Phase 11 testing: the explicit in-app setting above only
+   covers a child who has found and toggled it. The OS-level preference
+   should be honoured as a baseline regardless, per
+   601_HTML_ARCHITECTURE.md's Motion section ("support reduced motion
+   preferences") — the in-app setting then acts as an explicit
+   reinforcement/override on top of it, not the only way to get it. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
