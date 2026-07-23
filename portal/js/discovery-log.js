@@ -41,6 +41,10 @@ export function recordReflection({ prompt, learnerNotes, campaignId, missionId }
   return { ok: true, entry };
 }
 
-export function getDiscoveryLog() {
-  return loadDiscoveryLog();
+// childId defaults to the active Explorer (storage.js's own default) for
+// the learner shell; Parent Mode (Milestone 11) passes an explicit
+// childId since the Explorer it's checking isn't necessarily the one
+// currently active in the learner shell.
+export function getDiscoveryLog(childId) {
+  return loadDiscoveryLog(childId);
 }

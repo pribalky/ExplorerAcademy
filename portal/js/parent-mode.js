@@ -7,13 +7,21 @@
 // ADR-006 (Hidden Parent Mode) and 601_HTML_ARCHITECTURE.md's Parent Mode
 // Manager responsibility to "verify parent access."
 //
-// "Verify parent access" is implemented here as a one-time, session-only
-// confirmation click (renderAccessGate), not a PIN: no PIN or access-code
-// field exists anywhere in 504_JSON_SCHEMA.md's Save Game shape, and
-// adding one would be a storage-schema change beyond this milestone.
-// Being a separate, unlinked page is the actual access control; the click
-// is a deliberate-intent check for whoever already found this page. It can
-// be replaced with a real gate later without changing anything below it.
+// "Verify parent access" (Milestone 11) is now: pick which Explorer by
+// name (names alone aren't sensitive — a parent already knows their own
+// children's names), enter that Explorer's own PIN, then see only that
+// Explorer's dashboard. This supersedes the original session-only
+// confirmation click — see ADR-024/ADR-025 in
+// docs/00-foundation/006_DESIGN_DECISION_LOG.md (ADR-013 is marked
+// Superseded, not deleted). PIN verification is hash-based
+// (explorer-profiles.js's verifyProfilePin(), Web Crypto SHA-256) and
+// explicitly a deterrent, not real security, per ADR-025 — there is no
+// PIN-recovery flow and no lockout after repeated wrong attempts (a
+// lockout would just create a new "my parent is locked out" problem for
+// a family app with no backend to reset it against). Changing a PIN is
+// only possible from inside this dashboard, after entering the current
+// PIN — never from the learner-facing Settings page, so a child managing
+// their own play session can never lock a parent out.
 //
 // Reuses campaign-loader.js and mission-engine.js — the same validated,
 // non-throwing loaders the learner shell uses — plus fetchJson() (utils.js)
@@ -25,14 +33,16 @@
 // section, matching generated/ content's disposable status established
 // since the Asset Compiler milestone.
 //
-// Progress is derived entirely from the existing save shape (earnedRewards,
-// discoveryLog) via reward-engine.js/discovery-log.js's own public
-// functions — the same modules router.js already goes through, rather than
-// reading storage.js directly. No completedMissions field exists yet (see
-// storage.js's own comments), but reward-engine.js already treats "a
-// mission's rewards were earned" as the simplest data-consistent signal
-// that a mission session is done; the same signal powers the dashboard
-// here, combined with which missions have at least one Discovery Log entry.
+// Progress is derived entirely from the *selected Explorer's* save
+// (earnedRewards, discoveryLog) via reward-engine.js/discovery-log.js's
+// own public functions, now given an explicit childId rather than
+// relying on their "active Explorer" default — the Explorer being
+// checked here isn't necessarily the one active in the learner shell.
+// No completedMissions field exists yet (see storage.js's own comments),
+// but reward-engine.js already treats "a mission's rewards were earned"
+// as the simplest data-consistent signal that a mission session is done;
+// the same signal powers the dashboard here, combined with which
+// missions have at least one Discovery Log entry.
 //
 // Curriculum content and learningObjectives are rendered here freely —
 // this page is the one place in the platform where that's correct, per
@@ -43,6 +53,7 @@ import { loadMission } from './mission-engine.js';
 import { getDiscoveryLog } from './discovery-log.js';
 import { getEarnedRewards, resolveRewardDetails } from './reward-engine.js';
 import { fetchJson } from './utils.js';
+import { listProfiles, verifyProfilePin, changePin } from './explorer-profiles.js';
 
 const CAMPAIGN_ID = 'campaign01'; // same simplification router.js already makes; no multi-campaign linking exists yet
 
@@ -84,7 +95,10 @@ function addDefinitionRow(dl, term, value) {
   dl.append(dt, dd);
 }
 
-function renderAccessGate(root, onConfirm) {
+// Step 1: pick which Explorer. Names alone aren't sensitive — a parent
+// already knows their own children's names — only what's behind the PIN
+// (step 2) is gated.
+function renderExplorerPicker(root) {
   root.innerHTML = '';
   const section = document.createElement('section');
   section.setAttribute('aria-labelledby', 'gate-heading');
@@ -100,12 +114,139 @@ function renderAccessGate(root, onConfirm) {
     section,
     'Explorer Academy keeps curriculum mapping hidden from the learner experience by design. This page is never linked from anywhere in that experience.'
   );
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.textContent = "I'm a parent or guardian — continue";
-  button.addEventListener('click', onConfirm);
-  section.appendChild(button);
+
+  const profiles = listProfiles();
+  if (profiles.length === 0) {
+    addParagraph(
+      section,
+      'No Explorer profiles exist on this device yet. Create one from the Home page, then come back here.'
+    );
+    root.appendChild(section);
+    return;
+  }
+
+  addHeading(section, 3, 'Which Explorer?');
+  const list = document.createElement('ul');
+  profiles.forEach((profile) => {
+    const item = document.createElement('li');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = [profile.avatar, profile.displayName].filter(Boolean).join(' ');
+    button.addEventListener('click', () => renderPinGate(root, profile));
+    item.appendChild(button);
+    list.appendChild(item);
+  });
+  section.appendChild(list);
+
   root.appendChild(section);
+}
+
+// Step 2: that Explorer's own PIN. Wrong PINs can be retried freely — no
+// lockout — since a lockout would create a new "my parent is locked out"
+// problem with no backend to reset it against, for a PIN that was only
+// ever a deterrent (ADR-025), not real security.
+function renderPinGate(root, profile) {
+  root.innerHTML = '';
+  const section = document.createElement('section');
+  section.setAttribute('aria-labelledby', 'pin-heading');
+  const heading = document.createElement('h2');
+  heading.id = 'pin-heading';
+  heading.textContent = `Enter PIN for ${profile.displayName}`;
+  section.appendChild(heading);
+
+  const form = document.createElement('form');
+  const label = document.createElement('label');
+  const labelText = document.createElement('span');
+  labelText.textContent = 'PIN';
+  const pinInput = document.createElement('input');
+  pinInput.type = 'password';
+  pinInput.inputMode = 'numeric';
+  pinInput.autocomplete = 'off';
+  pinInput.required = true;
+  label.append(labelText, pinInput);
+  form.appendChild(label);
+
+  const submit = document.createElement('button');
+  submit.type = 'submit';
+  submit.textContent = 'Unlock';
+  form.appendChild(submit);
+
+  const feedback = document.createElement('p');
+  feedback.setAttribute('role', 'status');
+  form.appendChild(feedback);
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const result = await verifyProfilePin(profile.id, pinInput.value);
+    if (!result.ok) {
+      feedback.textContent = result.errors.join(' ');
+      pinInput.value = '';
+      pinInput.focus();
+      return;
+    }
+    renderDashboard(root, profile);
+  });
+  section.appendChild(form);
+
+  const backButton = document.createElement('button');
+  backButton.type = 'button';
+  backButton.textContent = 'Choose a different Explorer';
+  backButton.addEventListener('click', () => renderExplorerPicker(root));
+  section.appendChild(backButton);
+
+  root.appendChild(section);
+}
+
+// Lets a parent change this specific Explorer's PIN, requiring the
+// current one — the only place a PIN can be changed (never from the
+// learner-facing Settings page, so a child can't lock a parent out).
+function renderChangePinControl(container, childId) {
+  const section = document.createElement('section');
+  addHeading(section, 2, 'Change PIN');
+  addParagraph(section, "This is the only place this Explorer's Parent Mode PIN can be changed.");
+
+  const form = document.createElement('form');
+
+  const currentLabel = document.createElement('label');
+  const currentLabelText = document.createElement('span');
+  currentLabelText.textContent = 'Current PIN';
+  const currentInput = document.createElement('input');
+  currentInput.type = 'password';
+  currentInput.inputMode = 'numeric';
+  currentInput.autocomplete = 'off';
+  currentInput.required = true;
+  currentLabel.append(currentLabelText, currentInput);
+  form.appendChild(currentLabel);
+
+  const newLabel = document.createElement('label');
+  const newLabelText = document.createElement('span');
+  newLabelText.textContent = 'New PIN (4-8 digits)';
+  const newInput = document.createElement('input');
+  newInput.type = 'password';
+  newInput.inputMode = 'numeric';
+  newInput.autocomplete = 'off';
+  newInput.required = true;
+  newLabel.append(newLabelText, newInput);
+  form.appendChild(newLabel);
+
+  const submit = document.createElement('button');
+  submit.type = 'submit';
+  submit.textContent = 'Update PIN';
+  form.appendChild(submit);
+
+  const feedback = document.createElement('p');
+  feedback.setAttribute('role', 'status');
+  form.appendChild(feedback);
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const result = await changePin(childId, { currentPin: currentInput.value, newPin: newInput.value });
+    feedback.textContent = result.ok ? 'PIN updated.' : result.errors.join(' ');
+    if (result.ok) form.reset();
+  });
+
+  section.appendChild(form);
+  container.appendChild(section);
 }
 
 function renderCampaignOverview(container, campaign) {
@@ -307,7 +448,7 @@ function renderMissionGuidance(container, { mission, slug, enrichment, curriculu
   container.appendChild(details);
 }
 
-async function renderDashboard(root) {
+async function renderDashboard(root, profile) {
   root.innerHTML = '<p data-status>Loading Parent Mode…</p>';
 
   const campaignResult = await loadCampaign(CAMPAIGN_ID);
@@ -336,8 +477,8 @@ async function renderDashboard(root) {
     ranks: ranksResult.ok ? ranksResult.data : []
   };
 
-  const earnedRewards = getEarnedRewards();
-  const discoveryLog = getDiscoveryLog();
+  const earnedRewards = getEarnedRewards(profile.id);
+  const discoveryLog = getDiscoveryLog(profile.id);
 
   const slugs = campaign.missions.map((_, index) => missionSlug(index + 1));
   const [missionResults, enrichmentResults] = await Promise.all([
@@ -346,6 +487,16 @@ async function renderDashboard(root) {
   ]);
 
   root.innerHTML = '';
+
+  const viewingBar = document.createElement('p');
+  const viewingLabel = document.createElement('span');
+  viewingLabel.textContent = `Viewing: ${[profile.avatar, profile.displayName].filter(Boolean).join(' ')} — `;
+  const switchButton = document.createElement('button');
+  switchButton.type = 'button';
+  switchButton.textContent = 'Choose a different Explorer';
+  switchButton.addEventListener('click', () => renderExplorerPicker(root));
+  viewingBar.append(viewingLabel, switchButton);
+  root.appendChild(viewingBar);
 
   renderCampaignOverview(root, campaign);
   renderWelcome(root, orientation);
@@ -378,12 +529,14 @@ async function renderDashboard(root) {
   });
 
   root.appendChild(missionsSection);
+
+  renderChangePinControl(root, profile.id);
 }
 
 function init() {
   const root = document.getElementById('parent-app');
   if (!root) return;
-  renderAccessGate(root, () => renderDashboard(root));
+  renderExplorerPicker(root);
 }
 
 document.addEventListener('DOMContentLoaded', init);

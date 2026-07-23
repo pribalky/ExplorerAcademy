@@ -425,7 +425,7 @@ Includes
 Status
 
 ```
-IN PROGRESS — storage foundation, profile CRUD, and Home page rework (selector + Switch Explorer) complete and verified; Settings/Explorer-Profile/Parent-Mode UI not started
+IN PROGRESS — storage foundation, profile CRUD, Home page rework (selector + Switch Explorer), and Parent Mode PIN gate complete and verified; per-child Settings/Explorer-Profile-stats UI not started
 ```
 
 Goal
@@ -448,7 +448,7 @@ Checklist
 
 - [ ] Explorer Profile stats: Explorer-since, last-played, streak, missions completed
 
-- [ ] Parent Mode: per-child name + PIN gate, scoped dashboard, in-Parent-Mode "Change PIN"
+- [x] Parent Mode: per-child name + PIN gate, scoped dashboard, in-Parent-Mode "Change PIN"
 
 - [ ] Streak/last-played tracking
 
@@ -643,4 +643,6 @@ Testing (now Phase 11, renumbered to make room for Phase 10 above) and Campaign 
 
 **Home page rework and Switch Explorer are now done too.** `router.js`'s Home route checks for an active Explorer: if none, it shows "Who's Exploring Today?" (existing profiles with avatar/Explorer-since/last-played/streak/missions-with-progress, plus a collapsed "+ New Explorer" form); if one is active, it shows the normal dashboard (Continue Mission / Choose Campaign) scoped to them. Creating or selecting a profile activates it immediately and calls `touchLastPlayed()`. A profile created while an unmigrated legacy save exists adopts it automatically via `createProfileFromLegacySave()`, surfaced with an explanatory notice in the form. "Switch Explorer" is a persistent link in the footer nav (`components/navigation/nav.js`) with its own click handler in `router.js` that clears the active child before returning to Home — a deliberate design choice made during implementation: once a child is active, Home shows their dashboard directly (not the picker) so a single-child household isn't reprompted on every visit, and "Switch Explorer" is what makes changing identity an explicit, never-silent action. Verified end-to-end: two independently-created profiles never leaked mission progress, rewards, or Discovery Log entries into each other; the legacy-save migration works through the real UI, not just as a pure function; and a full regression pass (all 21 missions, Settings, Parent Mode) confirmed the legacy-key fallback still works perfectly when no profile has ever been created.
 
-**Not started yet:** per-child accessibility settings, Explorer Profile page stats display, and the Parent Mode PIN gate. Awaiting direction on which to tackle next — likely Parent Mode's PIN gate, since it's the more architecturally significant of the three.
+**Parent Mode's PIN gate is now done too**, at the user's explicit request to tackle it next. `parent-mode.js`'s old one-click "I'm a parent" gate is replaced with a three-step flow: pick which Explorer by name (`renderExplorerPicker` — names alone aren't sensitive), enter that Explorer's own PIN (`renderPinGate`, hash-verified via `explorer-profiles.js`'s `verifyProfilePin()`, retryable with no lockout since a PIN here is a deterrent per ADR-025, not real security with a backend to reset against), then a dashboard scoped to exactly that child's save. `reward-engine.js`/`discovery-log.js`'s getters gained an optional `childId` parameter so Parent Mode can read a specific (not necessarily learner-shell-active) child's data. A "Change PIN" control lives at the bottom of the dashboard — requiring the current PIN — and is deliberately the *only* place a PIN can change, since a child managing their own play session must never be able to lock a parent out. Verified end-to-end: a wrong PIN and a different child's correct PIN are both rejected against the wrong gate; a correct PIN shows only that child's data (rewards, Discovery Log entries) with zero leakage from a sibling profile in either direction; changing a PIN immediately invalidates the old one; and the zero-profiles case shows a friendly message instead of a broken picker. Full regression (21 missions, Home, Settings, Parent Mode) confirms the legacy-key fallback is untouched.
+
+**Not started yet:** per-child accessibility settings (Settings page) and Explorer Profile page stats display (Explorer-since/last-played/streak/missions-completed, mirroring what Home's selector already shows per-profile). These are the two smaller, lower-risk pieces left in Milestone 11. Awaiting direction on whether to continue with those next.

@@ -39,8 +39,12 @@ export function evaluateMissionRewards({ campaignId, missionId, rewards }) {
   return { ok: true, newlyEarned };
 }
 
-export function getEarnedRewards() {
-  return loadEarnedRewards();
+// childId defaults to the active Explorer (storage.js's own default) for
+// the learner shell; Parent Mode (Milestone 11) passes an explicit
+// childId since the Explorer it's checking isn't necessarily the one
+// currently active in the learner shell.
+export function getEarnedRewards(childId) {
+  return loadEarnedRewards(childId);
 }
 
 // Resolves a knowledgeCore/rank reward's optional coreId/rankId against
