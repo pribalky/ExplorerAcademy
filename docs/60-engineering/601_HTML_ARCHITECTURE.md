@@ -180,6 +180,8 @@ This architecture enables deployment to:
 
 No backend dependency should exist for core functionality.
 
+> **Correction (found during the post-Milestone-11 audit):** "Local filesystem" and "USB distribution" — opening `portal/index.html` directly via a `file://` URL, with no web server at all — have never actually worked, verified back to Phase 1: `app.js` and every module it imports use native ES `import`/`export` (`<script type="module">`), and browsers (confirmed in Chromium) block ES module loading under `file://` with a CORS error, before a single line of application code runs. This is a pre-existing gap, not something any later milestone introduced. GitHub Pages, Netlify, Cloudflare Pages and school intranets are unaffected since they all serve over `http(s)://`, a real origin. Genuinely supporting `file://` would mean dropping ES modules platform-wide (e.g. bundling into a single non-module script, or using dynamic `import()` behind a loader with its own workarounds) — an architecture-level change requiring its own ADR and explicit approval, not a quiet fix.
+
 ---
 
 # Offline-First Architecture

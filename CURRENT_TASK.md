@@ -50,6 +50,36 @@ Not yet started.
 
 ---
 
+# Previous Milestone — Post-Milestone-11 ADR/Vision Audit and README Refresh — COMPLETE
+
+## Completion Summary
+
+The user asked for a full re-verification that every ADR and vision-doc principle still holds after Milestone 11, plus a list of genuine differentiator features (not just nice-to-haves) added to README.md as "Future Possibilities."
+
+Read all 26 ADRs (001–026) and cross-checked each against the running code rather than assuming. Findings:
+
+- **Confirmed still true, unaffected by Milestone 11:** ADR-001–012, 014–022 — spot-checked the ones most plausibly at risk (ADR-006/010/012 Hidden Parent Mode — grepped `router.js`/`nav.js` for any curriculum leakage or accidental learner-facing link to Parent Mode; found none. ADR-022 Knowledge Core/Rank catalog resolution — confirmed still resolves correctly per-child in Parent Mode).
+- **ADR-013:** correctly marked Superseded by ADR-024 already; no action needed.
+- **ADR-023 needed a small correction:** its Consequences said "Explorer profile... preferences remain unimplemented," which ADR-024 made untrue (every setting is now implicitly per-child). Added an inline note rather than rewriting the ADR's own historical Decision/Rationale.
+- **Found a genuine, previously-unverified architectural gap, predating this session:** 601_HTML_ARCHITECTURE.md's Static Site Architecture section claims "Local filesystem" and "USB distribution" (opening `index.html` via `file://`, no server) as valid deployment targets. Tested directly: browsers block ES module loading (`<script type="module">`, used by `app.js` and every module it imports) under `file://` with a CORS error before any application code runs — confirmed via console output, not assumed. This has never worked, since Phase 1, independent of anything built this session. Documented as an inline correction in `601_HTML_ARCHITECTURE.md` rather than silently fixed, since a real fix (dropping ES modules platform-wide) is an architecture-level change needing its own ADR and approval.
+- **Raised, not silently resolved, a genuine philosophy question:** 301_PLATFORM_ARCHITECTURE.md's Out of Scope list excludes "user accounts" alongside cloud sync/multiplayer/leaderboards/ads/purchases/mandatory connectivity. Milestone 11's named, PIN-protected Explorer Profiles could plausibly be read as crossing that line. Added **ADR-026**, arguing (and recording the reasoning, not just the conclusion) that this is local device-bound save-slot switching — closer to "which save file" in a single-player game — not the server-backed, cross-device "user accounts" the rest of that Out-of-Scope list is clearly about, and drawing an explicit boundary for future features not to cross without a new ADR.
+- **Raised, for the user's own judgement rather than resolved:** Milestone 11 added a numeric "missions with progress" count and a streak counter, prominently shown on Home's very first screen. ADR-007 says completion percentage is "not the primary success metric," and 002_PROJECT_CONTEXT.md's Non-Goals explicitly excludes becoming "a reward-driven educational app." Neither is technically violated (no percentage is shown, nothing is gated or rewarded by the streak, missing a day carries no narrative or reward consequence, unlike loss-aversion-driven streak mechanics elsewhere in consumer apps) — but streak counters are a well-documented engagement-design pattern, and the user's own explicit feature request introduced this tension without either of us naming it explicitly at the time. Surfaced directly to the user rather than justified away or silently adjusted.
+- **Found, unprompted:** `README.md` had never been updated since the original foundation-only draft — it still said "No implementation has started. This is intentional," listed a stale root `workbook/` directory, and left the Roadmap's Stages 1–5 unchecked despite being complete. Corrected "Current Project Status," "Repository Structure" and "Roadmap" to reflect reality (verified actual `docs/` subdirectories via `ls` rather than assuming), consistent with the same standard applied to every other doc audited this session.
+
+Added a "🌱 Future Possibilities" section to `README.md`, split into **True Differentiators** (Cross-Campaign Continuity, a Habits-of-Mind Portfolio replacing grade-like reporting, Real-World-Synced Investigations, an Explorer's Field Journal built from the child's own Discovery Log via the existing workbook pipeline, cooperative Joint Expedition Missions enabled by Milestone 11's multi-profile architecture, and Confidence Calibration) and a shorter **Smaller, Still Worthwhile** list (save export/import, broader avatars, audio narration, a fuller design system) — each Differentiator explicitly tied back to the project's own founding philosophy rather than presented as a generic feature wishlist.
+
+## Manual Verification
+
+- Tested the `file://` finding directly via headless Chromium (not assumed): confirmed the exact CORS console error and that zero application content renders.
+- Grepped `router.js`/`nav.js` for curriculum/parentGuide leakage and for any accidental learner-facing link to Parent Mode — none found.
+- Verified `docs/`'s actual subdirectory listing via `ls` before rewriting README's Repository Structure diagram, rather than trusting the old (already-known-stale) tree.
+
+## Verification
+
+Every ADR was individually re-checked against running code rather than assumed still valid; two real documentation gaps (ADR-023's stale consequence, the `file://` claim) were found and corrected; one genuine scope-boundary question (Explorer Profiles vs. "user accounts") was resolved and recorded as ADR-026; one genuine, unresolved philosophy tension (streak/progress visibility vs. anti-gamification Non-Goals) was surfaced to the user rather than silently decided either way; and README.md's multi-phase staleness was corrected alongside the requested new "Future Possibilities" section. ✅
+
+---
+
 # Previous Milestone — Milestone 11: Multi-Child Explorer Profiles, Per-Child Save Slots, and PIN-Gated Parent Mode — COMPLETE
 
 ## Objective

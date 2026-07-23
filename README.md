@@ -93,19 +93,20 @@ Secondary Audience
 
 # 🚧 Current Project Status
 
-**Phase:** Foundation
+**Phase:** Implementation — Platform and Campaign 1 complete; Testing is the only phase remaining before release.
 
-Current focus:
+Delivered so far:
 
-- Documentation architecture
-- Educational philosophy
-- Platform architecture
-- Campaign framework
-- AI collaboration workflow
+- Full platform engine (Router, Campaign Loader, Mission Engine, Activity Engine, Adaptive Scheduler, Storage Manager, Reward Engine, Discovery Log, Settings Manager)
+- Campaign 1 ("Outpost Echo"), all 21 missions, production-quality
+- Parent Mode: curriculum mapping, progress dashboard, per-mission assessment evidence, per-Explorer PIN gate
+- Multi-child Explorer Profiles — multiple named children can share one device, each with an independent save, PIN-gated Parent Mode view, and accessibility/session-duration preferences
+- Printable workbook (compiled PDF, answer guide, notebook alternatives)
+- Visual assets for every mission scene, diagram and reward (flat-vector SVG, documented as a placeholder pending real illustration)
 
-No implementation has started.
+Remaining before release: Phase 11 (Testing — desktop/tablet/mobile, offline, accessibility, save state) and Phase 12 (Campaign Release).
 
-This is intentional.
+See `TODO.md` for the full phase-by-phase status and `CURRENT_TASK.md` for what's actively in progress.
 
 ---
 
@@ -119,32 +120,25 @@ ExplorerAcademy/
 ├── docs/
 │   │
 │   ├── 00-foundation/
-│   │
 │   ├── 10-vision/
-│   │
 │   ├── 20-education/
-│   │
 │   ├── 30-architecture/
-│   │
 │   ├── 40-campaigns/
-│   │
-│   ├── 50-platform/
-│   │
+│   ├── 50-content/
 │   ├── 60-engineering/
-│   │
 │   ├── 70-process/
-│   │
-│   └── 90-backlog/
+│   └── 90-archive/
 │
 ├── prompts/
 │
-├── portal/
+├── portal/              # the actual platform: js/, css/, components/, and
+│                         # campaigns/campaignXX/{src,generated}/ — each
+│                         # campaign's own workbook lives inside its own
+│                         # generated/workbook/, not a shared top-level folder
 │
-├── workbook/
+├── scripts/              # build tooling (e.g. the workbook PDF compiler)
 │
-├── assets/
-│
-└── archive/
+└── assets/
 ```
 
 ---
@@ -238,53 +232,47 @@ Thinking is essential.
 
 ## Stage 1
 
-⬜ Vision
-
-⬜ Guiding Principles
-
-⬜ Educational Philosophy
-
-⬜ Success Criteria
+✅ Vision, Guiding Principles, Educational Philosophy and Success Criteria — drafted and in active use, though formally still Draft status per `000_PROJECT_MANIFEST.md`'s own document-approval lifecycle (documentation approval and implementation have proceeded in parallel, not sequentially)
 
 ---
 
 ## Stage 2
 
-⬜ Platform Architecture
+✅ Platform Architecture
 
-⬜ Mission Framework
+✅ Mission Framework
 
-⬜ Reward System
+✅ Reward System
 
-⬜ Parent Mode
+✅ Parent Mode (including per-Explorer PIN gating)
 
 ---
 
 ## Stage 3
 
-⬜ Campaign Framework
+✅ Campaign Framework
 
-⬜ Mission Template
+✅ Mission Template
 
-⬜ Workbook Template
+✅ Workbook Template
 
 ---
 
 ## Stage 4
 
-⬜ Campaign 1
+✅ Campaign 1 — all 21 missions, production quality
 
 ---
 
 ## Stage 5
 
-⬜ Portal MVP
+✅ Portal MVP — including multi-child Explorer Profiles, accessibility settings and a compiled printable workbook
 
 ---
 
 ## Stage 6
 
-⬜ Beta Testing
+⬜ Beta Testing (Phase 11 — desktop/tablet/mobile, offline, accessibility, save state)
 
 ---
 
@@ -342,6 +330,37 @@ Explorer Academy is intended to support years of learning through reusable campa
 Campaign 1 is only the beginning.
 
 Future campaigns should require new content—not a new platform.
+
+---
+
+# 🌱 Future Possibilities
+
+Beyond Phase 11 (Testing) and Phase 12 (Campaign Release), here is where Explorer Academy could go next — split by how much each idea would actually change what kind of platform this is, versus incremental polish.
+
+## True Differentiators
+
+These aren't "more content" or "a nicer interface." Each one would give Explorer Academy something almost no competing educational app has, while staying fully inside its own founding rules — no leaderboards, no accounts, no ads, curiosity over completion, offline-first.
+
+**Cross-Campaign Continuity.** Future campaigns don't just reuse the platform — they remember the Explorer. A later campaign's dialogue can reference a specific thing *this* child discovered in Campaign 1 ("Atlas recalls the blockage principle you found at Outpost Echo"), built from the Discovery Log's own recorded entries rather than a generic "welcome back." Almost no consumer ed-tech treats a child's history as story material.
+
+**A Habits-of-Mind Portfolio, not a grade.** Parent Mode already has every ingredient: which missions used elimination-based reasoning (Mission 5), fair testing (Mission 17), fact-vs-inference distinctions (Mission 4/14). Surface this as an automatically-built "how your Explorer thinks" summary — "used evidence-elimination reasoning 4 times this term" — instead of a percentage-correct score. This is the platform's own thesis (thinking matters more than facts) made visible to the one audience currently seeing only badges and reflections.
+
+**Real-World-Synced Investigations.** Mission 6 already ties a Core activity to the weather actually outside the window. Extending that pattern platform-wide — a Rabbit Hole that only appears when tonight's real moon phase matches the mission, a season-aware activity variant set once by a parent with no ongoing tracking — would make "authentic investigation" literal rather than simulated, without requiring any account, location service, or ongoing connectivity.
+
+**The Explorer's Field Journal.** The workbook PDF pipeline (`scripts/build_workbook.py`) currently compiles *authored* campaign content. Pointed at a child's own Discovery Log instead, the same pipeline could produce a genuinely personal keepsake — their actual observations, hypotheses and reflections from a whole campaign, bound as a printable journal. No other platform can produce this, because it isn't templated; it's built from what the child actually wrote.
+
+**Joint Expedition Missions.** Milestone 11's multi-child Explorer Profiles currently exist for device-sharing convenience. An occasional mission explicitly designed for two siblings' *different* recorded data to combine into one answer — one child's weather log plus another's star-chart readings solving a shared puzzle — would turn that architecture into real cooperative (never competitive) play, something almost unheard of in single-player-or-leaderboard ed-tech.
+
+**Confidence Calibration.** Before select Core activities, ask a one-tap "how sure are you?" prediction; afterward, ask whether the Explorer was right. Calibration between confidence and outcome is one of the most research-backed predictors of durable learning transfer, and it's almost never implemented in consumer educational software, which optimises for content mastery rather than knowing-what-you-know.
+
+## Smaller, Still Worthwhile
+
+Not differentiators on their own, but genuine quality-of-life improvements already scoped out during Milestone 11:
+
+- Save export/import as a downloadable file — the one practical way to back up or move a child's progress between devices without a backend.
+- A broader avatar/appearance system beyond the current fixed emoji set.
+- Audio narration for pre-readers or read-along support.
+- A fuller design system — Milestone 11 added only the minimal CSS needed to make accessibility settings visible; `base.css`/`components.css`/`layout.css` otherwise remain close to their original placeholders.
 
 ---
 

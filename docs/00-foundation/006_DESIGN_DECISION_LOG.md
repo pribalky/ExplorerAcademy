@@ -741,6 +741,8 @@ ADR-009 established that parents choose a session duration and the Scheduler ada
 
 `scheduleActivities()` is now called with the stored preference instead of a hardcoded constant everywhere it's used. Explorer profile, accessibility, audio and offline preferences remain unimplemented in `settings.js`.
 
+> **Note (added during the post-Milestone-11 audit):** "Explorer profile... preferences remain unimplemented" above is now out of date — ADR-024 made every setting in `settings.js`, including this session duration, implicitly per-child (`storage.js`'s save-keying scopes to whichever Explorer Profile is active). This ADR's own Decision/Consequences text otherwise remains accurate; only the "unimplemented" framing needed updating.
+
 ### Affected Documents
 
 504_JSON_SCHEMA.md (Session Configuration)
@@ -812,6 +814,36 @@ Forgetting a PIN means resetting that child's profile — there is no recovery p
 ### Affected Documents
 
 504_JSON_SCHEMA.md (Explorer Profile)
+
+---
+
+# ADR-026
+
+## Explorer Profiles Are Local Device Profiles, Not the Excluded "User Accounts"
+
+**Status**
+
+Accepted
+
+### Context
+
+301_PLATFORM_ARCHITECTURE.md's Out of Scope section explicitly excludes "user accounts" alongside cloud sync, multiplayer, online leaderboards, advertisements, in-app purchases and mandatory internet connectivity. ADR-024 (Milestone 11) then introduced Explorer Profiles with names and PINs — a post-implementation audit raised whether this crosses the line that exclusion was meant to draw.
+
+### Decision
+
+It does not. Explorer Profiles are a purely local, device-bound save-slot mechanism — closer to "which save file" in a single-player video game than to a user account. There is no server, no login session, no credential that works across devices, no identity that persists anywhere but the one browser's `localStorage`, and no feature (sync, purchases, social) from the rest of that excluded list is implied or enabled by having a name and a PIN.
+
+### Rationale
+
+Reading the Out of Scope list as a whole, every other item on it (cloud sync, multiplayer, leaderboards, ads, purchases, mandatory connectivity) is about avoiding network/commercial complexity and pressure. "User accounts" in that context reads as shorthand for *that* kind of account — sign-up flows, server-side identity, cross-device continuity — not "two siblings sharing a tablet with separate local save files," which several other documents (503_DATA_MODEL.md's Explorer Profile entity, 601_HTML_ARCHITECTURE.md's Explorer Profile page) already assumed would exist in some form.
+
+### Consequences
+
+Future features must keep respecting the boundary this ADR draws: anything that would make a profile mean something *outside* the single device it was created on (recovery via email, cross-device sync, a server-verified PIN) would cross into the excluded territory and need its own new ADR and explicit approval, not be added quietly under the Explorer Profile umbrella.
+
+### Affected Documents
+
+301_PLATFORM_ARCHITECTURE.md (Out of Scope)
 
 ---
 
