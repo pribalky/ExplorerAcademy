@@ -2,11 +2,11 @@
 
 ## Phase
 
-Not yet defined — Phase 11 (Testing) is complete; awaiting user direction on the next priority
+Not yet defined — genuine offline caching is complete; awaiting user direction on the next priority
 
 ## Milestone
 
-Not yet defined — awaiting user direction. Candidates: Phase 12 (Campaign Release), touch-target/responsive CSS work (from Phase 11's Tablet/Mobile findings), genuine offline caching via a service worker (from Phase 11's Offline findings), or one of Milestone 11's/README's deferred ideas.
+Not yet defined — awaiting user direction. Candidates: Phase 12 (Campaign Release), the Tablet/Mobile touch-target CSS gap from Phase 11, or any of the README's differentiator/deferred ideas.
 
 ## Objective
 
@@ -47,6 +47,45 @@ N/A.
 ## Completion Notes
 
 Not yet started.
+
+---
+
+# Previous Milestone — Genuine Offline Caching via Service Worker — COMPLETE
+
+## Objective
+
+Phase 11 testing found that only previously-visited routes survived going offline, since nothing beyond default browser HTTP caching existed. Campaign 01's entire `src/`+`generated/` tree measured under 1MB total, so precaching all of it — not just visited pages — was the simple, robust fix, with no need to cherry-pick "essential" vs "optional" assets.
+
+## Inputs
+
+- Phase 11's Offline finding (this file's "Previous Milestone — Phase 11: Testing" below).
+- ADR-004 (Offline First).
+- `601_HTML_ARCHITECTURE.md`'s Offline-First Architecture, Offline Strategy and Caching sections.
+- `router.js`'s `KNOWN_CAMPAIGN_IDS` placeholder list — mirrored in the service worker for the same reason it exists there: no real campaign-discovery manifest exists yet.
+
+## Relevant Documentation
+
+`601_HTML_ARCHITECTURE.md` (Offline-First Architecture, Offline Strategy, Caching — now updated with an inline note pointing at this implementation), `006_DESIGN_DECISION_LOG.md` (ADR-004, and new ADR-027).
+
+## Completion Summary
+
+- **New `portal/sw.js`** — a service worker that precaches the platform shell (a short, hand-maintained list of JS/CSS/components/index.html) plus every known campaign's complete `src`/`generated` content, fetched from a manifest at install time. Cache-first fetch strategy with a network fallback; a versioned `CACHE_NAME` so old content is discarded on the next load after a version bump.
+- **New `scripts/generate_offline_manifest.py`** — walks a campaign's `src`/`generated` directories and writes the file list to that campaign's own `generated/offline-manifest.json`, mirroring `scripts/build_workbook.py`'s existing pattern rather than hand-maintaining a list of 100+ files. Run for `campaign01`: 124 files listed.
+- **`app.js` and `parent-mode.js`** both register the same service worker via a new shared `registerServiceWorker()` helper in `utils.js` — necessary because either page could be the first one a device ever loads, and Parent Mode's own `<base href="../">` correction means a plain relative `'sw.js'` path resolves correctly to the portal root from both pages.
+- **ADR-027** added, recording the cache-first/manifest-driven decision, the alternatives considered (runtime-only caching, a build-tool-generated manifest), and the manual `CACHE_VERSION`-bump maintenance requirement.
+
+## Manual Verification
+
+All verified via headless Chromium against the real running app, not assumed:
+- First online load: service worker installs, activates, and takes control; cache contains exactly 144 entries (20 shell files + 124 campaign files) — an exact match with no missing or extra files.
+- **The exact Phase 11 failure case, now fixed**: after one online load, went offline and loaded two missions *never fetched during the session* (mission19, mission12) — both loaded correctly, headings rendered, zero errors.
+- Parent Mode: visited once online (registering its own service worker instance), then confirmed the full picker → PIN → dashboard cycle works completely offline.
+- Cache versioning: bumped `CACHE_VERSION` on disk while a browser context stayed open with the old version installed, forced an update check, and confirmed the old cache (`explorer-academy-v1`) was fully replaced by the new one (`explorer-academy-v2`) — not left alongside it.
+- Full regression pass with the service worker active: all 21 missions, reflection saving, Settings, Discovery Log, Explorer Profile, and Parent Mode all function identically to before — zero failed requests, zero console/page errors.
+
+## Verification
+
+Offline caching now genuinely delivers ADR-004's promise — a complete campaign, not just previously-visited pages, remains usable after one initial online load — verified directly against the exact scenario Phase 11 found failing, not assumed fixed. `TODO.md`'s Phase 11 Offline checklist item updated to record the fix. ✅
 
 ---
 

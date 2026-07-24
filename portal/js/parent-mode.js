@@ -52,7 +52,7 @@ import { loadCampaign } from './campaign-loader.js';
 import { loadMission } from './mission-engine.js';
 import { getDiscoveryLog } from './discovery-log.js';
 import { getEarnedRewards, resolveRewardDetails } from './reward-engine.js';
-import { fetchJson } from './utils.js';
+import { fetchJson, registerServiceWorker } from './utils.js';
 import { listProfiles, verifyProfilePin, changePin } from './explorer-profiles.js';
 
 const CAMPAIGN_ID = 'campaign01'; // same simplification router.js already makes; no multi-campaign linking exists yet
@@ -536,6 +536,7 @@ async function renderDashboard(root, profile) {
 function init() {
   const root = document.getElementById('parent-app');
   if (!root) return;
+  registerServiceWorker();
   renderExplorerPicker(root);
 }
 
