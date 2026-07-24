@@ -110,6 +110,17 @@ See `TODO.md` for the full phase-by-phase status and `CURRENT_TASK.md` for what'
 
 ---
 
+# ▶️ Running It Locally
+
+No build step — just serve `portal/` and open it in a browser. Full walkthrough (including Parent Mode, offline testing, and the automated test suite) in `docs/60-engineering/602_LOCAL_DEVELOPMENT.md`.
+
+```
+cd portal && python3 -m http.server 8000
+# then open http://localhost:8000/index.html
+```
+
+---
+
 # 📚 Repository Structure
 
 ```text
