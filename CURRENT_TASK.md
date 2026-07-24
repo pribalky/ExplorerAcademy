@@ -10,7 +10,59 @@ None currently active. Per CLAUDE.md's Milestone Lifecycle, do not begin new wor
 
 ## Completion Notes
 
-The previous milestone (Save Export/Import) is complete — see "Previous Milestone" below. Phase 12 (Campaign Release) remains the only original-roadmap phase not yet started; the user has not yet asked to begin it.
+The previous milestone (Tablet/Mobile Touch-Target CSS) is complete — see "Previous Milestone" below. Phase 12 (Campaign Release) remains the only original-roadmap phase not yet started; the user has not yet asked to begin it.
+
+---
+
+# Previous Milestone — Tablet/Mobile Touch-Target CSS Gap — COMPLETE
+
+## Objective
+
+Phase 11 testing found buttons measuring ~21px tall against the ~44px touch-target guideline 601_HTML_ARCHITECTURE.md's Responsive Behaviour section calls for ("touch-friendly controls"), because `layout.css`/`components.css` had been empty Milestone-1.1 placeholders since Phase 1 — no responsive or touch-aware CSS existed anywhere in the platform. The user asked to close this next, since the platform is likely to be used on mobile/laptop devices.
+
+## Inputs
+
+- TODO.md's Phase 11 Tablet/Mobile findings (measured ~21px buttons, no overflow, no broken flows).
+- `601_HTML_ARCHITECTURE.md`'s Responsive Behaviour section (Desktop/Laptop/Tablet/Large mobile as target layouts; "readability, generous spacing and touch-friendly controls").
+- The actual DOM structure every interactive control is built from — surveyed `router.js`/`parent-mode.js`'s `createElement` calls (button, a, input, label, textarea, summary) to confirm every one is plain HTML with no shared class/component system, so plain-element CSS selectors would cover the whole platform with zero JavaScript changes.
+
+## Relevant Documentation
+
+`601_HTML_ARCHITECTURE.md` (Responsive Behaviour).
+
+## Completion Summary
+
+- **`portal/css/layout.css`** — added a `box-sizing: border-box` reset (needed so padding-driven touch-target sizing doesn't cause overflow), a flex-wrapping, gapped primary nav (so enlarged nav links wrap cleanly on narrow viewports instead of clipping or forcing horizontal scroll), and `li + li` spacing (previously zero spacing between list items anywhere — Explorer selector, campaign list, mission list).
+- **`portal/css/components.css`** — every interactive control now gets a `min-height: 44px` touch target: buttons/submit inputs, text/file inputs, `<summary>` disclosure triggers (`+ New Explorer`/`+ Import Explorer`), and in-content links (nav links, Continue Mission, campaign cards). Radio/checkbox `<input>`s stay their native small size, but the `<label>` that always wraps them in this platform's markup (native label-for-input tap behaviour) gets the 44px treatment instead — confirmed this is the right target by checking that every radio/checkbox in `router.js` is genuinely always wrapped in a label, never bare.
+- Deliberately targeted plain HTML element selectors (`button`, `a`, `label`, `summary`, `input[type=...]`) rather than introducing a new CSS class system — every interactive control across the codebase is built with plain DOM APIs, not a shared component function, so this closes the gap with zero JavaScript changes, matching the "no build tools, keep it simple" constraint.
+
+## Out of Scope
+
+A full design system/visual redesign (colors, typography scale beyond what accessibility already needed, card layouts) — this milestone closes specifically the touch-target/spacing gap Phase 11 flagged, not a general CSS overhaul. Per-breakpoint layout changes (e.g. a hamburger menu below some width) — not needed, since the nav already wraps cleanly and no overflow was found at any tested size.
+
+## Success Criteria
+
+Every interactive control across the learner shell and Parent Mode measures at least 44px tall at Tablet (768×1024) and Mobile (375×667) viewports, with zero horizontal overflow and no broken flows — met, verified below.
+
+## Manual Verification
+
+All verified via headless Chromium against the real running app, not assumed:
+
+- **Touch-target sweep**: measured every `button`, `a`, `summary`, `label`, `input[type=text]`, `input[type=file]` across Home dashboard, Campaign Select, a mission page, Settings, and the Explorer selector (including the new Save-Export/Import "+ Import Explorer" form) at Tablet, Mobile and Desktop viewports — zero elements under 44px tall at any size (previously ~21px at all sizes, since no responsive CSS existed).
+- **Horizontal overflow**: confirmed absent at Tablet and Mobile for every page above, including with `a11y-font-x-large` + `a11y-high-contrast` classes both applied simultaneously at mobile width (the most demanding realistic combination).
+- **Parent Mode**: swept the Explorer picker, PIN gate and full scoped dashboard at Mobile width — zero elements under 44px (3 elements on the PIN gate, 25 on the dashboard, all passing).
+- **Full mission crawl**: all 21 missions load with correct titles and zero console/page errors at Mobile viewport with the new CSS active.
+- **Visual inspection**: screenshotted Home, the "+ New Explorer" form, Settings (including the Backup & Transfer section from the previous milestone), a mission's reflection form, and Parent Mode's PIN gate at Mobile width, plus Home/mission/profile at Desktop width — nav wraps cleanly into two rows on narrow viewports and sits on one row on desktop, spacing looks intentional and uncrowded, nothing renders broken or overlapping at any size.
+- **Full regression pass**: multi-child profile isolation, Save Export/Import's Backup & Transfer button and Import Explorer form, and Discovery Log all continue to work correctly with the new CSS in place.
+- One test-setup mistake caught mid-verification: an early Tablet/Mobile sweep used a stale mission URL pattern (`#/campaign/campaign01/mission/mission01`) that 404'd to the Not Found page, silently testing the wrong page. Caught by checking the actual route table in `router.js` (`#/mission/<id>`, not campaign-nested) and re-run correctly.
+
+## Deliverables
+
+Updated `portal/css/layout.css` and `portal/css/components.css` (first real content either file has had beyond the Milestone 11 accessibility rules already in `base.css`/`themes.css`); updated `TODO.md`'s Phase 11 Tablet/Mobile checklist items.
+
+## Completion Notes
+
+**Complete.** The genuine, pre-existing gap Phase 11 testing surfaced and deliberately did not silently patch — no responsive/touch-aware CSS existed anywhere in the platform — is now closed with a small, targeted, plain-CSS change: every interactive control across the learner shell and Parent Mode meets the ~44px touch-target guideline at Tablet, Mobile and Desktop sizes, with zero horizontal overflow and zero regressions to any existing flow. ✅
 
 ---
 

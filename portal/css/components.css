@@ -1,1 +1,68 @@
-/* components.css — Placeholder. Shared UI component styling. No rules yet (Milestone 1.1). */
+/* components.css — Shared UI control sizing.
+   Ensures every interactive control meets the ~44px touch-target
+   guideline 601_HTML_ARCHITECTURE.md's Responsive Behaviour section
+   calls for ("touch-friendly controls") — Phase 11 testing measured
+   buttons at ~21px tall before this file had any rules. Rules target
+   plain HTML elements rather than a custom class system, since every
+   interactive control in the platform is built with plain DOM APIs
+   (button/label/input/summary), not a shared component function. */
+
+button,
+input[type="submit"],
+input[type="button"] {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+input[type="text"],
+input[type="file"] {
+  min-height: 44px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 20rem;
+}
+
+/* Native checkboxes/radios render far under 44px on their own, but the
+   platform's markup always wraps them in a <label> the child can tap
+   anywhere on (native label-for-input behaviour) — so it's the label,
+   not the tiny input, that needs to meet the touch-target size. Some
+   labels set an inline `display: block` (radio/checkbox groups stacked
+   one per line); that overrides only `display` here, so min-height and
+   padding still apply and the tap target still enlarges correctly. */
+label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.25rem 0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* <details>/<summary> disclosure triggers ("+ New Explorer", "+ Import
+   Explorer") are as clickable as a button and need the same sizing. */
+summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* In-content links that act as navigation/actions (nav links, Continue
+   Mission, Choose Campaign, campaign list entries) — not styled as
+   buttons, but still tappable targets that deserve the same generous
+   hit area. */
+a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  margin-left: -0.75rem;
+}
