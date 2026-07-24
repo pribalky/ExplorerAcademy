@@ -93,18 +93,18 @@ Secondary Audience
 
 # 🚧 Current Project Status
 
-**Phase:** Implementation — Platform and Campaign 1 complete; Testing is the only phase remaining before release.
+**Phase:** Implementation — Platform and Campaign 1 complete, tested, and released. Phase 12 (Campaign Release) closed out the roadmap; ongoing work now is platform polish and Future Possibilities, tracked in `TODO.md`.
 
 Delivered so far:
 
-- Full platform engine (Router, Campaign Loader, Mission Engine, Activity Engine, Adaptive Scheduler, Storage Manager, Reward Engine, Discovery Log, Settings Manager)
+- Full platform engine (Router, Campaign Loader, Mission Engine, Activity Engine, Adaptive Scheduler, Storage Manager, Reward Engine, Discovery Log, Settings Manager), with genuine offline caching via a service worker (ADR-027) — a complete campaign remains usable after one initial online load, not just previously-visited pages
 - Campaign 1 ("Outpost Echo"), all 21 missions, production-quality
-- Parent Mode: curriculum mapping, progress dashboard, per-mission assessment evidence, per-Explorer PIN gate
-- Multi-child Explorer Profiles — multiple named children can share one device, each with an independent save, PIN-gated Parent Mode view, and accessibility/session-duration preferences
+- Parent Mode: curriculum mapping, progress dashboard, per-mission assessment evidence, per-Explorer PIN gate, and the Explorer's Field Journal — a printable keepsake built from a child's own recorded reflections (ADR-029)
+- Multi-child Explorer Profiles — multiple named children can share one device, each with an independent save, PIN-gated Parent Mode view, and accessibility/session-duration preferences; a profile (and its save) can be exported as a downloadable file and imported on another device (ADR-028)
 - Printable workbook (compiled PDF, answer guide, notebook alternatives)
 - Visual assets for every mission scene, diagram and reward (flat-vector SVG, documented as a placeholder pending real illustration)
-
-Remaining before release: Phase 11 (Testing — desktop/tablet/mobile, offline, accessibility, save state) and Phase 12 (Campaign Release).
+- Touch-friendly, responsive layout — every interactive control meets the ~44px touch-target guideline at Tablet/Mobile/Desktop
+- A checked-in Playwright smoke-test suite (`tests/`) covering every golden path, runnable with `python3 tests/run_all.py`
 
 See `TODO.md` for the full phase-by-phase status and `CURRENT_TASK.md` for what's actively in progress.
 
@@ -137,6 +137,8 @@ ExplorerAcademy/
 │                         # generated/workbook/, not a shared top-level folder
 │
 ├── scripts/              # build tooling (e.g. the workbook PDF compiler)
+│
+├── tests/                # checked-in Playwright smoke-test suite (python3 tests/run_all.py)
 │
 └── assets/
 ```
@@ -272,11 +274,17 @@ Thinking is essential.
 
 ## Stage 6
 
-⬜ Beta Testing (Phase 11 — desktop/tablet/mobile, offline, accessibility, save state)
+✅ Beta Testing (Phase 11 — desktop/tablet/mobile, offline, accessibility, save state) — every checklist item verified with an actual test run; the two real gaps testing surfaced (touch-target sizing, offline caching scope) were subsequently closed as their own milestones
 
 ---
 
 ## Stage 7
+
+✅ Campaign Release (Phase 12) — campaign01's content, workbook, Parent Mode and visual assets audited against the real repository state (not assumed), one stale offline-cache maintenance gap found and fixed, documentation refreshed
+
+---
+
+## Stage 8
 
 ⬜ Future Campaigns
 
@@ -335,7 +343,7 @@ Future campaigns should require new content—not a new platform.
 
 # 🌱 Future Possibilities
 
-Beyond Phase 11 (Testing) and Phase 12 (Campaign Release), here is where Explorer Academy could go next — split by how much each idea would actually change what kind of platform this is, versus incremental polish.
+With every phase on the original roadmap complete, here is where Explorer Academy could go next — split by how much each idea would actually change what kind of platform this is, versus incremental polish.
 
 ## True Differentiators
 

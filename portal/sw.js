@@ -20,7 +20,7 @@
 // KNOWN_CAMPAIGN_IDS mirrors router.js's own placeholder list for the
 // same reason: no real campaign-discovery manifest exists yet.
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const CACHE_NAME = `explorer-academy-${CACHE_VERSION}`;
 
 const KNOWN_CAMPAIGN_IDS = ['campaign01'];
@@ -34,6 +34,7 @@ const SHELL_FILES = [
   'css/layout.css',
   'css/components.css',
   'css/themes.css',
+  'css/print.css',
   'js/app.js',
   'js/router.js',
   'js/scheduler.js',

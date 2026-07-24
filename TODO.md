@@ -494,17 +494,23 @@ Checklist
 
 # Phase 12 — Campaign Release
 
+Status
+
+```
+COMPLETE — a genuine release-readiness audit, not an assumption. No documentation anywhere defined what "complete" meant for each checklist item, so each was actually verified against the real repository state (JSON validity, required-field completeness, asset existence, functional regression via tests/run_all.py) rather than taken on faith from earlier phases' own completion claims. One real gap was found and fixed. See CURRENT_TASK.md's "Previous Milestone — Phase 12: Campaign Release" for full detail.
+```
+
 Checklist
 
-- [ ] Campaign complete
+- [x] Campaign complete — all 57 campaign JSON files valid; all 21 missions verified to have complete required content (title, activities with type/category/title/instructions, parentGuide with all four required fields, at least one reflection prompt) — zero placeholder/TODO/TBD/lorem-ipsum markers found anywhere in `src/`/`generated/`.
 
-- [ ] Workbook complete
+- [x] Workbook complete — `Campaign-01-Workbook.pdf` present, 47 pages (matching Phase 7's original claim), all 21 notebook pages present.
 
-- [ ] Parent Mode complete
+- [x] Parent Mode complete — all 21 mission enrichment files present; functional flow (picker → PIN gate → dashboard → Field Journal → Change PIN) covered by `tests/test_parent_mode.py`, passing.
 
-- [ ] Assets complete
+- [x] Assets complete — all 24 `images.json` entries and all 10 `badges.json` entries verified to reference a real file that exists on disk; zero missing assets.
 
-- [ ] Documentation updated
+- [x] Documentation updated — found and fixed real staleness: `portal/sw.js`'s hand-maintained `SHELL_FILES` list was missing `css/print.css` (added during the Field Journal milestone, never added to the precache list) — fixed and `CACHE_VERSION` bumped to `v2`, verified via Playwright that Parent Mode now genuinely loads with print styling applied while fully offline (145 cached entries, was 144). `README.md`'s Current Project Status, Repository Structure (missing `tests/`) and Roadmap (Phase 11/12 both still shown unchecked despite being complete) were all refreshed to reflect reality.
 
 ---
 
@@ -680,3 +686,7 @@ Phase 12 (Campaign Release) and the Explorer's Field Journal remain the next can
 **The user then said yes to the Field Journal too.** README's original framing described it as "the workbook PDF pipeline, pointed at a child's own Discovery Log instead" — but that pipeline is a build-time Python script with no access to a specific device's `localStorage` save data, so literally reusing it would mean asking a parent to run Python locally. Flagged and resolved instead with a dedicated in-browser view: `parent-mode.js` gained `renderFieldJournal()`, reachable via a new "View Field Journal" button on the dashboard, built entirely from that specific Explorer's own `getDiscoveryLog()`/`getEarnedRewards()` data — a cover, one section per mission with at least one recorded reflection (missions with none are omitted, since "it isn't templated; it's built from what the child actually wrote"), and a closing tally. A parent produces the actual PDF via their own browser's Print/Save-as-PDF, styled by a new `portal/css/print.css` (linked only from Parent Mode, `@media print` only, zero effect on any on-screen view). ADR-029 records the browser-print-vs-build-script decision. Extended `tests/test_parent_mode.py` with Field Journal coverage — the new test suite immediately proved its worth, catching nothing wrong but exercising a real feature the moment one shipped. Verified end-to-end: only missions with actual recorded reflections appear, earned rewards resolve correctly via the same `resolveRewardDetails()` Parent Mode's dashboard already uses, cross-child isolation holds inside the Journal too, and the full regression suite (all 8 test files) passes. While in the area, fixed two other stale README claims found alongside this one: Save Export/Import's Future Possibilities entry was never marked shipped when that milestone completed, and the "fuller design system" note still described `layout.css`/`components.css` as empty placeholders after the touch-target CSS milestone had already given them real content.
 
 Phase 12 (Campaign Release) remains the only original-roadmap phase not yet started. Awaiting user direction.
+
+**The user then asked to start Phase 12.** No document anywhere defined what "complete" or "release" meant for its five bare checklist items, and earlier phases had already individually claimed completion for exactly these same areas (campaign content, workbook, Parent Mode, assets) — so rather than assume those claims still held or invent new content work, Phase 12 was treated as a genuine release-readiness audit, actually checking each item against the real repository state. Verified via direct checks (not assumption): all 57 campaign JSON files valid; all 21 missions have complete required content (activities, parentGuide, reflection prompts) with zero placeholder/TODO/TBD markers anywhere in campaign content; the workbook PDF (47 pages) and all 21 enrichment files are present; all 34 referenced visual assets (24 `images.json` + 10 `badges.json` entries) exist on disk; the offline manifest is still byte-identical to a fresh regeneration. One real gap was found and fixed: `sw.js`'s hand-maintained `SHELL_FILES` precache list never had `css/print.css` added when the Field Journal milestone shipped it — fixed, `CACHE_VERSION` bumped to `v2`, and verified directly via Playwright that Parent Mode (with the Field Journal) now genuinely loads and applies print styling while fully offline. `README.md`'s Current Project Status, Repository Structure and Roadmap sections — all stale in different ways (missing `tests/`, Phase 11/12 both still shown as remaining despite being complete) — were refreshed to match reality. Full regression pass via `tests/run_all.py`: all 8 test files pass.
+
+Every phase on the original roadmap is now complete. What comes next — a second campaign, more of README's Future Possibilities, or something else — is the user's call. Awaiting direction.

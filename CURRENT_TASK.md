@@ -6,11 +6,59 @@ Awaiting direction.
 
 ## Milestone
 
-None currently active. Per CLAUDE.md's Milestone Lifecycle, do not begin new work until the user gives explicit direction.
+None currently active. Per CLAUDE.md's Milestone Lifecycle, do not begin new work until the user gives explicit direction. Every phase on the original roadmap (1 through 12) is now complete.
 
 ## Completion Notes
 
-The previous milestone (Explorer's Field Journal) is complete — see "Previous Milestone" below. Phase 12 (Campaign Release) remains the only original-roadmap phase not yet started.
+The previous milestone (Phase 12: Campaign Release) is complete — see "Previous Milestone" below.
+
+---
+
+# Previous Milestone — Phase 12: Campaign Release — COMPLETE
+
+## Objective
+
+TODO.md's Phase 12 checklist (Campaign complete / Workbook complete / Parent Mode complete / Assets complete / Documentation updated) had no supporting definition anywhere in `docs/` of what "complete" or "release" actually means for each item — the first genuinely undefined roadmap phase in the whole project. Given Phases 3-9 had already individually claimed completion for exactly these same areas, and this session's own established pattern is to verify claims rather than assume them, Phase 12 was treated as a genuine release-readiness audit — actually check each item against the real repository state, fix any real gaps found, and only then mark it done — not a request to author new content.
+
+## Inputs
+
+- TODO.md's Phase 12 checklist (the only definition of scope that existed).
+- Every prior phase's own "COMPLETE" claim (Phase 3 Campaign Compiler, Phase 4 Mission Compiler, Phase 5 Asset Compiler, Phase 6 Mission Polish, Phase 7 Workbook, Phase 8 Parent Mode, Phase 9 Visual Assets) — each re-verified here rather than taken on faith.
+- `tests/run_all.py` — reused for the functional/regression slice.
+
+## Completion Summary
+
+- **Campaign complete**: all 57 campaign JSON files parse as valid JSON; a dedicated script confirmed all 21 missions have complete required content (`missionNumber`/`title`/`activities`/`parentGuide`, every activity's `title`/`instructions`/`type`/`category`, every `parentGuide`'s four required fields, at least one reflection prompt) — nothing empty or missing. A repo-wide grep for `TODO`/`TBD`/`PLACEHOLDER`/`lorem ipsum`/`FIXME`/`XXX` across campaign content found exactly one hit, and it was `STYLE_GUIDE.md`'s own intentional, already-documented note that the SVG art is a disposable placeholder layer — not an actual content gap.
+- **Workbook complete**: `Campaign-01-Workbook.pdf` confirmed present and still 47 pages (matching Phase 7's original claim); all 21 workbook notebook pages present.
+- **Parent Mode complete**: all 21 mission enrichment files present; the full functional flow (picker → PIN gate → dashboard → Field Journal → Change PIN) is covered by `tests/test_parent_mode.py` and passes.
+- **Assets complete**: all 24 `images.json` entries and all 10 `badges.json` entries verified to reference a real file that exists on disk — zero missing assets.
+- **Documentation updated** — found and fixed a real, non-trivial gap: `portal/sw.js`'s hand-maintained `SHELL_FILES` precache list was never updated when the Field Journal milestone added `css/print.css` — it was still being served correctly online (the fetch handler's opportunistic runtime caching covers anything not in the precache list once fetched at least once), but wasn't *guaranteed* precached on first load the way every other shell file is. Fixed by adding it to `SHELL_FILES` and bumping `CACHE_VERSION` to `v2` (per ADR-027's own stated maintenance requirement). Also refreshed `README.md`'s Current Project Status (was still describing Testing as "the only phase remaining," missing offline caching/Save Export/Import/touch-target CSS/the test suite/the Field Journal entirely), Repository Structure (missing `tests/`), and Roadmap (Stage 6 "Beta Testing" still shown unchecked despite Phase 11 being complete, and Phase 12/Campaign Release had no Roadmap stage of its own at all).
+
+## Out of Scope
+
+Authoring a second campaign — Phase 12 was about campaign01's own release readiness, not proving multi-campaign scalability (a separate, larger undertaking). Any new feature work — this phase audited and closed out what already existed.
+
+## Success Criteria
+
+Every Phase 12 checklist item genuinely verified true against the real repository state, any real gaps found and fixed, zero regressions. — **Met**, verified below.
+
+## Manual Verification
+
+- All 57 campaign JSON files parsed successfully; all 21 missions confirmed to have complete required content via a dedicated field-by-field check, not a spot check.
+- Repo-wide placeholder-marker grep across campaign `src/`/`generated/` returned exactly one hit, confirmed to be an intentional, already-documented note, not a real gap.
+- Workbook PDF page count (47) and all 21 workbook/enrichment files confirmed present.
+- All 34 asset-manifest entries (`images.json` + `badges.json`) confirmed to reference files that exist on disk.
+- The offline manifest (`offline-manifest.json`, 124 files) was regenerated fresh via `scripts/generate_offline_manifest.py` and diffed byte-for-byte identical against the committed version — confirmed still current, not stale.
+- **The `print.css` precache gap was verified as a real, functional bug, not just a static list-comparison finding**: before the fix, `print.css` was reachable only via runtime opportunistic caching; after the fix, a fresh online load followed by going fully offline and reloading Parent Mode showed `print.css` correctly applied (`document.styleSheets` confirmed it loaded), with the service worker's cache now holding 145 entries (was 144) including `css/print.css` explicitly confirmed present by URL.
+- **Full regression pass**: `python3 tests/run_all.py` — all 8 test files pass after the `sw.js` fix, confirming the `CACHE_VERSION` bump didn't break anything.
+
+## Deliverables
+
+Fixed `portal/sw.js` (`SHELL_FILES` + `CACHE_VERSION`), refreshed `README.md` (Current Project Status, Repository Structure, Roadmap, Future Possibilities intro), updated `TODO.md`'s Phase 12 checklist with evidenced findings.
+
+## Completion Notes
+
+**Complete.** Every Phase 12 checklist item was genuinely verified against the real repository state rather than assumed from earlier phases' own completion claims — exactly the audit discipline this whole session has applied consistently. One real, functionally-verified gap (the offline-cache precache list missing a file added by a later milestone) was found and fixed, plus several stale README claims were corrected. Every phase on the original roadmap (1 through 12) is now complete. ✅
 
 ---
 
