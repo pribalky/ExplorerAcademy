@@ -10,7 +10,50 @@ None currently active. Per CLAUDE.md's Milestone Lifecycle, do not begin new wor
 
 ## Completion Notes
 
-The previous milestone (Tablet/Mobile Touch-Target CSS) is complete — see "Previous Milestone" below. Phase 12 (Campaign Release) remains the only original-roadmap phase not yet started; the user has not yet asked to begin it.
+The previous milestone (Automated Smoke-Test Suite) is complete — see "Previous Milestone" below. The user also said "yes, maybe" to the Explorer's Field Journal feature next; that has not been started and needs its own plan and confirmation before beginning, per the Milestone Lifecycle. Phase 12 (Campaign Release) remains the only original-roadmap phase not yet started.
+
+---
+
+# Previous Milestone — Automated Smoke-Test Suite — COMPLETE
+
+## Objective
+
+Every regression check performed across this entire session (Milestone 11, Phase 11 testing, offline caching, Save Export/Import, the touch-target CSS fix) was a throwaway script, re-derived from scratch each time. Nothing regression-tested the platform between sessions, so a future change could silently break an old flow until someone happened to re-test it by hand — this session itself hit a false-positive test bug purely by chance of re-running a check. A small, checked-in, dependency-light suite closes that gap before Phase 12 content changes start landing. The user identified this as the highest-value next step when asked for a genuinely-different-making recommendation, ahead of (and independent from) the Explorer's Field Journal feature.
+
+## Inputs
+
+- Every ad-hoc Playwright script written this session (Phase 11 testing, offline caching, Save Export/Import, touch-target CSS) — reused as the basis for each persisted test file.
+- `scripts/build_workbook.py`/`generate_offline_manifest.py` — the established pattern for checked-in, reusable Python tooling (plain scripts, not a new framework), followed here rather than introducing pytest (not installed in this environment, and not otherwise used anywhere in the repo).
+
+## Completion Summary
+
+- **New `tests/helpers.py`** — `local_server()` context manager spins up `python3 -m http.server` against `portal/` on a free port per test file and tears it down afterward, so nothing needs to already be running; `launch_browser()` points at this environment's pre-installed Chromium (`/opt/pw-browsers/chromium`, overridable via `EXPLORER_ACADEMY_CHROMIUM`); `report()` prints a PASS/FAIL line and returns the condition for easy `ok = report(...) and ok` accumulation.
+- **8 new `test_*.py` files**, one per golden path, ported from this session's own proven ad-hoc scripts: `test_broken_links.py` (all 5 static routes + 21 missions + Parent Mode, zero console/page errors), `test_explorer_profiles.py` (multi-child creation/switching/save isolation), `test_missions.py` (mission load, reflection save, Save State survives a reload), `test_settings.py` (session duration + accessibility preferences persist and actually change computed styles), `test_save_export_import.py` (export/import round-trip across separate contexts, PIN-hash-only preservation, name-collision and malformed/foreign-file rejection), `test_offline.py` (a never-visited mission loads after going offline, the exact ADR-027 guarantee), `test_parent_mode.py` (picker → PIN gate → dashboard → cross-child isolation, plus the zero-profiles state), `test_touch_targets.py` (every interactive control ≥44px at Tablet/Mobile/Desktop, zero overflow).
+- **New `tests/run_all.py`** — discovers every `test_*.py`, runs each `run()`, catches exceptions as failures rather than crashing the whole run, prints an aggregate summary, exits non-zero on any failure.
+- **New `tests/README.md`** — what's covered, how to run it (`python3 tests/run_all.py`, nothing new to install), and the design notes (no pytest, Chromium only, not wired into CI yet).
+- **`CLAUDE.md`'s Repository Layout** now lists `tests/` alongside `docs/`/`portal/`/`assets/`/`scripts/`.
+
+## Out of Scope
+
+Pytest or any other test framework/dependency not already used in this repo. Browser matrix testing (Firefox/WebKit) — Chromium only. CI wiring (GitHub Actions etc.) — running the suite is a manual step for now; automating *when* it runs is a separate decision the user hasn't asked for.
+
+## Success Criteria
+
+`python3 tests/run_all.py` runs unattended against a fresh checkout and reports all golden paths passing, with no manual setup beyond what this environment already has. — **Met**, verified below.
+
+## Manual Verification
+
+- **Full suite run**: `python3 tests/run_all.py` — all 8 test files pass (55 individual assertions across them).
+- **One real bug caught and fixed in the suite itself, not the app**: the first run of `test_missions.py` failed on "active Explorer survives a full reload," checking for the Explorer's display name on the mission page — but that page never shows it (only Home's dashboard does via "Exploring as: ..."). This is the same class of false-positive this session already hit once before (the `&`/`&amp;` escaping issue during Save Export/Import verification) — fixed by asserting against Home instead, confirmed the corrected test passes, then re-ran the whole suite clean.
+- **Proved the suite has real teeth, not trivial passes**: deliberately renamed the "Create Explorer" button's text in `router.js` (`sed` edit), re-ran the full suite, and confirmed 6 of 8 test files correctly failed (every flow that creates an Explorer) while the 2 unaffected files (`test_broken_links`, `test_offline`) still passed — proving the suite actually exercises real app behavior rather than passing regardless. Reverted via `git checkout -- portal/js/router.js`, confirmed the diff was clean, and re-ran the suite to confirm all 8 pass again.
+
+## Deliverables
+
+`tests/` directory (`helpers.py`, `run_all.py`, `README.md`, 8 `test_*.py` files), updated `CLAUDE.md` (Repository Layout) and `TODO.md`.
+
+## Completion Notes
+
+**Complete.** The platform now has a persisted, reusable, dependency-light Playwright suite covering every golden path verified across this session, runnable with a single command and no new installs. It caught one genuine test-authoring mistake during its own first run and was proven (via a deliberately injected, then reverted, regression) to actually fail when the app breaks — not just pass by construction. ✅
 
 ---
 

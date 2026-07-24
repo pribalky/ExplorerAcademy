@@ -90,6 +90,7 @@ docs/
 portal/
 assets/
 scripts/
+tests/
 ```
 
 Workbook content is not a top-level directory — it lives under each campaign's own `portal/campaigns/campaignXX/generated/workbook/`, alongside that campaign's other generated assets (see Campaign Structure below).
