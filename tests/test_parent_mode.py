@@ -1,6 +1,7 @@
 # test_parent_mode.py — Parent Mode's Explorer picker -> PIN gate ->
-# scoped dashboard -> Change PIN flow, including cross-child isolation
-# and the zero-profiles empty state. Ported from Milestone 11/Phase 11
+# scoped dashboard -> Change PIN flow, including cross-child isolation,
+# the zero-profiles empty state, and the Explorer's Field Journal
+# (ADR-029). Ported from Milestone 11/Phase 11/Field Journal
 # verification.
 
 import os
@@ -74,6 +75,27 @@ def run():
         ok = report("Jamie's own PIN unlocks her dashboard", "Jamie" in content) and ok
         ok = report("Jamie's dashboard shows her reflection", "Jamie&#x27;s Parent Mode test reflection" in content or "Jamie's Parent Mode test reflection" in content) and ok
         ok = report("Jamie's dashboard shows no trace of Alex", "Alex" not in content) and ok
+
+        print_css_linked = page.evaluate(
+            "[...document.querySelectorAll('link[rel=stylesheet]')].some(l => l.href.includes('print.css'))"
+        )
+        ok = report("print.css is linked from Parent Mode", print_css_linked) and ok
+
+        page.click("button:has-text('View Field Journal')")
+        page.wait_for_timeout(300)
+        journal_content = page.content()
+        ok = report("Field Journal shows Jamie's own name on the cover", "Jamie" in journal_content) and ok
+        ok = report(
+            "Field Journal includes mission03's recorded reflection",
+            "Jamie's Parent Mode test reflection" in journal_content or "Jamie&#x27;s Parent Mode test reflection" in journal_content,
+        ) and ok
+        ok = report("Field Journal omits mission01 (no reflection recorded)", "Mission 1:" not in journal_content) and ok
+        ok = report("Field Journal shows the closing tally", "Journey So Far" in journal_content) and ok
+        ok = report("Field Journal shows no trace of Alex", "Alex" not in journal_content) and ok
+
+        page.click("button:has-text('Back to Dashboard')")
+        page.wait_for_timeout(300)
+        ok = report("Back to Dashboard returns to the full dashboard", "Progress Dashboard" in page.content()) and ok
 
         ctx.close()
         browser.close()

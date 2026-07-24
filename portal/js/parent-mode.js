@@ -448,6 +448,92 @@ function renderMissionGuidance(container, { mission, slug, enrichment, curriculu
   container.appendChild(details);
 }
 
+// Explorer's Field Journal (ADR-029): a printable keepsake built
+// entirely from this Explorer's own recorded Discovery Log entries and
+// earned rewards — not templated campaign content, matching README's
+// own framing ("it isn't templated; it's built from what the child
+// actually wrote"). Missions with no recorded reflection are omitted
+// entirely for that reason. Printing goes through the browser's own
+// Print/Save-as-PDF (print.css supplies print-only styling) rather
+// than any PDF-generation library or the build-time workbook script —
+// this data only exists in this device's localStorage, not in the
+// repo files those tools operate on.
+function renderFieldJournal(root, { profile, campaign, discoveryLog, earnedRewards, catalogs, missions }) {
+  root.innerHTML = '';
+  const container = document.createElement('div');
+  container.setAttribute('data-field-journal', '');
+
+  const actions = document.createElement('p');
+  actions.setAttribute('data-journal-actions', '');
+  const printButton = document.createElement('button');
+  printButton.type = 'button';
+  printButton.textContent = 'Print / Save as PDF';
+  printButton.addEventListener('click', () => window.print());
+  const backButton = document.createElement('button');
+  backButton.type = 'button';
+  backButton.textContent = 'Back to Dashboard';
+  backButton.addEventListener('click', () => renderDashboard(root, profile));
+  actions.append(printButton, backButton);
+  container.appendChild(actions);
+
+  const cover = document.createElement('section');
+  addHeading(cover, 1, `${profile.displayName}'s Field Journal`);
+  addParagraph(cover, campaign.title);
+  addParagraph(cover, `Explorer since ${new Date(profile.createdAt).toLocaleDateString()}`);
+  addParagraph(cover, `Compiled on ${new Date().toLocaleDateString()}`);
+  container.appendChild(cover);
+
+  const missionsWithEntries = missions.filter(({ slug }) => discoveryLog.some((entry) => entry.missionId === slug));
+
+  if (missionsWithEntries.length === 0) {
+    addParagraph(container, 'No reflections recorded yet — the Field Journal will fill in as missions are completed.');
+  }
+
+  missionsWithEntries.forEach(({ mission, slug }) => {
+    const article = document.createElement('article');
+    addHeading(article, 2, `Mission ${mission.missionNumber}: ${mission.title}`);
+
+    discoveryLog
+      .filter((entry) => entry.missionId === slug)
+      .forEach((entry) => {
+        addHeading(article, 4, entry.prompt);
+        addParagraph(article, entry.learnerNotes);
+        addParagraph(article, `Recorded ${new Date(entry.timestamp).toLocaleDateString()}`);
+      });
+
+    const missionRewards = earnedRewards.filter((reward) => reward.missionId === slug);
+    if (missionRewards.length > 0) {
+      addHeading(article, 4, 'Earned');
+      addList(
+        article,
+        missionRewards.map((reward) => {
+          const details = resolveRewardDetails(reward, catalogs);
+          const title = details?.title ?? reward.value;
+          return details?.description ? `${title} — ${details.description}` : title;
+        })
+      );
+    }
+
+    container.appendChild(article);
+  });
+
+  const missionsWithProgress = new Set([
+    ...earnedRewards.map((reward) => reward.missionId),
+    ...discoveryLog.map((entry) => entry.missionId)
+  ]);
+  const closing = document.createElement('section');
+  addHeading(closing, 2, 'Journey So Far');
+  const dl = document.createElement('dl');
+  addDefinitionRow(dl, 'Missions with recorded progress', `${missionsWithProgress.size} of ${campaign.missions.length}`);
+  addDefinitionRow(dl, 'Discovery Log entries', String(discoveryLog.length));
+  const streakCount = profile.streak?.count ?? 0;
+  addDefinitionRow(dl, 'Streak', `${streakCount} day${streakCount === 1 ? '' : 's'}`);
+  closing.appendChild(dl);
+  container.appendChild(closing);
+
+  root.appendChild(container);
+}
+
 async function renderDashboard(root, profile) {
   root.innerHTML = '<p data-status>Loading Parent Mode…</p>';
 
@@ -495,7 +581,22 @@ async function renderDashboard(root, profile) {
   switchButton.type = 'button';
   switchButton.textContent = 'Choose a different Explorer';
   switchButton.addEventListener('click', () => renderExplorerPicker(root));
-  viewingBar.append(viewingLabel, switchButton);
+  const journalButton = document.createElement('button');
+  journalButton.type = 'button';
+  journalButton.textContent = 'View Field Journal';
+  journalButton.addEventListener('click', () =>
+    renderFieldJournal(root, {
+      profile,
+      campaign,
+      discoveryLog,
+      earnedRewards,
+      catalogs: rewardCatalogs,
+      missions: slugs
+        .map((slug, index) => (missionResults[index].ok ? { mission: missionResults[index].mission, slug } : null))
+        .filter(Boolean)
+    })
+  );
+  viewingBar.append(viewingLabel, switchButton, journalButton);
   root.appendChild(viewingBar);
 
   renderCampaignOverview(root, campaign);

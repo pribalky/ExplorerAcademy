@@ -347,7 +347,7 @@ These aren't "more content" or "a nicer interface." Each one would give Explorer
 
 **Real-World-Synced Investigations.** Mission 6 already ties a Core activity to the weather actually outside the window. Extending that pattern platform-wide — a Rabbit Hole that only appears when tonight's real moon phase matches the mission, a season-aware activity variant set once by a parent with no ongoing tracking — would make "authentic investigation" literal rather than simulated, without requiring any account, location service, or ongoing connectivity.
 
-**The Explorer's Field Journal.** The workbook PDF pipeline (`scripts/build_workbook.py`) currently compiles *authored* campaign content. Pointed at a child's own Discovery Log instead, the same pipeline could produce a genuinely personal keepsake — their actual observations, hypotheses and reflections from a whole campaign, bound as a printable journal. No other platform can produce this, because it isn't templated; it's built from what the child actually wrote.
+**The Explorer's Field Journal — ✅ shipped.** A "View Field Journal" button in Parent Mode compiles a printable keepsake from a specific Explorer's own Discovery Log entries and earned rewards — their actual observations, hypotheses and reflections, one section per mission they actually engaged with. No other platform can produce this, because it isn't templated; it's built from what the child actually wrote. (Not literally the workbook PDF pipeline as first imagined here — that script has no access to a specific device's save data, so this renders and prints in-browser instead; see ADR-029.)
 
 **Joint Expedition Missions.** Milestone 11's multi-child Explorer Profiles currently exist for device-sharing convenience. An occasional mission explicitly designed for two siblings' *different* recorded data to combine into one answer — one child's weather log plus another's star-chart readings solving a shared puzzle — would turn that architecture into real cooperative (never competitive) play, something almost unheard of in single-player-or-leaderboard ed-tech.
 
@@ -357,10 +357,10 @@ These aren't "more content" or "a nicer interface." Each one would give Explorer
 
 Not differentiators on their own, but genuine quality-of-life improvements already scoped out during Milestone 11:
 
-- Save export/import as a downloadable file — the one practical way to back up or move a child's progress between devices without a backend.
+- Save export/import as a downloadable file — ✅ shipped. The one practical way to back up or move a child's progress between devices without a backend; see ADR-028.
 - A broader avatar/appearance system beyond the current fixed emoji set.
 - Audio narration for pre-readers or read-along support.
-- A fuller design system — Milestone 11 added only the minimal CSS needed to make accessibility settings visible; `base.css`/`components.css`/`layout.css` otherwise remain close to their original placeholders.
+- A fuller design system — `base.css`/`themes.css` cover accessibility settings and `layout.css`/`components.css` now give every interactive control a proper touch target (see the Tablet/Mobile touch-target CSS milestone), but there's still no broader visual design system (colour palette, typography scale, card/layout components) beyond what those two milestones needed.
 
 ---
 

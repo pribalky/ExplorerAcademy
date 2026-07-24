@@ -1,0 +1,39 @@
+/* print.css — Print-only rules for the Explorer's Field Journal
+   (ADR-029). Linked only from portal/parent/index.html, since it's the
+   only page that ever needs it. Every rule here lives inside
+   `@media print` — this file has zero effect on any on-screen view,
+   including Parent Mode's normal dashboard, by design.
+
+   The Field Journal replaces Parent Mode's entire root content while
+   it's open (parent-mode.js's renderFieldJournal(), the same
+   full-swap pattern the picker/gate/dashboard views already use), so
+   there is no unrelated Parent Mode chrome left in the DOM to hide —
+   only the Journal's own "Print"/"Back to Dashboard" buttons need
+   suppressing from the printed output itself. */
+
+@media print {
+  /* This page's own static "Parent Mode" header isn't part of the
+     Journal content — nothing else on this page prints a page title,
+     so this is safe to hide unconditionally here. */
+  body > header {
+    display: none;
+  }
+
+  [data-field-journal] [data-journal-actions] {
+    display: none;
+  }
+
+  [data-field-journal] article {
+    break-inside: avoid;
+  }
+
+  [data-field-journal] h2,
+  [data-field-journal] h3 {
+    break-after: avoid;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+}

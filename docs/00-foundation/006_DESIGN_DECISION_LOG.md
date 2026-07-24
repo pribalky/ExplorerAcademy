@@ -917,6 +917,40 @@ None beyond this entry — no existing architecture document described save port
 
 ---
 
+# ADR-029
+
+## The Explorer's Field Journal Is Rendered and Printed In-Browser, Not Compiled by the Workbook Script
+
+**Status**
+
+Accepted
+
+### Context
+
+README's Future Possibilities described the Explorer's Field Journal as "the workbook PDF pipeline (`scripts/build_workbook.py`), pointed at a child's own Discovery Log instead." That pipeline is a checked-in developer/build-time script that compiles *repository* files (campaign JSON, authored Markdown) into a PDF via headless-Chromium print-to-PDF — it has no access to a specific child's actual save data, which exists only in that child's `localStorage`, on that child's own device. Literally reusing it would mean asking a parent to install Python, clone or download the repo, and run a script locally — a real usability regression, and arguably a "build tool" requirement for an end user, which the platform's own Technology Constraints rule out.
+
+### Decision
+
+Added `renderFieldJournal()` to `parent-mode.js`: a dedicated in-browser view, reachable via a "View Field Journal" button on Parent Mode's dashboard, built from data Parent Mode already reads for that specific child (`getDiscoveryLog(childId)`, `getEarnedRewards(childId)`, `resolveRewardDetails()`) — a cover, one section per mission with at least one recorded Discovery Log entry (missions with none are omitted entirely), and a closing tally. A parent produces the actual PDF via their own browser's native Print/Save-as-PDF, styled by a new print-only stylesheet (`portal/css/print.css`, linked only from `portal/parent/index.html`).
+
+### Alternatives Considered
+
+Literally reusing `build_workbook.py` against an exported save file (rejected — would require the parent to run Python locally; a real usability regression for a one-click keepsake feature). A client-side PDF-generation library such as jsPDF (rejected — a new external runtime dependency the Technology Constraints prohibit without explicit approval, when the browser's own print-to-PDF already does the job for free). Generating the Journal server-side (rejected outright — this platform has no backend, per its foundational architecture).
+
+### Rationale
+
+The browser's native Print/Save-as-PDF is the same "let the browser do the PDF work" approach `build_workbook.py` itself already uses at build time (headless-Chromium print-to-PDF) — this decision keeps that same idea, just moved to run at the point the data actually exists (the child's own device, at view time) instead of at build time (the repository, at authoring time). Confining every rule to `@media print` in a dedicated stylesheet means it has zero effect on any on-screen view, including Parent Mode's own normal dashboard.
+
+### Consequences
+
+The Journal's fidelity depends on the parent's own browser's print/PDF implementation rather than a single controlled rendering pipeline — acceptable, since every modern browser's print-to-PDF is reliable and this matches how countless ordinary "printable receipt/report" web features already work. A future contributor extending the Journal's content should keep it strictly to what the child actually recorded (no templated/authored campaign text), per README's own framing that this feature's value is precisely that "it isn't templated."
+
+### Affected Documents
+
+None beyond this entry.
+
+---
+
 # Decision Review Process
 
 Before proposing a new ADR:

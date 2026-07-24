@@ -10,7 +10,57 @@ None currently active. Per CLAUDE.md's Milestone Lifecycle, do not begin new wor
 
 ## Completion Notes
 
-The previous milestone (Automated Smoke-Test Suite) is complete — see "Previous Milestone" below. The user also said "yes, maybe" to the Explorer's Field Journal feature next; that has not been started and needs its own plan and confirmation before beginning, per the Milestone Lifecycle. Phase 12 (Campaign Release) remains the only original-roadmap phase not yet started.
+The previous milestone (Explorer's Field Journal) is complete — see "Previous Milestone" below. Phase 12 (Campaign Release) remains the only original-roadmap phase not yet started.
+
+---
+
+# Previous Milestone — Explorer's Field Journal — COMPLETE
+
+## Objective
+
+README's Future Possibilities framed this as "the workbook PDF pipeline, pointed at a child's own Discovery Log instead." That literal framing needed one real correction: `scripts/build_workbook.py` is a developer/build-time script run against files already in the repo — it has no access to a specific child's actual save data, which only exists in `localStorage` on that child's own device. Reusing it as written would mean asking a parent to run a Python script locally, a real usability regression. Resolved instead with a dedicated in-browser print view inside Parent Mode (which already reads a specific child's data via Milestone 11's `childId`-scoped getters), letting the parent use their own browser's native Print/Save-as-PDF — same end result, zero new dependencies, works fully offline.
+
+## Inputs
+
+- README.md's "The Explorer's Field Journal" entry (Future Possibilities / True Differentiators).
+- `portal/js/parent-mode.js` — already had everything the Journal needed: `getDiscoveryLog(childId)`, `getEarnedRewards(childId)`, `resolveRewardDetails(reward, catalogs)`, mission data, the profile object, and the existing full-swap render pattern already used by the picker/gate/dashboard views.
+
+## Completion Summary
+
+- **`portal/js/parent-mode.js`** — new `renderFieldJournal()`: a cover (Explorer name, campaign title, "Explorer since" date, compiled-on date), one `<article>` per mission with at least one Discovery Log entry (mission title, each reflection's prompt + the child's own recorded answer + date, any rewards earned that mission resolved via `resolveRewardDetails()`), and a closing "Journey So Far" tally (missions with progress, total entries, streak). Missions with zero entries are omitted entirely. A new "View Field Journal" button on the dashboard opens it; "Print / Save as PDF" (`window.print()`) and "Back to Dashboard" sit at the top.
+- **New `portal/css/print.css`**, linked only from `portal/parent/index.html` — every rule scoped inside `@media print`, so it has zero effect on any on-screen view. Hides the page's static "Parent Mode" header and the Journal's own action buttons from the printed output, and adds page-break-friendly section rules.
+- **ADR-029** added, recording the browser-print-vs-build-script decision and why the literal README framing didn't survive contact with where the data actually lives.
+- **`tests/test_parent_mode.py`** extended with Field Journal coverage: cover shows the right name, mission with a reflection appears with its exact recorded text, a mission with no reflection is correctly omitted, cross-child isolation holds inside the Journal too, the closing tally renders, `print.css` is actually linked, and Back returns to the full dashboard.
+- **README.md accuracy fixes** made while in the area: the Field Journal entry now says shipped and points at ADR-029 instead of the (incorrect) build-script framing; Save Export/Import's entry — never updated when that milestone actually completed — now says shipped too; the "fuller design system" note, which still described `layout.css`/`components.css` as empty placeholders after the touch-target CSS milestone had already given them real content, is corrected.
+
+## Out of Scope
+
+Any client-side PDF-generation library (jsPDF etc.) — the browser's own Print/Save-as-PDF already does this with zero new dependencies. A learner-facing version of the Journal — this is parent-initiated print output, consistent with Parent Mode already being where curriculum/progress content lives (ADR-006). Selecting which reflections to include or any curation UI — the Journal is a straight, unfiltered compilation of what the child actually recorded.
+
+## Success Criteria
+
+From Parent Mode's dashboard for a real Explorer, "View Field Journal" produces a complete, correctly-populated keepsake that prints cleanly via the browser's own Print dialog, with no unrelated Parent Mode chrome appearing in the printed output. — **Met**, verified below.
+
+## Manual Verification
+
+All verified via headless Chromium against the real running app:
+
+- Created an Explorer, completed reflections for two specific missions only, opened the Field Journal from Parent Mode: only those two missions appeared, each with its exact recorded reflection text and date; a third, untouched mission was correctly absent.
+- A mission earning a reward (mission03's Knowledge Core) showed it in the Journal, resolved to its real title and description via the same `resolveRewardDetails()` Parent Mode's own Progress Dashboard already uses — confirmed visually via a full-page screenshot, not just a text-presence check.
+- The closing "Journey So Far" tally rendered with the correct counts.
+- Cross-child isolation holds inside the Journal: a second Explorer's name never appeared in the first Explorer's Journal.
+- Back to Dashboard correctly returned to the full dashboard (`Progress Dashboard` heading present again).
+- `print.css` confirmed linked from Parent Mode's `<head>` via `page.evaluate` (a headless browser can't drive the OS print dialog itself, so this is a structural check, not a rendered-PDF check).
+- Zero JS console/page errors across every check.
+- **Full regression pass**: `python3 tests/run_all.py` — all 8 test files pass, including the newly extended `test_parent_mode.py`. This is the first real feature built since the smoke-test suite existed, and it caught nothing wrong — a genuine, if unglamorous, proof that the suite is now doing its job.
+
+## Deliverables
+
+Updated `portal/js/parent-mode.js`, new `portal/css/print.css`, updated `portal/parent/index.html`, new ADR-029, README.md accuracy fixes (3 entries), extended `tests/test_parent_mode.py`, updated `TODO.md`.
+
+## Completion Notes
+
+**Complete.** Parents can now produce a genuinely personal, unfiltered keepsake from their child's own recorded observations and reflections — Explorer Academy's own differentiator thesis (curiosity and the child's own thinking matter more than templated content) made into a printable artefact, entirely in-browser, offline-compatible, with no new dependencies. ✅
 
 ---
 
