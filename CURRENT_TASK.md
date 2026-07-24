@@ -2,51 +2,69 @@
 
 ## Phase
 
-Not yet defined — genuine offline caching is complete; awaiting user direction on the next priority
+Awaiting direction.
 
 ## Milestone
 
-Not yet defined — awaiting user direction. Candidates: Phase 12 (Campaign Release), the Tablet/Mobile touch-target CSS gap from Phase 11, or any of the README's differentiator/deferred ideas.
-
-## Objective
-
-N/A — awaiting user direction.
-
-## Inputs
-
-N/A — awaiting user direction.
-
-## Relevant Documentation
-
-N/A — awaiting user direction.
-
-## Files Expected to Change
-
-N/A — awaiting user direction.
-
-## Implementation Plan
-
-N/A — awaiting user direction.
-
-## Out of Scope
-
-N/A.
-
-## Success Criteria
-
-N/A.
-
-## Manual Verification
-
-N/A.
-
-## Deliverables
-
-N/A.
+None currently active. Per CLAUDE.md's Milestone Lifecycle, do not begin new work until the user gives explicit direction.
 
 ## Completion Notes
 
-Not yet started.
+The previous milestone (Save Export/Import) is complete — see "Previous Milestone" below. Phase 12 (Campaign Release) remains the only original-roadmap phase not yet started; the user has not yet asked to begin it.
+
+---
+
+# Previous Milestone — Save Export/Import as a Manual Downloadable File — COMPLETE
+
+## Objective
+
+README.md's "Smaller, Still Worthwhile" list named this as the one practical way to back up or move a child's progress between devices without a backend. Per ADR-026's own stated consequence ("anything that would make a profile mean something outside the single device it was created on... would need its own new ADR"), this needed a new ADR, not a quiet addition.
+
+## Inputs
+
+- `README.md`'s Future Possibilities / Smaller Still Worthwhile list.
+- ADR-024/025/026 (Explorer Profiles, PIN-as-deterrent, local-device boundary).
+- `portal/js/explorer-profiles.js` (profile CRUD, `isNameTaken`/`generateProfileId` helpers reused), `portal/js/storage.js` (per-child save read/write).
+
+## Relevant Documentation
+
+`006_DESIGN_DECISION_LOG.md` (ADR-024, ADR-025, ADR-026 — this added ADR-028).
+
+## Completion Summary
+
+- **`portal/js/storage.js`** — added thin `exportSave(childId)`/`importSave(childId, save)` wrappers around the existing private `readSave`/`writeSave`, so the save shape/version stays owned in exactly one place.
+- **`portal/js/explorer-profiles.js`** — added `EXPORT_FORMAT_VERSION` (1), `exportProfile(childId)` (bundles profile identity fields — name, avatar, PIN hash, timestamps, streak — plus that child's full save into one versioned object) and `importProfile(exportedData)` (validates the export format version and required fields, rejects a display-name collision with an existing local profile via the existing `isNameTaken` helper, always mints a fresh local `id` via `generateProfileId()` rather than reusing the file's id, writes both the new profile and its save).
+- **`portal/js/router.js`** — Settings gained a "Backup & Transfer" section (`renderExportControl`, shown only when an Explorer is active) with a "Download Backup File" button that builds the JSON file via `Blob`/`URL.createObjectURL` and triggers it through a temporary `<a download>`. Home's "Who's Exploring Today?" screen gained a collapsed "+ Import Explorer" form (`renderImportExplorerForm`) — a file picker plus an Import button that reads the chosen file as JSON, calls `importProfile()`, and on success immediately activates the new profile exactly like creating one.
+- **ADR-028** added to `006_DESIGN_DECISION_LOG.md`, explicitly distinguishing this manual, parent-initiated file transfer from the automatic cross-device sync ADR-026 excludes, and recording why only the PIN's hash (never the plaintext PIN) travels in the file.
+
+## Out of Scope
+
+Automatic or continuous cross-device sync (excluded architecture-wide, not just for this feature — ADR-026). Any transfer mechanism other than a manually-downloaded-and-re-uploaded file (e.g. QR code, direct device-to-device transfer) — not requested, adds real complexity for a niche benefit over a plain file.
+
+## Success Criteria
+
+A backup file downloaded from one browser context, then imported into a completely separate browser context, reproduces the same Explorer (name, avatar, PIN, streak, Discovery Log, earned rewards, session, settings) with zero manual re-entry. No regression to any existing flow. — **Met**, verified below.
+
+## Manual Verification
+
+All verified via headless Chromium against the real running app (not assumed from reading code):
+
+- **Export → fresh-context import**: created "Ada" (PIN 1234) in one browser context, downloaded her backup file from Settings, imported it into a completely separate, empty browser context via Home's "+ Import Explorer" form. The import immediately activated a new "Ada" profile whose dashboard rendered correctly.
+- **PIN preserved without ever traveling in plaintext**: confirmed the exported JSON's `profile.pinHash` field matches the imported profile's `pinHash` exactly (same hash, same PIN still works), while the plaintext PIN never appears anywhere in the downloaded file.
+- **Fresh local id on import**: confirmed the imported profile's `id` differs from any id in the source data — import never reuses an id from the file, so two devices can never collide on the same profile id.
+- **Name-collision rejection**: created a local "Ada" profile on a third context, then attempted to import the same "Ada" backup file — rejected with `"Ada" already exists on this device. Rename or remove the existing Explorer first.`, and confirmed no duplicate profile was created.
+- **Malformed/foreign file rejection**: an invalid-JSON file was rejected with "That file is not valid JSON."; a well-formed but unrelated JSON file was rejected with "This file is not a recognised Explorer Academy export." — both graceful, no console errors.
+- **Double-import independence**: re-importing the identical backup file a second time onto a device that already had that Explorer correctly hit the same name-collision rejection rather than silently creating a duplicate or overwriting the existing profile — confirmed the profile count stayed at 1 both times.
+- **Full regression pass** with the new code present: created two independent Explorers, confirmed complete save/streak isolation between them; visited the campaign list and Mission 1 successfully; Settings' existing session-duration and Accessibility sections still render and function correctly alongside the new Backup & Transfer section; Discovery Log route still renders; Parent Mode's picker → PIN gate → scoped dashboard cycle still works correctly for an Explorer created via this session, with zero JS console/page errors (the one console message observed — a 404 for `favicon.ico` — is a pre-existing, unrelated gap, not a regression from this feature).
+- One test-methodology red herring caught and resolved during verification: an early regression check searched raw `page.content()` for the literal string `"Backup & Transfer"`, which failed because `&` is HTML-entity-escaped (`&amp;`) in serialized `innerHTML`/`page.content()` output — confirmed via live-DOM inspection and Playwright's `get_by_text()` (which correctly handles entity decoding) that the feature was rendering correctly all along; this was a test artifact, not a product bug.
+
+## Deliverables
+
+Updated `portal/js/storage.js`, `portal/js/explorer-profiles.js`, `portal/js/router.js`; new ADR-028 in `006_DESIGN_DECISION_LOG.md`; updated `TODO.md`.
+
+## Completion Notes
+
+**Complete.** A parent can now back up or move one Explorer's complete data (profile identity + save) between devices via a manually downloaded and re-uploaded JSON file, without any backend or automatic sync — staying firmly on the local-device side of the boundary ADR-026 draws. Verified end-to-end across separate browser contexts standing in for separate devices, including the same-PIN-still-works property, collision handling, and malformed-file handling. Full regression pass shows zero impact on any existing flow. ✅
 
 ---
 

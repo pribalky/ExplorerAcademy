@@ -881,6 +881,42 @@ Campaign 01's entire `src`+`generated` tree measured under 1MB total — small e
 
 ---
 
+# ADR-028
+
+## Save Export/Import as a Manual Downloadable File, Not Cross-Device Sync
+
+**Status**
+
+Accepted
+
+### Context
+
+A parent asked for a way to move one Explorer to another device "smoothly." ADR-026 already excludes automatic cross-device sync from this architecture (no backend to sync through, and syncing would make a profile mean something beyond the single device it was created on). The request needed a concrete answer for what *is* in scope: a manual file the parent downloads on one device and imports on another, entirely under the parent's control, with no network transport involved.
+
+### Decision
+
+Added `exportProfile(childId)`/`importProfile(exportedData)` to `explorer-profiles.js`, built on new thin `exportSave(childId)`/`importSave(childId, save)` wrappers in `storage.js`. Export bundles the profile's identity fields (name, avatar, PIN hash, streak) and that child's full save into one versioned (`exportFormatVersion`) JSON object; Settings offers it as a browser download (`Blob` + `<a download>`, no server round trip). Import, reachable from the "Who's Exploring Today?" screen, reads the chosen file, validates its shape, and creates a **new** local profile from it — it never overwrites or merges into an existing profile, and always mints a fresh local id rather than reusing the one in the file, so two devices can never collide on the same id. A display name already in use on the importing device is rejected with a clear message rather than silently merged.
+
+Only the PIN's hash travels in the file, never the plaintext PIN — the same PIN keeps working after import (the hash still matches), without ever writing the actual PIN to disk.
+
+### Alternatives Considered
+
+Automatic cross-device sync (rejected outright — this is precisely what ADR-026 excludes; would require a backend this platform doesn't have). Exporting the plaintext PIN for convenience (rejected — no reason to ever put the actual PIN in a file that might be emailed, uploaded, or left in a Downloads folder, when shipping the hash achieves the same "same PIN works after import" outcome without that exposure). Overwriting/merging into an existing same-named local profile on import (rejected — silently clobbering local progress on a name collision is a worse failure mode than asking the parent to rename or remove the existing Explorer first).
+
+### Rationale
+
+This stays firmly on the "local device profile" side of the line ADR-026 draws: the file is inert data the parent manually carries between devices (via USB, email attachment, cloud drive, however they like), not a live channel between the platform and any server. Reusing `exportSave()`/`readSave()` and `isNameTaken()` rather than duplicating logic keeps the save shape and name-collision rule owned in exactly one place each.
+
+### Consequences
+
+Importing the same backup file twice produces two independent local profiles, not one kept in sync — this is expected given the "new profile, fresh id" design, and matches how a parent would expect a backup restore to behave (never silently overwrite). If `storage.js`'s save shape ever needs a real migration path (`STORAGE_VERSION` bump), `exportFormatVersion` and `STORAGE_VERSION` are separate numbers and may need to evolve together — noted here so a future change doesn't miss it.
+
+### Affected Documents
+
+None beyond this entry — no existing architecture document described save portability one way or the other.
+
+---
+
 # Decision Review Process
 
 Before proposing a new ADR:

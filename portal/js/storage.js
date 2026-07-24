@@ -202,6 +202,22 @@ export function saveProfiles(profiles) {
   writeProfiles(profiles);
 }
 
+// --- Save export/import (ADR-028) ---
+//
+// Thin wrappers around the same readSave()/writeSave() every other
+// per-child function already uses, so the save shape/version stays
+// owned in exactly one place. explorer-profiles.js builds the actual
+// downloadable file around exportSave()'s output; it never touches the
+// save shape directly.
+
+export function exportSave(childId) {
+  return readSave(childId);
+}
+
+export function importSave(childId, save) {
+  writeSave(childId, { ...defaultSave(), ...(save ?? {}) });
+}
+
 // --- Legacy single-save migration (Milestone 11) ---
 //
 // Before Milestone 11 there was exactly one anonymous save under

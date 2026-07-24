@@ -31,7 +31,9 @@ import {
   createProfile,
   createProfileFromLegacySave,
   hasUnmigratedLegacySave,
-  touchLastPlayed
+  touchLastPlayed,
+  exportProfile,
+  importProfile
 } from './explorer-profiles.js';
 
 // A small fixed emoji set, not image upload, per Milestone 11's scope
@@ -482,6 +484,7 @@ function renderExplorerSelector(content) {
   }
 
   renderNewExplorerForm(content);
+  renderImportExplorerForm(content);
 }
 
 // "+ New Explorer": collapsed behind a <details> so the selector stays
@@ -573,6 +576,61 @@ function renderNewExplorerForm(content) {
   });
 
   details.appendChild(form);
+  content.appendChild(details);
+}
+
+// "+ Import Explorer": restores an Explorer exported from another device
+// (see renderExportControl in Settings and ADR-028). Import always
+// creates a brand-new local profile — it never overwrites an existing
+// one — so a same-named local profile is rejected rather than merged.
+function renderImportExplorerForm(content) {
+  const details = document.createElement('details');
+  const summary = document.createElement('summary');
+  summary.textContent = '+ Import Explorer';
+  details.appendChild(summary);
+
+  const explainer = document.createElement('p');
+  explainer.textContent = 'Choose a backup file downloaded from Settings on another device.';
+  details.appendChild(explainer);
+
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = 'application/json';
+  details.appendChild(fileInput);
+
+  const submit = document.createElement('button');
+  submit.type = 'button';
+  submit.textContent = 'Import';
+  details.appendChild(submit);
+
+  const feedback = document.createElement('p');
+  feedback.setAttribute('role', 'status');
+  details.appendChild(feedback);
+
+  submit.addEventListener('click', async () => {
+    const file = fileInput.files?.[0];
+    if (!file) {
+      feedback.textContent = 'Choose a file first.';
+      return;
+    }
+
+    let parsed;
+    try {
+      parsed = JSON.parse(await file.text());
+    } catch (error) {
+      feedback.textContent = 'That file is not valid JSON.';
+      return;
+    }
+
+    const result = importProfile(parsed);
+    if (!result.ok) {
+      feedback.textContent = result.errors.join(' ');
+      return;
+    }
+
+    activateProfile(content, result.profile.id);
+  });
+
   content.appendChild(details);
 }
 
@@ -750,6 +808,50 @@ function renderSettings(outlet, route) {
   section.appendChild(form);
 
   renderAccessibilityForm(section);
+
+  const activeChild = getActiveChild();
+  if (activeChild) {
+    renderExportControl(section, activeChild);
+  }
+}
+
+// Backup & Transfer: lets a parent download the active Explorer's
+// profile + save as a JSON file, to move it to another device or keep as
+// a safety copy. This is a manual, parent-initiated file transfer, not
+// automatic cross-device sync — ADR-026 excludes real sync from this
+// architecture; see ADR-028 for why export/import doesn't cross that
+// line. Only shown when an Explorer is active, since there's nothing to
+// export otherwise.
+function renderExportControl(section, child) {
+  const heading = document.createElement('h3');
+  heading.textContent = 'Backup & Transfer';
+  section.appendChild(heading);
+
+  const explainer = document.createElement('p');
+  explainer.textContent =
+    'Download a backup file to move this Explorer to another device, or as a safety copy. ' +
+    'Import it from the "Who\'s Exploring Today?" screen on the other device.';
+  section.appendChild(explainer);
+
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.textContent = 'Download Backup File';
+  button.addEventListener('click', () => {
+    const result = exportProfile(child.id);
+    if (!result.ok) return;
+
+    const blob = new Blob([JSON.stringify(result.data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    const datePart = new Date().toISOString().slice(0, 10);
+    link.download = `explorer-academy-${child.displayName.replace(/\s+/g, '-').toLowerCase()}-${datePart}.json`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  });
+  section.appendChild(button);
 }
 
 // Accessibility preferences (font scale, high contrast, reduced motion).

@@ -28,7 +28,9 @@ import {
   setActiveChildId,
   hasLegacySave,
   migrateLegacySaveTo,
-  clearLegacySave
+  clearLegacySave,
+  exportSave,
+  importSave
 } from './storage.js';
 
 const PIN_PATTERN = /^\d{4,8}$/;
@@ -233,4 +235,75 @@ export async function createProfileFromLegacySave({ displayName, avatar, pin }) 
   migrateLegacySaveTo(result.profile.id);
   clearLegacySave();
   return result;
+}
+
+// --- Save export/import (ADR-028) ---
+//
+// A manual, parent-initiated file transfer for moving one Explorer to
+// another device (or keeping a backup) — not the automatic cross-device
+// sync that ADR-026 excludes from this architecture. The exported file
+// carries the PIN's hash, never the PIN itself, so the same PIN keeps
+// working on the new device without ever writing the plaintext PIN to
+// disk. Importing always mints a fresh local id rather than reusing the
+// file's id, so two devices can never collide on the same profile id.
+
+export const EXPORT_FORMAT_VERSION = 1;
+
+export function exportProfile(childId) {
+  const profile = findProfile(childId);
+  if (!profile) {
+    return { ok: false, errors: ['Explorer not found.'] };
+  }
+  return {
+    ok: true,
+    data: {
+      exportFormatVersion: EXPORT_FORMAT_VERSION,
+      exportedAt: new Date().toISOString(),
+      profile: {
+        displayName: profile.displayName,
+        avatar: profile.avatar,
+        pinHash: profile.pinHash,
+        createdAt: profile.createdAt,
+        lastPlayedAt: profile.lastPlayedAt,
+        streak: profile.streak
+      },
+      save: exportSave(childId)
+    }
+  };
+}
+
+export function importProfile(exportedData) {
+  if (!exportedData || exportedData.exportFormatVersion !== EXPORT_FORMAT_VERSION) {
+    return { ok: false, errors: ['This file is not a recognised Explorer Academy export.'] };
+  }
+  const importedProfile = exportedData.profile;
+  if (!importedProfile || typeof importedProfile.displayName !== 'string' || !importedProfile.displayName.trim()) {
+    return { ok: false, errors: ['This file is missing Explorer profile data.'] };
+  }
+  if (typeof importedProfile.pinHash !== 'string' || !importedProfile.pinHash) {
+    return { ok: false, errors: ['This file is missing PIN data.'] };
+  }
+
+  const trimmedName = importedProfile.displayName.trim();
+  const profiles = loadProfiles();
+  if (isNameTaken(profiles, trimmedName)) {
+    return {
+      ok: false,
+      errors: [`"${trimmedName}" already exists on this device. Rename or remove the existing Explorer first.`]
+    };
+  }
+
+  const newProfile = {
+    id: generateProfileId(),
+    displayName: trimmedName,
+    avatar: importedProfile.avatar ?? null,
+    pinHash: importedProfile.pinHash,
+    createdAt: importedProfile.createdAt ?? new Date().toISOString(),
+    lastPlayedAt: importedProfile.lastPlayedAt ?? null,
+    streak: importedProfile.streak ?? { count: 0, lastPlayedDate: null }
+  };
+
+  saveProfiles([...profiles, newProfile]);
+  importSave(newProfile.id, exportedData.save ?? {});
+  return { ok: true, profile: newProfile };
 }
