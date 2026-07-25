@@ -40,6 +40,13 @@ import {
 // decision (avatar image upload is explicitly out of scope).
 const AVATAR_CHOICES = ['🦊', '🐻', '🐸', '🦉', '🐢', '🦁', '🐧', '🐙'];
 
+// Mirrors parent-mode.js's own missionSlug() — campaign.missions lists
+// schema IDs (e.g. "MISSION-0001"), not the file slugs routes/fetches
+// use, so a 1-based mission number is the only thing connecting the two.
+function missionSlug(number) {
+  return `mission${String(number).padStart(2, '0')}`;
+}
+
 export const ROUTES = [
   { path: '/', label: 'Home', title: 'Explorer Academy' },
   { path: '/campaigns', label: 'Campaigns', title: 'Campaign Select' },
@@ -153,6 +160,40 @@ async function renderCampaignMetadata(outlet, campaignId) {
   addRow('Estimated Duration', campaign.estimatedDuration);
   addRow('Missions', campaign.missions.length);
   section.appendChild(details);
+
+  await renderMissionList(section, campaignId, campaign.missions.length);
+}
+
+// This was the actual gap behind "Campaign Overview shows only a
+// summary, no way to start a mission": campaign.missions is just a list
+// of schema IDs (e.g. "MISSION-0001"), not file slugs, and nothing here
+// ever turned it into clickable links — the only way into a mission was
+// Home's "Continue Mission" (which requires a session to already exist)
+// or typing a mission URL by hand. Every automated check in this
+// project navigated straight to a mission URL too, so this was never
+// caught until a real person tried to click through the real UI.
+async function renderMissionList(section, campaignId, missionCount) {
+  const heading = document.createElement('h3');
+  heading.textContent = 'Missions';
+  section.appendChild(heading);
+
+  const slugs = Array.from({ length: missionCount }, (_, index) => missionSlug(index + 1));
+  const results = await Promise.all(slugs.map((slug) => loadMission(campaignId, slug)));
+
+  const list = document.createElement('ol');
+  results.forEach((result, index) => {
+    const item = document.createElement('li');
+    if (result.ok) {
+      const link = document.createElement('a');
+      link.href = `#/mission/${slugs[index]}`;
+      link.textContent = result.mission.title;
+      item.appendChild(link);
+    } else {
+      item.textContent = `Mission ${index + 1} is unavailable.`;
+    }
+    list.appendChild(item);
+  });
+  section.appendChild(list);
 }
 
 // Campaign Select: lists known campaigns as cards linking to their

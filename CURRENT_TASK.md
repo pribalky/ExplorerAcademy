@@ -10,6 +10,43 @@ None currently active. Per CLAUDE.md's Milestone Lifecycle, do not begin new wor
 
 ## Completion Notes
 
+The previous milestone (Fix: Campaign Overview Had No Mission Links) is complete — see "Previous Milestone" below. Still open: the user's second report ("in settings i'm not able to save time duration") could not be reproduced in this environment — direct clicks, label-center clicks, and even clicking the label's padding area all correctly select and persist every session duration in headless Chromium. Awaiting more detail from the user (which browser, exactly what happens when they click Save, whether the radio visibly selects) before treating it as a confirmed bug.
+
+---
+
+# Previous Milestone — Fix: Campaign Overview Had No Mission Links — COMPLETE
+
+## Objective
+
+The user, running the app locally for the first time via the new Local Development guide, reported: "campaign1 shows only summary, no missions." Investigated and confirmed this as a genuine, significant, pre-existing platform bug — not a local environment issue.
+
+## Root Cause
+
+`renderCampaignMetadata()` (the Campaign Overview page, `#/campaign/campaign01`) only ever rendered summary metadata (theme, age, duration, a mission *count*) — it never turned `campaign.missions` (a list of schema IDs like `"MISSION-0001"`, not routable file slugs) into any clickable links. The *only* ways into a mission were Home's "Continue Mission" (which requires a session to already exist) or typing a mission URL by hand. This went undetected through every phase of this project, including Phase 11's own "Broken links" testing, because every automated check — this session's included — navigated straight to `#/mission/missionNN` URLs directly rather than clicking through the real UI from the Campaign Overview page. A real first-time user has no session yet and no reason to guess a URL, so this was a hard blocker for actually starting to play.
+
+## Completion Summary
+
+- **`portal/js/router.js`** — added a `missionSlug()` helper (mirroring `parent-mode.js`'s own) and a new `renderMissionList()`, called from `renderCampaignMetadata()`, which loads all of the campaign's missions and renders each as a real link (`#/mission/missionNN`, labelled with the mission's actual title) in an ordered list under a new "Missions" heading.
+- **`tests/test_broken_links.py`** — extended to click through the real UI path (Campaigns → campaign01 → Campaign Overview → a mission link) instead of only loading mission URLs directly, specifically so this class of bug — everything works by URL, nothing works by clicking — can never regress silently again.
+
+## Manual Verification
+
+- Reproduced the exact bug first: loaded the Campaign Overview page and confirmed zero mission links existed anywhere in the DOM, matching the user's report precisely.
+- After the fix: Campaign Overview shows all 21 missions as real, correctly-titled links; clicked through Home → Campaigns → Outpost Echo → a mission by name and confirmed it loads correctly, with zero console/page errors.
+- **Proved the new test actually catches this bug**: temporarily reverted the fix via `git stash`, re-ran `tests/test_broken_links.py`, confirmed it now fails with "Campaign Overview lists all 21 missions as clickable links (found 0)" — then restored the fix and confirmed all checks pass again.
+- Full regression pass: `python3 tests/run_all.py` — all 8 test files pass.
+
+## Deliverables
+
+Updated `portal/js/router.js`, extended `tests/test_broken_links.py`.
+
+## Completion Notes
+
+**Complete.** A real, previously-undetected blocker — no way to start any mission from the actual UI — is fixed and now has permanent regression coverage. Found by the user's very first real attempt to run the app as an actual user would, which is exactly the kind of check automated URL-based testing alone can't replace. ✅
+
+---
+## Completion Notes
+
 The previous milestone (Phase 12: Campaign Release) is complete — see "Previous Milestone" below.
 
 ---
