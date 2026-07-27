@@ -10,7 +10,38 @@ None currently active. Per CLAUDE.md's Milestone Lifecycle, do not begin new wor
 
 ## Completion Notes
 
-The previous milestone (Fix: Campaign Overview Had No Mission Links) is complete — see "Previous Milestone" below. Still open: the user's second report ("in settings i'm not able to save time duration") could not be reproduced in this environment — direct clicks, label-center clicks, and even clicking the label's padding area all correctly select and persist every session duration in headless Chromium. Awaiting more detail from the user (which browser, exactly what happens when they click Save, whether the radio visibly selects) before treating it as a confirmed bug.
+The previous two milestones (Fix: Campaign Overview Had No Mission Links; Fix: Stale Service Worker Cache Masked The Mission-List Fix) are complete — see "Previous Milestone" entries below. Still open: the user's Settings-duration report could not be reproduced in this environment — direct clicks, label-center clicks, and even clicking the label's padding area all correctly select and persist every session duration in headless Chromium. Awaiting more detail from the user (which browser, exactly what happens when they click Save) before treating it as a confirmed bug.
+
+---
+
+# Previous Milestone — Fix: Stale Service Worker Cache Masked The Mission-List Fix — COMPLETE
+
+## Objective
+
+After pulling the mission-list fix and reloading, the user reported "mission list is still empty. only static data." Investigated and found this was a second, distinct bug — my own oversight, not a new app defect and not a local environment issue: the mission-list fix shipped without bumping `sw.js`'s `CACHE_VERSION`, so returning browsers with an already-installed service worker kept serving the old, pre-fix `router.js` from cache indefinitely, cache-first, regardless of what actually changed on disk.
+
+## Root Cause
+
+`portal/sw.js`'s own header comment states the maintenance rule explicitly: "bump CACHE_VERSION whenever shipped files change." The previous commit changed `router.js` (a precached shell file) without following that rule, so a browser that had already installed the service worker before the fix would never know to fetch the new version.
+
+## Completion Summary
+
+- **`portal/sw.js`** — `CACHE_VERSION` bumped from `v2` to `v3`.
+- Reproduced the user's exact scenario end-to-end in a disposable copy of the app: installed the service worker against the pre-fix code (matching the user's first run), then swapped in the fix on disk *without* a version bump — confirmed the bug reproduces exactly ("mission list is still empty") even though the file on disk was already correct. Repeated with the version bump in place: confirmed a completely normal reload (no DevTools tricks, no manual cache-clearing) correctly triggers the browser's background service-worker update check, installs the new cache, discards the old one, and the mission list appears — within a few seconds, not instantly.
+- Along the way, ruled out several red herrings from my own test methodology (a `wait_for_function` polling condition that matched the *old* worker instead of the new one; checking the cache before the browser's update check had actually finished) before confirming the real fix works reliably with nothing more than time and a reload.
+
+## Manual Verification
+
+- Full regression pass: `python3 tests/run_all.py` — all 8 test files pass with the version bump in place.
+- End-to-end reproduction (see Completion Summary) confirmed both the bug and the fix directly, not by inference.
+
+## Deliverables
+
+`portal/sw.js` (`CACHE_VERSION` bump).
+
+## Completion Notes
+
+**Complete.** This was the second real bug the user's own local run surfaced in as many days — and, notably, one I introduced myself by not following `sw.js`'s own documented maintenance rule when shipping the previous fix. Every future change to a precached shell file needs the same version bump; this is exactly the kind of mistake worth naming plainly rather than glossing over. ✅
 
 ---
 
