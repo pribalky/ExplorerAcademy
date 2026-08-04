@@ -1,0 +1,19 @@
+# Binary assets — never let Git apply line-ending conversion or text
+# diffing to these, regardless of a contributor's local core.autocrlf
+# setting. Without this, a Windows checkout with the common
+# core.autocrlf=true default silently corrupts these files by rewriting
+# LF byte sequences inside binary content (this is exactly what broke
+# Campaign-01-Workbook.pdf for a contributor pulling on Windows).
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.mp3 binary
+*.wav binary
+*.ogg binary
